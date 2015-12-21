@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+		<link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+		<title>Easy Oral Health</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+			  <lu class="nav nav-pills pull-right">
+			  	<li><a href="{% url "index" %}" class="navbar-link"> <!-- {{ odontology_logado.nome | upper }} --></a></li>
+			  	<li><a href="/logout/" class="navbar-link">LOGOUT</a></li>
+			  </lu>
+			  <h3 class="text-muted">Easy Oral Health</h3>
+			</div>
+			<div class="row content">
+				{% block body %}
+				{% endblock %}
+			</div>
+		</div>
+
+		
+	</body>
+</html>
