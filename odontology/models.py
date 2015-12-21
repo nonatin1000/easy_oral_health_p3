@@ -2,80 +2,91 @@
 
 from django.db import models
 
-class Dentista(models.Model):
+class Dentist(models.Model):
 	
-	nome = models.CharField(
+	name = models.CharField(
+		u'Nome',
 		max_length=100,
 		null=False
 	)
 
-	MASCULINO = 'M'
-	FEMININO  = 'F'
-	SEXO_CHOICES = (
-				        (MASCULINO, 'Masculino'),
-				        (FEMININO, 'Feminino'),
+	MALE = 'M'
+	FEMALE  = 'F'
+	SEX_CHOICES = (
+				        (MALE, 'Masculino'),
+				        (FEMALE, 'Feminino'),
     )
-	sexo = models.CharField(
+	sex = models.CharField(
+							u'Sexo',
     						max_length=1,
-                            choices=SEXO_CHOICES,
-                            default=FEMININO
+                            choices=SEX_CHOICES,
+                            default=FEMALE
     )
 	def is_upperclass(self):
-		return self.sexo in (self.MASCULINO, self.FEMININO)
+		return self.sex in (self.MALE, self.FEMALE)
 
-	CASADO = 'CASADO'
-	SOLTEIRO = 'SOLTEIRO'
-	SEPARADO = 'SEPARADO'
-	VIUVO = 'VIUVO'
-	DIVORCIADO = 'DIVORCIADO'
-	ESTADO_CIVIL_CHOICES = (
-        (CASADO, 'Casado'),
-        (SOLTEIRO, 'Solteiro'),
-        (SEPARADO, 'Seprado'),
-        (VIUVO, 'Viuvo'),
-        (DIVORCIADO, 'Divorciado'),
+	MARRIED = 'CASADO'
+	SINGLE = 'SOLTEIRO'
+	SEPARATED = 'SEPARADO'
+	WINDOWER = 'VIUVO'
+	DIVORCED = 'DIVORCIADO'
+	MARITAL_STATUS_CHOICES = (
+        (MARRIED, 'Casado'),
+        (SINGLE, 'Solteiro'),
+        (SEPARATED, 'Seprado'),
+        (WINDOWER, 'Viuvo'),
+        (DIVORCED, 'Divorciado'),
     )
-	estado_civil = models.CharField(
+	marital_status = models.CharField(
+										u'Estado Cívil',
 										max_length=10,
-                                  		choices=ESTADO_CIVIL_CHOICES,
-                                 		default=SOLTEIRO
+                                  		choices=MARITAL_STATUS_CHOICES,
+                                 		default=SINGLE
     )
 	def is_upperclass(self):
-		return self.estado_civil in (self.CASADO, self.SOLTEIRO, self.SEPARADO, self.VIUVO, self.DIVORCIADO)
+		return self.marital_status in (self.MARRIED, self.SINGLE, self.SEPARATED, self.WINDOWER, self.DIVORCED)
 
-	data_nascimento = models.DateField()
+	birth = models.DateField(u'Data Nascimento')
 	cro = models.CharField(
+		u'CRO',
 		max_length=6,
 		null=False,
 	)
 	email = models.EmailField(
+		u'E-mail',
 		max_length=254,
 		blank=True
 	)
-	uf = models.CharField(
+	state = models.CharField(
+		u'UF',
 		max_length=2,
 		blank=True
 	)
-	cidade = models.CharField(
+	city = models.CharField(
+		u'Cidade',
 		max_length=30,
 		blank=True
 	)
-	bairro = models.CharField(
+	neighborhood = models.CharField(
+		u'Bairro',
 		max_length=30,
 		blank=True
 	)
-	rua = models.CharField(
+	street = models.CharField(
+		u'Rua',
 		max_length=50,
 		blank=True
 	)
-	numero = models.CharField(
+	number = models.CharField(
+		u'Número',
 		max_length=20,
 		blank=True
 	)
-	cep = models.CharField(
+	zip_code = models.CharField(
+		u'CEP',
 		max_length=10,
 		blank=True
 	)
 
 	def __unicode__(self):
-		return nome
+		return name

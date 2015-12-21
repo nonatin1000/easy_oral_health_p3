@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from django.forms import ModelForm
-from odontology.models import Dentista
+from odontology.models import Dentist
 
-class DentistaForm(ModelForm):
+class DentistForm(ModelForm):
 
 	class Meta:
-		model = Dentista
+		model = Dentist
 		fields = '__all__'

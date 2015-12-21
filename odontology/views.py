@@ -3,19 +3,19 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from odontology.models import Dentista
-from odontology.forms import DentistaForm
+from odontology.models import Dentist
+from odontology.forms import DentistForm
 
 def index(request):
 
-	dentista = Dentista.objects.all()
+	dentist = Dentist.objects.all()
 	
 	if request.method == 'POST':
-		form = DentistaForm(request.POST)
+		form = DentistForm(request.POST)
 		if form.is_valid():
-			novo_contato = form.save()
+			form.save()
 			return HttpResponseRedirect(reverse('index'))
 	else:
-		form = DentistaForm()
+		form = DentistForm()
 
-	return render(request, 'index.html', { 'dentista': dentista, 'form': form })
+	return render(request, 'index.html', { 'dentist': dentist, 'form': form })
