@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <p class="navbar-btn">
+  <a class="btn btn-default" href="{% url 'dentist_index' %}"> 
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    Voltar</a>
+  </p>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <p>
+          <strong>Nome:</strong>
+          {{ dentist.name }}
+        </p>
+        <p>
+          <strong>Sexo:</strong>
+          {{ dentist.sex }}
+        </p>
+        <p>
+          <strong>Estado civil:</strong>
+          {{ dentist.marital_status }}
+        </p>
+        <p>
+          <strong>Nascimento:</strong>
+          {{ dentist.birth }}
+        </p>
+        <p>
+          <strong>Uf:</strong>
+          {{ dentist.state }}
+        </p>
+         <p>
+          <strong>Cidade:</strong>
+          {{ dentist.city }}
+        </p>
+        <p>
+          <strong>Bairro:</strong>
+          {{ dentist.neighborhood }}
+        </p>
+        <p>
+          <strong>Rua:</strong>
+          {{ dentist.street }}
+        </p>
+        <p>
+          <strong>Numero:</strong>
+          {{ dentist.number }}
+        </p>
+        <p>
+          <strong>Cep:</strong>
+          {{ dentist.zip_code }}
+        </p>
+        <p>
+          <strong>Email:</strong>
+          {{ dentist.email }}
+        </p>
+        <p>
+          <strong>Telefone:</strong>
+          {{ dentist.phone }}
+        </p>
+        <p>
+          <strong>CRO:</strong>
+          {{ dentist.cro }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
