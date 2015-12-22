@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+	<div class="col-lg-15">	
+		<div class="panel panel-default">	
+			<div class="panel-heading">
+				<strong>Dentista</strong>
+				<p class="navbar-btn">
+		          <a class: 'btn btn-default' href="{% url 'dentist_add' %}", 
+		            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+		            Novo</a>
+		         </p>
+		        <table class="table table-hover">
+		          <thead>
+		            <tr>
+		              <th>Nome</th>
+		              <th>Email</th>
+		              <th>CRO</th>
+		              <th style="width: 20%;">Ações</th>
+		            </tr>
+		          </thead>
+		          <tbody>
+		            {% for dentist in dentists %}
+		              <tr>
+		                <td>{{ dentist.name }}</td>
+		                <td>{{ dentist.email }}</td>
+		                <td>{{ dentist.cro }}</td>
+		                <td>                    
+			                <a href="{% url 'dentist_index' %}", class: 'btn btn-default', title: 'Exibir'</a>
+			                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+			                <a href="{% url 'dentist_index' %}", class: 'btn btn-default', title: 'Editar'</a>
+			                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+			                <a href="{% url 'dentist_index' %}" "#modal-id-#{{ dentist.id }}", class: 'btn btn-default', title: 'Remover', 'data-toggle': 'modal'</a>
+			                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+			            </td>
+		              </tr>
+		            {% endfor %}
+		          </tbody>
+		        </table>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

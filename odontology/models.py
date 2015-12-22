@@ -88,5 +88,11 @@ class Dentist(models.Model):
 		blank=True
 	)
 
+	phone = models.CharField(
+		u'Telefone',
+		max_length=14,
+		blank=True
+	)
+
 	def __unicode__(self):
 		return name

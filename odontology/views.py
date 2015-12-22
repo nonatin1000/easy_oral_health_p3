@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
-from odontology.models import Dentist
-from odontology.forms import DentistForm
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import Dentist
+from .forms import DentistForm
 
-def index(request):
 
-	dentist = Dentist.objects.all()
-	
+def dentist_index(request):
+	dentists = Dentist.objects.all()
+	return render(request, 'odontology/dentist/dentist_index.html', { 'dentists': dentists })
+
+def dentist_add(request):
 	if request.method == 'POST':
 		form = DentistForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return HttpResponseRedirect(reverse('index'))
+			return redirect('dentist_index')
 	else:
 		form = DentistForm()
 
-	return render(request, 'index.html', { 'dentist': dentist, 'form': form })
+	return render(request, 'odontology/dentist/dentist_add.html', {'form': form })
