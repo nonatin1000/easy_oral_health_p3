@@ -1,10 +1,17 @@
 # -*- coding: utf-8 -*-
 
 from django.forms import ModelForm
-from odontology.models import Dentist
+from django.contrib.auth.models import User
+from odontology.models import Dentist, Address
 
 class DentistForm(ModelForm):
 
 	class Meta:
 		model = Dentist
-		fields = '__all__'
+		fields = ['username', 'password', 'first_name', 'last_name', 'email', 'sex', 'cro', 'marital_status', 'birth_date', 'phone']
+
+class AddressForm(ModelForm):
+
+	class Meta:
+		model = Address
+		exclude = ['dentist']

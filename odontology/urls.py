@@ -20,8 +20,8 @@ from . import views
 
 urlpatterns = [
     url(r'^$', 'odontology.views.dentist_index', name='dentist_index'),
-    url(r'dentist_add/$', 'odontology.views.dentist_add', name='dentist_add'),
-    url(r'dentist_edit/(?P<dentist_id>\d+)/$', 'odontology.views.dentist_edit', name='dentist_edit'),
-    url(r'dentist_show/(?P<dentist_id>\d+)/$', 'odontology.views.dentist_show', name='dentist_show'),
-    url(r'dentist_delete/(?P<dentist_id>\d+)/$', 'odontology.views.dentist_delete', name='dentist_delete'),
+    url(r'dentist_register/$', 'odontology.views.dentist_register', name='dentist_register'),
+    url(r'dentist_edit/(?P<user_id>\d+)/$', 'odontology.views.dentist_register', name='dentist_edit'),
+    url(r'dentist_show/(?P<user_id>\d+)/$', 'odontology.views.dentist_show', name='dentist_show'),
+    url(r'dentist_delete/(?P<user_id>\d+)/$', 'odontology.views.dentist_delete', name='dentist_delete'),
 ]

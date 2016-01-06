@@ -1,44 +1,54 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render, redirect, get_object_or_404
+#DJANGO IMPORTS
+from django.shortcuts import render, redirect, render_to_response,get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Dentist
-from .forms import DentistForm
+from django.template import RequestContext
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from .models import Dentist, Address, User
+from .forms import DentistForm, AddressForm
+
 
 
 def dentist_index(request):
 	dentists = Dentist.objects.all()
-	return render(request, 'odontology/dentist/dentist_index.html', { 'dentists': dentists })
+	return render(request, 'odontology/dentist/dentist_index.html', { 'dentists': dentists }, context_instance=RequestContext(request))
 
-def dentist_add(request):
-	if request.method == 'POST':
-		form = DentistForm(request.POST)
-		if form.is_valid():
-			form.save()
-			return redirect('dentist_index')
-	else:
-		form = DentistForm()
+def dentist_register(request, user_id=None):
+	dentist = Dentist.objects.get(pk=user_id)
+	address = None
 
-	return render(request, 'odontology/dentist/dentist_add.html', {'form': form })
+	try:
+		address = Address.objects.get(dentist=dentist)
+	except Address.DoesNotExist:
+		address = Address(dentist=dentist)
 
-def dentist_edit(request, dentist_id):
-	dentist = get_object_or_404(Dentist, id=dentist_id)
+	if user_id:
+		dentist = Dentist.objects.get(pk=user_id)
+
+	form_dentist = DentistForm(instance=dentist)
+	form_address = AddressForm(instance=address)
 	
 	if request.method == 'POST':
-		form = DentistForm(request.POST, instance=dentist)
-		if form.is_valid():
-			form.save()
+		form_dentist = DentistForm(request.POST, instance=dentist)
+		form_address = AddressForm(request.POST,instance=address)
+		if form_dentist.is_valid():
+			form_dentist.save()
+		if form_address.is_valid():
+			form_address.save()
 			return redirect('dentist_index')
-	else:
-		form = DentistForm(instance=dentist)
 
-	return render(request, 'odontology/dentist/dentist_edit.html', {'form': form, 'dentist': dentist })
+	return render(request, 'odontology/dentist/dentist_register.html', {'form_dentist': form_dentist, 'form_address': form_address}, context_instance=RequestContext(request))
 	
-def dentist_show(request, dentist_id):
-	dentist = Dentist.objects.get(id=dentist_id)
-	return render(request, 'odontology/dentist/dentist_show.html', {'dentist': dentist})
+def dentist_show(request, user_id):
+	user = User.objects.get(pk=user_id)
+	dentist = Dentist.objects.get(pk=user.id)
+	address = Address.objects.get(dentist_id=dentist)
+	return render(request, 'odontology/dentist/dentist_show.html', {'dentist': dentist, 'address': address})
 
-def dentist_delete(request, dentist_id):
-	dentist = Dentist.objects.get(id=dentist_id)
+def dentist_delete(request, user_id):
+	dentist = Dentist.objects.get(id=user_id)
 	dentist.delete()
 	return redirect('dentist_index')

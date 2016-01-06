@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block body %}
-  <p class="navbar-btn">
+<p class="navbar-btn">
   <a class="btn btn-default" href="{% url 'dentist_index' %}"> 
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
     Voltar</a>
@@ -11,7 +11,7 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <p>
           <strong>Nome:</strong>
-          {{ dentist.name }}
+          {{ dentist.first_name }} {{ dentist.last_name }}
         </p>
         <p>
           <strong>Sexo:</strong>
@@ -23,31 +23,35 @@
         </p>
         <p>
           <strong>Nascimento:</strong>
-          {{ dentist.birth }}
+          {{ dentist.birth_date }}
         </p>
         <p>
-          <strong>Uf:</strong>
-          {{ dentist.state }}
+          <strong>País:</strong>
+          {{ address.country }}
         </p>
-         <p>
+        <p>
+          <strong>Estado:</strong>
+          {{ address.state }}
+        </p>
+        <p>
           <strong>Cidade:</strong>
-          {{ dentist.city }}
+          {{ address.city }}
         </p>
         <p>
           <strong>Bairro:</strong>
-          {{ dentist.neighborhood }}
+          {{ address.neighborhood }}
         </p>
         <p>
           <strong>Rua:</strong>
-          {{ dentist.street }}
+          {{ address.street }}
         </p>
         <p>
           <strong>Numero:</strong>
-          {{ dentist.number }}
+          {{ address.number }}
         </p>
         <p>
           <strong>Cep:</strong>
-          {{ dentist.zip_code }}
+          {{ address.zip_code }}
         </p>
         <p>
           <strong>Email:</strong>
@@ -65,4 +69,4 @@
     </div>
   </div>
 
-{% endblock %}
+  {% endblock %}
