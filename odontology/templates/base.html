@@ -1,30 +1,44 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width">
-		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-		<script type="text/javascript" src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
-		<title>Easy Oral Health</title>
-	</head>
-	<body>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<script type="text/javascript" src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+	<title>Easy Oral Health</title>
+</head>
+<body>
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
-			<div class="header">
-			  <lu class="nav nav-pills pull-right">
-			  	<li><a href="{% url 'dentist_index' %}" class="navbar-link"> <!-- {{ odontology_logado.nome | upper }} --></a></li>
-			  	<li><a href="/logout/" class="navbar-link">LOGOUT</a></li>
-			  </lu>
-			  <h3 class="text-muted">Easy Oral Health</h3>
+			<!-- agrupar para mobile -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="#" class="navbar-brand">Easy Oral Health</a>
 			</div>
-			<div class="row content">
-				{% block body %}
-				{% endblock %}
-			</div>
-		</div>
 
-		
-	</body>
+			<!-- links da navbar -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="#">Início</a></li>
+					<li><a href="#">Pacientes</a></li>
+					<li><a href="{% url 'dentist_index' %}">Dentista</a></li>
+					<li><a href="#">Odontograma</a></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</nav>
+	<!-- NAVBAR -->
+	{% block body %}
+	{% endblock %}
+</body>
 </html>
