@@ -19,9 +19,14 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^$', 'odontology.views.dentist_index', name='dentist_index'),
+    url(r'dentist_index/$', 'odontology.views.dentist_index', name='dentist_index'),
     url(r'dentist_register/$', 'odontology.views.dentist_register', name='dentist_register'),
     url(r'dentist_edit/(?P<user_id>\d+)/$', 'odontology.views.dentist_register', name='dentist_edit'),
     url(r'dentist_show/(?P<user_id>\d+)/$', 'odontology.views.dentist_show', name='dentist_show'),
     url(r'dentist_delete/(?P<user_id>\d+)/$', 'odontology.views.dentist_delete', name='dentist_delete'),
+    url(r'course_index/$', 'odontology.views.course_index', name='course_index'),
+    url(r'course_register/$', 'odontology.views.course_register', name='course_register'),
+    url(r'course_edit/(?P<course_id>\d+)/$', 'odontology.views.course_register', name='course_edit'),
+    url(r'course_show/(?P<course_id>\d+)/$', 'odontology.views.course_show', name='course_show'),
+    url(r'course_delete/(?P<course_id>\d+)/$', 'odontology.views.course_delete', name='course_delete')
 ]

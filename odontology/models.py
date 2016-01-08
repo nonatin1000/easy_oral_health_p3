@@ -52,3 +52,10 @@ class Address(AuditModel):
 	neighborhood = models.CharField(u'Bairro', max_length=255)
 	country = models.CharField(u'País', max_length=255, blank=True)
 	dentist = models.ForeignKey(Dentist)
+
+class Course(AuditModel):
+	name = models.CharField(u'Nome', max_length=50)
+	description = models.CharField(u'Descrição', max_length=100)
+
+	def __str__(self):
+		return self.name

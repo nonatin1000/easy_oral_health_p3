@@ -7,11 +7,11 @@ from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from .models import Dentist, Address, User
-from .forms import DentistForm, AddressForm
+from .models import Dentist, Address, User, Course
+from .forms import DentistForm, AddressForm, CourseForm
 
 
-
+# Signup dentist ---------------------------------------------------------------------------------#
 def dentist_index(request):
 	dentists = Dentist.objects.all()
 	return render(request, 'odontology/dentist/dentist_index.html', { 'dentists': dentists }, context_instance=RequestContext(request))
@@ -63,3 +63,49 @@ def dentist_delete(request, user_id):
 	dentist = Dentist.objects.get(id=user_id)
 	dentist.delete()
 	return redirect('dentist_index')
+
+# End dentist ------------------------------------------------------------------------------------#
+
+# Signup course ----------------------------------------------------------------------------------#
+def course_index(request):
+	courses = Course.objects.all()
+	return render(request, 'odontology/course/course_index.html', { 'courses': courses }, context_instance=RequestContext(request))
+
+
+# New e Edit - Course 
+def course_register(request, course_id=None):
+
+	if course_id: # Edit
+		course = Course.objects.get(pk=course_id)
+		form_course = CourseForm(instance=course)
+	else: # New
+		form_course = CourseForm
+
+	# Save 
+	if request.method == 'POST':
+		if course_id: # Edit
+			form_course = CourseForm(request.POST, instance=course)
+			if form_course.is_valid():
+				form_course.save()
+		else: # New
+			form_course = CourseForm(request.POST)
+			if form_course.is_valid():
+				form_course.save()
+
+		return redirect('course_index')
+
+	return render(request, 'odontology/course/course_register.html', {'form_course': form_course}, context_instance=RequestContext(request))
+
+def course_show(request, course_id):
+	course = Course.objects.get(pk=course_id)
+	return render(request, 'odontology/course/course_show.html', {'course': course}, context_instance=RequestContext(request))
+
+def course_delete(request, course_id):
+	course = Course.objects.get(pk=course_id)
+	course.delete()
+	return redirect('course_index')
+
+# End course -------------------------------------------------------------------------------------#
+
+# Signup course ----------------------------------------------------------------------------------#
+
