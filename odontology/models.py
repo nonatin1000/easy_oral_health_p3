@@ -55,7 +55,14 @@ class Address(AuditModel):
 
 class Course(AuditModel):
 	name = models.CharField(u'Nome', max_length=50)
-	description = models.CharField(u'Descrição', max_length=100)
+	description = models.CharField(u'Descrição', max_length=100, blank=True)
+
+	def __str__(self):
+		return self.name
+
+class ToothStatus(AuditModel):
+	name = models.CharField(u'Nome', max_length=50)
+	description = models.CharField('Descrição', max_length=100, blank=True)
 
 	def __str__(self):
 		return self.name

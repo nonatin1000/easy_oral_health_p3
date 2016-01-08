@@ -7,8 +7,8 @@ from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from .models import Dentist, Address, User, Course
-from .forms import DentistForm, AddressForm, CourseForm
+from .models import Dentist, Address, User, Course, ToothStatus
+from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm
 
 
 # Signup dentist ---------------------------------------------------------------------------------#
@@ -107,5 +107,42 @@ def course_delete(request, course_id):
 
 # End course -------------------------------------------------------------------------------------#
 
-# Signup course ----------------------------------------------------------------------------------#
+# Signup TeethStatus -----------------------------------------------------------------------------#
 
+def tooth_status_index(request):
+	tooth_status = ToothStatus.objects.all()
+	return render(request, 'odontology/tooth_status/tooth_status_index.html', { 'tooth_status': tooth_status }, context_instance=RequestContext(request))
+
+def tooth_status_register(request, tooth_status_id=None):
+
+	if tooth_status_id: # Edit
+		tooth_status = ToothStatus.objects.get(pk=tooth_status_id)
+		form_tooth_status = ToothStatusForm(instance=tooth_status)
+	else: # New
+		form_tooth_status = ToothStatusForm
+
+	# Save
+	if request.method == 'POST':
+		if tooth_status_id:
+			form_tooth_status = ToothStatusForm(request.POST, instance=tooth_status)
+			if form_tooth_status.is_valid():
+				form_tooth_status.save()
+		else:
+			form_tooth_status = ToothStatusForm(request.POST)
+			if form_tooth_status.is_valid():
+				form_tooth_status.save()
+
+		return redirect('tooth_status_index')
+
+	return render(request, 'odontology/tooth_status/tooth_status_register.html', {'form_tooth_status': form_tooth_status}, context_instance=RequestContext(request))
+
+def tooth_status_show(request, tooth_status_id):
+	tooth_status = ToothStatus.objects.get(pk=tooth_status_id)
+	return render(request, 'odontology/tooth_status/tooth_status_show.html', {'tooth_status': tooth_status}, context_instance=RequestContext(request))
+
+def tooth_status_delete(request, tooth_status_id)	:
+	tooth_status = ToothStatus.objects.get(pk=tooth_status_id)
+	tooth_status.delete()
+	return redirect('tooth_status_index')
+	
+# End TeethStatus --------------------------------------------------------------------------------#

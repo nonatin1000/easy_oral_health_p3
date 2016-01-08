@@ -28,5 +28,10 @@ urlpatterns = [
     url(r'course_register/$', 'odontology.views.course_register', name='course_register'),
     url(r'course_edit/(?P<course_id>\d+)/$', 'odontology.views.course_register', name='course_edit'),
     url(r'course_show/(?P<course_id>\d+)/$', 'odontology.views.course_show', name='course_show'),
-    url(r'course_delete/(?P<course_id>\d+)/$', 'odontology.views.course_delete', name='course_delete')
+    url(r'course_delete/(?P<course_id>\d+)/$', 'odontology.views.course_delete', name='course_delete'),
+    url(r'tooth_status_index/$', 'odontology.views.tooth_status_index', name='tooth_status_index'),
+    url(r'tooth_status_register/$', 'odontology.views.tooth_status_register', name='tooth_status_register'),
+    url(r'tooth_status_edit/(?P<tooth_status_id>\d+)/$', 'odontology.views.tooth_status_register', name='tooth_status_edit'),
+    url(r'tooth_status_show/(?P<tooth_status_id>\d+)/$', 'odontology.views.tooth_status_show', name='tooth_status_show'),
+    url(r'tooth_status_delete/(?P<tooth_status_id>\d+)/$', 'odontology.views.tooth_status_delete', name='tooth_status_delete'),
 ]
