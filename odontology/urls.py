@@ -39,4 +39,9 @@ urlpatterns = [
     url(r'tooth_edit/(?P<tooth_id>\d+)/$', 'odontology.views.tooth_register', name='tooth_edit'),
     url(r'tooth_show/(?P<tooth_id>\d+)/$', 'odontology.views.tooth_show', name='tooth_show'),
     url(r'toorh_delete(?P<tooth_id>\d+)/$', 'odontology.views.tooth_delete', name='tooth_delete'),
+    url(r'tooth_division_index/$', 'odontology.views.tooth_division_index', name='tooth_division_index'),
+    url(r'tooth_division_register/$', 'odontology.views.tooth_division_register', name='tooth_division_register'),
+    url(r'tooth_division_edit/(?P<tooth_division_id>\d+)/$', 'odontology.views.tooth_division_register', name='tooth_division_edit'),
+    url(r'tooth_division_show/(?P<tooth_division_id>\d+)/$', 'odontology.views.tooth_division_show', name='tooth_division_show'),
+    url(r'toorh_division_delete(?P<tooth_division_id>\d+)/$', 'odontology.views.tooth_division_delete', name='tooth_division_delete'),
 ]

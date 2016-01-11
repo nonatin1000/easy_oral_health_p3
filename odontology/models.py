@@ -73,3 +73,7 @@ class Tooth(AuditModel):
 
 	def __str__(self):
 		return self.name
+
+class ToothDivision(AuditModel):
+	name = models.CharField(u'Nome', max_length=50)
+	description = models.CharField(u'Descrição', max_length=100)

@@ -7,8 +7,8 @@ from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from .models import Dentist, Address, User, Course, ToothStatus, Tooth
-from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm
+from .models import Dentist, Address, User, Course, ToothStatus, Tooth, ToothDivision
+from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm, ToothDivisionForm
 
 
 # Signup dentist ---------------------------------------------------------------------------------#
@@ -184,3 +184,43 @@ def tooth_delete(request, tooth_id):
 	tooth = Tooth.objects.get(pk=tooth_id)
 	tooth.delete()
 	return redirect('tooth_index')
+
+# End TeethStatus --------------------------------------------------------------------------------#
+
+# Signup ToothDivision----------------------------------------------------------------------------#
+
+def tooth_division_index(request):
+	teeth_division = ToothDivision.objects.all()
+	return render(request, 'odontology/tooth_division/tooth_division_index.html', {'teeth_division': teeth_division}, context_instance=RequestContext(request))
+
+def tooth_division_register(request, tooth_division_id=None):
+
+	if tooth_division_id: # Edit
+		tooth_division = ToothDivision.objects.get(pk=tooth_division_id)
+		form_tooth_division = ToothDivisionForm(instance=tooth_division)
+	else: # New
+		form_tooth_division = ToothDivisionForm
+
+	# Save
+	if request.method == 'POST':
+		if tooth_division_id: # Edit
+			form_tooth_division = ToothDivisionForm(request.POST, instance=tooth_division)
+			if form_tooth_division.is_valid():
+				form_tooth_division.save()
+		else:
+			form_tooth_division = ToothDivisionForm(request.POST)
+			if form_tooth_division.is_valid():
+				form_tooth_division.save()
+
+		return redirect('tooth_division_index')
+
+	return render(request, 'odontology/tooth_division/tooth_division_register.html', {'form_tooth_division': form_tooth_division}, context_instance=RequestContext(request))
+
+def tooth_division_show(request, tooth_division_id):
+	tooth_division = ToothDivision.objects.get(pk=tooth_division_id)
+	return render(request, 'odontology/tooth_division/tooth_division_show.html', {'tooth_division': tooth_division}, context_instance=RequestContext(request))
+
+def tooth_division_delete(request, tooth_division_id):
+	tooth_division = ToothDivision.objects.get(pk=tooth_division_id)
+	tooth_division.delete()
+	return redirect('tooth_division_index')
