@@ -66,3 +66,10 @@ class ToothStatus(AuditModel):
 
 	def __str__(self):
 		return self.name
+
+class Tooth(AuditModel):
+	name = models.CharField(u'Nome', max_length=50)
+	description = models.CharField(u'Descrição', max_length=100)
+
+	def __str__(self):
+		return self.name

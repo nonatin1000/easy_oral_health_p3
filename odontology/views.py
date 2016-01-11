@@ -7,8 +7,8 @@ from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from .models import Dentist, Address, User, Course, ToothStatus
-from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm
+from .models import Dentist, Address, User, Course, ToothStatus, Tooth
+from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm
 
 
 # Signup dentist ---------------------------------------------------------------------------------#
@@ -146,3 +146,41 @@ def tooth_status_delete(request, tooth_status_id)	:
 	return redirect('tooth_status_index')
 	
 # End TeethStatus --------------------------------------------------------------------------------#
+
+# Signup Tooth -----------------------------------------------------------------------------------#
+
+def tooth_index(request):
+	teeth = Tooth.objects.all()
+	return render(request, 'odontology/tooth/tooth_index.html', {'teeth': teeth}, context_instance=RequestContext(request))
+
+def tooth_register(request, tooth_id=None):
+
+	if tooth_id: # Edit
+		tooth = Tooth.objects.get(pk=tooth_id)
+		form_tooth = ToothForm(instance=tooth)
+	else: # New
+		form_tooth = ToothForm
+
+	# Save
+	if request.method == 'POST':
+		if tooth_id: # Edit
+			form_tooth = ToothForm(request.POST, instance=tooth)
+			if form_tooth.is_valid():
+				form_tooth.save()
+		else:
+			form_tooth = ToothForm(request.POST)
+			if form_tooth.is_valid():
+				form_tooth.save()
+
+		return redirect('tooth_index')
+
+	return render(request, 'odontology/tooth/tooth_register.html', {'form_tooth': form_tooth}, context_instance=RequestContext(request))
+
+def tooth_show(request, tooth_id):
+	tooth = Tooth.objects.get(pk=tooth_id)
+	return render(request, 'odontology/tooth/tooth_show.html', {'tooth': tooth}, context_instance=RequestContext(request))
+
+def tooth_delete(request, tooth_id):
+	tooth = Tooth.objects.get(pk=tooth_id)
+	tooth.delete()
+	return redirect('tooth_index')
