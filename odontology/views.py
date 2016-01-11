@@ -12,6 +12,9 @@ from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothF
 
 
 # Signup dentist ---------------------------------------------------------------------------------#
+def index(request):
+	return render(request, 'index.html')
+
 def dentist_index(request):
 	dentists = Dentist.objects.all()
 	return render(request, 'odontology/dentist/dentist_index.html', { 'dentists': dentists }, context_instance=RequestContext(request))
@@ -264,3 +267,5 @@ def procedure_status_delete(request, procedure_status_id):
 	procedure_status = ProcedureStatus.objects.get(pk=procedure_status_id)
 	procedure_status.delete()
 	return redirect('procedure_status_index')
+
+# End ProcedureStatus ----------------------------------------------------------------------------#

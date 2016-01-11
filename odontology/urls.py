@@ -19,6 +19,7 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
+    url(r'^$', 'odontology.views.index', name='index_root'),
     url(r'dentist_index/$', 'odontology.views.dentist_index', name='dentist_index'),
     url(r'dentist_register/$', 'odontology.views.dentist_register', name='dentist_register'),
     url(r'dentist_edit/(?P<user_id>\d+)/$', 'odontology.views.dentist_register', name='dentist_edit'),
