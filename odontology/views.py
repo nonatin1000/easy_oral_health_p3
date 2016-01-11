@@ -7,8 +7,8 @@ from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from .models import Dentist, Address, User, Course, ToothStatus, Tooth, ToothDivision
-from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm, ToothDivisionForm
+from .models import Dentist, Address, User, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus
+from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm, ToothDivisionForm, ProcedureStatusForm
 
 
 # Signup dentist ---------------------------------------------------------------------------------#
@@ -224,3 +224,43 @@ def tooth_division_delete(request, tooth_division_id):
 	tooth_division = ToothDivision.objects.get(pk=tooth_division_id)
 	tooth_division.delete()
 	return redirect('tooth_division_index')
+
+# End ToothDivision ------------------------------------------------------------------------------#
+
+# Signup ProcedureStatus--------------------------------------------------------------------------#
+
+def procedure_status_index(request):
+	procedures_status = ProcedureStatus.objects.all()
+	return render(request, 'odontology/procedure_status/procedure_status_index.html', {'procedures_status': procedures_status}, context_instance=RequestContext(request))
+
+def procedure_status_register(request, procedure_status_id=None):
+
+	if procedure_status_id: # Edit
+		procedure_status = ProcedureStatus.objects.get(pk=procedure_status_id)
+		form_procedure_status = ProcedureStatusForm(instance=procedure_status)
+	else: # New
+		form_procedure_status = ProcedureStatusForm
+
+	# Save
+	if request.method == 'POST':
+		if procedure_status_id: # Edit
+			form_procedure_status = ProcedureStatusForm(request.POST, instance=procedure_status)
+			if form_procedure_status.is_valid():
+				form_procedure_status.save()
+		else:
+			form_procedure_status = ProcedureStatusForm(request.POST)
+			if form_procedure_status.is_valid():
+				form_procedure_status.save()
+
+		return redirect('procedure_status_index')
+
+	return render(request, 'odontology/procedure_status/procedure_status_register.html', {'form_procedure_status': form_procedure_status}, context_instance=RequestContext(request))
+
+def procedure_status_show(request, procedure_status_id):
+	procedure_status = ProcedureStatus.objects.get(pk=procedure_status_id)
+	return render(request, 'odontology/procedure_status/procedure_status_show.html', {'procedure_status': procedure_status}, context_instance=RequestContext(request))
+
+def procedure_status_delete(request, procedure_status_id):
+	procedure_status = ProcedureStatus.objects.get(pk=procedure_status_id)
+	procedure_status.delete()
+	return redirect('procedure_status_index')
