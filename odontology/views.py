@@ -26,9 +26,9 @@ def dentist_register(request, user_id=None):
 	if user_id:
 		dentist = Dentist.objects.get(pk=user_id)
 		try:
-			address = Address.objects.get(dentist=dentist)
+			address = Address.objects.get(content_object=dentist)
 		except Address.DoesNotExist:
-			address = Address(dentist=dentist)
+			address = Address(content_object=dentist)
 		
 		form_dentist = DentistForm(instance=dentist)
 		form_address = AddressForm(instance=address)
@@ -49,7 +49,7 @@ def dentist_register(request, user_id=None):
 			form_dentist = DentistForm(request.POST)
 			if form_dentist.is_valid():
 				dentist = form_dentist.save()
-				form_address = AddressForm(request.POST,instance=Address(dentist=dentist))
+				form_address = AddressForm(request.POST,instance=Address(content_object=dentist))
 			if form_address.is_valid():
 				form_address.save()
 		return redirect('dentist_index')
@@ -283,8 +283,7 @@ def patient_register(request, patient_id=None):
 	if patient_id:
 		patient = Patient.objects.get(pk=patient_id)
 		try:
-			print(dir(patient))
-			address = patientAddress.objects.get(content_object=patient)
+			address = Address.objects.get(content_object=patient)
 		except Address.DoesNotExist:
 			address = Address(content_object=patient)
 
