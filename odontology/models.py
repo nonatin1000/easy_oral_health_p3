@@ -3,8 +3,8 @@
 #Django IMports
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.fields import GenericForeignKey,GenericRelation
 
 class AuditModel(models.Model):
 	# Audit Fields
@@ -39,7 +39,7 @@ class Dentist(User, AuditModel):
 	birth_date = models.DateField(u'Data Nascimento')
 	cro = models.CharField(u'CRO', max_length=6, null=False,)
 	phone = models.CharField(u'Telefone', max_length=14, blank=True)
-	#address = GenericRelation(Address)
+	address = GenericRelation('Address')
 
 	def __str__(self): 
 		return self.sex
@@ -112,8 +112,8 @@ class Patient(AuditModel):
 	TYPES_CHOICES = ((STUDENT, 'Estudante'), (EMPLOYEE, 'Funcionário'),)
 	types = models.CharField(u'Tipo', max_length=20, choices=TYPES_CHOICES, default=STUDENT)
 	email = models.EmailField(u'E-mail')
-	dependents = models.ManyToManyField('self') 
-	addresses = GenericRelation(Address)
+	dependents = models.ManyToManyField('self', symmetrical=False)
+	address = GenericRelation('Address')
 
 class Address(AuditModel):
 	city = models.CharField(u'Cidade', max_length=255)
@@ -125,9 +125,8 @@ class Address(AuditModel):
 	reference_point = models.CharField(u'Ponto de Referência', max_length=255, blank=True)
 	neighborhood = models.CharField(u'Bairro', max_length=255)
 	country = models.CharField(u'País', max_length=255, blank=True)
-	#gerenic relation
+	
+	# Generic Relation
 	content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
 	object_id = models.PositiveIntegerField(db_index=True)
-	content_object = GenericForeignKey('content_type','object_id')
-	#dentist = models.ForeignKey(Dentist, blank=True, null=True)
-	#patient = models.ForeignKey(Patient, blank=True,  null=True)
+	content_object = GenericForeignKey('content_type', 'object_id')
