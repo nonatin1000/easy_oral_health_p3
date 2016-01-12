@@ -7,8 +7,8 @@ from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from .models import Dentist, Address, User, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus
-from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm, ToothDivisionForm, ProcedureStatusForm
+from .models import Dentist, Address, User, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus, Patient
+from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm, ToothDivisionForm, ProcedureStatusForm, PatientForm
 
 
 # Signup dentist ---------------------------------------------------------------------------------#
@@ -269,3 +269,56 @@ def procedure_status_delete(request, procedure_status_id):
 	return redirect('procedure_status_index')
 
 # End ProcedureStatus ----------------------------------------------------------------------------#
+
+# Signup Patient ---------------------------------------------------------------------------------#
+
+def patient_index(request):
+	patients = Patient.objects.all()
+	return render(request, 'odontology/patient/patient_index.html', {'patients': patients}, context_instance=RequestContext(request))
+
+# New e Edit - Patient
+def patient_register(request, patient_id=None):
+	
+	# Edit Patient
+	if patient_id:
+		patient = Patient.objects.get(pk=patient_id)
+		try:
+			print(dir(patient))
+			address = patientAddress.objects.get(content_object=patient)
+		except Address.DoesNotExist:
+			address = Address(content_object=patient)
+
+		form_patient = PatientForm(instance=patient)
+		form_address = AddressForm(instance=address)
+	else: # New Patient
+		form_patient = PatientForm
+		form_address = AddressForm
+		
+	# Save	
+	if request.method == 'POST':
+		if patient_id: # Edit
+			form_patient = PatientForm(request.POST, instance=patient)
+			form_address = AddressForm(request.POST,instance=address)
+			if form_patient.is_valid():
+				form_patient.save()
+			if form_address.is_valid():
+				form_address.save()
+		else: # New
+			form_patient = PatientForm(request.POST)
+			if form_patient.is_valid():
+				patient = form_patient.save()
+				form_address = AddressForm(request.POST,instance=Address(content_object=patient))
+			if form_address.is_valid():
+				form_address.save()
+		return redirect('patient_index')
+
+	return render(request, 'odontology/patient/patient_register.html', {'form_patient': form_patient, 'form_address': form_address}, context_instance=RequestContext(request))
+
+def patient_show(request, patient_id):
+	patient = Patient.objects.get(pk=patient_id)
+	return render(request, 'odontology/patient/patient_show.html', {'patient': patient}, context_instance=RequestContext(request))
+
+def patient_delete(request, patient_id):
+	patient = Patient.objects.get(pk=patient_id)
+	patient.delete()
+	return redirect('patient_index')
