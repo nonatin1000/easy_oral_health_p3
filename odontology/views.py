@@ -26,9 +26,9 @@ def dentist_register(request, user_id=None):
 	if user_id:
 		dentist = Dentist.objects.get(pk=user_id)
 		try:
-			address = Address.objects.get(content_object=dentist)
+			address = Address.objects.get(object_id=user_id)
 		except Address.DoesNotExist:
-			address = Address(content_object=dentist)
+			address = Address(object_id=user_id)
 		
 		form_dentist = DentistForm(instance=dentist)
 		form_address = AddressForm(instance=address)
@@ -49,7 +49,7 @@ def dentist_register(request, user_id=None):
 			form_dentist = DentistForm(request.POST)
 			if form_dentist.is_valid():
 				dentist = form_dentist.save()
-				form_address = AddressForm(request.POST,instance=Address(content_object=dentist))
+				form_address = AddressForm(request.POST, instance=Address(content_object=dentist))
 			if form_address.is_valid():
 				form_address.save()
 		return redirect('dentist_index')
@@ -59,7 +59,7 @@ def dentist_register(request, user_id=None):
 def dentist_show(request, user_id):
 	user = User.objects.get(pk=user_id)
 	dentist = Dentist.objects.get(pk=user.id)
-	address = Address.objects.get(dentist_id=dentist)
+	address = Address.objects.get(object_id=user_id)
 	return render(request, 'odontology/dentist/dentist_show.html', {'dentist': dentist, 'address': address})
 
 def dentist_delete(request, user_id):
@@ -283,9 +283,9 @@ def patient_register(request, patient_id=None):
 	if patient_id:
 		patient = Patient.objects.get(pk=patient_id)
 		try:
-			address = Address.objects.get(content_object=patient)
+			address = Address.objects.get(object_id=patient_id)
 		except Address.DoesNotExist:
-			address = Address(content_object=patient)
+			address = Address(object_id=patient_id)
 
 		form_patient = PatientForm(instance=patient)
 		form_address = AddressForm(instance=address)
@@ -315,7 +315,8 @@ def patient_register(request, patient_id=None):
 
 def patient_show(request, patient_id):
 	patient = Patient.objects.get(pk=patient_id)
-	return render(request, 'odontology/patient/patient_show.html', {'patient': patient}, context_instance=RequestContext(request))
+	address = Address.objects.get(object_id=patient_id)
+	return render(request, 'odontology/patient/patient_show.html', {'patient': patient, 'address': address}, context_instance=RequestContext(request))
 
 def patient_delete(request, patient_id):
 	patient = Patient.objects.get(pk=patient_id)
