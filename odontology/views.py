@@ -322,3 +322,5 @@ def patient_delete(request, patient_id):
 	patient = Patient.objects.get(pk=patient_id)
 	patient.delete()
 	return redirect('patient_index')
+
+# End Patient ------------------------------------------------------------------------------------#
