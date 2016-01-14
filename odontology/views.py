@@ -2,6 +2,7 @@
 
 #DJANGO IMPORTS
 from django.shortcuts import render, redirect, render_to_response,get_object_or_404
+from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib import messages
@@ -26,9 +27,10 @@ def dentist_register(request, user_id=None):
 	if user_id:
 		dentist = Dentist.objects.get(pk=user_id)
 		try:
-			address = Address.objects.get(object_id=user_id)
+			dentist_type = ContentType.objects.get_for_model(Dentist) # Recupero o ContentType do model Dentist
+			address = Address.objects.get(object_id=user_id, content_type=dentist_type)
 		except Address.DoesNotExist:
-			address = Address(object_id=user_id)
+			address = Address(object_id=user_id, content_type=dentist_type)
 		
 		form_dentist = DentistForm(instance=dentist)
 		form_address = AddressForm(instance=address)
@@ -57,9 +59,9 @@ def dentist_register(request, user_id=None):
 	return render(request, 'odontology/dentist/dentist_register.html', {'form_dentist': form_dentist, 'form_address': form_address}, context_instance=RequestContext(request))
 	
 def dentist_show(request, user_id):
-	user = User.objects.get(pk=user_id)
-	dentist = Dentist.objects.get(pk=user.id)
-	address = Address.objects.get(object_id=user_id)
+	dentist = Dentist.objects.get(pk=user_id)
+	dentist_type = ContentType.objects.get_for_model(Dentist) # Recupero o ContentType do model Dentist
+	address = Address.objects.get(object_id=user_id, content_type=dentist_type)
 	return render(request, 'odontology/dentist/dentist_show.html', {'dentist': dentist, 'address': address})
 
 def dentist_delete(request, user_id):
@@ -279,13 +281,16 @@ def patient_index(request):
 # New e Edit - Patient
 def patient_register(request, patient_id=None):
 	
+
+
 	# Edit Patient
 	if patient_id:
 		patient = Patient.objects.get(pk=patient_id)
 		try:
-			address = Address.objects.get(object_id=patient_id)
+			patient_type = ContentType.objects.get_for_model(Patient) # Recupero o ContentType do model Patient
+			address = Address.objects.get(object_id=patient_id, content_type=patient_type)
 		except Address.DoesNotExist:
-			address = Address(object_id=patient_id)
+			address = Address(object_id=patient_id, content_type=patient_type)
 
 		form_patient = PatientForm(instance=patient)
 		form_address = AddressForm(instance=address)
@@ -315,7 +320,8 @@ def patient_register(request, patient_id=None):
 
 def patient_show(request, patient_id):
 	patient = Patient.objects.get(pk=patient_id)
-	address = Address.objects.get(object_id=patient_id)
+	patient_type = ContentType.objects.get_for_model(Patient) # Recupero o ContentType do model Patient
+	address = Address.objects.get(object_id=patient_id, content_type=patient_type)
 	return render(request, 'odontology/patient/patient_show.html', {'patient': patient, 'address': address}, context_instance=RequestContext(request))
 
 def patient_delete(request, patient_id):
