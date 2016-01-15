@@ -8,8 +8,8 @@ from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from .models import Dentist, Address, User, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus, Patient
-from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm, ToothDivisionForm, ProcedureStatusForm, PatientForm
+from .models import Dentist, Address, User, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus, Patient, Odontogram
+from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm, ToothDivisionForm, ProcedureStatusForm, PatientForm, OdontogramForm
 
 
 # Signup dentist ---------------------------------------------------------------------------------#
@@ -281,8 +281,6 @@ def patient_index(request):
 # New e Edit - Patient
 def patient_register(request, patient_id=None):
 	
-
-
 	# Edit Patient
 	if patient_id:
 		patient = Patient.objects.get(pk=patient_id)
@@ -300,6 +298,9 @@ def patient_register(request, patient_id=None):
 		
 	# Save	
 	if request.method == 'POST':
+
+		# New Dependet
+
 		if patient_id: # Edit
 			form_patient = PatientForm(request.POST, instance=patient)
 			form_address = AddressForm(request.POST,instance=address)
@@ -320,6 +321,7 @@ def patient_register(request, patient_id=None):
 
 def patient_show(request, patient_id):
 	patient = Patient.objects.get(pk=patient_id)
+	#dependents = patient.dependent.all() # List all Dependents in the Patient
 	patient_type = ContentType.objects.get_for_model(Patient) # Recupero o ContentType do model Patient
 	address = Address.objects.get(object_id=patient_id, content_type=patient_type)
 	return render(request, 'odontology/patient/patient_show.html', {'patient': patient, 'address': address}, context_instance=RequestContext(request))
@@ -330,3 +332,41 @@ def patient_delete(request, patient_id):
 	return redirect('patient_index')
 
 # End Patient ------------------------------------------------------------------------------------#
+
+# Signup Odontogram-------------------------------------------------------------------------------#
+
+def odontogram_index(request):
+	odontogramas = Odontogram.objects.all()
+	return render(request, 'odontology/odontogram/odontogram_index.html', {'odontogramas': odontogramas}, context_instance=RequestContext(request))
+
+def odontogram_register(request, odontogram_id=None):
+
+	if odontogram_id: # Edit
+		odontogram = Odontogram.objects.get(pk=odontogram_id)
+		form_odontogram = OdontogramForm(instance=odontogram_id)
+	else: # New
+		form_odontogram = OdontogramForm
+
+	# Save
+	if request.method == 'POST':
+		if odontogram_id: # Edit
+			form_odontogram = OdontogramForm(request.POST, instance=odontogram)
+			if form_odontogram.is_valid():
+				form_odontogram.save()
+		else:
+			form_odontogram = OdontogramForm(request.POST)
+			if form_odontogram.is_valid():
+				form_odontogram.save()
+
+		return redirect('odontogram_index')
+
+	return render(request, 'odontology/odontogram/odontogram_register.html', {'form_odontogram': form_odontogram}, context_instance=RequestContext(request))
+
+def odontogram_show(request, odontogram_id):
+	odontogram = Odontogram.objects.get(pk=odontogram_id)
+	return render(request, 'odontology/odontogram/odontogram_show.html', {'odontogram': odontogram}, context_instance=RequestContext(request))
+
+def odontogram_delete(request, odontogram_id):
+	odontogram = Odontogram.objects.get(pk=odontogram_id)
+	odontogram.delete()
+	return redirect('odontogram_index')

@@ -55,4 +55,9 @@ urlpatterns = [
     url(r'patient_edit/(?P<patient_id>\d+)/$', 'odontology.views.patient_register', name='patient_edit'),
     url(r'patient_show/(?P<patient_id>\d+)/$', 'odontology.views.patient_show', name='patient_show'),
     url(r'patient_delete(?P<patient_id>\d+)/$', 'odontology.views.patient_delete', name='patient_delete'),
+    url(r'odontogram_index/$', 'odontology.views.odontogram_index', name='odontogram_index'),
+    url(r'odontogram_register/$', 'odontology.views.odontogram_register', name='odontogram_register'),
+    url(r'odontogram_edit/(?P<odontogram_id>\d+)/$', 'odontology.views.odontogram_register', name='odontogram_edit'),
+    url(r'odontogram_show/(?P<odontogram_id>\d+)/$', 'odontology.views.odontogram_show', name='odontogram_show'),
+    url(r'odontogram_delete(?P<odontogram_id>\d+)/$', 'odontology.views.odontogram_delete', name='odontogram_delete'),
 ]

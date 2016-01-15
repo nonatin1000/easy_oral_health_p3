@@ -130,3 +130,8 @@ class Address(AuditModel):
 	content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
 	object_id = models.PositiveIntegerField(db_index=True)
 	content_object = GenericForeignKey('content_type', 'object_id')
+
+class Odontogram(AuditModel):
+	tooth = models.ForeignKey(Tooth)
+	patient = models.ForeignKey(Patient)
+	tooth_status = models.ForeignKey(ToothStatus)
