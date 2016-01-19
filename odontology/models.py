@@ -138,3 +138,7 @@ class Odontogram(AuditModel):
 	tooth = models.ForeignKey(Tooth)
 	patient = models.ForeignKey(Patient)
 	tooth_status = models.ForeignKey(ToothStatus)
+
+class Procedure(AuditModel):
+	procedure_status = models.ForeignKey(ProcedureStatus)
+	tooth_division = models.ForeignKey(ToothDivision)

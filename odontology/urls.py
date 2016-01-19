@@ -60,4 +60,9 @@ urlpatterns = [
     url(r'odontogram_edit/(?P<odontogram_id>\d+)/$', 'odontology.views.odontogram_register', name='odontogram_edit'),
     url(r'odontogram_show/(?P<odontogram_id>\d+)/$', 'odontology.views.odontogram_show', name='odontogram_show'),
     url(r'odontogram_delete(?P<odontogram_id>\d+)/$', 'odontology.views.odontogram_delete', name='odontogram_delete'),
+    url(r'procedure_index/$', 'odontology.views.procedure_index', name='procedure_index'),
+    url(r'procedure_register/$', 'odontology.views.procedure_register', name='procedure_register'),
+    url(r'procedure_edit/(?P<procedure_id>\d+)/$', 'odontology.views.procedure_register', name='procedure_edit'),
+    url(r'procedure_show/(?P<procedure_id>\d+)/$', 'odontology.views.procedure_show', name='procedure_show'),
+    url(r'procedure_delete(?P<procedure_id>\d+)/$', 'odontology.views.procedure_delete', name='procedure_delete'),
 ]
