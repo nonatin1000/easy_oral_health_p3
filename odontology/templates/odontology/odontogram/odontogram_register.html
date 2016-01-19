@@ -7,7 +7,7 @@
 		<ul class="nav navbar-nav pull-right">
 			<li>
 				<p class="navbar-btn">
-					<a class="btn btn-default" href="{% url 'tooth_index' %}"> 
+					<a class="btn btn-default" href="{% url 'odontogram_index' %}"> 
 						<span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
 						Cancelar
 					</a>
@@ -21,7 +21,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<form action="." method="post">{% csrf_token %}
-				{{ form_tooth.as_p }}
+				{{ form_odontogram.as_p }}
 				<div class="form-group">
 					<button type="submit" value="Salvar" class="btn btn-primary">
 						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>

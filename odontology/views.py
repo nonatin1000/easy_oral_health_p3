@@ -343,7 +343,7 @@ def odontogram_register(request, odontogram_id=None):
 
 	if odontogram_id: # Edit
 		odontogram = Odontogram.objects.get(pk=odontogram_id)
-		form_odontogram = OdontogramForm(instance=odontogram_id)
+		form_odontogram = OdontogramForm(instance=odontogram)
 	else: # New
 		form_odontogram = OdontogramForm
 

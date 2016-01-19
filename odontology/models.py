@@ -115,6 +115,9 @@ class Patient(AuditModel):
 	dependents = models.ManyToManyField('self', symmetrical=False)
 	address = GenericRelation('Address')
 
+	def __str__(self):
+		return self.name
+
 class Address(AuditModel):
 	city = models.CharField(u'Cidade', max_length=255)
 	state = models.CharField(u'UF', max_length=2, blank=True)
