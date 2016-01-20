@@ -8,6 +8,7 @@ from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.forms import formset_factory
 from .models import Dentist, Address, User, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus, Patient, Odontogram, Procedure
 from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm, ToothDivisionForm, ProcedureStatusForm, PatientForm, OdontogramForm, ProcedureForm
 
@@ -299,8 +300,6 @@ def patient_register(request, patient_id=None):
 	# Save	
 	if request.method == 'POST':
 
-		# New Dependet
-
 		if patient_id: # Edit
 			form_patient = PatientForm(request.POST, instance=patient)
 			form_address = AddressForm(request.POST,instance=address)
@@ -320,11 +319,19 @@ def patient_register(request, patient_id=None):
 	return render(request, 'odontology/patient/patient_register.html', {'form_patient': form_patient, 'form_address': form_address}, context_instance=RequestContext(request))
 
 def patient_show(request, patient_id):
+	DependetFormSet = formset_factory(PatientForm)
 	patient = Patient.objects.get(pk=patient_id)
-	#dependents = patient.dependent.all() # List all Dependents in the Patient
+	# Save	
+	if request.method == 'POST':
+		# New Dependet
+		formset = DependetFormSet(request.POST, patient=patient)
+		if formset.is_valid():
+			formset.save()
+		return redirect('patient_show')	
+	patient = Patient.objects.get(pk=patient_id)
 	patient_type = ContentType.objects.get_for_model(Patient) # Recupero o ContentType do model Patient
 	address = Address.objects.get(object_id=patient_id, content_type=patient_type)
-	return render(request, 'odontology/patient/patient_show.html', {'patient': patient, 'address': address}, context_instance=RequestContext(request))
+	return render(request, 'odontology/patient/patient_show.html', {'patient': patient, 'address': address, 'formset': DependetFormSet() }, context_instance=RequestContext(request))
 
 def patient_delete(request, patient_id):
 	patient = Patient.objects.get(pk=patient_id)
