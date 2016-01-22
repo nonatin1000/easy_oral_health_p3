@@ -319,24 +319,36 @@ def patient_register(request, patient_id=None):
 	return render(request, 'odontology/patient/patient_register.html', {'form_patient': form_patient, 'form_address': form_address}, context_instance=RequestContext(request))
 
 def patient_show(request, patient_id):
-	DependetFormSet = formset_factory(PatientForm)
-	patient = Patient.objects.get(pk=patient_id)
-	# Save	
-	if request.method == 'POST':
-		# New Dependet
-		formset = DependetFormSet(request.POST, patient=patient)
-		if formset.is_valid():
-			formset.save()
-		return redirect('patient_show')	
 	patient = Patient.objects.get(pk=patient_id)
 	patient_type = ContentType.objects.get_for_model(Patient) # Recupero o ContentType do model Patient
 	address = Address.objects.get(object_id=patient_id, content_type=patient_type)
-	return render(request, 'odontology/patient/patient_show.html', {'patient': patient, 'address': address, 'formset': DependetFormSet() }, context_instance=RequestContext(request))
+	return render(request, 'odontology/patient/patient_show.html', {'patient': patient, 'address': address}, context_instance=RequestContext(request))
 
 def patient_delete(request, patient_id):
 	patient = Patient.objects.get(pk=patient_id)
 	patient.delete()
 	return redirect('patient_index')
+
+def dependent_register(request, patient_id):
+	DependetFormSet = formset_factory(PatientForm)
+	patient = Patient.objects.get(pk=patient_id)
+	# Save	
+	if request.method == 'POST':
+	    # New Dependet
+		formset = DependetFormSet(request.POST)
+		if formset.is_valid():
+			for form in formset:
+				dependent = patient.dependents.create(
+        			name = form.cleaned_data.get('name'),
+					email = form.cleaned_data.get('email'),
+					phone = form.cleaned_data.get('phone'),
+					marital_status = form.cleaned_data.get('marital_status'),
+					types = form.cleaned_data.get('types'),
+					sex = form.cleaned_data.get('sex')
+                )
+				dependent.save()
+		return redirect('patient_index')	
+	return render(request, 'odontology/patient/dependent_register.html', {'patient': patient, 'formset': DependetFormSet() }, context_instance=RequestContext(request))
 
 # End Patient ------------------------------------------------------------------------------------#
 

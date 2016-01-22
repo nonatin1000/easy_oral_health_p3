@@ -26,30 +26,95 @@
 					<tr>
 						<th>Nome</th>
 						<th>Email</th>
-						<th>Tipo</th>
-						<th style="width: 21%;">Ações</th>
+						<th style="width: 34%;">Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for patient in patients %}
-					<tr>
-						<td>{{ patient.name }}</td>
-						<td>{{ patient.email }}</td>
-						<td>{{ patient.types }}</td>
-						<td>                    
-							<a href="{% url 'patient_show' patient.id %}" class="btn btn-default" title="Exibir">
-								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-							</a>
 
-							<a href="{% url 'patient_edit' patient.id %}" class="btn btn-default" title="Editar">
-								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-							</a>
+						{% if patient.types != 'Dependente' %}
+							<tr>
+								<td>{{ patient.name }}</td>
+								<td>{{ patient.email }}</td>
+								<td>  
+									<a href="#" class="btn btn-default" titl="Selecionar paciente">
+		                        		<span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+		                      		</a>   
 
-							<a href="#modal-id-{{ patient.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
-								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-							</a>
-						</td>
-					</tr>
+									<a href="{% url 'patient_show' patient.id %}" class="btn btn-default" title="Exibir">
+										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									</a>
+
+									<a href="{% url 'patient_edit' patient.id %}" class="btn btn-default" title="Editar">
+										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+									</a>
+
+									<a href="{% url 'dependent_register' patient.id %}" class="btn btn-default" title="Add Dependente">
+										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+									</a>
+
+									<a href="#modal-id-{{ patient.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+									</a>
+								</td>
+							</tr>
+						{% endif %}
+							<!-- SE TIVER DEPENDENTES LISTA ELES AQUI... -->
+						
+							{% if patient.dependents.count > 0 %}
+							<tr>
+								<td colspan="4">
+								<div class="panel panel-success">
+								 	<div class="panel-heading">
+										<h3 class="panel-title">Dependentes</h3>
+								  	</div>
+								  	<div class="panel-body">
+												
+									<table style="width:100%;">
+							            <thead>
+							              <tr>
+							                <th>Nome</th>
+							                <th>Email</th>
+							                <th>Fone</th>
+							                <th style="width: 21%;">Ações</th>
+							              </tr>
+							            </thead>
+							            <tbody>
+							              {% for dependent in patient.dependents.all %}
+							                <tr>
+							                  <input type="hidden" name="types" id="types" value="DEPENDENT"></td>
+							                  <td>{{ dependent.name }}</td>
+							                  <td>{{ dependent.email }}</td>
+							                  <td>{{ dependent.phone }}</td>
+							                  <td>      
+							                    {% if dependent.id == patient.id %}
+							                      <a href="#" class="btn btn-success" title= "Selecionar paciente">
+							                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+							                     </a>
+							                    {% else %}
+							                      <a href="#" class="btn btn-default" titl="Selecionar paciente">
+							                        <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+							                      </a>
+						{% endif %}              
+							                    <a href="{% url 'patient_edit' dependent.id %}" class="btn btn-default" title="Editar">
+							                      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+							                    </a>
+							                  	
+							                  	<a href="#modal-id-{{ dependent.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+													<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+												</a>
+							                  </td>
+							                </tr>
+					{% endfor %}
+
+							            </tbody>
+							        </table>
+								</td>
+							</tr>
+										  </div>
+									</div>
+							{% endif %}
+					<!-- DEPENDENTES... -->
 
 					<!-- MODAL -->
 					<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">

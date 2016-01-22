@@ -85,7 +85,7 @@ class Patient(AuditModel):
 	MALE = 'M'
 	FEMALE  = 'F'
 	SEX_CHOICES = ((MALE, 'Masculino'), (FEMALE, 'Feminino'),)
-	sex = models.CharField(u'Sexo', max_length=1, choices=SEX_CHOICES, default=None, blank=True)
+	sex = models.CharField(u'Sexo', max_length=1, choices=SEX_CHOICES, default=None, blank=True, null=True)
 	
 	def is_upperclass(self):
 		return self.sex in (self.MALE, self.FEMALE)
@@ -96,38 +96,39 @@ class Patient(AuditModel):
 	WINDOWER = 'VIUVO'
 	DIVORCED = 'DIVORCIADO'
 	MARITAL_STATUS_CHOICES = ((MARRIED, 'Casado'), (SINGLE, 'Solteiro'), (SEPARATED, 'Seprado'), (WINDOWER, 'Viuvo'), (DIVORCED, 'Divorciado'),)
-	marital_status = models.CharField(u'Estado Cívil', max_length=10, choices=MARITAL_STATUS_CHOICES, default=None, blank=True)
+	marital_status = models.CharField(u'Estado Cívil', max_length=10, choices=MARITAL_STATUS_CHOICES, default=None, blank=True, null=True)
 	
 	def is_upperclass(self):
 		return self.marital_status in (self.MARRIED, self.SINGLE, self.SEPARATED, self.WINDOWER, self.DIVORCED)
 
-	birth_date = models.DateField(u'Data de Nascimento', blank=True)
-	father = models.CharField(u'Pai', max_length=150, blank=True)
-	mother = models.CharField(u'Mãe', max_length=150, blank=True)
-	phone = models.CharField(u'Telefone', max_length=14, blank=True)
-	course = models.ForeignKey(Course, blank=True)
+	birth_date = models.DateField(u'Data de Nascimento', blank=True, null=True)
+	father = models.CharField(u'Pai', max_length=150, blank=True, null=True)
+	mother = models.CharField(u'Mãe', max_length=150, blank=True, null=True)
+	phone = models.CharField(u'Telefone', max_length=14, blank=True, null=True)
+	course = models.ForeignKey(Course, null=True, blank=True)
 
 	STUDENT = 'Estudante'
 	EMPLOYEE = 'Funcionário'
-	TYPES_CHOICES = ((STUDENT, 'Estudante'), (EMPLOYEE, 'Funcionário'),)
+	DEPENDENT = 'Dependente'
+	TYPES_CHOICES = ((STUDENT, 'Estudante'), (EMPLOYEE, 'Funcionário'), (DEPENDENT, 'Dependente'),)
 	types = models.CharField(u'Tipo', max_length=20, choices=TYPES_CHOICES, default=STUDENT)
 	email = models.EmailField(u'E-mail')
-	dependents = models.ManyToManyField('self', symmetrical=False)
+	dependents = models.ManyToManyField('self', symmetrical=False, null=True, blank=True)
 	address = GenericRelation('Address')
 
 	def __str__(self):
 		return self.name
 
 class Address(AuditModel):
-	city = models.CharField(u'Cidade', max_length=255, blank=True)
-	state = models.CharField(u'UF', max_length=2, blank=True)
-	street = models.CharField(u'Rua',max_length=255, blank=True)
-	number = models.CharField(u'Número', max_length=20, blank=True)
-	complement = models.CharField(u'Complemento', max_length=255, blank=True)
-	zip_code = models.CharField(u'CEP', max_length=10, blank=True)
-	reference_point = models.CharField(u'Ponto de Referência', max_length=255, blank=True)
-	neighborhood = models.CharField(u'Bairro', max_length=255)
-	country = models.CharField(u'País', max_length=255, blank=True)
+	city = models.CharField(u'Cidade', max_length=255, blank=True, null=True)
+	state = models.CharField(u'UF', max_length=2, blank=True, null=True)
+	street = models.CharField(u'Rua',max_length=255, blank=True, null=True)
+	number = models.CharField(u'Número', max_length=20, blank=True, null=True)
+	complement = models.CharField(u'Complemento', max_length=255, blank=True, null=True)
+	zip_code = models.CharField(u'CEP', max_length=10, blank=True, null=True)
+	reference_point = models.CharField(u'Ponto de Referência', max_length=255, blank=True, null=True)
+	neighborhood = models.CharField(u'Bairro', max_length=255, blank=True, null=True)
+	country = models.CharField(u'País', max_length=255, blank=True, null=True)
 	
 	# Generic Relation
 	content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
