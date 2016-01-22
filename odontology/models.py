@@ -113,7 +113,7 @@ class Patient(AuditModel):
 	TYPES_CHOICES = ((STUDENT, 'Estudante'), (EMPLOYEE, 'Funcionário'), (DEPENDENT, 'Dependente'),)
 	types = models.CharField(u'Tipo', max_length=20, choices=TYPES_CHOICES, default=STUDENT)
 	email = models.EmailField(u'E-mail')
-	dependents = models.ManyToManyField('self', symmetrical=False, null=True, blank=True)
+	dependents = models.ManyToManyField('self', symmetrical=False)
 	address = GenericRelation('Address')
 
 	def __str__(self):
