@@ -86,6 +86,7 @@ def course_register(request, course_id=None):
 		form_course = CourseForm(instance=course)
 	else: # New
 		form_course = CourseForm
+		course = None
 
 	# Save 
 	if request.method == 'POST':
@@ -100,7 +101,7 @@ def course_register(request, course_id=None):
 
 		return redirect('course_index')
 
-	return render(request, 'odontology/course/course_register.html', {'form_course': form_course}, context_instance=RequestContext(request))
+	return render(request, 'odontology/course/course_register.html', {'form_course': form_course, 'course': course}, context_instance=RequestContext(request))
 
 def course_show(request, course_id):
 	course = Course.objects.get(pk=course_id)
@@ -126,6 +127,7 @@ def tooth_status_register(request, tooth_status_id=None):
 		form_tooth_status = ToothStatusForm(instance=tooth_status)
 	else: # New
 		form_tooth_status = ToothStatusForm
+		tooth_status = None
 
 	# Save
 	if request.method == 'POST':
@@ -140,7 +142,7 @@ def tooth_status_register(request, tooth_status_id=None):
 
 		return redirect('tooth_status_index')
 
-	return render(request, 'odontology/tooth_status/tooth_status_register.html', {'form_tooth_status': form_tooth_status}, context_instance=RequestContext(request))
+	return render(request, 'odontology/tooth_status/tooth_status_register.html', {'form_tooth_status': form_tooth_status, 'tooth_status': tooth_status}, context_instance=RequestContext(request))
 
 def tooth_status_show(request, tooth_status_id):
 	tooth_status = ToothStatus.objects.get(pk=tooth_status_id)
@@ -166,6 +168,7 @@ def tooth_register(request, tooth_id=None):
 		form_tooth = ToothForm(instance=tooth)
 	else: # New
 		form_tooth = ToothForm
+		tooth = None
 
 	# Save
 	if request.method == 'POST':
@@ -180,7 +183,7 @@ def tooth_register(request, tooth_id=None):
 
 		return redirect('tooth_index')
 
-	return render(request, 'odontology/tooth/tooth_register.html', {'form_tooth': form_tooth}, context_instance=RequestContext(request))
+	return render(request, 'odontology/tooth/tooth_register.html', {'form_tooth': form_tooth, 'tooth': tooth}, context_instance=RequestContext(request))
 
 def tooth_show(request, tooth_id):
 	tooth = Tooth.objects.get(pk=tooth_id)
@@ -206,6 +209,7 @@ def tooth_division_register(request, tooth_division_id=None):
 		form_tooth_division = ToothDivisionForm(instance=tooth_division)
 	else: # New
 		form_tooth_division = ToothDivisionForm
+		tooth_division = None
 
 	# Save
 	if request.method == 'POST':
@@ -220,7 +224,7 @@ def tooth_division_register(request, tooth_division_id=None):
 
 		return redirect('tooth_division_index')
 
-	return render(request, 'odontology/tooth_division/tooth_division_register.html', {'form_tooth_division': form_tooth_division}, context_instance=RequestContext(request))
+	return render(request, 'odontology/tooth_division/tooth_division_register.html', {'form_tooth_division': form_tooth_division, 'tooth_division': tooth_division}, context_instance=RequestContext(request))
 
 def tooth_division_show(request, tooth_division_id):
 	tooth_division = ToothDivision.objects.get(pk=tooth_division_id)
@@ -246,6 +250,7 @@ def procedure_status_register(request, procedure_status_id=None):
 		form_procedure_status = ProcedureStatusForm(instance=procedure_status)
 	else: # New
 		form_procedure_status = ProcedureStatusForm
+		procedure_status = None
 
 	# Save
 	if request.method == 'POST':
@@ -260,7 +265,7 @@ def procedure_status_register(request, procedure_status_id=None):
 
 		return redirect('procedure_status_index')
 
-	return render(request, 'odontology/procedure_status/procedure_status_register.html', {'form_procedure_status': form_procedure_status}, context_instance=RequestContext(request))
+	return render(request, 'odontology/procedure_status/procedure_status_register.html', {'form_procedure_status': form_procedure_status, 'procedure_status': procedure_status}, context_instance=RequestContext(request))
 
 def procedure_status_show(request, procedure_status_id):
 	procedure_status = ProcedureStatus.objects.get(pk=procedure_status_id)
