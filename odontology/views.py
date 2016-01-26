@@ -38,7 +38,7 @@ def dentist_register(request, user_id=None):
 	else: # New Dentist
 		form_dentist = DentistForm
 		form_address = AddressForm
-		
+
 	# Save	
 	if request.method == 'POST':
 		if user_id: # Edit
@@ -57,7 +57,7 @@ def dentist_register(request, user_id=None):
 				form_address.save()
 		return redirect('dentist_index')
 
-	return render(request, 'odontology/dentist/dentist_register.html', {'form_dentist': form_dentist, 'form_address': form_address}, context_instance=RequestContext(request))
+	return render(request, 'odontology/dentist/dentist_register.html', {'form_dentist': form_dentist, 'form_address': form_address,}, context_instance=RequestContext(request))
 	
 def dentist_show(request, user_id):
 	dentist = Dentist.objects.get(pk=user_id)
