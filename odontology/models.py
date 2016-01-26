@@ -46,7 +46,7 @@ class Dentist(User, AuditModel):
 
 
 class Course(AuditModel):
-	name = models.CharField(u'Nome', max_length=50)
+	name = models.CharField(u'Nome', max_length=50, help_text='Este campo é obrigatório')
 	description = models.CharField(u'Descrição', max_length=100, blank=True)
 
 	def __str__(self):

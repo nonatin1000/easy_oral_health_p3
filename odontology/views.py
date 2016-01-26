@@ -46,16 +46,18 @@ def dentist_register(request, user_id=None):
 			form_address = AddressForm(request.POST,instance=address)
 			if form_dentist.is_valid():
 				form_dentist.save()
+				return redirect('dentist_index')
 			if form_address.is_valid():
 				form_address.save()
+				return redirect('dentist_index')
 		else: # New
 			form_dentist = DentistForm(request.POST)
-			if form_dentist.is_valid():
+			form_address = AddressForm(request.POST)
+			if form_dentist.is_valid() and form_address.is_valid():
 				dentist = form_dentist.save()
 				form_address = AddressForm(request.POST, instance=Address(content_object=dentist))
-			if form_address.is_valid():
 				form_address.save()
-		return redirect('dentist_index')
+				return redirect('dentist_index')
 
 	return render(request, 'odontology/dentist/dentist_register.html', {'form_dentist': form_dentist, 'form_address': form_address,}, context_instance=RequestContext(request))
 	
@@ -94,12 +96,12 @@ def course_register(request, course_id=None):
 			form_course = CourseForm(request.POST, instance=course)
 			if form_course.is_valid():
 				form_course.save()
+				return redirect('course_index')
 		else: # New
 			form_course = CourseForm(request.POST)
 			if form_course.is_valid():
 				form_course.save()
-
-		return redirect('course_index')
+				return redirect('course_index')
 
 	return render(request, 'odontology/course/course_register.html', {'form_course': form_course, 'course': course}, context_instance=RequestContext(request))
 
@@ -310,16 +312,18 @@ def patient_register(request, patient_id=None):
 			form_address = AddressForm(request.POST,instance=address)
 			if form_patient.is_valid():
 				form_patient.save()
+				return redirect('dentist_index')
 			if form_address.is_valid():
 				form_address.save()
+				return redirect('dentist_index')
 		else: # New
 			form_patient = PatientForm(request.POST)
-			if form_patient.is_valid():
+			form_address = AddressForm(request.POST)
+			if form_patient.is_valid() and form_address.is_valid():
 				patient = form_patient.save()
 				form_address = AddressForm(request.POST,instance=Address(content_object=patient))
-			if form_address.is_valid():
 				form_address.save()
-		return redirect('patient_index')
+				return redirect('patient_index')
 
 	return render(request, 'odontology/patient/patient_register.html', {'form_patient': form_patient, 'form_address': form_address}, context_instance=RequestContext(request))
 
@@ -377,12 +381,12 @@ def odontogram_register(request, odontogram_id=None):
 			form_odontogram = OdontogramForm(request.POST, instance=odontogram)
 			if form_odontogram.is_valid():
 				form_odontogram.save()
+				return redirect('odontogram_index')
 		else:
 			form_odontogram = OdontogramForm(request.POST)
 			if form_odontogram.is_valid():
 				form_odontogram.save()
-
-		return redirect('odontogram_index')
+				return redirect('odontogram_index')
 
 	return render(request, 'odontology/odontogram/odontogram_register.html', {'form_odontogram': form_odontogram}, context_instance=RequestContext(request))
 
@@ -417,12 +421,12 @@ def procedure_register(request, procedure_id=None):
 			form_procedure = ProcedureForm(request.POST, instance=procedure)
 			if form_procedure.is_valid():
 				form_procedure.save()
+				return redirect('procedure_index')
 		else:
 			form_procedure = ProcedureForm(request.POST)
 			if form_procedure.is_valid():
 				form_procedure.save()
-
-		return redirect('procedure_index')
+				return redirect('procedure_index')
 
 	return render(request, 'odontology/procedure/procedure_register.html', {'form_procedure': form_procedure}, context_instance=RequestContext(request))
 
