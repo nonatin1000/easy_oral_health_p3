@@ -1,0 +1,109 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<script type="text/javascript" src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+	<title>Easy Oral Health</title>
+</head>
+<body>
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- agrupar para mobile -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="{% url 'index_root' %}" class="navbar-brand">Easy Oral Health</a>
+			</div>
+
+			<!-- links da navbar -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="{% url 'index_root' %}">
+							<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+							Início
+						</a>
+					</li>
+					<li class="dropdown">
+					    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					      <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					      Cadastros
+					      <b class="caret"></b>
+					    </a>
+					    <ul class="dropdown-menu">
+					      <li>
+					      		<a href="{% url 'course_index' %}">
+					      			<span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+					      			Cursos
+					      		</a>
+					      </li>
+						  <li>
+						  		<a href="{% url 'tooth_index' %}">
+						  			<span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
+						  			Dentes
+						  		</a>
+						  </li>
+					      <li>
+					      		<a href="{% url 'tooth_division_index' %}">
+					      			<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+					      			Divisão dos Dentes
+					      		</a>
+					      </li>
+					      <li>
+					      		<a href="{% url 'tooth_status_index' %}">
+					      			<span class="glyphicon glyphicon-tint" aria-hidden="true"></span>
+					      			Status dos Dentes
+					      		</a>
+					      </li>
+					      <li>
+					      		<a href="{% url 'procedure_status_index' %}">
+					      			<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+					      			Status do Procedimento
+					      		</a>
+					      </li>
+						  <li>
+								<a href="{% url 'patient_index' %}">
+									<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+									Pacientes
+								</a>
+						   </li>
+						   <li>
+								<a href="{% url 'dentist_index' %}">
+									<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+									Dentista
+								</a>
+						   </li>
+					    </ul>
+					</li>
+					<li>
+						<a href="{% url 'procedure_index' %}">
+							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+							Procedimentos
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'odontogram_index' %}">
+							<span class="glyphicon glyphicon glyphicon-th" aria-hidden="true"></span>
+							Odontograma
+						</a>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</nav>
+	<!-- NAVBAR -->
+	{% block body %}
+	{% endblock %}
+</body>
+</html>
