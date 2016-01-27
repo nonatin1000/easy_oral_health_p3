@@ -46,7 +46,6 @@ def dentist_register(request, user_id=None):
 			form_address = AddressForm(request.POST,instance=address)
 			if form_dentist.is_valid():
 				form_dentist.save()
-				return redirect('dentist_index')
 			if form_address.is_valid():
 				form_address.save()
 				return redirect('dentist_index')
@@ -312,7 +311,6 @@ def patient_register(request, patient_id=None):
 			form_address = AddressForm(request.POST,instance=address)
 			if form_patient.is_valid():
 				form_patient.save()
-				return redirect('patient_index')
 			if form_address.is_valid():
 				form_address.save()
 				return redirect('patient_index')
