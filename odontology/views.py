@@ -9,8 +9,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.forms import formset_factory
-from .models import Dentist, Address, User, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus, Patient, Odontogram, Procedure
-from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm, ToothDivisionForm, ProcedureStatusForm, PatientForm, OdontogramForm, ProcedureForm
+from .models import Dentist, Address, User, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure
+from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm, ToothDivisionForm, ProcedureStatusForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm
 
 
 # Signup dentist ---------------------------------------------------------------------------------#
@@ -359,80 +359,162 @@ def dependent_register(request, patient_id):
 
 # End Patient ------------------------------------------------------------------------------------#
 
-# Signup Odontogram-------------------------------------------------------------------------------#
+# Signup PatientTooth-------------------------------------------------------------------------------#
 
-def odontogram_index(request):
-	odontogramas = Odontogram.objects.all()
-	return render(request, 'odontology/odontogram/odontogram_index.html', {'odontogramas': odontogramas}, context_instance=RequestContext(request))
+def patient_tooth_index(request):
+	patient_teeth = PatientTooth.objects.all()
+	return render(request, 'odontology/patient_tooth/patient_tooth_index.html', {'patient_teeth': patient_teeth}, context_instance=RequestContext(request))
 
-def odontogram_register(request, odontogram_id=None):
+def patient_tooth_register(request, patient_tooth_id=None):
 
-	if odontogram_id: # Edit
-		odontogram = Odontogram.objects.get(pk=odontogram_id)
-		form_odontogram = OdontogramForm(instance=odontogram)
+	if patient_tooth_id: # Edit
+		patient_tooth = PatientTooth.objects.get(pk=patient_tooth_id)
+		form_patient_tooth = PatientToothForm(instance=patient_tooth)
 	else: # New
-		form_odontogram = OdontogramForm
+		form_patient_tooth = PatientToothForm
 
 	# Save
 	if request.method == 'POST':
-		if odontogram_id: # Edit
-			form_odontogram = OdontogramForm(request.POST, instance=odontogram)
-			if form_odontogram.is_valid():
-				form_odontogram.save()
-				return redirect('odontogram_index')
+		if patient_tooth_id: # Edit
+			form_patient_tooth = PatientToothForm(request.POST, instance=patient_tooth)
+			if form_patient_tooth.is_valid():
+				form_patient_tooth.save()
+				return redirect('patient_tooth_index')
 		else:
-			form_odontogram = OdontogramForm(request.POST)
-			if form_odontogram.is_valid():
-				form_odontogram.save()
-				return redirect('odontogram_index')
+			form_patient_tooth = PatientToothForm(request.POST)
+			if form_patient_tooth.is_valid():
+				form_patient_tooth.save()
+				return redirect('patient_tooth_index')
 
-	return render(request, 'odontology/odontogram/odontogram_register.html', {'form_odontogram': form_odontogram}, context_instance=RequestContext(request))
+	return render(request, 'odontology/patient_tooth/patient_tooth_register.html', {'form_patient_tooth': form_patient_tooth}, context_instance=RequestContext(request))
 
-def odontogram_show(request, odontogram_id):
-	odontogram = Odontogram.objects.get(pk=odontogram_id)
-	return render(request, 'odontology/odontogram/odontogram_show.html', {'odontogram': odontogram}, context_instance=RequestContext(request))
+def patient_tooth_show(request, patient_tooth_id):
+	patient_tooth = Odontogram.objects.get(pk=patient_tooth_id)
+	return render(request, 'odontology/patient_tooth/patient_tooth_show.html', {'patient_tooth': patient_tooth}, context_instance=RequestContext(request))
 
-def odontogram_delete(request, odontogram_id):
-	odontogram = Odontogram.objects.get(pk=odontogram_id)
-	odontogram.delete()
-	return redirect('odontogram_index')
+def patient_tooth_delete(request, patient_tooth_id):
+	patient_tooth = Odontogram.objects.get(pk=patient_tooth_id)
+	patient_tooth.delete()
+	return redirect('patient_tooth_index')
 
 # End Odontogram ---------------------------------------------------------------------------------#
 
-# Signup Procedure--------------------------------------------------------------------------------#
+# Signup PatientDentalProcedure-------------------------------------------------------------------#
 
-def procedure_index(request):
-	procedures = Procedure.objects.all()
-	return render(request, 'odontology/procedure/procedure_index.html', {'procedures': procedures}, context_instance=RequestContext(request))
+def patient_dental_procedure_index(request):
+	patient_dental_procedures = PatientDentalProcedure.objects.all()
+	return render(request, 'odontology/patient_dental_procedure/patient_dental_procedure_index.html', {'patient_dental_procedures': patient_dental_procedures}, context_instance=RequestContext(request))
 
-def procedure_register(request, procedure_id=None):
+def patient_dental_procedure_register(request, patient_dental_procedure_id=None):
 
-	if procedure_id: # Edit
-		procedure = Procedure.objects.get(pk=procedure_id)
-		form_procedure = ProcedureForm(instance=procedure)
+	if patient_dental_procedure_id: # Edit
+		patient_dental_procedure = PatientDentalProcedure.objects.get(pk=patient_dental_procedure_id)
+		form_patient_dental_procedure = PatientDentalProcedureForm(instance=patient_dental_procedure)
 	else: # New
-		form_procedure = ProcedureForm
+		form_patient_dental_procedure = PatientDentalProcedureForm
 
 	# Save
 	if request.method == 'POST':
-		if procedure_id: # Edit
-			form_procedure = ProcedureForm(request.POST, instance=procedure)
-			if form_procedure.is_valid():
-				form_procedure.save()
-				return redirect('procedure_index')
+		if patient_dental_procedure_id: # Edit
+			form_patient_dental_procedure = PatientDentalProcedureForm(request.POST, instance=patient_dental_procedure)
+			if form_patient_dental_procedure.is_valid():
+				form_patient_dental_procedure.save()
+				return redirect('patient_dental_procedure_index')
 		else:
-			form_procedure = ProcedureForm(request.POST)
-			if form_procedure.is_valid():
-				form_procedure.save()
-				return redirect('procedure_index')
+			form_patient_dental_procedure = PatientDentalProcedureForm(request.POST)
+			if form_patient_dental_procedure.is_valid():
+				form_patient_dental_procedure.save()
+				return redirect('patient_dental_procedure_index')
 
-	return render(request, 'odontology/procedure/procedure_register.html', {'form_procedure': form_procedure}, context_instance=RequestContext(request))
+	return render(request, 'odontology/patient_dental_procedure/patient_dental_procedure_register.html', {'form_patient_dental_procedure': form_patient_dental_procedure}, context_instance=RequestContext(request))
 
-def procedure_show(request, procedure_id):
-	procedure = Procedure.objects.get(pk=procedure_id)
-	return render(request, 'odontology/procedure/procedure_show.html', {'procedure': procedure}, context_instance=RequestContext(request))
+def patient_dental_procedure_show(request, patient_dental_procedure_id):
+	patient_dental_procedure = PatientDentalProcedure.objects.get(pk=patient_dental_procedure_id)
+	return render(request, 'odontology/patient_dental_procedure/patient_dental_procedure_show.html', {'patient_dental_procedure': patient_dental_procedure}, context_instance=RequestContext(request))
 
-def procedure_delete(request, procedure_id):
-	procedure = Procedure.objects.get(pk=procedure_id)
-	procedure.delete()
-	return redirect('procedure_index')
+def patient_dental_procedure_delete(request, patient_dental_procedure_id):
+	patient_dental_procedure = PatientDentalProcedure.objects.get(pk=patient_dental_procedure_id)
+	patient_dental_procedure.delete()
+	return redirect('patient_dental_procedure_index')
+
+# End PatientDentalProcedure --------------------------------------------------------------------#
+
+# Signup ProcedureDental-------------------------------------------------------------------------#
+
+def procedure_dental_index(request):
+	procedures_dental = ProcedureDental.objects.all()
+	return render(request, 'odontology/procedure_dental/procedure_dental_index.html', {'procedures_dental': procedures_dental}, context_instance=RequestContext(request))
+
+def procedure_dental_register(request, procedure_dental_id=None):
+
+	if procedure_dental_id: # Edit
+		procedure_dental = ProcedureDental.objects.get(pk=procedure_dental_id)
+		form_procedure_dental = ProcedureDentalForm(instance=procedure_dental)
+	else: # New
+		form_procedure_dental = ProcedureDentalForm
+
+	# Save
+	if request.method == 'POST':
+		if procedure_dental_id: # Edit
+			form_procedure_dental = ProcedureDentalForm(request.POST, instance=procedure_dental)
+			if form_procedure_dental.is_valid():
+				form_procedure_dental.save()
+				return redirect('procedure_dental_index')
+		else:
+			form_procedure_dental = ProcedureDentalForm(request.POST)
+			if form_procedure_dental.is_valid():
+				form_procedure_dental.save()
+				return redirect('procedure_dental_index')
+
+	return render(request, 'odontology/procedure_dental/procedure_dental_register.html', {'form_procedure_dental': form_procedure_dental}, context_instance=RequestContext(request))
+
+def procedure_dental_show(request, procedure_dental_id):
+	procedure_dental = ProcedureDental.objects.get(pk=procedure_dental_id)
+	return render(request, 'odontology/procedure_dental/procedure_dental_show.html', {'procedure_dental': procedure_dental}, context_instance=RequestContext(request))
+
+def procedure_dental_delete(request, procedure_dental_id):
+	procedure_dental = ProcedureDental.objects.get(pk=procedure_dental_id)
+	procedure_dental.delete()
+	return redirect('procedure_dental_index')
+
+# End ProcedureDental-----------------------------------------------------------------------------#
+
+# Signup OralProcedure----------------------------------------------------------------------------#
+
+def oral_procedure_index(request):
+	oral_procedures = OralProcedure.objects.all()
+	return render(request, 'odontology/oral_procedure/oral_procedure_index.html', {'oral_procedures': oral_procedures}, context_instance=RequestContext(request))
+
+def oral_procedure_register(request, oral_procedure_id=None):
+
+	if oral_procedure_id: # Edit
+		oral_procedure = OralProcedure.objects.get(pk=oral_procedure_id)
+		form_oral_procedure = OralProcedureForm(instance=oral_procedure)
+	else: # New
+		form_oral_procedure = OralProcedureForm
+
+	# Save
+	if request.method == 'POST':
+		if oral_procedure_id: # Edit
+			form_oral_procedure = OralProcedureForm(request.POST, instance=oral_procedure)
+			if form_oral_procedure.is_valid():
+				form_oral_procedure.save()
+				return redirect('oral_procedure_index')
+		else:
+			form_oral_procedure = OralProcedureForm(request.POST)
+			if form_oral_procedure.is_valid():
+				form_oral_procedure.save()
+				return redirect('oral_procedure_index')
+
+	return render(request, 'odontology/oral_procedure/oral_procedure_register.html', {'form_oral_procedure': form_oral_procedure}, context_instance=RequestContext(request))
+
+def oral_procedure_show(request, oral_procedure_id):
+	oral_procedure = OralProcedure.objects.get(pk=oral_procedure_id)
+	return render(request, 'odontology/oral_procedure/oral_procedure_show.html', {'oral_procedure': oral_procedure}, context_instance=RequestContext(request))
+
+def oral_procedure_delete(request, oral_procedure_id):
+	oral_procedure = OralProcedure.objects.get(pk=oral_procedure_id)
+	oral_procedure.delete()
+	return redirect('oral_procedure_index')
+
+# End OralProcedure ------------------------------------------------------------------------------#

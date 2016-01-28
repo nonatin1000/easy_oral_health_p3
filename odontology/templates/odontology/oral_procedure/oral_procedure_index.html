@@ -4,11 +4,11 @@
 
 <nav class="navbar navbar-default">
 	<div class="container">
-		<a class="navbar-brand" href="#">Procedimentos</a>
+		<a class="navbar-brand" href="#">Procedimento Bucal</a>
 		<ul class="nav navbar-nav pull-right">
 			<li>
 				<p class="navbar-btn">
-					<a class="btn btn-default" href="{% url 'procedure_register' %}"> 
+					<a class="btn btn-default" href="{% url 'oral_procedure_register' %}"> 
 						<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 						Novo
 					</a>
@@ -24,26 +24,26 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>Status do Procedimento</th>
-						<th>Divisão dos Dentes</th>
+						<th>Nome</th>
+						<th>Descrição</th>
 						<th style="width: 21%;">Ações</th>
 					</tr>
 				</thead>
 				<tbody>
-					{% for procedure in procedures %}
+					{% for oral_procedure in oral_procedures %}
 					<tr>
-						<td>{{ procedure.procedure_status.name }}</td>
-						<td>{{ procedure.tooth_division.name }}</td>
+						<td>{{ oral_procedure.name }}</td>
+						<td>{{ oral_procedure.description }}</td>
 						<td>                    
-							<a href="{% url 'procedure_show' procedure.id %}" class="btn btn-default" title="Exibir">
+							<a href="{% url 'oral_procedure_show' oral_procedure.id %}" class="btn btn-default" title="Exibir">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							</a>
 
-							<a href="{% url 'procedure_edit' procedure.id %}" class="btn btn-default" title="Editar">
+							<a href="{% url 'oral_procedure_edit' oral_procedure.id %}" class="btn btn-default" title="Editar">
 								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 							</a>
 
-							<a href="#modal-id-{{ procedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+							<a href="#modal-id-{{ oral_procedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
 								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 							</a>
 						</td>
@@ -51,7 +51,7 @@
 
 					<!-- MODAL -->
 					<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-						<div class="modal fade" id="modal-id-{{ procedure.id }}">
+						<div class="modal fade" id="modal-id-{{ oral_procedure.id }}">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -59,11 +59,11 @@
 										<h4 class="modal-title">Alerta!</h4>
 									</div>
 									<div class="modal-body">
-										<p>Deseja realmente remover <strong>{{ procedure.procedure_status.name }}</strong>?</p>
+										<p>Deseja realmente remover <strong>{{ oral_procedure.name }}</strong>?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-										<a href="{% url 'procedure_delete' procedure.id %}" class='btn btn-danger' title='Exibir'>
+										<a href="{% url 'oral_procedure_delete' oral_procedure.id %}" class='btn btn-danger' title='Exibir'>
 											Delete
 										</a>
 									</div>

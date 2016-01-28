@@ -4,11 +4,11 @@
 
 <nav class="navbar navbar-default">
 	<div class="container">
-		<a class="navbar-brand" href="#">Odontograma</a>
+		<a class="navbar-brand" href="#">Procedimento Dentário do Paciente</a>
 		<ul class="nav navbar-nav pull-right">
 			<li>
 				<p class="navbar-btn">
-					<a class="btn btn-default" href="{% url 'odontogram_register' %}"> 
+					<a class="btn btn-default" href="{% url 'patient_dental_procedure_register' %}"> 
 						<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 						Novo
 					</a>
@@ -24,28 +24,30 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>Paciente</th>
 						<th>Dente</th>
-						<th>Status do Dente</th>
+						<th>Divisão dos Dentes</th>
+						<th>Status do Procedimento</th>
+						<th>Procedimento Dentário</th>
 						<th style="width: 21%;">Ações</th>
 					</tr>
 				</thead>
 				<tbody>
-					{% for odontogram in odontogramas %}
+					{% for patient_dental_procedure in patient_dental_procedures %}
 					<tr>
-						<td>{{ odontogram.patient.name }}</td>
-						<td>{{ odontogram.tooth.name }}</td>
-						<td>{{ odontogram.tooth_status.name }}</td>
+						<td>{{ patient_dental_procedure.patient_tooth.name }}</td>
+						<td>{{ patient_dental_procedure.tooth_division.name }}</td>
+						<td>{{ patient_dental_procedure.procedure_status.name }}</td>
+						<td>{{ patient_dental_procedure.procedure_dental.name }}</td>
 						<td>                    
-							<a href="{% url 'odontogram_show' odontogram.id %}" class="btn btn-default" title="Exibir">
+							<a href="{% url 'patient_dental_procedure_show' patient_dental_procedure.id %}" class="btn btn-default" title="Exibir">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							</a>
 
-							<a href="{% url 'odontogram_edit' odontogram.id %}" class="btn btn-default" title="Editar">
+							<a href="{% url 'patient_dental_procedure_edit' patient_dental_procedure.id %}" class="btn btn-default" title="Editar">
 								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 							</a>
 
-							<a href="#modal-id-{{ odontogram.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+							<a href="#modal-id-{{ patient_dental_procedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
 								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 							</a>
 						</td>
@@ -53,7 +55,7 @@
 
 					<!-- MODAL -->
 					<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-						<div class="modal fade" id="modal-id-{{ odontogram.id }}">
+						<div class="modal fade" id="modal-id-{{ patient_dental_procedure.id }}">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -61,11 +63,11 @@
 										<h4 class="modal-title">Alerta!</h4>
 									</div>
 									<div class="modal-body">
-										<p>Deseja realmente remover <strong>{{ odontogram.patient.name }}</strong>?</p>
+										<p>Deseja realmente remover <strong>{{ patient_dental_procedure.procedure_status.name }}</strong>?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-										<a href="{% url 'odontogram_delete' odontogram.id %}" class='btn btn-danger' title='Exibir'>
+										<a href="{% url 'patient_dental_procedure_delete' patient_dental_procedure.id %}" class='btn btn-danger' title='Exibir'>
 											Delete
 										</a>
 									</div>

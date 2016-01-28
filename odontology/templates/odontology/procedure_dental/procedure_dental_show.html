@@ -4,11 +4,11 @@
 
 <nav class="navbar navbar-default">
   <div class="container">
-    <a class="navbar-brand" href="#">Dados do Odontograma</a>
+    <a class="navbar-brand" href="#">Dados do Procedimento Dentário</a>
     <ul class="nav navbar-nav pull-right">
       <li>
         <p class="navbar-btn">
-          <a class="btn btn-default" href="{% url 'odontogram_index' %}"> 
+          <a class="btn btn-default" href="{% url 'procedure_dental_index' %}"> 
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             Voltar
           </a>
@@ -17,7 +17,7 @@
 
       <li>
         <p class="navbar-btn">
-          <a class="btn btn-default" href="{% url 'odontogram_edit' odontogram.id %}"> 
+          <a class="btn btn-default" href="{% url 'procedure_dental_edit' procedure_dental.id %}"> 
             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
             Editar
           </a>
@@ -31,16 +31,12 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <p>
-          <strong>Paciente:</strong>
-          {{ odontogram.patient.name }}
+          <strong>Nome:</strong>
+          {{ procedure_dental.name }}
         </p>
         <p>
-          <strong>Dente:</strong>
-          {{ odontogram.tooth.name }} - {{ odontogram.tooth.description }}
-        </p>
-        <p>
-        <strong>Dente:</strong>
-          {{ odontogram.tooth_status.name }}
+          <strong>Descrição:</strong>
+          {{ procedure_dental.description }}
         </p>
       </div>
     </div>

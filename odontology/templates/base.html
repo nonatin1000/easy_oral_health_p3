@@ -66,12 +66,33 @@
 					      			Status dos Dentes
 					      		</a>
 					      </li>
+						  <li>
+								<a href="{% url 'patient_tooth_index' %}">
+									<span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
+									Dentes do Paciente
+								</a>
+						  </li>
 					      <li>
 					      		<a href="{% url 'procedure_status_index' %}">
 					      			<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
 					      			Status do Procedimento
 					      		</a>
 					      </li>
+					      <li>
+					      		<a href="{% url 'procedure_dental_index' %}">
+					      			<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+					      			Procedimento Dentário
+					      		</a>
+					      </li>
+
+					      <li>
+					      		<a href="{% url 'oral_procedure_index' %}">
+					      			<span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
+					      			Procedimento Bucal
+					      		</a>
+					      </li>
+
+
 						  <li>
 								<a href="{% url 'patient_index' %}">
 									<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -87,15 +108,9 @@
 					    </ul>
 					</li>
 					<li>
-						<a href="{% url 'procedure_index' %}">
+						<a href="{% url 'patient_dental_procedure_index' %}">
 							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-							Procedimentos
-						</a>
-					</li>
-					<li>
-						<a href="{% url 'odontogram_index' %}">
-							<span class="glyphicon glyphicon glyphicon-th" aria-hidden="true"></span>
-							Odontograma
+							Procedimento Dentário do Paciente
 						</a>
 					</li>
 				</ul>
