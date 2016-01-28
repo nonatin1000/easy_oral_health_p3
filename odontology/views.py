@@ -451,6 +451,7 @@ def procedure_dental_register(request, procedure_dental_id=None):
 		procedure_dental = ProcedureDental.objects.get(pk=procedure_dental_id)
 		form_procedure_dental = ProcedureDentalForm(instance=procedure_dental)
 	else: # New
+		procedure_dental = None
 		form_procedure_dental = ProcedureDentalForm
 
 	# Save
@@ -466,7 +467,7 @@ def procedure_dental_register(request, procedure_dental_id=None):
 				form_procedure_dental.save()
 				return redirect('procedure_dental_index')
 
-	return render(request, 'odontology/procedure_dental/procedure_dental_register.html', {'form_procedure_dental': form_procedure_dental}, context_instance=RequestContext(request))
+	return render(request, 'odontology/procedure_dental/procedure_dental_register.html', {'form_procedure_dental': form_procedure_dental, 'procedure_dental': procedure_dental}, context_instance=RequestContext(request))
 
 def procedure_dental_show(request, procedure_dental_id):
 	procedure_dental = ProcedureDental.objects.get(pk=procedure_dental_id)
@@ -491,6 +492,7 @@ def oral_procedure_register(request, oral_procedure_id=None):
 		oral_procedure = OralProcedure.objects.get(pk=oral_procedure_id)
 		form_oral_procedure = OralProcedureForm(instance=oral_procedure)
 	else: # New
+		oral_procedure = None
 		form_oral_procedure = OralProcedureForm
 
 	# Save
@@ -506,7 +508,7 @@ def oral_procedure_register(request, oral_procedure_id=None):
 				form_oral_procedure.save()
 				return redirect('oral_procedure_index')
 
-	return render(request, 'odontology/oral_procedure/oral_procedure_register.html', {'form_oral_procedure': form_oral_procedure}, context_instance=RequestContext(request))
+	return render(request, 'odontology/oral_procedure/oral_procedure_register.html', {'form_oral_procedure': form_oral_procedure, 'oral_procedure': oral_procedure}, context_instance=RequestContext(request))
 
 def oral_procedure_show(request, oral_procedure_id):
 	oral_procedure = OralProcedure.objects.get(pk=oral_procedure_id)
