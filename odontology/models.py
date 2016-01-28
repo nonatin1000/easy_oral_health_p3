@@ -136,18 +136,18 @@ class PatientTooth(AuditModel):
 
 class ProcedureStatus(AuditModel):
 	name = models.CharField(u'Nome', max_length=50)
-	description = models.CharField(u'Descrição', max_length=100)
+	description = models.CharField(u'Descrição', max_length=100, blank=True, null=True)
 
 	def __str__(self):
 		return self.name
 
 class ProcedureDental(AuditModel):
 	name = models.CharField(u'Nome', max_length=50)
-	description = models.CharField(u'Descrição', max_length=100)
+	description = models.CharField(u'Descrição', max_length=100, blank=True, null=True)
 
 class OralProcedure(AuditModel):
 	name = models.CharField(u'Nome', max_length=50)
-	description = models.CharField(u'Descrição', max_length=100)
+	description = models.CharField(u'Descrição', max_length=100, blank=True, null=True)
 
 class PatientDentalProcedure(AuditModel):
 	patient_tooth = models.ForeignKey(PatientTooth)
