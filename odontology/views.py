@@ -9,8 +9,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.forms import formset_factory
-from .models import Dentist, Address, User, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure
-from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm, ToothDivisionForm, ProcedureStatusForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm
+from .models import Dentist, Address, User, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure, OralPatientProcedure
+from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm, ToothDivisionForm, ProcedureStatusForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm, OralPatientProcedureForm
 
 
 # Signup dentist ---------------------------------------------------------------------------------#
@@ -520,3 +520,43 @@ def oral_procedure_delete(request, oral_procedure_id):
 	return redirect('oral_procedure_index')
 
 # End OralProcedure ------------------------------------------------------------------------------#
+
+# Signup OralPatientProcedure---------------------------------------------------------------------#
+
+def oral_patient_procedure_index(request):
+	oral_patient_procedures = OralPatientProcedure.objects.all()
+	return render(request, 'odontology/oral_patient_procedure/oral_patient_procedure_index.html', {'oral_patient_procedures': oral_patient_procedures}, context_instance=RequestContext(request))
+
+def oral_patient_procedure_register(request, oral_patient_procedure_id=None):
+
+	if oral_patient_procedure_id: # Edit
+		oral_patient_procedure = OralPatientProcedure.objects.get(pk=oral_patient_procedure_id)
+		form_oral_patient_procedure = OralPatientProcedureForm(instance=oral_patient_procedure)
+	else: # New
+		form_oral_patient_procedure = OralPatientProcedureForm
+
+	# Save
+	if request.method == 'POST':
+		if oral_patient_procedure_id: # Edit
+			form_oral_patient_procedure = OralPatientProcedureForm(request.POST, instance=oral_patient_procedure)
+			if form_oral_patient_procedure.is_valid():
+				form_oral_patient_procedure.save()
+				return redirect('oral_patient_procedure_index')
+		else:
+			form_oral_patient_procedure = OralPatientProcedureForm(request.POST)
+			if form_oral_patient_procedure.is_valid():
+				form_oral_patient_procedure.save()
+				return redirect('oral_patient_procedure_index')
+
+	return render(request, 'odontology/oral_patient_procedure/oral_patient_procedure_register.html', {'form_oral_patient_procedure': form_oral_patient_procedure}, context_instance=RequestContext(request))
+
+def oral_patient_procedure_show(request, oral_patient_procedure_id):
+	oral_patient_procedure = OralPatientProcedure.objects.get(pk=oral_patient_procedure_id)
+	return render(request, 'odontology/oral_patient_procedure/oral_patient_procedure_show.html', {'oral_patient_procedure': oral_patient_procedure}, context_instance=RequestContext(request))
+
+def oral_patient_procedure_delete(request, oral_patient_procedure_id):
+	oral_patient_procedure = OralPatientProcedure.objects.get(pk=oral_patient_procedure_id)
+	oral_patient_procedure.delete()
+	return redirect('oral_patient_procedure_index')
+
+# End OralPatientProcedure ----------------------------------------------------------------------#

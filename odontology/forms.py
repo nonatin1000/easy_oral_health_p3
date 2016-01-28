@@ -2,7 +2,7 @@
 
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from odontology.models import Dentist, Address, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus, Patient, PatientTooth, ProcedureDental, OralProcedure, PatientDentalProcedure
+from odontology.models import Dentist, Address, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus, Patient, PatientTooth, ProcedureDental, OralProcedure, PatientDentalProcedure, OralPatientProcedure
 
 class DentistForm(ModelForm):
 
@@ -74,4 +74,10 @@ class PatientDentalProcedureForm(ModelForm):
 
 	class Meta:
 		model = PatientDentalProcedure
+		fields = '__all__'
+
+class OralPatientProcedureForm(ModelForm):
+
+	class Meta:
+		model = OralPatientProcedure
 		fields = '__all__'

@@ -76,4 +76,9 @@ urlpatterns = [
     url(r'oral_procedure_edit/(?P<oral_procedure_id>\d+)/$', 'odontology.views.oral_procedure_register', name='oral_procedure_edit'),
     url(r'oral_procedure_show/(?P<oral_procedure_id>\d+)/$', 'odontology.views.oral_procedure_show', name='oral_procedure_show'),
     url(r'oral_procedure_delete(?P<oral_procedure_id>\d+)/$', 'odontology.views.oral_procedure_delete', name='oral_procedure_delete'),
+    url(r'oral_patient_procedure_index/$', 'odontology.views.oral_patient_procedure_index', name='oral_patient_procedure_index'),
+    url(r'oral_patient_procedure_register/$', 'odontology.views.oral_patient_procedure_register', name='oral_patient_procedure_register'),
+    url(r'oral_procedure_edit/(?P<oral_patient_procedure_id>\d+)/$', 'odontology.views.oral_patient_procedure_register', name='oral_procedure_edit'),
+    url(r'oral_patient_procedure_show/(?P<oral_patient_procedure_id>\d+)/$', 'odontology.views.oral_patient_procedure_show', name='oral_patient_procedure_show'),
+    url(r'oral_patient_procedure_delete(?P<oral_patient_procedure_id>\d+)/$', 'odontology.views.oral_patient_procedure_delete', name='oral_patient_procedure_delete'),
 ]

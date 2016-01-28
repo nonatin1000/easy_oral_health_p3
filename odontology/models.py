@@ -155,3 +155,9 @@ class PatientDentalProcedure(AuditModel):
 	procedure_dental = models.ForeignKey(ProcedureDental)
 	procedure_status = models.ForeignKey(ProcedureStatus)
 	dentist = models.ForeignKey(Dentist)
+
+class OralPatientProcedure(AuditModel):
+	patient = models.ForeignKey(Patient)
+	oral_procedure = models.ForeignKey(OralProcedure)
+	procedure_status = models.ForeignKey(ProcedureStatus)
+	dentist = models.ForeignKey(Dentist)
