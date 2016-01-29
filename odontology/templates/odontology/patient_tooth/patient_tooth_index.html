@@ -26,7 +26,7 @@
 					<tr>
 						<th>Paciente</th>
 						<th>Dente</th>
-						<th>Status do Dente</th>
+						<th>Status do Procedimento</th>
 						<th style="width: 21%;">Ações</th>
 					</tr>
 				</thead>
@@ -61,7 +61,7 @@
 										<h4 class="modal-title">Alerta!</h4>
 									</div>
 									<div class="modal-body">
-										<p>Deseja realmente remover <strong>{{ patient_tooth.patient.name }}</strong>?</p>
+										<p>Deseja realmente remover <strong>{{ patient_tooth.patient.name }} - {{ patient_tooth.tooth.name }}</strong>?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

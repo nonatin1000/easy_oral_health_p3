@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #DJANGO IMPORTS
-from django.shortcuts import render, redirect, render_to_response,get_object_or_404
+from django.shortcuts import render, redirect, render_to_response, get_object_or_404
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
@@ -380,7 +380,7 @@ def patient_tooth_register(request, patient_tooth_id=None):
 			if form_patient_tooth.is_valid():
 				form_patient_tooth.save()
 				return redirect('patient_tooth_index')
-		else:
+		else: # New
 			form_patient_tooth = PatientToothForm(request.POST)
 			if form_patient_tooth.is_valid():
 				form_patient_tooth.save()
