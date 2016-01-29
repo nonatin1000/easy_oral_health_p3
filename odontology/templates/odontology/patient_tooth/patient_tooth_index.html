@@ -25,8 +25,6 @@
 				<thead>
 					<tr>
 						<th>Paciente</th>
-						<th>Dente</th>
-						<th>Status do Procedimento</th>
 						<th style="width: 21%;">Ações</th>
 					</tr>
 				</thead>
@@ -34,8 +32,6 @@
 					{% for patient_tooth in patient_teeth %}
 					<tr>
 						<td>{{ patient_tooth.patient.name }}</td>
-						<td>{{ patient_tooth.tooth.name }}</td>
-						<td>{{ patient_tooth.tooth_status.name }}</td>
 						<td>                    
 							<a href="{% url 'patient_tooth_show' patient_tooth.id %}" class="btn btn-default" title="Exibir">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>

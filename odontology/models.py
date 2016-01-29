@@ -2,6 +2,7 @@
 
 #Django IMports
 from django.db import models
+from django.db.models import signals
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
@@ -44,7 +45,6 @@ class Dentist(User, AuditModel):
 	def __str__(self): 
 		return self.first_name
 
-
 class Course(AuditModel):
 	name = models.CharField(u'Nome', max_length=50, help_text='Este campo é obrigatório')
 	description = models.CharField(u'Descrição', max_length=100, blank=True)
@@ -72,7 +72,6 @@ class ToothDivision(AuditModel):
 
 	def __str__(self):
 		return self.name
-
 
 class Patient(AuditModel):
 	name = models.CharField(u'Nome', max_length=150)
@@ -109,7 +108,7 @@ class Patient(AuditModel):
 	email = models.EmailField(u'E-mail')
 	dependents = models.ManyToManyField('self', symmetrical=False)
 	address = GenericRelation('Address')
-
+	
 	def __str__(self):
 		return self.name
 
