@@ -389,15 +389,15 @@ def patient_tooth_register(request, patient_tooth_id=None):
 	return render(request, 'odontology/patient_tooth/patient_tooth_register.html', {'form_patient_tooth': form_patient_tooth}, context_instance=RequestContext(request))
 
 def patient_tooth_show(request, patient_tooth_id):
-	patient_tooth = Odontogram.objects.get(pk=patient_tooth_id)
+	patient_tooth = PatientTooth.objects.get(pk=patient_tooth_id)
 	return render(request, 'odontology/patient_tooth/patient_tooth_show.html', {'patient_tooth': patient_tooth}, context_instance=RequestContext(request))
 
 def patient_tooth_delete(request, patient_tooth_id):
-	patient_tooth = Odontogram.objects.get(pk=patient_tooth_id)
+	patient_tooth = PatientTooth.objects.get(pk=patient_tooth_id)
 	patient_tooth.delete()
 	return redirect('patient_tooth_index')
 
-# End Odontogram ---------------------------------------------------------------------------------#
+# End PatientTooth ---------------------------------------------------------------------------------#
 
 # Signup PatientDentalProcedure-------------------------------------------------------------------#
 

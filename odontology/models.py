@@ -42,7 +42,7 @@ class Dentist(User, AuditModel):
 	address = GenericRelation('Address')
 
 	def __str__(self): 
-		return self.sex
+		return self.first_name
 
 
 class Course(AuditModel):
@@ -134,6 +134,9 @@ class PatientTooth(AuditModel):
 	patient = models.ForeignKey(Patient)
 	tooth_status = models.ForeignKey(ToothStatus)
 
+	def __str__(self):
+		return self.tooth.name
+
 class ProcedureStatus(AuditModel):
 	name = models.CharField(u'Nome', max_length=50)
 	description = models.CharField(u'Descrição', max_length=100, blank=True, null=True)
@@ -145,9 +148,15 @@ class ProcedureDental(AuditModel):
 	name = models.CharField(u'Nome', max_length=50)
 	description = models.CharField(u'Descrição', max_length=100, blank=True, null=True)
 
+	def __str__(self):
+		return self.name
+
 class OralProcedure(AuditModel):
 	name = models.CharField(u'Nome', max_length=50)
 	description = models.CharField(u'Descrição', max_length=100, blank=True, null=True)
+
+	def __str__(self):
+		return self.name
 
 class PatientDentalProcedure(AuditModel):
 	patient_tooth = models.ForeignKey(PatientTooth)
@@ -155,6 +164,9 @@ class PatientDentalProcedure(AuditModel):
 	procedure_dental = models.ForeignKey(ProcedureDental)
 	procedure_status = models.ForeignKey(ProcedureStatus)
 	dentist = models.ForeignKey(Dentist)
+
+	def __str__(self):
+		return self.patient_tooth.tooth.name
 
 class OralPatientProcedure(AuditModel):
 	patient = models.ForeignKey(Patient)

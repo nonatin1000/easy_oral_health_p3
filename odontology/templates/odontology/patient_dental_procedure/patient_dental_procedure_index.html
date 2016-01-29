@@ -34,7 +34,7 @@
 				<tbody>
 					{% for patient_dental_procedure in patient_dental_procedures %}
 					<tr>
-						<td>{{ patient_dental_procedure.patient_tooth.name }}</td>
+						<td>{{ patient_dental_procedure.patient_tooth.tooth.name }}</td>
 						<td>{{ patient_dental_procedure.tooth_division.name }}</td>
 						<td>{{ patient_dental_procedure.procedure_status.name }}</td>
 						<td>{{ patient_dental_procedure.procedure_dental.name }}</td>
