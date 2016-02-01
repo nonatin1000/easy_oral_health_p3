@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from .models import Patient, PatientTooth, Tooth, ToothStatus
 
@@ -17,3 +17,13 @@ def create_patient_tooth(sender, instance, **kwargs):
     	for tooth in teeth:
     		patient_tooth = PatientTooth(tooth=tooth, patient=patient, tooth_status=tooth_status)
     		patient_tooth.save()
+
+"""
+ 	when deleting a patient also excludes the patient's teeth
+"""
+@receiver(post_delete, sender=Patient)
+def delete_patient_tooth(sender, instance, **kwargs):
+    patients_tooth = PatientTooth.objects.filter(patient=instance)
+    if patients_tooth:
+    	for patient_tooth in patients_tooth:
+    		patient_tooth.delete()
