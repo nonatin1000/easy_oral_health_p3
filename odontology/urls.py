@@ -66,12 +66,6 @@ urlpatterns = [
     url(r'^dependent_register/(?P<patient_id>\d+)/$', 'odontology.views.dependent_register', name='dependent_register'),
     # Odontogram
     url(r'^odontogram/(?P<patient_id>\d+)/$', 'odontology.views.odontogram', name='odontogram'),
-    # PatientTooth
-    url(r'^patient_tooth_index/$', 'odontology.views.patient_tooth_index', name='patient_tooth_index'),
-    url(r'^patient_tooth_register/$', 'odontology.views.patient_tooth_register', name='patient_tooth_register'),
-    url(r'^patient_tooth_edit/(?P<patient_tooth_id>\d+)/$', 'odontology.views.patient_tooth_register', name='patient_tooth_edit'),
-    url(r'^patient_tooth_show/(?P<patient_tooth_id>\d+)/$', 'odontology.views.patient_tooth_show', name='patient_tooth_show'),
-    url(r'^patient_tooth_delete(?P<patient_tooth_id>\d+)/$', 'odontology.views.patient_tooth_delete', name='patient_tooth_delete'),
     # ProcedureDental
     url(r'^patient_dental_procedure_index/$', 'odontology.views.patient_dental_procedure_index', name='patient_dental_procedure_index'),
     url(r'^patient_dental_procedure_register/$', 'odontology.views.patient_dental_procedure_register', name='patient_dental_procedure_register'),

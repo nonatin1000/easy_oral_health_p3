@@ -364,46 +364,6 @@ def odontogram(request, patient_id):
 
 # End Patient ------------------------------------------------------------------------------------#
 
-# Signup PatientTooth-------------------------------------------------------------------------------#
-
-def patient_tooth_index(request):
-	patient_teeth = PatientTooth.objects.all()
-	return render(request, 'odontology/patient_tooth/patient_tooth_index.html', {'patient_teeth': patient_teeth}, context_instance=RequestContext(request))
-
-def patient_tooth_register(request, patient_tooth_id=None):
-
-	if patient_tooth_id: # Edit
-		patient_tooth = PatientTooth.objects.get(pk=patient_tooth_id)
-		form_patient_tooth = PatientToothForm(instance=patient_tooth)
-	else: # New
-		form_patient_tooth = PatientToothForm
-
-	# Save
-	if request.method == 'POST':
-		if patient_tooth_id: # Edit
-			form_patient_tooth = PatientToothForm(request.POST, instance=patient_tooth)
-			if form_patient_tooth.is_valid():
-				form_patient_tooth.save()
-				return redirect('patient_tooth_index')
-		else: # New
-			form_patient_tooth = PatientToothForm(request.POST)
-			if form_patient_tooth.is_valid():
-				form_patient_tooth.save()
-				return redirect('patient_tooth_index')
-
-	return render(request, 'odontology/patient_tooth/patient_tooth_register.html', {'form_patient_tooth': form_patient_tooth}, context_instance=RequestContext(request))
-
-def patient_tooth_show(request, patient_tooth_id):
-	patient_tooth = PatientTooth.objects.get(pk=patient_tooth_id)
-	return render(request, 'odontology/patient_tooth/patient_tooth_show.html', {'patient_tooth': patient_tooth}, context_instance=RequestContext(request))
-
-def patient_tooth_delete(request, patient_tooth_id):
-	patient_tooth = PatientTooth.objects.get(pk=patient_tooth_id)
-	patient_tooth.delete()
-	return redirect('patient_tooth_index')
-
-# End PatientTooth ---------------------------------------------------------------------------------#
-
 # Signup PatientDentalProcedure-------------------------------------------------------------------#
 
 def patient_dental_procedure_index(request):
