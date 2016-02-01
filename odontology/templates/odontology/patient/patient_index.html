@@ -26,7 +26,7 @@
 					<tr>
 						<th>Nome</th>
 						<th>Email</th>
-						<th style="width: 34%;">Ações</th>
+						<th style="width: 40%;">Ações</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,7 +52,9 @@
 									<a href="{% url 'dependent_register' patient.id %}" class="btn btn-default" title="Add Dependente">
 										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 									</a>
-
+									<a href="{% url 'odontogram' patient.id %}" class="btn btn-default" title="Odontograma">
+										<span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+									</a>
 									<a href="#modal-id-{{ patient.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 									</a>
@@ -76,7 +78,7 @@
 							                <th>Nome</th>
 							                <th>Email</th>
 							                <th>Fone</th>
-							                <th style="width: 21%;">Ações</th>
+							                <th style="width: 28%;">Ações</th>
 							              </tr>
 							            </thead>
 							            <tbody>
@@ -99,7 +101,9 @@
 							                    <a href="{% url 'patient_edit' dependent.id %}" class="btn btn-default" title="Editar">
 							                      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 							                    </a>
-							                  	
+							                  	<a href="{% url 'odontogram' dependent.id %}" class="btn btn-default" title="Odontograma">
+													<span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+												</a>
 							                  	<a href="#modal-id-{{ dependent.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
 													<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 												</a>

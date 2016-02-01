@@ -357,6 +357,11 @@ def dependent_register(request, patient_id):
 		return redirect('patient_index')	
 	return render(request, 'odontology/patient/dependent_register.html', {'patient': patient, 'formset': DependetFormSet() }, context_instance=RequestContext(request))
 
+def odontogram(request, patient_id):
+	patient = Patient.objects.get(pk=patient_id)
+	odontogram_patient = PatientTooth.objects.filter(patient=patient_id)
+	return render(request, 'odontology/patient/odontogram_patient.html', {'odontogram_patient': odontogram_patient, 'patient': patient}, context_instance=RequestContext(request))
+
 # End Patient ------------------------------------------------------------------------------------#
 
 # Signup PatientTooth-------------------------------------------------------------------------------#
