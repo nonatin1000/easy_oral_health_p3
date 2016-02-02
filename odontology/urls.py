@@ -19,8 +19,11 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
+    # Login
+    url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', { 'login_url': '/odontology/login/' }, name='logout'), 
+    url(r'^login/$', 'django.contrib.auth.views.login', { 'template_name': 'login.html' }, name='login'), 
+    
     # Dentist
-    url(r'^$', 'odontology.views.index', name='index_root'),
     url(r'^dentist_index/$', 'odontology.views.dentist_index', name='dentist_index'),
     url(r'^dentist_register/$', 'odontology.views.dentist_register', name='dentist_register'),
     url(r'^dentist_edit/(?P<user_id>\d+)/$', 'odontology.views.dentist_register', name='dentist_edit'),
@@ -90,4 +93,5 @@ urlpatterns = [
     url(r'^oral_patient_procedure_edit/(?P<oral_patient_procedure_id>\d+)/$', 'odontology.views.oral_patient_procedure_register', name='oral_patient_procedure_edit'),
     url(r'^oral_patient_procedure_show/(?P<oral_patient_procedure_id>\d+)/$', 'odontology.views.oral_patient_procedure_show', name='oral_patient_procedure_show'),
     url(r'^oral_patient_procedure_delete(?P<oral_patient_procedure_id>\d+)/$', 'odontology.views.oral_patient_procedure_delete', name='oral_patient_procedure_delete'),
+    
 ]

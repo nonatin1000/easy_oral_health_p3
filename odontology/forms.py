@@ -2,13 +2,14 @@
 
 from django.forms import ModelForm
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from odontology.models import Dentist, Address, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus, Patient, PatientTooth, ProcedureDental, OralProcedure, PatientDentalProcedure, OralPatientProcedure
 
-class DentistForm(ModelForm):
+class DentistForm(UserCreationForm):
 
 	class Meta:
 		model = Dentist
-		fields = ['username', 'password', 'first_name', 'last_name', 'email', 'sex', 'cro', 'marital_status', 'birth_date', 'phone']
+		fields = ['username', 'first_name', 'last_name', 'email', 'sex', 'cro', 'marital_status', 'birth_date', 'phone']
 
 class AddressForm(ModelForm):
 

@@ -18,6 +18,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'^$', 'odontology.views.index', name='index_root'),
     url(r'^admin/', admin.site.urls),
     url(r'^odontology/', include('odontology.urls'))
 ]
