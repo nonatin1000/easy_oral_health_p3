@@ -127,6 +127,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Login 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/odontology/login/'
 LOGOUT_URL = '/logout/'
 LOGIN_REDIRECT_URL = '/'
