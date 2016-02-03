@@ -6,7 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
 from django.forms import formset_factory
 from .models import Dentist, Address, User, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure, OralPatientProcedure
@@ -17,6 +17,7 @@ from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothF
 def index(request):
 	return render(request, 'index.html')
 
+#@permission_required('odontology.delete_dentist',raise_exception=True)
 @login_required
 def dentist_index(request):
 	dentists = Dentist.objects.all()
