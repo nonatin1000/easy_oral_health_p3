@@ -5,28 +5,12 @@
       Início
     </a>
   </li>
-  <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-        Cadastros
-        <b class="caret"></b>
+  <li>
+      <a href="{% url 'patient_index' %}">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        Pacientes
       </a>
-      <ul class="dropdown-menu">
-        <li>
-          <a href="{% url 'patient_index' %}">
-            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            Pacientes
-          </a>
-         </li>
-        <li>
-          <a href="{% url 'dentist_index' %}">
-            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            Dentista
-          </a>
-         </li>
-      </ul>
   </li>
-
   <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
