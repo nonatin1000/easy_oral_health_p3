@@ -12,9 +12,8 @@ from django.forms import formset_factory
 from .models import Dentist, Address, User, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure, OralPatientProcedure
 from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm, ToothDivisionForm, ProcedureStatusForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm, OralPatientProcedureForm
 
-
 # Signup dentist ---------------------------------------------------------------------------------#
-@login_required
+
 def index(request):
 	return render(request, 'index.html')
 

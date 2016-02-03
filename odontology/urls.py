@@ -22,7 +22,6 @@ urlpatterns = [
     # Login
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', { 'login_url': '/odontology/login/' }, name='logout'), 
     url(r'^login/$', 'django.contrib.auth.views.login', { 'template_name': 'login.html' }, name='login'), 
-    
     # Dentist
     url(r'^dentist_index/$', 'odontology.views.dentist_index', name='dentist_index'),
     url(r'^dentist_register/$', 'odontology.views.dentist_register', name='dentist_register'),
