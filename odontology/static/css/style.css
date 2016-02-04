@@ -1,1 +1,105 @@
 body { padding-top: 50px; }
+
+.dente-fundo {
+  fill:#000000;
+  fill-opacity:1;
+  stroke:#000000;
+  stroke-width:0.96444398;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:4;
+  stroke-opacity:1;
+  stroke-dasharray:none;
+}
+
+.dente-lingual-palatal {
+  fill:#ffffff;
+  fill-opacity:1;
+  stroke:#000000;
+  stroke-width:0.96444398;
+  stroke-linejoin:round;
+  stroke-miterlimit:4;
+  stroke-opacity:1;
+  stroke-dasharray:none;
+}
+
+.dente-mesial {
+  fill:#ffffff;
+  fill-opacity:1;
+  stroke:#000000;
+  stroke-width:0.96444398;
+  stroke-linejoin:round;
+  stroke-miterlimit:4;
+  stroke-opacity:1;
+  stroke-dasharray:none;
+}
+
+.dente-vestibular {
+  fill:#ffffff;
+  fill-opacity:1;
+  stroke:#000000;
+  stroke-width:0.96444398;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:4;
+  stroke-opacity:1;
+  stroke-dasharray:none;
+}
+
+.dente-distal {
+  fill:#ffffff;
+  fill-opacity:1;
+  stroke:#000000;
+  stroke-width:0.96444398;
+  stroke-linejoin:round;
+  stroke-miterlimit:4;
+  stroke-opacity:1;
+  stroke-dasharray:none;
+}
+
+.dente-oclusal {
+  fill:#ffffff;
+  fill-opacity:1;
+  stroke:#000000;
+  stroke-width:1.92888796;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:4;
+  stroke-opacity:1;
+  stroke-dasharray:none;
+}
+
+.dente-dente-completo {
+  fill:none;
+  stroke:#000000;
+  stroke-width:0.96444398;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:4;
+  stroke-opacity:1;
+  stroke-dasharray:none;
+}
+
+.dente-divisao:hover {
+  opacity: 0.75;
+}
+
+.dente-selecionado {
+  /*stroke:#FF0000;*/
+  opacity: 0.75;
+}
+
+/* restaurado */
+.proc_1 { fill: #000000; }
+
+/* cariado */
+.proc_2 { fill: #BB0000; }
+
+/* a-restaurar */
+.proc_3 { fill: #449D44; }
+
+/* indicado pra extração */
+.proc_4 { fill: #000000; opacity: 0.7; }
+
+/* ausente */
+.proc_5 { fill: #000000; }

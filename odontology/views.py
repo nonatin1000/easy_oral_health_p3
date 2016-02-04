@@ -17,13 +17,14 @@ from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothF
 def index(request):
 	return render(request, 'index.html')
 
-#@permission_required('odontology.delete_dentist',raise_exception=True)
+@permission_required('odontology.dentist_index',raise_exception=True)
 @login_required
 def dentist_index(request):
 	dentists = Dentist.objects.all()
 	return render(request, 'odontology/dentist/dentist_index.html', { 'dentists': dentists }, context_instance=RequestContext(request))
 
 # New e Edit - Dentist
+@permission_required('odontology.dentist_register',raise_exception=True)
 @login_required
 def dentist_register(request, user_id=None):
 	
@@ -63,6 +64,7 @@ def dentist_register(request, user_id=None):
 
 	return render(request, 'odontology/dentist/dentist_register.html', {'form_dentist': form_dentist, 'form_address': form_address,}, context_instance=RequestContext(request))
 
+@permission_required('odontology.dentist_show',raise_exception=True)
 @login_required
 def dentist_show(request, user_id):
 	dentist = Dentist.objects.get(pk=user_id)
@@ -70,6 +72,7 @@ def dentist_show(request, user_id):
 	address = Address.objects.get(object_id=user_id, content_type=dentist_type)
 	return render(request, 'odontology/dentist/dentist_show.html', {'dentist': dentist, 'address': address})
 
+@permission_required('odontology.dentist_delete',raise_exception=True)
 @login_required
 def dentist_delete(request, user_id):
 	dentist = Dentist.objects.get(id=user_id)
@@ -79,6 +82,7 @@ def dentist_delete(request, user_id):
 # End dentist ------------------------------------------------------------------------------------#
 
 # Signup course ----------------------------------------------------------------------------------#
+@permission_required('odontology.course_index',raise_exception=True)
 @login_required
 def course_index(request):
 	courses = Course.objects.all()
@@ -86,6 +90,7 @@ def course_index(request):
 
 
 # New e Edit - Course 
+@permission_required('odontology.course_register',raise_exception=True)
 @login_required
 def course_register(request, course_id=None):
 
@@ -111,11 +116,13 @@ def course_register(request, course_id=None):
 
 	return render(request, 'odontology/course/course_register.html', {'form_course': form_course, 'course': course}, context_instance=RequestContext(request))
 
+@permission_required('odontology.course_show',raise_exception=True)
 @login_required
 def course_show(request, course_id):
 	course = Course.objects.get(pk=course_id)
 	return render(request, 'odontology/course/course_show.html', {'course': course}, context_instance=RequestContext(request))
 
+@permission_required('odontology.course_delete',raise_exception=True)
 @login_required
 def course_delete(request, course_id):
 	course = Course.objects.get(pk=course_id)
@@ -125,12 +132,13 @@ def course_delete(request, course_id):
 # End course -------------------------------------------------------------------------------------#
 
 # Signup TeethStatus -----------------------------------------------------------------------------#
-
+@permission_required('odontology.tooth_status_index',raise_exception=True)
 @login_required
 def tooth_status_index(request):
 	tooth_status = ToothStatus.objects.all()
 	return render(request, 'odontology/tooth_status/tooth_status_index.html', { 'tooth_status': tooth_status }, context_instance=RequestContext(request))
 
+@permission_required('odontology.tooth_status_register',raise_exception=True)
 @login_required
 def tooth_status_register(request, tooth_status_id=None):
 
@@ -156,11 +164,13 @@ def tooth_status_register(request, tooth_status_id=None):
 
 	return render(request, 'odontology/tooth_status/tooth_status_register.html', {'form_tooth_status': form_tooth_status, 'tooth_status': tooth_status}, context_instance=RequestContext(request))
 
+@permission_required('odontology.tooth_status_show',raise_exception=True)
 @login_required
 def tooth_status_show(request, tooth_status_id):
 	tooth_status = ToothStatus.objects.get(pk=tooth_status_id)
 	return render(request, 'odontology/tooth_status/tooth_status_show.html', {'tooth_status': tooth_status}, context_instance=RequestContext(request))
 
+@permission_required('odontology.tooth_status_delete',raise_exception=True)
 @login_required
 def tooth_status_delete(request, tooth_status_id)	:
 	tooth_status = ToothStatus.objects.get(pk=tooth_status_id)
@@ -170,11 +180,13 @@ def tooth_status_delete(request, tooth_status_id)	:
 # End TeethStatus --------------------------------------------------------------------------------#
 
 # Signup Tooth -----------------------------------------------------------------------------------#
+@permission_required('odontology.tooth_index',raise_exception=True)
 @login_required
 def tooth_index(request):
 	teeth = Tooth.objects.all()
 	return render(request, 'odontology/tooth/tooth_index.html', {'teeth': teeth}, context_instance=RequestContext(request))
 
+@permission_required('odontology.tooth_register',raise_exception=True)
 @login_required
 def tooth_register(request, tooth_id=None):
 
@@ -200,11 +212,13 @@ def tooth_register(request, tooth_id=None):
 
 	return render(request, 'odontology/tooth/tooth_register.html', {'form_tooth': form_tooth, 'tooth': tooth}, context_instance=RequestContext(request))
 
+@permission_required('odontology.tooth_show',raise_exception=True)
 @login_required
 def tooth_show(request, tooth_id):
 	tooth = Tooth.objects.get(pk=tooth_id)
 	return render(request, 'odontology/tooth/tooth_show.html', {'tooth': tooth}, context_instance=RequestContext(request))
 
+@permission_required('odontology.tooth_delete',raise_exception=True)
 @login_required
 def tooth_delete(request, tooth_id):
 	tooth = Tooth.objects.get(pk=tooth_id)
@@ -215,11 +229,13 @@ def tooth_delete(request, tooth_id):
 
 # Signup ToothDivision----------------------------------------------------------------------------#
 
+@permission_required('odontology.tooth_division_index',raise_exception=True)
 @login_required
 def tooth_division_index(request):
 	teeth_division = ToothDivision.objects.all()
 	return render(request, 'odontology/tooth_division/tooth_division_index.html', {'teeth_division': teeth_division}, context_instance=RequestContext(request))
 
+@permission_required('odontology.tooth_division_register',raise_exception=True)
 @login_required
 def tooth_division_register(request, tooth_division_id=None):
 
@@ -245,11 +261,13 @@ def tooth_division_register(request, tooth_division_id=None):
 
 	return render(request, 'odontology/tooth_division/tooth_division_register.html', {'form_tooth_division': form_tooth_division, 'tooth_division': tooth_division}, context_instance=RequestContext(request))
 
+@permission_required('odontology.tooth_division_delete',raise_exception=True)
 @login_required
 def tooth_division_show(request, tooth_division_id):
 	tooth_division = ToothDivision.objects.get(pk=tooth_division_id)
 	return render(request, 'odontology/tooth_division/tooth_division_show.html', {'tooth_division': tooth_division}, context_instance=RequestContext(request))
 
+@permission_required('odontology.course_index',raise_exception=True)
 @login_required
 def tooth_division_delete(request, tooth_division_id):
 	tooth_division = ToothDivision.objects.get(pk=tooth_division_id)
@@ -260,11 +278,13 @@ def tooth_division_delete(request, tooth_division_id):
 
 # Signup ProcedureStatus--------------------------------------------------------------------------#
 
+@permission_required('odontology.procedure_status_index',raise_exception=True)
 @login_required
 def procedure_status_index(request):
 	procedures_status = ProcedureStatus.objects.all()
 	return render(request, 'odontology/procedure_status/procedure_status_index.html', {'procedures_status': procedures_status}, context_instance=RequestContext(request))
 
+@permission_required('odontology.procedure_status_register',raise_exception=True)
 @login_required
 def procedure_status_register(request, procedure_status_id=None):
 
@@ -290,11 +310,13 @@ def procedure_status_register(request, procedure_status_id=None):
 
 	return render(request, 'odontology/procedure_status/procedure_status_register.html', {'form_procedure_status': form_procedure_status, 'procedure_status': procedure_status}, context_instance=RequestContext(request))
 
+@permission_required('odontology.procedure_status_show',raise_exception=True)
 @login_required
 def procedure_status_show(request, procedure_status_id):
 	procedure_status = ProcedureStatus.objects.get(pk=procedure_status_id)
 	return render(request, 'odontology/procedure_status/procedure_status_show.html', {'procedure_status': procedure_status}, context_instance=RequestContext(request))
 
+@permission_required('odontology.procedure_status_delete',raise_exception=True)
 @login_required
 def procedure_status_delete(request, procedure_status_id):
 	procedure_status = ProcedureStatus.objects.get(pk=procedure_status_id)

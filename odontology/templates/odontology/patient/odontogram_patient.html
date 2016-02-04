@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load tooth %}
 {% block body %}
 
 <nav class="navbar navbar-default">
@@ -28,9 +28,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% for odontogram in odontogram_patient %}
+					{% for patient_tooth in odontogram_patient %}
 					<tr>
-						<td>{{ odontogram.tooth.name }}</td>
+						<td>{{ patient_tooth.tooth.name }}</td>
+						<td>{% render_tooth patient_tooth %}</td>
 					</tr>
 					{% endfor %}
 				</tbody>
