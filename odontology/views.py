@@ -312,9 +312,15 @@ def dependent_register(request, patient_id):
 
 @login_required
 def odontogram(request, patient_id):
+	form_patient_dental_procedure = PatientDentalProcedureForm
+	# Save
+	if request.method == 'POST':
+		form_patient_dental_procedure = PatientDentalProcedureForm(request.POST)
+		if form_patient_dental_procedure.is_valid():
+			form_patient_dental_procedure.save()
 	patient = Patient.objects.get(pk=patient_id)
 	odontogram_patient = PatientTooth.objects.filter(patient=patient_id)
-	return render(request, 'odontology/patient/odontogram_patient.html', {'odontogram_patient': odontogram_patient, 'patient': patient}, context_instance=RequestContext(request))
+	return render(request, 'odontology/patient/odontogram_patient.html', {'odontogram_patient': odontogram_patient, 'patient': patient, 'form_patient_dental_procedure': form_patient_dental_procedure}, context_instance=RequestContext(request))
 
 # End Patient ------------------------------------------------------------------------------------#
 
@@ -339,14 +345,14 @@ def patient_dental_procedure_register(request, patient_dental_procedure_id=None)
 			form_patient_dental_procedure = PatientDentalProcedureForm(request.POST, instance=patient_dental_procedure)
 			if form_patient_dental_procedure.is_valid():
 				form_patient_dental_procedure.save()
-				return redirect('patient_dental_procedure_index')
+				return redirect('odontogram')
 		else:
 			form_patient_dental_procedure = PatientDentalProcedureForm(request.POST)
 			if form_patient_dental_procedure.is_valid():
 				form_patient_dental_procedure.save()
-				return redirect('patient_dental_procedure_index')
+				return redirect('odontogram')
 
-	return render(request, 'odontology/patient_dental_procedure/patient_dental_procedure_register.html', {'form_patient_dental_procedure': form_patient_dental_procedure}, context_instance=RequestContext(request))
+	return render(request, 'odontology/patient/odontogram_patient.html', {'form_patient_dental_procedure': form_patient_dental_procedure}, context_instance=RequestContext(request))
 
 @login_required
 def patient_dental_procedure_show(request, patient_dental_procedure_id):
@@ -357,7 +363,7 @@ def patient_dental_procedure_show(request, patient_dental_procedure_id):
 def patient_dental_procedure_delete(request, patient_dental_procedure_id):
 	patient_dental_procedure = PatientDentalProcedure.objects.get(pk=patient_dental_procedure_id)
 	patient_dental_procedure.delete()
-	return redirect('patient_dental_procedure_index')
+	return redirect('odontogram')
 
 # End PatientDentalProcedure --------------------------------------------------------------------#
 

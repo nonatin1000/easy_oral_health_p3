@@ -11,39 +11,28 @@
         Pacientes
       </a>
   </li>
-  <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-        Procedimentos
-        <b class="caret"></b>
-      </a>
-      <ul class="dropdown-menu">
-        <li>
-        <a href="{% url 'patient_dental_procedure_index' %}">
-          <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-          Dentário
-        </a>
-      </li>
-      <li>
-        <a href="{% url 'oral_patient_procedure_index' %}">
-          <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
-          Bucal
-        </a>
-      </li>
-      </ul>
+   <li> 
+    <a href="{% url 'oral_patient_procedure_index' %}">
+      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+      Procedimento Bucal
+    </a>
   </li>
 </ul>
 
 <ul class="nav navbar-nav pull-right">
-  <li>
-    <a href="{% url 'index_root' %}" class="navbar-link">
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
       {{ user.first_name }}
+      <b class="caret"></b>
     </a>
-  </li>
-  <li>
-    <a href="/odontology/logout/" class="navbar-link">
-      <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-      Sair
-    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="/odontology/logout/">
+          <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+          Sair
+        </a>
+      </li>
+    </ul>
   </li>
 </ul>

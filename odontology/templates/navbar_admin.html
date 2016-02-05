@@ -6,43 +6,43 @@
     </a>
   </li>
   <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-        Cadastros
-        <b class="caret"></b>
-      </a>
-      <ul class="dropdown-menu">
-        <li>
-            <a href="{% url 'course_index' %}">
-              <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
-              Cursos
-            </a>
-        </li>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+      Cadastros
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
       <li>
-          <a href="{% url 'tooth_index' %}">
-            <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
-            Dentes
-          </a>
+        <a href="{% url 'course_index' %}">
+          <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+          Cursos
+        </a>
       </li>
-        <li>
-            <a href="{% url 'tooth_division_index' %}">
-              <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
-              Divisão dos Dentes
-            </a>
-        </li>
-        <li>
-            <a href="{% url 'procedure_dental_index' %}">
-              <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
-              Procedimento Dentário
-            </a>
-        </li>
+      <li>
+        <a href="{% url 'tooth_index' %}">
+          <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
+          Dentes
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'tooth_division_index' %}">
+          <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+          Divisão dos Dentes
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'procedure_dental_index' %}">
+          <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+          Procedimento Dentário
+        </a>
+      </li>
 
-        <li>
-            <a href="{% url 'oral_procedure_index' %}">
-              <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
-              Procedimento Bucal
-            </a>
-        </li>
+      <li>
+        <a href="{% url 'oral_procedure_index' %}">
+          <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
+          Procedimento Bucal
+        </a>
+      </li>
 
 
       <li>
@@ -50,49 +50,37 @@
           <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
           Pacientes
         </a>
-       </li>
-       <li>
+      </li>
+      <li>
         <a href="{% url 'dentist_index' %}">
           <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
           Dentista
         </a>
-       </li>
-      </ul>
+      </li>
+    </ul>
   </li>
-
-  <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-        Procedimentos
-        <b class="caret"></b>
-      </a>
-      <ul class="dropdown-menu">
-        <li>
-        <a href="{% url 'patient_dental_procedure_index' %}">
-          <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-          Dentário
-        </a>
-      </li>
-      <li>
-        <a href="{% url 'oral_patient_procedure_index' %}">
-          <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
-          Bucal
-        </a>
-      </li>
-      </ul>
+  <li> 
+    <a href="{% url 'oral_patient_procedure_index' %}">
+      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+      Procedimento Bucal
+    </a>
   </li>
 </ul>
 
 <ul class="nav navbar-nav pull-right">
-  <li>
-    <a href="{% url 'index_root' %}" class="navbar-link">
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
       {{ user.first_name }}
+      <b class="caret"></b>
     </a>
-  </li>
-  <li>
-    <a href="/odontology/logout/" class="navbar-link">
-      <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-      Sair
-    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="/odontology/logout/">
+          <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+          Sair
+        </a>
+      </li>
+    </ul>
   </li>
 </ul>
