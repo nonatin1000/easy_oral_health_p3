@@ -103,3 +103,61 @@ body { padding-top: 50px; }
 
 /* ausente */
 .proc_5 { fill: #000000; }
+
+/* Organization Datagram */
+.outer{
+  width:100%;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
+}
+
+.inner{
+  width:50%;
+}
+
+.tooth-container-row {
+  width: 592px;
+  height: auto;
+  display: block;
+}
+
+.tooth-container {
+  width: 32px;
+  height: auto;
+  padding-right: 5px;
+  padding-left: 5px;
+  display: inline-block;
+}
+
+.tooth-container:nth-child(8) { border-right: 1px solid #aaa; width: 49px; }
+.tooth-container:nth-child(24) { border-right: 1px solid #aaa; width: 49px; }
+.tooth-container:nth-child(n+17) { border-top: 1px solid #aaa; padding-top: 8px; }
+
+.tooth-box {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+/*.tooth-box svg { width: 100%; }*/
+
+.tooth-label-box {
+  width: 32px;
+  height: auto;
+  text-align: center;
+  font-weight: bold;
+  display: block;
+}
