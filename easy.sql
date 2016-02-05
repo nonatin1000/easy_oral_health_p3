@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.3.10
 -- Dumped by pg_dump version 9.3.10
--- Started on 2016-02-05 17:14:29 BRT
+-- Started on 2016-02-05 17:50:29 BRT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -79,9 +79,6 @@ INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (21, 'C
 INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (22, 'Can add course', 8, 'add_course');
 INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (23, 'Can change course', 8, 'change_course');
 INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (24, 'Can delete course', 8, 'delete_course');
-INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (25, 'Can add tooth status', 9, 'add_toothstatus');
-INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (26, 'Can change tooth status', 9, 'change_toothstatus');
-INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (27, 'Can delete tooth status', 9, 'delete_toothstatus');
 INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (28, 'Can add tooth', 10, 'add_tooth');
 INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (29, 'Can change tooth', 10, 'change_tooth');
 INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (30, 'Can delete tooth', 10, 'delete_tooth');
@@ -97,9 +94,6 @@ INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (39, 'C
 INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (40, 'Can add patient tooth', 14, 'add_patienttooth');
 INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (41, 'Can change patient tooth', 14, 'change_patienttooth');
 INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (42, 'Can delete patient tooth', 14, 'delete_patienttooth');
-INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (43, 'Can add procedure status', 15, 'add_procedurestatus');
-INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (44, 'Can change procedure status', 15, 'change_procedurestatus');
-INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (45, 'Can delete procedure status', 15, 'delete_procedurestatus');
 INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (46, 'Can add procedure dental', 16, 'add_proceduredental');
 INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (47, 'Can change procedure dental', 16, 'change_proceduredental');
 INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (48, 'Can delete procedure dental', 16, 'delete_proceduredental');
@@ -129,8 +123,8 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 57, true);
 -- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) VALUES (1, 'pbkdf2_sha256$24000$Mo9PtRmGU0R5$nkmMZMsPHiuZ8IerkC/9i6CC1gr4oDuVP8psN6mMK/E=', '2016-02-05 13:45:26.285217-03', true, 'nonato', '', '', 'nrdesales@hotmail.com', true, true, '2016-02-04 19:58:29.854288-03');
 INSERT INTO auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) VALUES (2, 'pbkdf2_sha256$24000$oHgeojektMla$VRLLsV46JkG5vHuik4PM/WlLwAqIgRs4/kpN1lVAabk=', '2016-02-05 16:20:44.039669-03', false, 'anavirginha', 'Ana Virginha', 'Nogueiro', 'annaviriginha@gmail.com', false, true, '2016-02-05 14:02:40.729613-03');
+INSERT INTO auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) VALUES (1, 'pbkdf2_sha256$24000$Mo9PtRmGU0R5$nkmMZMsPHiuZ8IerkC/9i6CC1gr4oDuVP8psN6mMK/E=', '2016-02-05 17:44:15.945614-03', true, 'nonato', '', '', 'nrdesales@hotmail.com', true, true, '2016-02-04 19:58:29.854288-03');
 
 
 --
@@ -207,13 +201,11 @@ INSERT INTO django_content_type (id, app_label, model) VALUES (5, 'contenttypes'
 INSERT INTO django_content_type (id, app_label, model) VALUES (6, 'sessions', 'session');
 INSERT INTO django_content_type (id, app_label, model) VALUES (7, 'odontology', 'dentist');
 INSERT INTO django_content_type (id, app_label, model) VALUES (8, 'odontology', 'course');
-INSERT INTO django_content_type (id, app_label, model) VALUES (9, 'odontology', 'toothstatus');
 INSERT INTO django_content_type (id, app_label, model) VALUES (10, 'odontology', 'tooth');
 INSERT INTO django_content_type (id, app_label, model) VALUES (11, 'odontology', 'toothdivision');
 INSERT INTO django_content_type (id, app_label, model) VALUES (12, 'odontology', 'patient');
 INSERT INTO django_content_type (id, app_label, model) VALUES (13, 'odontology', 'address');
 INSERT INTO django_content_type (id, app_label, model) VALUES (14, 'odontology', 'patienttooth');
-INSERT INTO django_content_type (id, app_label, model) VALUES (15, 'odontology', 'procedurestatus');
 INSERT INTO django_content_type (id, app_label, model) VALUES (16, 'odontology', 'proceduredental');
 INSERT INTO django_content_type (id, app_label, model) VALUES (17, 'odontology', 'oralprocedure');
 INSERT INTO django_content_type (id, app_label, model) VALUES (18, 'odontology', 'patientdentalprocedure');
@@ -267,8 +259,8 @@ SELECT pg_catalog.setval('django_migrations_id_seq', 15, true);
 -- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO django_session (session_key, session_data, expire_date) VALUES ('atpoo1xyw8dz7zc5vj1zaojweri3fc39', 'YzQwODY3ZjkwZjg5NzJlZDVjMTE1YzI0ODFhOTlkZTE4ODZjNTFkZDp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9oYXNoIjoiNmY0ZGRhNjUwYjkyZjdkNWVjNTkwY2MyY2U4ZGE2YWZlNTIzYmU1NyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=', '2016-02-19 14:12:08.320134-03');
 INSERT INTO django_session (session_key, session_data, expire_date) VALUES ('0mnsda266l1t5bq1fsx7a31dikestbfk', 'YTc3MDljZDNjNWI4YzcyMDdlYjg0YTRkZWRhNDNiZTM1YTBlNjdjYTp7Il9hdXRoX3VzZXJfaGFzaCI6IjZmNGRkYTY1MGI5MmY3ZDVlYzU5MGNjMmNlOGRhNmFmZTUyM2JlNTciLCJfYXV0aF91c2VyX2lkIjoiMiIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=', '2016-02-19 16:20:44.048556-03');
+INSERT INTO django_session (session_key, session_data, expire_date) VALUES ('fov7umljpmz918zoo7bqt1lzczhwhiii', 'MDc3OTMxZTNhZjBjZThkNzM4NzAyZmNjNDI1ZGU4OWM5ODgxZDE0ZDp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9oYXNoIjoiZTIwZWYxNzIxOTBiYzQxNDVkOTYxOTQwNDkzNzY5NGIzM2FhZGNlNyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=', '2016-02-19 17:44:15.954491-03');
 
 
 --
@@ -604,7 +596,7 @@ INSERT INTO odontology_toothstatus (id, created_on, updated_on, name, descriptio
 SELECT pg_catalog.setval('odontology_toothstatus_id_seq', 1, false);
 
 
--- Completed on 2016-02-05 17:14:30 BRT
+-- Completed on 2016-02-05 17:50:29 BRT
 
 --
 -- PostgreSQL database dump complete
