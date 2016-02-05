@@ -52,13 +52,6 @@ class Course(AuditModel):
 	def __str__(self):
 		return self.name
 
-class ToothStatus(AuditModel):
-	name = models.CharField(u'Nome', max_length=50)
-	description = models.CharField('Descrição', max_length=100, blank=True)
-
-	def __str__(self):
-		return self.name
-
 class Tooth(AuditModel):
 	name = models.CharField(u'Nome', max_length=50)
 	description = models.CharField(u'Descrição', max_length=100)
@@ -131,17 +124,9 @@ class Address(AuditModel):
 class PatientTooth(AuditModel):
 	tooth = models.ForeignKey(Tooth)
 	patient = models.ForeignKey(Patient)
-	tooth_status = models.ForeignKey(ToothStatus)
 
 	def __str__(self):
 		return self.tooth.name
-
-class ProcedureStatus(AuditModel):
-	name = models.CharField(u'Nome', max_length=50)
-	description = models.CharField(u'Descrição', max_length=100, blank=True, null=True)
-
-	def __str__(self):
-		return self.name
 
 class ProcedureDental(AuditModel):
 	name = models.CharField(u'Nome', max_length=50)
@@ -161,7 +146,6 @@ class PatientDentalProcedure(AuditModel):
 	patient_tooth = models.ForeignKey(PatientTooth, related_name='patient_tooth')
 	tooth_division = models.ForeignKey(ToothDivision)
 	procedure_dental = models.ForeignKey(ProcedureDental)
-	procedure_status = models.ForeignKey(ProcedureStatus)
 	dentist = models.ForeignKey(Dentist)
 
 	def __str__(self):
@@ -170,5 +154,4 @@ class PatientDentalProcedure(AuditModel):
 class OralPatientProcedure(AuditModel):
 	patient = models.ForeignKey(Patient)
 	oral_procedure = models.ForeignKey(OralProcedure)
-	procedure_status = models.ForeignKey(ProcedureStatus)
 	dentist = models.ForeignKey(Dentist)

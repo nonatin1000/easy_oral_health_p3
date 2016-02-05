@@ -9,8 +9,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
 from django.forms import formset_factory
-from .models import Dentist, Address, User, Course, ToothStatus, Tooth, ToothDivision, ProcedureStatus, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure, OralPatientProcedure
-from .forms import DentistForm, AddressForm, CourseForm, ToothStatusForm, ToothForm, ToothDivisionForm, ProcedureStatusForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm, OralPatientProcedureForm
+from .models import Dentist, Address, User, Course, Tooth, ToothDivision, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure, OralPatientProcedure
+from .forms import DentistForm, AddressForm, CourseForm, ToothForm, ToothDivisionForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm, OralPatientProcedureForm
 
 # Signup dentist ---------------------------------------------------------------------------------#
 
@@ -131,54 +131,6 @@ def course_delete(request, course_id):
 
 # End course -------------------------------------------------------------------------------------#
 
-# Signup TeethStatus -----------------------------------------------------------------------------#
-@permission_required('odontology.tooth_status_index',raise_exception=True)
-@login_required
-def tooth_status_index(request):
-	tooth_status = ToothStatus.objects.all()
-	return render(request, 'odontology/tooth_status/tooth_status_index.html', { 'tooth_status': tooth_status }, context_instance=RequestContext(request))
-
-@permission_required('odontology.tooth_status_register',raise_exception=True)
-@login_required
-def tooth_status_register(request, tooth_status_id=None):
-
-	if tooth_status_id: # Edit
-		tooth_status = ToothStatus.objects.get(pk=tooth_status_id)
-		form_tooth_status = ToothStatusForm(instance=tooth_status)
-	else: # New
-		form_tooth_status = ToothStatusForm
-		tooth_status = None
-
-	# Save
-	if request.method == 'POST':
-		if tooth_status_id:
-			form_tooth_status = ToothStatusForm(request.POST, instance=tooth_status)
-			if form_tooth_status.is_valid():
-				form_tooth_status.save()
-		else:
-			form_tooth_status = ToothStatusForm(request.POST)
-			if form_tooth_status.is_valid():
-				form_tooth_status.save()
-
-		return redirect('tooth_status_index')
-
-	return render(request, 'odontology/tooth_status/tooth_status_register.html', {'form_tooth_status': form_tooth_status, 'tooth_status': tooth_status}, context_instance=RequestContext(request))
-
-@permission_required('odontology.tooth_status_show',raise_exception=True)
-@login_required
-def tooth_status_show(request, tooth_status_id):
-	tooth_status = ToothStatus.objects.get(pk=tooth_status_id)
-	return render(request, 'odontology/tooth_status/tooth_status_show.html', {'tooth_status': tooth_status}, context_instance=RequestContext(request))
-
-@permission_required('odontology.tooth_status_delete',raise_exception=True)
-@login_required
-def tooth_status_delete(request, tooth_status_id)	:
-	tooth_status = ToothStatus.objects.get(pk=tooth_status_id)
-	tooth_status.delete()
-	return redirect('tooth_status_index')
-	
-# End TeethStatus --------------------------------------------------------------------------------#
-
 # Signup Tooth -----------------------------------------------------------------------------------#
 @permission_required('odontology.tooth_index',raise_exception=True)
 @login_required
@@ -275,55 +227,6 @@ def tooth_division_delete(request, tooth_division_id):
 	return redirect('tooth_division_index')
 
 # End ToothDivision ------------------------------------------------------------------------------#
-
-# Signup ProcedureStatus--------------------------------------------------------------------------#
-
-@permission_required('odontology.procedure_status_index',raise_exception=True)
-@login_required
-def procedure_status_index(request):
-	procedures_status = ProcedureStatus.objects.all()
-	return render(request, 'odontology/procedure_status/procedure_status_index.html', {'procedures_status': procedures_status}, context_instance=RequestContext(request))
-
-@permission_required('odontology.procedure_status_register',raise_exception=True)
-@login_required
-def procedure_status_register(request, procedure_status_id=None):
-
-	if procedure_status_id: # Edit
-		procedure_status = ProcedureStatus.objects.get(pk=procedure_status_id)
-		form_procedure_status = ProcedureStatusForm(instance=procedure_status)
-	else: # New
-		form_procedure_status = ProcedureStatusForm
-		procedure_status = None
-
-	# Save
-	if request.method == 'POST':
-		if procedure_status_id: # Edit
-			form_procedure_status = ProcedureStatusForm(request.POST, instance=procedure_status)
-			if form_procedure_status.is_valid():
-				form_procedure_status.save()
-		else:
-			form_procedure_status = ProcedureStatusForm(request.POST)
-			if form_procedure_status.is_valid():
-				form_procedure_status.save()
-
-		return redirect('procedure_status_index')
-
-	return render(request, 'odontology/procedure_status/procedure_status_register.html', {'form_procedure_status': form_procedure_status, 'procedure_status': procedure_status}, context_instance=RequestContext(request))
-
-@permission_required('odontology.procedure_status_show',raise_exception=True)
-@login_required
-def procedure_status_show(request, procedure_status_id):
-	procedure_status = ProcedureStatus.objects.get(pk=procedure_status_id)
-	return render(request, 'odontology/procedure_status/procedure_status_show.html', {'procedure_status': procedure_status}, context_instance=RequestContext(request))
-
-@permission_required('odontology.procedure_status_delete',raise_exception=True)
-@login_required
-def procedure_status_delete(request, procedure_status_id):
-	procedure_status = ProcedureStatus.objects.get(pk=procedure_status_id)
-	procedure_status.delete()
-	return redirect('procedure_status_index')
-
-# End ProcedureStatus ----------------------------------------------------------------------------#
 
 # Signup Patient ---------------------------------------------------------------------------------#
 @login_required

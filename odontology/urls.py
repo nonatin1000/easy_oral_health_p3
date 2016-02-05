@@ -34,12 +34,6 @@ urlpatterns = [
     url(r'^course_edit/(?P<course_id>\d+)/$', 'odontology.views.course_register', name='course_edit'),
     url(r'^course_show/(?P<course_id>\d+)/$', 'odontology.views.course_show', name='course_show'),
     url(r'^course_delete/(?P<course_id>\d+)/$', 'odontology.views.course_delete', name='course_delete'),
-    # ToothStatus
-    url(r'^tooth_status_index/$', 'odontology.views.tooth_status_index', name='tooth_status_index'),
-    url(r'^tooth_status_register/$', 'odontology.views.tooth_status_register', name='tooth_status_register'),
-    url(r'^tooth_status_edit/(?P<tooth_status_id>\d+)/$', 'odontology.views.tooth_status_register', name='tooth_status_edit'),
-    url(r'^tooth_status_show/(?P<tooth_status_id>\d+)/$', 'odontology.views.tooth_status_show', name='tooth_status_show'),
-    url(r'^tooth_status_delete/(?P<tooth_status_id>\d+)/$', 'odontology.views.tooth_status_delete', name='tooth_status_delete'),
     # Tooth
     url(r'^tooth_index/$', 'odontology.views.tooth_index', name='tooth_index'),
     url(r'^tooth_register/$', 'odontology.views.tooth_register', name='tooth_register'),
@@ -52,12 +46,6 @@ urlpatterns = [
     url(r'^tooth_division_edit/(?P<tooth_division_id>\d+)/$', 'odontology.views.tooth_division_register', name='tooth_division_edit'),
     url(r'^tooth_division_show/(?P<tooth_division_id>\d+)/$', 'odontology.views.tooth_division_show', name='tooth_division_show'),
     url(r'^toorh_division_delete(?P<tooth_division_id>\d+)/$', 'odontology.views.tooth_division_delete', name='tooth_division_delete'),
-    # ProcedureStatus
-    url(r'^procedure_status_index/$', 'odontology.views.procedure_status_index', name='procedure_status_index'),
-    url(r'^procedure_status_register/$', 'odontology.views.procedure_status_register', name='procedure_status_register'),
-    url(r'^procedure_status_edit/(?P<procedure_status_id>\d+)/$', 'odontology.views.procedure_status_register', name='procedure_status_edit'),
-    url(r'^procedure_status_show/(?P<procedure_status_id>\d+)/$', 'odontology.views.procedure_status_show', name='procedure_status_show'),
-    url(r'^procedure_status_delete(?P<procedure_status_id>\d+)/$', 'odontology.views.procedure_status_delete', name='procedure_status_delete'),
     # Patient
     url(r'^patient_index/$', 'odontology.views.patient_index', name='patient_index'),
     url(r'^patient_register/$', 'odontology.views.patient_register', name='patient_register'),
