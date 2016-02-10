@@ -63,7 +63,7 @@ class PatientDentalProcedureForm(ModelForm):
 
 	class Meta:
 		model = PatientDentalProcedure
-		fields = '__all__'
+		exclude = ['dentist']
 
 class OralPatientProcedureForm(ModelForm):
 

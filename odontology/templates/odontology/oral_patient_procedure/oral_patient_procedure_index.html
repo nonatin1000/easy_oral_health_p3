@@ -26,7 +26,6 @@
 					<tr>
 						<th>Paciente</th>
 						<th>Procedimento Bucal</th>
-						<th>Status do Procedimento</th>
 						<th style="width: 21%;">Ações</th>
 					</tr>
 				</thead>
@@ -35,7 +34,6 @@
 					<tr>
 						<td>{{ oral_patient_procedure.patient.name }}</td>
 						<td>{{ oral_patient_procedure.oral_procedure.name }}</td>
-						<td>{{ oral_patient_procedure.procedure_status.name }}</td>
 						<td>                    
 							<a href="{% url 'oral_patient_procedure_show' oral_patient_procedure.id %}" class="btn btn-default" title="Exibir">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>

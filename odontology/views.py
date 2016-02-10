@@ -313,11 +313,14 @@ def dependent_register(request, patient_id):
 @login_required
 def odontogram(request, patient_id):
 	form_patient_dental_procedure = PatientDentalProcedureForm
+	dentist = Dentist.objects.get(pk=request.user.id)
 	# Save
 	if request.method == 'POST':
 		form_patient_dental_procedure = PatientDentalProcedureForm(request.POST)
 		if form_patient_dental_procedure.is_valid():
-			form_patient_dental_procedure.save()
+			patient_dental_procedure = form_patient_dental_procedure.save(commit=False)
+			patient_dental_procedure.dentist = dentist # Adiciono o denstista ao form
+			patient_dental_procedure.save()
 	patient = Patient.objects.get(pk=patient_id)
 	odontogram_patient = PatientTooth.objects.filter(patient=patient_id)
 	return render(request, 'odontology/patient/odontogram_patient.html', {'odontogram_patient': odontogram_patient, 'patient': patient, 'form_patient_dental_procedure': form_patient_dental_procedure}, context_instance=RequestContext(request))

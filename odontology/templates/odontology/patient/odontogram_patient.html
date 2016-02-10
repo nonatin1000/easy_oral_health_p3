@@ -159,21 +159,21 @@
 				</thead>
 				<tbody>
 					{% for ptooth in odontogram_patient %}
-					{% for p in ptooth.patient_tooth.all %}
-					<tr>
-						<td>{{ ptooth.tooth.name }}</td>
-						<td>{{ p.tooth_division.name }}</td>
-						<td>{{ p.procedure_dental.name }}</td>
-						<td>
-							<a href="{% url 'patient_dental_procedure_edit' p.id %}" class="btn btn-default" title="Editar">
-								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-							</a>
+						{% for p in ptooth.patient_tooth.all %}
+						<tr>
+							<td>{{ ptooth.tooth.name }}</td>
+							<td>{{ p.tooth_division.name }}</td>
+							<td>{{ p.procedure_dental.name }}</td>
+							<td>
+								<a href="{% url 'patient_dental_procedure_edit' p.id %}" class="btn btn-default" title="Editar">
+									<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+								</a>
 
-							<a href="#modal-id-{{ p.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
-								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-							</a>
-						</td>
-					</tr>
+								<a href="#modal-id-{{ p.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+								</a>
+							</td>
+						</tr>
 
 					<!-- MODAL -->
 					<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
@@ -199,7 +199,7 @@
 					</div>
 					<!-- /MODAL -->
 					{% endfor %}
-					{% endfor %}
+				{% endfor %}
 				</tbody>
 			</table>
 		</div>
