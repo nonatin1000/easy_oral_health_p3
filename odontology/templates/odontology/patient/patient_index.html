@@ -26,7 +26,7 @@
 					<tr>
 						<th>Nome</th>
 						<th>Email</th>
-						<th style="width: 40%;">Ações</th>
+						<th style="width: 34%;">Ações</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -37,10 +37,6 @@
 								<td>{{ patient.name }}</td>
 								<td>{{ patient.email }}</td>
 								<td>  
-									<a href="#" class="btn btn-default" titl="Selecionar paciente">
-		                        		<span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
-		                      		</a>   
-
 									<a href="{% url 'patient_show' patient.id %}" class="btn btn-default" title="Exibir">
 										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 									</a>
