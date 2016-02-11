@@ -142,6 +142,39 @@
 					{% endfor %}
 				</tbody>
 			</table>
+			<!-- Paginação -->
+		  	<nav>
+		  		<ul class="pagination">
+		   			{% if patients.has_previous %}
+			    	<li>
+			      		<a href="?page={{ patients.previous_page_number }}" aria-label="Previous">
+			        		<span aria-hidden="true">&laquo;</span>
+			      		</a>
+			    	</li>
+					{% else %}
+						<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+					{% endif %}
+					{% for page_num in patients.paginator.page_range %}
+		    			<li {% if page_num == patients.number %} class="active" {% endif %}>
+		    				<a href="?page={{ page_num }}">{{ page_num }}</a>
+		    			</li>
+		    		{% endfor %}
+		    		{% if patients.has_next %}
+			    	<li>
+			      		<a href="?page={{ patients.next_page_number}}" aria-label="Next">
+			        		<span aria-hidden="true">&raquo;</span>
+			      		</a>
+			    	</li>
+					{% else %}
+				  	<li class="disabled">
+				    	<a href="#" aria-label="Next">
+				       		<span aria-hidden="true">&raquo;</span>
+				      	</a>
+				    </li>
+					{% endif %}
+		  		</ul>
+			</nav>
+			<!-- Fim da Paginação -->
 		</div>
 	</div>
 	</div>

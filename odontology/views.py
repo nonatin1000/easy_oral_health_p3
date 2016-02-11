@@ -2,6 +2,7 @@
 
 #DJANGO IMPORTS
 from django.shortcuts import render, redirect, render_to_response, get_object_or_404
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
@@ -231,8 +232,23 @@ def tooth_division_delete(request, tooth_division_id):
 # Signup Patient ---------------------------------------------------------------------------------#
 @login_required
 def patient_index(request):
-	patients = Patient.objects.all()
-	return render(request, 'odontology/patient/patient_index.html', {'patients': patients}, context_instance=RequestContext(request))
+	patients_list = Patient.objects.all()
+	paginator = Paginator(patients_list, 20) # Mostra 20 pacientes por página
+
+    # Make sure page request is an int. If not, deliver first page.
+    # Esteja certo de que o `page request` é um inteiro. Se não, mostre a primeira página.
+	try:
+		page = int(request.GET.get('page', '1'))
+	except ValueError:
+		page = 1
+
+    # Se o page request (9999) está fora da lista, mostre a última página.
+	try:
+		patients = paginator.page(page)
+	except (EmptyPage, InvalidPage):
+		patients = paginator.page(paginator.num_pages)
+
+	return render(request, 'odontology/patient/patient_index.html', {'patients': patients})
 
 # New e Edit - Patient
 @login_required
