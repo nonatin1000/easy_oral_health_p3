@@ -63,10 +63,19 @@ class PatientDentalProcedureForm(ModelForm):
 
 	class Meta:
 		model = PatientDentalProcedure
-		exclude = ['dentist']
+		fields = ['patient_tooth', 'tooth_division', 'procedure_dental']
+		labels = {
+			'patient_tooth': 'Dentes',
+			'tooth_division': 'Divisão',
+			'procedure_dental': 'Procedimentos',
+		}
 
 class OralPatientProcedureForm(ModelForm):
 
 	class Meta:
 		model = OralPatientProcedure
-		fields = '__all__'
+		fields = ['patient', 'oral_procedure']
+		labels = {
+			'patient': 'Paciente',
+			'oral_procedure': 'Procedimento',
+		}

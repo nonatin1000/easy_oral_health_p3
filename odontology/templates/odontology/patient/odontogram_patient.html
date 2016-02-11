@@ -8,7 +8,7 @@
 		<!-- <a class="navbar-brand" href="#">Odontograma</a> -->
 		<ul class="nav navbar-nav pull-right">
 			<li>
-				<p class="navbar-btn" style="margin-left: 6em">
+				<p class="navbar-btn" style="margin-left: 26em">
 					<a class="btn btn-default" href="{% url 'patient_index' %}"> 
 						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 						Voltar
@@ -116,7 +116,7 @@
 					<tr>
 						<td style="background: #000000"></td>
 						<td>Restaurado</td>
-						<td>Quado cheio em preto</td>
+						<td>Quadro cheio em preto</td>
 					</tr>
 					<tr>
 						<td style="background: #BB0000"></td>
@@ -158,18 +158,18 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% for ptooth in odontogram_patient %}
-						{% for p in ptooth.patient_tooth.all %}
+					{% for patient_dental_procedure in odontogram_patient %}
+						{% for patient_tooth in patient_dental_procedure.patient_tooth.all %}
 						<tr>
-							<td>{{ ptooth.tooth.name }}</td>
-							<td>{{ p.tooth_division.name }}</td>
-							<td>{{ p.procedure_dental.name }}</td>
+							<td>{{ patient_dental_procedure.tooth.name }}</td>
+							<td>{{ patient_tooth.tooth_division.name }}</td>
+							<td>{{ patient_tooth.procedure_dental.name }}</td>
 							<td>
-								<a href="{% url 'patient_dental_procedure_edit' p.id %}" class="btn btn-default" title="Editar">
+								<a href="{% url 'patient_dental_procedure_edit' patient_tooth.id %}" class="btn btn-default" title="Editar">
 									<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 								</a>
 
-								<a href="#modal-id-{{ p.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+								<a href="#modal-id-{{ patient_tooth.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 								</a>
 							</td>
@@ -177,7 +177,7 @@
 
 					<!-- MODAL -->
 					<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-						<div class="modal fade" id="modal-id-{{ p.id }}">
+						<div class="modal fade" id="modal-id-{{ patient_tooth.id }}">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -185,11 +185,11 @@
 										<h4 class="modal-title">Alerta!</h4>
 									</div>
 									<div class="modal-body">
-										<p>Deseja realmente remover <strong>{{ ptooth.tooth.name }}</strong>?</p>
+										<p>Deseja realmente remover <strong>{{ patient_dental_procedure.tooth.name }}</strong>?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-										<a href="{% url 'patient_dental_procedure_delete' p.id %}" class='btn btn-danger' title='Exibir'>
+										<a href="{% url 'patient_dental_procedure_delete' patient_tooth.id %}" class='btn btn-danger' title='Exibir'>
 											Delete
 										</a>
 									</div>
