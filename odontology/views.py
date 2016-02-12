@@ -233,7 +233,7 @@ def tooth_division_delete(request, tooth_division_id):
 @login_required
 def patient_index(request):
 	patients_list = Patient.objects.all()
-	paginator = Paginator(patients_list, 20) # Mostra 20 pacientes por página
+	paginator = Paginator(patients_list, 10) # Mostra 10 pacientes por página
 
     # Make sure page request is an int. If not, deliver first page.
     # Esteja certo de que o `page request` é um inteiro. Se não, mostre a primeira página.
