@@ -2,9 +2,9 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.3.10
--- Dumped by pg_dump version 9.3.10
--- Started on 2016-02-11 16:56:20 BRT
+-- Dumped from database version 9.3.11
+-- Dumped by pg_dump version 9.3.11
+-- Started on 2016-02-12 16:52:21 BRT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -16,16 +16,16 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 2254 (class 0 OID 34854)
--- Dependencies: 177
+-- TOC entry 2252 (class 0 OID 34854)
+-- Dependencies: 178
 -- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 2323 (class 0 OID 0)
--- Dependencies: 176
+-- TOC entry 2321 (class 0 OID 0)
+-- Dependencies: 177
 -- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -33,16 +33,16 @@ SELECT pg_catalog.setval('auth_group_id_seq', 1, false);
 
 
 --
--- TOC entry 2256 (class 0 OID 34864)
--- Dependencies: 179
+-- TOC entry 2254 (class 0 OID 34864)
+-- Dependencies: 180
 -- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 2324 (class 0 OID 0)
--- Dependencies: 178
+-- TOC entry 2322 (class 0 OID 0)
+-- Dependencies: 179
 -- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -50,8 +50,8 @@ SELECT pg_catalog.setval('auth_group_permissions_id_seq', 1, false);
 
 
 --
--- TOC entry 2252 (class 0 OID 34846)
--- Dependencies: 175
+-- TOC entry 2250 (class 0 OID 34846)
+-- Dependencies: 176
 -- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -109,8 +109,8 @@ INSERT INTO auth_permission (id, name, content_type_id, codename) VALUES (57, 'C
 
 
 --
--- TOC entry 2325 (class 0 OID 0)
--- Dependencies: 174
+-- TOC entry 2323 (class 0 OID 0)
+-- Dependencies: 175
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -118,8 +118,8 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 57, true);
 
 
 --
--- TOC entry 2258 (class 0 OID 34872)
--- Dependencies: 181
+-- TOC entry 2256 (class 0 OID 34872)
+-- Dependencies: 182
 -- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -128,16 +128,16 @@ INSERT INTO auth_user (id, password, last_login, is_superuser, username, first_n
 
 
 --
--- TOC entry 2260 (class 0 OID 34882)
--- Dependencies: 183
+-- TOC entry 2258 (class 0 OID 34882)
+-- Dependencies: 184
 -- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 2326 (class 0 OID 0)
--- Dependencies: 182
+-- TOC entry 2324 (class 0 OID 0)
+-- Dependencies: 183
 -- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -145,8 +145,8 @@ SELECT pg_catalog.setval('auth_user_groups_id_seq', 1, false);
 
 
 --
--- TOC entry 2327 (class 0 OID 0)
--- Dependencies: 180
+-- TOC entry 2325 (class 0 OID 0)
+-- Dependencies: 181
 -- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -154,16 +154,16 @@ SELECT pg_catalog.setval('auth_user_id_seq', 2, true);
 
 
 --
--- TOC entry 2262 (class 0 OID 34890)
--- Dependencies: 185
+-- TOC entry 2260 (class 0 OID 34890)
+-- Dependencies: 186
 -- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 2328 (class 0 OID 0)
--- Dependencies: 184
+-- TOC entry 2326 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -171,8 +171,8 @@ SELECT pg_catalog.setval('auth_user_user_permissions_id_seq', 1, false);
 
 
 --
--- TOC entry 2264 (class 0 OID 34950)
--- Dependencies: 187
+-- TOC entry 2262 (class 0 OID 34950)
+-- Dependencies: 188
 -- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -180,8 +180,8 @@ INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_fl
 
 
 --
--- TOC entry 2329 (class 0 OID 0)
--- Dependencies: 186
+-- TOC entry 2327 (class 0 OID 0)
+-- Dependencies: 187
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -189,8 +189,8 @@ SELECT pg_catalog.setval('django_admin_log_id_seq', 1, true);
 
 
 --
--- TOC entry 2250 (class 0 OID 34836)
--- Dependencies: 173
+-- TOC entry 2248 (class 0 OID 34836)
+-- Dependencies: 174
 -- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -214,8 +214,8 @@ INSERT INTO django_content_type (id, app_label, model) VALUES (19, 'odontology',
 
 
 --
--- TOC entry 2330 (class 0 OID 0)
--- Dependencies: 172
+-- TOC entry 2328 (class 0 OID 0)
+-- Dependencies: 173
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -223,8 +223,8 @@ SELECT pg_catalog.setval('django_content_type_id_seq', 19, true);
 
 
 --
--- TOC entry 2248 (class 0 OID 34825)
--- Dependencies: 171
+-- TOC entry 2246 (class 0 OID 34825)
+-- Dependencies: 172
 -- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -246,8 +246,8 @@ INSERT INTO django_migrations (id, app, name, applied) VALUES (15, 'sessions', '
 
 
 --
--- TOC entry 2331 (class 0 OID 0)
--- Dependencies: 170
+-- TOC entry 2329 (class 0 OID 0)
+-- Dependencies: 171
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -255,8 +255,8 @@ SELECT pg_catalog.setval('django_migrations_id_seq', 15, true);
 
 
 --
--- TOC entry 2292 (class 0 OID 35208)
--- Dependencies: 215
+-- TOC entry 2290 (class 0 OID 35208)
+-- Dependencies: 216
 -- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -265,27 +265,29 @@ INSERT INTO django_session (session_key, session_data, expire_date) VALUES ('dcu
 
 
 --
--- TOC entry 2266 (class 0 OID 34975)
--- Dependencies: 189
+-- TOC entry 2264 (class 0 OID 34975)
+-- Dependencies: 190
 -- Data for Name: odontology_address; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO odontology_address (id, created_on, updated_on, city, state, street, number, complement, zip_code, reference_point, neighborhood, country, object_id, content_type_id) VALUES (1, '2016-02-05 14:02:40.841835-03', '2016-02-05 14:02:40.841869-03', 'Picos', 'PI', 'Rua Padre Cicero', '55', 'casa', '64600-000', '', 'Canto da Varzea', 'Brasil', 2, 7);
 INSERT INTO odontology_address (id, created_on, updated_on, city, state, street, number, complement, zip_code, reference_point, neighborhood, country, object_id, content_type_id) VALUES (2, '2016-02-05 14:03:27.934433-03', '2016-02-05 14:03:27.934458-03', 'Picos', 'PI', 'Av Eliseu Perire Bezerra', '451', '', '64600-430', '', 'Passagem das Pedras', 'Brasil', 1, 12);
+INSERT INTO odontology_address (id, created_on, updated_on, city, state, street, number, complement, zip_code, reference_point, neighborhood, country, object_id, content_type_id) VALUES (3, '2016-02-11 17:45:00.702654-03', '2016-02-11 17:45:00.702679-03', 'Picos', 'PI', 'Rua Projetada', '52', '', '64600-000', '', 'Junco', 'Brasil', 3, 12);
+INSERT INTO odontology_address (id, created_on, updated_on, city, state, street, number, complement, zip_code, reference_point, neighborhood, country, object_id, content_type_id) VALUES (4, '2016-02-11 17:52:52.449695-03', '2016-02-11 17:52:52.449716-03', 'Elizeu Martins', 'PI', 'Rua Benedito Rocha', '275', '', '64880-000', '', 'Centro', 'Brasil', 4, 12);
 
 
 --
--- TOC entry 2332 (class 0 OID 0)
--- Dependencies: 188
+-- TOC entry 2330 (class 0 OID 0)
+-- Dependencies: 189
 -- Name: odontology_address_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('odontology_address_id_seq', 2, true);
+SELECT pg_catalog.setval('odontology_address_id_seq', 4, true);
 
 
 --
--- TOC entry 2268 (class 0 OID 34987)
--- Dependencies: 191
+-- TOC entry 2266 (class 0 OID 34987)
+-- Dependencies: 192
 -- Data for Name: odontology_course; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -299,8 +301,8 @@ INSERT INTO odontology_course (id, created_on, updated_on, name, description) VA
 
 
 --
--- TOC entry 2333 (class 0 OID 0)
--- Dependencies: 190
+-- TOC entry 2331 (class 0 OID 0)
+-- Dependencies: 191
 -- Name: odontology_course_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -308,8 +310,8 @@ SELECT pg_catalog.setval('odontology_course_id_seq', 1, false);
 
 
 --
--- TOC entry 2269 (class 0 OID 34993)
--- Dependencies: 192
+-- TOC entry 2267 (class 0 OID 34993)
+-- Dependencies: 193
 -- Data for Name: odontology_dentist; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -317,8 +319,8 @@ INSERT INTO odontology_dentist (user_ptr_id, created_on, updated_on, sex, marita
 
 
 --
--- TOC entry 2271 (class 0 OID 35000)
--- Dependencies: 194
+-- TOC entry 2269 (class 0 OID 35000)
+-- Dependencies: 195
 -- Data for Name: odontology_oralpatientprocedure; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -328,8 +330,8 @@ INSERT INTO odontology_oralpatientprocedure (id, created_on, updated_on, dentist
 
 
 --
--- TOC entry 2334 (class 0 OID 0)
--- Dependencies: 193
+-- TOC entry 2332 (class 0 OID 0)
+-- Dependencies: 194
 -- Name: odontology_oralpatientprocedure_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -337,8 +339,8 @@ SELECT pg_catalog.setval('odontology_oralpatientprocedure_id_seq', 6, true);
 
 
 --
--- TOC entry 2273 (class 0 OID 35008)
--- Dependencies: 196
+-- TOC entry 2271 (class 0 OID 35008)
+-- Dependencies: 197
 -- Data for Name: odontology_oralprocedure; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -348,8 +350,8 @@ INSERT INTO odontology_oralprocedure (id, created_on, updated_on, name, descript
 
 
 --
--- TOC entry 2335 (class 0 OID 0)
--- Dependencies: 195
+-- TOC entry 2333 (class 0 OID 0)
+-- Dependencies: 196
 -- Name: odontology_oralprocedure_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -357,25 +359,27 @@ SELECT pg_catalog.setval('odontology_oralprocedure_id_seq', 1, false);
 
 
 --
--- TOC entry 2275 (class 0 OID 35016)
--- Dependencies: 198
+-- TOC entry 2273 (class 0 OID 35016)
+-- Dependencies: 199
 -- Data for Name: odontology_patient; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO odontology_patient (id, created_on, updated_on, name, sex, marital_status, birth_date, father, mother, phone, types, email, course_id) VALUES (1, '2016-02-05 14:03:27.568664-03', '2016-02-05 14:03:27.568688-03', 'Nonato Rodrigues de Sales Carvalho', 'M', 'CASADO', '1985-06-02', 'Raimundo Nonato Rodrigues', 'Antonia Maria de Sales Rodrigues', '(89)99930-5127', 'Funcionário', 'nrdesales@hotmail.com', NULL);
+INSERT INTO odontology_patient (id, created_on, updated_on, name, sex, marital_status, birth_date, father, mother, phone, types, email, course_id) VALUES (3, '2016-02-11 17:45:00.415688-03', '2016-02-11 17:45:00.41572-03', 'Micale Silva', 'M', 'SOLTEIRO', '1993-08-03', 'Terturiano da Silva', 'Grabriela da Silva', '9852147841', 'Estudante', 'micael@hotmail.com', 1);
+INSERT INTO odontology_patient (id, created_on, updated_on, name, sex, marital_status, birth_date, father, mother, phone, types, email, course_id) VALUES (4, '2016-02-11 17:52:51.956568-03', '2016-02-11 17:52:51.956594-03', 'Raí Araujo de Miranda', 'M', 'SOLTEIRO', '1992-02-01', 'João Ferreira de Miranda', 'Floriza de Sousa Araujo', '99433-0456', 'Estudante', 'raiaraujodemiranda.si@hotmail.com', 1);
 
 
 --
--- TOC entry 2277 (class 0 OID 35027)
--- Dependencies: 200
+-- TOC entry 2275 (class 0 OID 35027)
+-- Dependencies: 201
 -- Data for Name: odontology_patient_dependents; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 2336 (class 0 OID 0)
--- Dependencies: 199
+-- TOC entry 2334 (class 0 OID 0)
+-- Dependencies: 200
 -- Name: odontology_patient_dependents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -383,17 +387,17 @@ SELECT pg_catalog.setval('odontology_patient_dependents_id_seq', 1, false);
 
 
 --
--- TOC entry 2337 (class 0 OID 0)
--- Dependencies: 197
+-- TOC entry 2335 (class 0 OID 0)
+-- Dependencies: 198
 -- Name: odontology_patient_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('odontology_patient_id_seq', 1, true);
+SELECT pg_catalog.setval('odontology_patient_id_seq', 4, true);
 
 
 --
--- TOC entry 2279 (class 0 OID 35035)
--- Dependencies: 202
+-- TOC entry 2277 (class 0 OID 35035)
+-- Dependencies: 203
 -- Data for Name: odontology_patientdentalprocedure; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -412,12 +416,11 @@ INSERT INTO odontology_patientdentalprocedure (id, created_on, updated_on, denti
 INSERT INTO odontology_patientdentalprocedure (id, created_on, updated_on, dentist_id, patient_tooth_id, procedure_dental_id, tooth_division_id) VALUES (24, '2016-02-10 18:29:39.692478-03', '2016-02-10 18:29:39.692512-03', 2, 12, 1, 2);
 INSERT INTO odontology_patientdentalprocedure (id, created_on, updated_on, dentist_id, patient_tooth_id, procedure_dental_id, tooth_division_id) VALUES (25, '2016-02-11 13:51:52.220857-03', '2016-02-11 13:51:52.220885-03', 2, 17, 2, 2);
 INSERT INTO odontology_patientdentalprocedure (id, created_on, updated_on, dentist_id, patient_tooth_id, procedure_dental_id, tooth_division_id) VALUES (30, '2016-02-11 15:31:39.354418-03', '2016-02-11 16:34:41.427521-03', 2, 31, 3, 5);
-INSERT INTO odontology_patientdentalprocedure (id, created_on, updated_on, dentist_id, patient_tooth_id, procedure_dental_id, tooth_division_id) VALUES (32, '2016-02-11 16:35:04.834715-03', '2016-02-11 16:35:04.834745-03', 2, 28, 2, 1);
 
 
 --
--- TOC entry 2338 (class 0 OID 0)
--- Dependencies: 201
+-- TOC entry 2336 (class 0 OID 0)
+-- Dependencies: 202
 -- Name: odontology_patientdentalprocedure_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -425,57 +428,121 @@ SELECT pg_catalog.setval('odontology_patientdentalprocedure_id_seq', 32, true);
 
 
 --
--- TOC entry 2281 (class 0 OID 35043)
--- Dependencies: 204
+-- TOC entry 2279 (class 0 OID 35043)
+-- Dependencies: 205
 -- Data for Name: odontology_patienttooth; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (1, '2016-02-05 14:03:27.602417-03', '2016-02-05 14:03:27.602442-03', 1, 1, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (2, '2016-02-05 14:03:27.641809-03', '2016-02-05 14:03:27.641844-03', 1, 2, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (3, '2016-02-05 14:03:27.682753-03', '2016-02-05 14:03:27.682783-03', 1, 3, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (4, '2016-02-05 14:03:27.690715-03', '2016-02-05 14:03:27.690736-03', 1, 4, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (5, '2016-02-05 14:03:27.699047-03', '2016-02-05 14:03:27.699068-03', 1, 5, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (6, '2016-02-05 14:03:27.707411-03', '2016-02-05 14:03:27.707434-03', 1, 6, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (7, '2016-02-05 14:03:27.715825-03', '2016-02-05 14:03:27.715852-03', 1, 7, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (8, '2016-02-05 14:03:27.724064-03', '2016-02-05 14:03:27.724086-03', 1, 8, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (9, '2016-02-05 14:03:27.732466-03', '2016-02-05 14:03:27.732492-03', 1, 9, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (10, '2016-02-05 14:03:27.740921-03', '2016-02-05 14:03:27.74095-03', 1, 10, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (11, '2016-02-05 14:03:27.749281-03', '2016-02-05 14:03:27.749312-03', 1, 11, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (12, '2016-02-05 14:03:27.757483-03', '2016-02-05 14:03:27.757508-03', 1, 12, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (13, '2016-02-05 14:03:27.765815-03', '2016-02-05 14:03:27.765841-03', 1, 13, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (14, '2016-02-05 14:03:27.774255-03', '2016-02-05 14:03:27.774285-03', 1, 14, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (15, '2016-02-05 14:03:27.782498-03', '2016-02-05 14:03:27.782521-03', 1, 15, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (16, '2016-02-05 14:03:27.790768-03', '2016-02-05 14:03:27.790788-03', 1, 16, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (17, '2016-02-05 14:03:27.799192-03', '2016-02-05 14:03:27.799219-03', 1, 17, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (18, '2016-02-05 14:03:27.807442-03', '2016-02-05 14:03:27.807462-03', 1, 18, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (19, '2016-02-05 14:03:27.815829-03', '2016-02-05 14:03:27.815852-03', 1, 19, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (20, '2016-02-05 14:03:27.824118-03', '2016-02-05 14:03:27.824138-03', 1, 20, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (21, '2016-02-05 14:03:27.83254-03', '2016-02-05 14:03:27.832567-03', 1, 21, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (22, '2016-02-05 14:03:27.84078-03', '2016-02-05 14:03:27.840801-03', 1, 22, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (23, '2016-02-05 14:03:27.84924-03', '2016-02-05 14:03:27.849266-03', 1, 23, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (24, '2016-02-05 14:03:27.857523-03', '2016-02-05 14:03:27.857546-03', 1, 24, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (25, '2016-02-05 14:03:27.865948-03', '2016-02-05 14:03:27.865996-03', 1, 25, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (26, '2016-02-05 14:03:27.874218-03', '2016-02-05 14:03:27.874242-03', 1, 26, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (27, '2016-02-05 14:03:27.882535-03', '2016-02-05 14:03:27.882556-03', 1, 27, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (28, '2016-02-05 14:03:27.890922-03', '2016-02-05 14:03:27.890948-03', 1, 28, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (29, '2016-02-05 14:03:27.899214-03', '2016-02-05 14:03:27.899237-03', 1, 29, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (30, '2016-02-05 14:03:27.907499-03', '2016-02-05 14:03:27.90752-03', 1, 30, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (31, '2016-02-05 14:03:27.915827-03', '2016-02-05 14:03:27.915847-03', 1, 31, 1);
-INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id, tooth_status_id) VALUES (32, '2016-02-05 14:03:27.924163-03', '2016-02-05 14:03:27.924186-03', 1, 32, 1);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (1, '2016-02-05 14:03:27.602417-03', '2016-02-05 14:03:27.602442-03', 1, 1);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (2, '2016-02-05 14:03:27.641809-03', '2016-02-05 14:03:27.641844-03', 1, 2);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (3, '2016-02-05 14:03:27.682753-03', '2016-02-05 14:03:27.682783-03', 1, 3);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (4, '2016-02-05 14:03:27.690715-03', '2016-02-05 14:03:27.690736-03', 1, 4);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (5, '2016-02-05 14:03:27.699047-03', '2016-02-05 14:03:27.699068-03', 1, 5);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (6, '2016-02-05 14:03:27.707411-03', '2016-02-05 14:03:27.707434-03', 1, 6);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (7, '2016-02-05 14:03:27.715825-03', '2016-02-05 14:03:27.715852-03', 1, 7);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (8, '2016-02-05 14:03:27.724064-03', '2016-02-05 14:03:27.724086-03', 1, 8);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (9, '2016-02-05 14:03:27.732466-03', '2016-02-05 14:03:27.732492-03', 1, 9);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (10, '2016-02-05 14:03:27.740921-03', '2016-02-05 14:03:27.74095-03', 1, 10);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (11, '2016-02-05 14:03:27.749281-03', '2016-02-05 14:03:27.749312-03', 1, 11);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (12, '2016-02-05 14:03:27.757483-03', '2016-02-05 14:03:27.757508-03', 1, 12);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (13, '2016-02-05 14:03:27.765815-03', '2016-02-05 14:03:27.765841-03', 1, 13);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (14, '2016-02-05 14:03:27.774255-03', '2016-02-05 14:03:27.774285-03', 1, 14);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (15, '2016-02-05 14:03:27.782498-03', '2016-02-05 14:03:27.782521-03', 1, 15);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (16, '2016-02-05 14:03:27.790768-03', '2016-02-05 14:03:27.790788-03', 1, 16);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (17, '2016-02-05 14:03:27.799192-03', '2016-02-05 14:03:27.799219-03', 1, 17);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (18, '2016-02-05 14:03:27.807442-03', '2016-02-05 14:03:27.807462-03', 1, 18);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (19, '2016-02-05 14:03:27.815829-03', '2016-02-05 14:03:27.815852-03', 1, 19);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (20, '2016-02-05 14:03:27.824118-03', '2016-02-05 14:03:27.824138-03', 1, 20);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (21, '2016-02-05 14:03:27.83254-03', '2016-02-05 14:03:27.832567-03', 1, 21);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (22, '2016-02-05 14:03:27.84078-03', '2016-02-05 14:03:27.840801-03', 1, 22);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (23, '2016-02-05 14:03:27.84924-03', '2016-02-05 14:03:27.849266-03', 1, 23);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (24, '2016-02-05 14:03:27.857523-03', '2016-02-05 14:03:27.857546-03', 1, 24);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (25, '2016-02-05 14:03:27.865948-03', '2016-02-05 14:03:27.865996-03', 1, 25);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (26, '2016-02-05 14:03:27.874218-03', '2016-02-05 14:03:27.874242-03', 1, 26);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (27, '2016-02-05 14:03:27.882535-03', '2016-02-05 14:03:27.882556-03', 1, 27);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (28, '2016-02-05 14:03:27.890922-03', '2016-02-05 14:03:27.890948-03', 1, 28);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (29, '2016-02-05 14:03:27.899214-03', '2016-02-05 14:03:27.899237-03', 1, 29);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (30, '2016-02-05 14:03:27.907499-03', '2016-02-05 14:03:27.90752-03', 1, 30);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (31, '2016-02-05 14:03:27.915827-03', '2016-02-05 14:03:27.915847-03', 1, 31);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (32, '2016-02-05 14:03:27.924163-03', '2016-02-05 14:03:27.924186-03', 1, 32);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (34, '2016-02-11 17:45:00.438026-03', '2016-02-11 17:45:00.438075-03', 3, 1);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (35, '2016-02-11 17:45:00.442284-03', '2016-02-11 17:45:00.442311-03', 3, 2);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (36, '2016-02-11 17:45:00.45055-03', '2016-02-11 17:45:00.450573-03', 3, 3);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (37, '2016-02-11 17:45:00.458992-03', '2016-02-11 17:45:00.459023-03', 3, 4);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (38, '2016-02-11 17:45:00.467166-03', '2016-02-11 17:45:00.467188-03', 3, 5);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (39, '2016-02-11 17:45:00.475608-03', '2016-02-11 17:45:00.475636-03', 3, 6);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (40, '2016-02-11 17:45:00.483849-03', '2016-02-11 17:45:00.483871-03', 3, 7);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (41, '2016-02-11 17:45:00.492395-03', '2016-02-11 17:45:00.492428-03', 3, 8);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (42, '2016-02-11 17:45:00.500505-03', '2016-02-11 17:45:00.500528-03', 3, 9);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (43, '2016-02-11 17:45:00.508989-03', '2016-02-11 17:45:00.509019-03', 3, 10);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (44, '2016-02-11 17:45:00.517268-03', '2016-02-11 17:45:00.517315-03', 3, 11);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (45, '2016-02-11 17:45:00.525763-03', '2016-02-11 17:45:00.5258-03', 3, 12);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (46, '2016-02-11 17:45:00.533937-03', '2016-02-11 17:45:00.534008-03', 3, 13);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (47, '2016-02-11 17:45:00.542218-03', '2016-02-11 17:45:00.542244-03', 3, 14);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (48, '2016-02-11 17:45:00.550673-03', '2016-02-11 17:45:00.550706-03', 3, 15);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (49, '2016-02-11 17:45:00.55894-03', '2016-02-11 17:45:00.558967-03', 3, 16);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (50, '2016-02-11 17:45:00.567248-03', '2016-02-11 17:45:00.56727-03', 3, 17);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (51, '2016-02-11 17:45:00.575537-03', '2016-02-11 17:45:00.575558-03', 3, 18);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (52, '2016-02-11 17:45:00.584055-03', '2016-02-11 17:45:00.584084-03', 3, 19);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (53, '2016-02-11 17:45:00.592317-03', '2016-02-11 17:45:00.592344-03', 3, 20);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (54, '2016-02-11 17:45:00.600568-03', '2016-02-11 17:45:00.600591-03', 3, 21);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (55, '2016-02-11 17:45:00.6089-03', '2016-02-11 17:45:00.608923-03', 3, 22);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (56, '2016-02-11 17:45:00.617359-03', '2016-02-11 17:45:00.617388-03', 3, 23);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (57, '2016-02-11 17:45:00.625662-03', '2016-02-11 17:45:00.625691-03', 3, 24);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (58, '2016-02-11 17:45:00.633939-03', '2016-02-11 17:45:00.633994-03', 3, 25);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (59, '2016-02-11 17:45:00.64236-03', '2016-02-11 17:45:00.642391-03', 3, 26);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (60, '2016-02-11 17:45:00.650605-03', '2016-02-11 17:45:00.650645-03', 3, 27);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (61, '2016-02-11 17:45:00.658975-03', '2016-02-11 17:45:00.659001-03', 3, 28);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (62, '2016-02-11 17:45:00.667234-03', '2016-02-11 17:45:00.667256-03', 3, 29);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (63, '2016-02-11 17:45:00.675664-03', '2016-02-11 17:45:00.675692-03', 3, 30);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (64, '2016-02-11 17:45:00.683885-03', '2016-02-11 17:45:00.683906-03', 3, 31);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (65, '2016-02-11 17:45:00.69228-03', '2016-02-11 17:45:00.692306-03', 3, 32);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (66, '2016-02-11 17:52:51.984461-03', '2016-02-11 17:52:51.984493-03', 4, 1);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (67, '2016-02-11 17:52:52.007367-03', '2016-02-11 17:52:52.007421-03', 4, 2);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (68, '2016-02-11 17:52:52.057492-03', '2016-02-11 17:52:52.057521-03', 4, 3);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (69, '2016-02-11 17:52:52.107302-03', '2016-02-11 17:52:52.107334-03', 4, 4);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (70, '2016-02-11 17:52:52.149088-03', '2016-02-11 17:52:52.149121-03', 4, 5);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (71, '2016-02-11 17:52:52.157303-03', '2016-02-11 17:52:52.157338-03', 4, 6);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (72, '2016-02-11 17:52:52.165493-03', '2016-02-11 17:52:52.165518-03', 4, 7);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (73, '2016-02-11 17:52:52.173815-03', '2016-02-11 17:52:52.17384-03', 4, 8);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (74, '2016-02-11 17:52:52.182143-03', '2016-02-11 17:52:52.182169-03', 4, 9);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (75, '2016-02-11 17:52:52.190605-03', '2016-02-11 17:52:52.190635-03', 4, 10);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (76, '2016-02-11 17:52:52.232281-03', '2016-02-11 17:52:52.232312-03', 4, 11);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (77, '2016-02-11 17:52:52.240513-03', '2016-02-11 17:52:52.240542-03', 4, 12);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (78, '2016-02-11 17:52:52.248802-03', '2016-02-11 17:52:52.248829-03', 4, 13);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (79, '2016-02-11 17:52:52.257206-03', '2016-02-11 17:52:52.257235-03', 4, 14);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (80, '2016-02-11 17:52:52.265403-03', '2016-02-11 17:52:52.265426-03', 4, 15);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (81, '2016-02-11 17:52:52.273906-03', '2016-02-11 17:52:52.273936-03', 4, 16);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (82, '2016-02-11 17:52:52.282151-03', '2016-02-11 17:52:52.282176-03', 4, 17);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (83, '2016-02-11 17:52:52.29058-03', '2016-02-11 17:52:52.29061-03', 4, 18);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (84, '2016-02-11 17:52:52.298825-03', '2016-02-11 17:52:52.298851-03', 4, 19);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (85, '2016-02-11 17:52:52.307266-03', '2016-02-11 17:52:52.307298-03', 4, 20);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (86, '2016-02-11 17:52:52.348968-03', '2016-02-11 17:52:52.348999-03', 4, 21);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (87, '2016-02-11 17:52:52.357253-03', '2016-02-11 17:52:52.357282-03', 4, 22);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (88, '2016-02-11 17:52:52.365492-03', '2016-02-11 17:52:52.365515-03', 4, 23);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (89, '2016-02-11 17:52:52.373874-03', '2016-02-11 17:52:52.373901-03', 4, 24);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (90, '2016-02-11 17:52:52.382157-03', '2016-02-11 17:52:52.382179-03', 4, 25);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (91, '2016-02-11 17:52:52.390626-03', '2016-02-11 17:52:52.390658-03', 4, 26);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (92, '2016-02-11 17:52:52.398906-03', '2016-02-11 17:52:52.398936-03', 4, 27);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (93, '2016-02-11 17:52:52.407374-03', '2016-02-11 17:52:52.407409-03', 4, 28);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (94, '2016-02-11 17:52:52.415522-03', '2016-02-11 17:52:52.415547-03', 4, 29);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (95, '2016-02-11 17:52:52.423896-03', '2016-02-11 17:52:52.423923-03', 4, 30);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (96, '2016-02-11 17:52:52.432185-03', '2016-02-11 17:52:52.432212-03', 4, 31);
+INSERT INTO odontology_patienttooth (id, created_on, updated_on, patient_id, tooth_id) VALUES (97, '2016-02-11 17:52:52.440619-03', '2016-02-11 17:52:52.440648-03', 4, 32);
 
 
 --
--- TOC entry 2339 (class 0 OID 0)
--- Dependencies: 203
+-- TOC entry 2337 (class 0 OID 0)
+-- Dependencies: 204
 -- Name: odontology_patienttooth_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('odontology_patienttooth_id_seq', 32, true);
+SELECT pg_catalog.setval('odontology_patienttooth_id_seq', 97, true);
 
 
 --
--- TOC entry 2283 (class 0 OID 35051)
--- Dependencies: 206
+-- TOC entry 2281 (class 0 OID 35051)
+-- Dependencies: 207
 -- Data for Name: odontology_proceduredental; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -487,8 +554,8 @@ INSERT INTO odontology_proceduredental (id, created_on, updated_on, name, descri
 
 
 --
--- TOC entry 2340 (class 0 OID 0)
--- Dependencies: 205
+-- TOC entry 2338 (class 0 OID 0)
+-- Dependencies: 206
 -- Name: odontology_proceduredental_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -496,8 +563,8 @@ SELECT pg_catalog.setval('odontology_proceduredental_id_seq', 1, false);
 
 
 --
--- TOC entry 2285 (class 0 OID 35059)
--- Dependencies: 208
+-- TOC entry 2283 (class 0 OID 35059)
+-- Dependencies: 209
 -- Data for Name: odontology_procedurestatus; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -507,8 +574,8 @@ INSERT INTO odontology_procedurestatus (id, created_on, updated_on, name, descri
 
 
 --
--- TOC entry 2341 (class 0 OID 0)
--- Dependencies: 207
+-- TOC entry 2339 (class 0 OID 0)
+-- Dependencies: 208
 -- Name: odontology_procedurestatus_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -516,8 +583,8 @@ SELECT pg_catalog.setval('odontology_procedurestatus_id_seq', 1, false);
 
 
 --
--- TOC entry 2287 (class 0 OID 35067)
--- Dependencies: 210
+-- TOC entry 2285 (class 0 OID 35067)
+-- Dependencies: 211
 -- Data for Name: odontology_tooth; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -556,8 +623,8 @@ INSERT INTO odontology_tooth (id, created_on, updated_on, name, description) VAL
 
 
 --
--- TOC entry 2342 (class 0 OID 0)
--- Dependencies: 209
+-- TOC entry 2340 (class 0 OID 0)
+-- Dependencies: 210
 -- Name: odontology_tooth_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -565,8 +632,8 @@ SELECT pg_catalog.setval('odontology_tooth_id_seq', 1, false);
 
 
 --
--- TOC entry 2289 (class 0 OID 35075)
--- Dependencies: 212
+-- TOC entry 2287 (class 0 OID 35075)
+-- Dependencies: 213
 -- Data for Name: odontology_toothdivision; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -579,8 +646,8 @@ INSERT INTO odontology_toothdivision (id, created_on, updated_on, name, descript
 
 
 --
--- TOC entry 2343 (class 0 OID 0)
--- Dependencies: 211
+-- TOC entry 2341 (class 0 OID 0)
+-- Dependencies: 212
 -- Name: odontology_toothdivision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -588,8 +655,8 @@ SELECT pg_catalog.setval('odontology_toothdivision_id_seq', 1, false);
 
 
 --
--- TOC entry 2291 (class 0 OID 35083)
--- Dependencies: 214
+-- TOC entry 2289 (class 0 OID 35083)
+-- Dependencies: 215
 -- Data for Name: odontology_toothstatus; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -598,15 +665,15 @@ INSERT INTO odontology_toothstatus (id, created_on, updated_on, name, descriptio
 
 
 --
--- TOC entry 2344 (class 0 OID 0)
--- Dependencies: 213
+-- TOC entry 2342 (class 0 OID 0)
+-- Dependencies: 214
 -- Name: odontology_toothstatus_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('odontology_toothstatus_id_seq', 1, false);
 
 
--- Completed on 2016-02-11 16:56:20 BRT
+-- Completed on 2016-02-12 16:52:21 BRT
 
 --
 -- PostgreSQL database dump complete
