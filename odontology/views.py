@@ -347,7 +347,7 @@ def odontogram(request, patient_id):
 # Signup PatientDentalProcedure-------------------------------------------------------------------#
 @login_required
 def patient_dental_procedure_register(request, patient_dental_procedure_id):
-
+	#dentist = Dentist.objects.get(pk=request.user.id)
 	patient_dental_procedure = PatientDentalProcedure.objects.get(pk=patient_dental_procedure_id)
 	patient = patient_dental_procedure.patient_tooth.patient
 	odontogram_patient = PatientTooth.objects.filter(patient=patient)
@@ -362,6 +362,12 @@ def patient_dental_procedure_register(request, patient_dental_procedure_id):
 				patient = patient_tooth.patient_tooth.patient
 				odontogram_patient = PatientTooth.objects.filter(patient=patient)
 				return redirect('odontogram', patient_id=patient.id)
+		# else: # NEW
+		# 	form_patient_dental_procedure = PatientDentalProcedureForm(request.POST)
+		# 	if form_patient_dental_procedure.is_valid():
+		# 		patient_dental_procedure = form_patient_dental_procedure.save(commit=False)
+		# 		patient_dental_procedure.dentist = dentist # Adiciono o denstista ao form
+		# 		patient_dental_procedure.save()
 
 	return render(request, 'odontology/patient/odontogram_patient.html', {'odontogram_patient': odontogram_patient, 'patient': patient, 'form_patient_dental_procedure': form_patient_dental_procedure}, context_instance=RequestContext(request))
 
