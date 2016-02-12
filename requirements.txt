@@ -1,15 +1,3 @@
-"""
-	Tal comando escreve na saída-padrão a lista de pacotes (bem como suas versões), de cada uma das dependências instaladas via pip no projeto ativo. De posse dessa lista, podemos agora facilmente enviar a lista de dependências para o nosso chefe, utilizando as informações fornecidas pelo pip freeze para garantir que a máquina do chefe irá satisfazer todas as dependências do nosso projeto. Primeiro, devemos armazenar em um arquivo as informações geradas pelo pip freeze:
-	
-	
-	pip freeze > requirements.txt
-	
-	Após isso, podemos enviar o arquivo requirements.txt para o chefão e, usando o pip, ele poderá executar:
-
-	pip install -r requirements.txt
-
-"""
-
 Django==1.9
 django-widget-tweaks==1.4.1
 mysql-connector-python==2.0.4
