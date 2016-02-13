@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.forms import ModelForm
+from django.forms.utils import ErrorList
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from odontology.models import Dentist, Address, Course, Tooth, ToothDivision, Patient, PatientTooth, ProcedureDental, OralProcedure, PatientDentalProcedure, OralPatientProcedure
@@ -60,6 +61,15 @@ class OralProcedureForm(ModelForm):
 		fields = '__all__'
 
 class PatientDentalProcedureForm(ModelForm):
+	def __init__(self, data=None, files=None, auto_id='id_%s', prefix=None,
+				initial=None, error_class=ErrorList, label_suffix=None,
+				empty_permitted=False, instance=None,patient=None):
+		super(PatientDentalProcedureForm,self).__init__(data=None, files=None, auto_id='id_%s', prefix=None,
+				initial=None, error_class=ErrorList, label_suffix=None,
+				empty_permitted=False, instance=None)
+		self.patient=patient
+		self.fields['patient_tooth'].queryset=PatientTooth.objects.filter(patient=patient)
+		print(dir(self))
 
 	class Meta:
 		model = PatientDentalProcedure
