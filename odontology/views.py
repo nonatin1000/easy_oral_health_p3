@@ -330,6 +330,7 @@ def dependent_register(request, patient_id):
 def odontogram(request, patient_id):
 	dentist = Dentist.objects.get(pk=request.user.id)
 	patient = Patient.objects.get(pk=patient_id)
+	form_patient_dental_procedure = PatientDentalProcedureForm(patient=patient) # empty form
 	# Save
 	if request.method == 'POST':
 		form_patient_dental_procedure = PatientDentalProcedureForm(request.POST)
@@ -337,9 +338,7 @@ def odontogram(request, patient_id):
 			patient_dental_procedure = form_patient_dental_procedure.save(commit=False)
 			patient_dental_procedure.dentist = dentist # Adiciono o denstista ao form
 			patient_dental_procedure.save()
-	form_patient_dental_procedure = PatientDentalProcedureForm(patient=patient) # empty form
-	#form_patient_dental_procedure.fields['patient_tooth'].queryset = PatientTooth.objects.filter(patient=patient_id)
-	odontogram_patient = PatientTooth.objects.filter(patient=patient_id)
+	odontogram_patient = PatientTooth.objects.filter(patient=patient)
 	return render(request, 'odontology/patient/odontogram_patient.html', {'odontogram_patient': odontogram_patient, 'patient': patient, 'form_patient_dental_procedure': form_patient_dental_procedure}, context_instance=RequestContext(request))
 
 # End Patient ------------------------------------------------------------------------------------#
