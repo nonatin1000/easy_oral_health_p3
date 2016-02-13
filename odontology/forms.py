@@ -61,15 +61,6 @@ class OralProcedureForm(ModelForm):
 		fields = '__all__'
 
 class PatientDentalProcedureForm(ModelForm):
-	def __init__(self, data=None, files=None, auto_id='id_%s', prefix=None,
-				initial=None, error_class=ErrorList, label_suffix=None,
-				empty_permitted=False, instance=None,patient=None):
-		super(PatientDentalProcedureForm,self).__init__(data=None, files=None, auto_id='id_%s', prefix=None,
-				initial=None, error_class=ErrorList, label_suffix=None,
-				empty_permitted=False, instance=None)
-		self.patient=patient
-		self.fields['patient_tooth'].queryset=PatientTooth.objects.filter(patient=patient)
-		print(dir(self))
 
 	class Meta:
 		model = PatientDentalProcedure
@@ -79,6 +70,22 @@ class PatientDentalProcedureForm(ModelForm):
 			'tooth_division': 'Divisão',
 			'procedure_dental': 'Procedimentos',
 		}
+
+	def __init__(self, data=None, files=None, auto_id='id_%s', prefix=None,
+				initial=None, error_class=ErrorList, label_suffix=None,
+				empty_permitted=False, instance=None,patient=None):
+		super(PatientDentalProcedureForm,self).__init__(data=None, files=None, auto_id='id_%s', prefix=None,
+				initial=None, error_class=ErrorList, label_suffix=None,
+				empty_permitted=False, instance=None)
+		self.patient=patient
+		self.fields['patient_tooth'].queryset=PatientTooth.objects.filter(patient=patient)
+
+	def clean_patient_tooth(self):
+		patient_tooth = self.cleaned_data['patient_tooth']
+		if patient_tooth.patient.id != self.patient.id:
+			raise forms.ValidationError(u'Dente Inválido.')
+		return super(PatientDentalProcedureForm,self).clean_patient_tooth()
+
 
 class OralPatientProcedureForm(ModelForm):
 
