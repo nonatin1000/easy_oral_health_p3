@@ -143,7 +143,7 @@ class OralProcedure(AuditModel):
 		return self.name
 
 class PatientDentalProcedure(AuditModel):
-	patient_tooth = models.ForeignKey(PatientTooth, related_name='patient_tooth')
+	patient_tooth = models.ForeignKey(PatientTooth, related_name='patient_dental_procedure')
 	tooth_division = models.ForeignKey(ToothDivision)
 	procedure_dental = models.ForeignKey(ProcedureDental)
 	dentist = models.ForeignKey(Dentist)
