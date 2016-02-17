@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.forms import ModelForm
+from django import forms
 from django.forms.utils import ErrorList
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -37,7 +38,7 @@ class ToothDivisionForm(ModelForm):
 		fields = '__all__'
 
 class PatientForm(ModelForm):
-
+	
 	class Meta:
 		model = Patient
 		exclude = ('dependents', 'patient')
