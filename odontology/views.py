@@ -232,7 +232,15 @@ def tooth_division_delete(request, tooth_division_id):
 # Signup Patient ---------------------------------------------------------------------------------#
 @login_required
 def patient_index(request):
+
+	""" A View of all Patient """
 	patients_list = Patient.objects.all()
+
+	""" takes the pacient name through and get stored in the variable var_get_search""" 
+	var_get_search = request.GET.get('search_box')
+	if var_get_search is not None:
+		patients_list = patients_list.filter(name__icontains=var_get_search)
+	
 	paginator = Paginator(patients_list, 10) # Mostra 10 pacientes por página
 
     # Make sure page request is an int. If not, deliver first page.
