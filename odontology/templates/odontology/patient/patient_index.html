@@ -37,7 +37,7 @@
 					<tr>
 						<th>Nome</th>
 						<th>Email</th>
-						<th style="width: 34%;">Ações</th>
+						<th style="width: 40%;">Ações</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -61,6 +61,9 @@
 									</a>
 									<a href="{% url 'odontogram' patient.id %}" class="btn btn-default" title="Odontograma">
 										<span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+									</a>
+									<a href="{% url 'oral_patient_procedure' patient.id %}" class="btn btn-default" title="Procedimento Bucal">
+										<span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
 									</a>
 									<a href="#modal-id-{{ patient.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>

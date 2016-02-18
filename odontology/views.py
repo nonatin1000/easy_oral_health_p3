@@ -349,6 +349,23 @@ def odontogram(request, patient_id):
 	form_patient_dental_procedure = PatientDentalProcedureForm(patient=patient) # empty form
 	return render(request, 'odontology/patient/odontogram_patient.html', {'odontogram_patient': odontogram_patient, 'patient': patient, 'form_patient_dental_procedure': form_patient_dental_procedure}, context_instance=RequestContext(request))
 
+@login_required
+def oral_patient_procedure(request, patient_id):
+	dentist = Dentist.objects.get(pk=request.user.id)
+	patient = Patient.objects.get(pk=patient_id)
+	# Save
+	if request.method == 'POST':
+		form_oral_patient_procedure = OralPatientProcedureForm(request.POST)
+		if form_oral_patient_procedure.is_valid():
+			oral_patient_procedure = form_oral_patient_procedure.save(commit=False)
+			oral_patient_procedure.dentist = dentist # Adiciono o denstista ao form
+			oral_patient_procedure.patient = patient # Adiciono o Patient ao form
+			oral_patient_procedure.save()
+	oral_patient_procedures = OralPatientProcedure.objects.filter(patient=patient)
+	form_oral_patient_procedure = OralPatientProcedureForm # empty form
+	return render(request, 'odontology/patient/oral_patient_procedure.html', {'oral_patient_procedures': oral_patient_procedures, 'patient': patient, 'form_oral_patient_procedure': form_oral_patient_procedure}, context_instance=RequestContext(request))
+
+
 # End Patient ------------------------------------------------------------------------------------#
 
 # Signup PatientDentalProcedure-------------------------------------------------------------------#

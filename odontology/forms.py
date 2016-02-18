@@ -95,8 +95,7 @@ class OralPatientProcedureForm(ModelForm):
 
 	class Meta:
 		model = OralPatientProcedure
-		fields = ['patient', 'oral_procedure']
+		fields = ['oral_procedure']
 		labels = {
-			'patient': 'Paciente',
 			'oral_procedure': 'Procedimento',
 		}
