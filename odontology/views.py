@@ -361,9 +361,9 @@ def oral_patient_procedure(request, patient_id):
 			oral_patient_procedure.dentist = dentist # Adiciono o denstista ao form
 			oral_patient_procedure.patient = patient # Adiciono o Patient ao form
 			oral_patient_procedure.save()
-	oral_patient_procedures = OralPatientProcedure.objects.filter(patient=patient)
+	oral_patient_procedure = OralPatientProcedure.objects.filter(patient=patient)
 	form_oral_patient_procedure = OralPatientProcedureForm # empty form
-	return render(request, 'odontology/patient/oral_patient_procedure.html', {'oral_patient_procedures': oral_patient_procedures, 'patient': patient, 'form_oral_patient_procedure': form_oral_patient_procedure}, context_instance=RequestContext(request))
+	return render(request, 'odontology/patient/oral_patient_procedure.html', {'oral_patient_procedure': oral_patient_procedure, 'patient': patient, 'form_oral_patient_procedure': form_oral_patient_procedure}, context_instance=RequestContext(request))
 
 
 # End Patient ------------------------------------------------------------------------------------#
@@ -488,47 +488,29 @@ def oral_procedure_delete(request, oral_procedure_id):
 
 # Signup OralPatientProcedure---------------------------------------------------------------------#
 @login_required
-def oral_patient_procedure_index(request):
-	oral_patient_procedures = OralPatientProcedure.objects.all()
-	return render(request, 'odontology/oral_patient_procedure/oral_patient_procedure_index.html', {'oral_patient_procedures': oral_patient_procedures}, context_instance=RequestContext(request))
-
-@login_required
 def oral_patient_procedure_register(request, oral_patient_procedure_id=None):
-
 	dentist = Dentist.objects.get(pk=request.user.id) # Pega o usuario logado
-	
-	if oral_patient_procedure_id: # Edit
-		oral_patient_procedure = OralPatientProcedure.objects.get(pk=oral_patient_procedure_id)
-		form_oral_patient_procedure = OralPatientProcedureForm(instance=oral_patient_procedure)
-	else: # New
-		form_oral_patient_procedure = OralPatientProcedureForm
-
+	oral_patient_procedure = OralPatientProcedure.objects.get(pk=oral_patient_procedure_id)
+	patient = oral_patient_procedure.patient
+	form_oral_patient_procedure = OralPatientProcedureForm(instance=oral_patient_procedure)
 	# Save
 	if request.method == 'POST':
 		if oral_patient_procedure_id: # Edit
 			form_oral_patient_procedure = OralPatientProcedureForm(request.POST, instance=oral_patient_procedure)
 			if form_oral_patient_procedure.is_valid():
-				form_oral_patient_procedure.save()
-				return redirect('oral_patient_procedure_index')
-		else:
-			form_oral_patient_procedure = OralPatientProcedureForm(request.POST)
-			if form_oral_patient_procedure.is_valid():
-				oral_patient_procedure = form_oral_patient_procedure.save(commit=False)
-				oral_patient_procedure.dentist = dentist # Adiciono o denstista ao form
-				oral_patient_procedure.save()
-				return redirect('oral_patient_procedure_index')
+				oralpatientprocedure = form_oral_patient_procedure.save(commit=False)
+				oralpatientprocedure.patient = patient # Adiciono o Patient ao form
+				oralpatientprocedure.save()
+				return redirect('oral_patient_procedure', patient_id=patient.id)
 
-	return render(request, 'odontology/oral_patient_procedure/oral_patient_procedure_register.html', {'form_oral_patient_procedure': form_oral_patient_procedure}, context_instance=RequestContext(request))
-
-@login_required
-def oral_patient_procedure_show(request, oral_patient_procedure_id):
-	oral_patient_procedure = OralPatientProcedure.objects.get(pk=oral_patient_procedure_id)
-	return render(request, 'odontology/oral_patient_procedure/oral_patient_procedure_show.html', {'oral_patient_procedure': oral_patient_procedure}, context_instance=RequestContext(request))
+	oral_patient_procedure = OralPatientProcedure.objects.filter(patient=patient)
+	return render(request, 'odontology/patient/oral_patient_procedure.html', {'form_oral_patient_procedure': form_oral_patient_procedure, 'patient': patient, 'oral_patient_procedure': oral_patient_procedure}, context_instance=RequestContext(request))
 
 @login_required
 def oral_patient_procedure_delete(request, oral_patient_procedure_id):
 	oral_patient_procedure = OralPatientProcedure.objects.get(pk=oral_patient_procedure_id)
+	patient = oral_patient_procedure.patient
 	oral_patient_procedure.delete()
-	return redirect('oral_patient_procedure_index')
+	return redirect('oral_patient_procedure', patient_id=patient.id)
 
 # End OralPatientProcedure ----------------------------------------------------------------------#
