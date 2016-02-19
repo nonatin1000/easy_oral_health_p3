@@ -4,44 +4,49 @@
 {% block body %}
 
 <nav class="navbar navbar-default">
-	<div class="container-fluid">
-		<ul class="nav navbar-nav pull-right">
-			<li>
-				<p class="navbar-btn" style="margin-left: 26em">
-					<a class="btn btn-default" href="{% url 'patient_index' %}"> 
-						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-						Voltar
-					</a>
-				</p>
-			</li>
-		</ul>
+	<div class="container">
+		<div class="row">
+			
+			<form action="." method="post" class="navbar-form navbar-left">{% csrf_token %}
 
-		<form action="." method="post" class="navbar-form navbar-right">{% csrf_token %}
-			<fieldset>
-				{% for field in form_patient_dental_procedure %}
-				{% if field.errors %}
-				<div class="form-group error" >
-					<label class="control-label" >{{ field.label }}</label>
-					{{ field|add_class:"form-control input-md" }}
-					{% for error in field.errors%}
-					<span class="help-inline error">{{ error}}</span>
-					{% endfor%}
-				</div>
-				{%else%}
-				<div class="form-group">
-					<label class="control-label" >{{ field.label }}</label>
-					{{ field|add_class:"form-control input-md" }}
-				</div>
-				{%endif%}
-				{% endfor %}
-				<div class="form-group">
-					<button type="submit" value="Salvar" class="btn btn-primary">
-						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
-						Salvar
-					</button>
-				</div>
-			</fieldset>
-		</form>
+				<fieldset>
+					{% for field in form_patient_dental_procedure %}
+					{% if field.errors %}
+					<div class="form-group error" >
+						<!-- <label class="control-label" >{{ field.label }}</label> -->
+						{{ field|add_class:"form-control input-md" }}
+						{% for error in field.errors%}
+						<span class="help-inline error">{{ error}}</span>
+						{% endfor%}
+					</div>
+					{%else%}
+					<div class="form-group">
+						<!-- <label class="control-label" >{{ field.label }}</label> -->
+						{{ field|add_class:"form-control input-md" }}
+					</div>
+					{%endif%}
+					{% endfor %}
+					<div class="form-group">
+						<button type="submit" value="Salvar" class="btn btn-primary">
+							<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+							Salvar
+						</button>
+					</div>
+				</fieldset>
+
+			</form>
+
+			<ul class="nav navbar-nav pull-right">
+				<li>
+					<p class="navbar-btn">
+						<a class="btn btn-default" href="{% url 'patient_index' %}"> 
+							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+							Voltar
+						</a>
+					</p>
+				</li>
+			</ul>
+		</div>
 	</div>
 </nav>
 
@@ -158,21 +163,21 @@
 				</thead>
 				<tbody>
 					{% for patient_tooth in odontogram_patient %}
-						{% for patienttooth in patient_tooth.patient_dental_procedure.all %}
-						<tr>
-							<td>{{ patient_tooth.tooth.name }}</td>
-							<td>{{ patienttooth.tooth_division.name }}</td>
-							<td>{{ patienttooth.procedure_dental.name }}</td>
-							<td>
-								<a href="{% url 'patient_dental_procedure_edit' patienttooth.id %}" class="btn btn-default" title="Editar">
-									<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-								</a>
+					{% for patienttooth in patient_tooth.patient_dental_procedure.all %}
+					<tr>
+						<td>{{ patient_tooth.tooth.name }}</td>
+						<td>{{ patienttooth.tooth_division.name }}</td>
+						<td>{{ patienttooth.procedure_dental.name }}</td>
+						<td>
+							<a href="{% url 'patient_dental_procedure_edit' patienttooth.id %}" class="btn btn-default" title="Editar">
+								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+							</a>
 
-								<a href="#modal-id-{{ patienttooth.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
-									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-								</a>
-							</td>
-						</tr>
+							<a href="#modal-id-{{ patienttooth.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+							</a>
+						</td>
+					</tr>
 
 					<!-- MODAL -->
 					<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
@@ -198,11 +203,19 @@
 					</div>
 					<!-- /MODAL -->
 					{% endfor %}
-				{% endfor %}
+					{% endfor %}
 				</tbody>
 			</table>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#id_patient_tooth option:first").html("Dentes");
+		$("#id_tooth_division option:first").html("Divisão");
+		$("#id_procedure_dental option:first").html("Procedimento");
+	})
+</script>
 
 {% endblock %}

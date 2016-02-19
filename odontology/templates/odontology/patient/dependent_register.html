@@ -68,6 +68,10 @@
     $('.form-group input[type=email]').addClass('form-control');
     $('.form-group select').addClass('form-control');
     $('.form-group input[type=submit]').addClass('btn btn-primary');
+
+    $(document).ready(function(){
+      $("#id_form-0-phone").inputmask({"mask": "(99) 9 9999-9999"}); //specifying options
+    });
   </script>
 
   {% endblock %}

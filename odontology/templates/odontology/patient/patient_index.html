@@ -4,28 +4,30 @@
 
 <nav class="navbar navbar-default">
 	<div class="container">
-		<!-- Form Search -->
-		<form class="navbar-form navbar-left" action="." method="get">
-        	<div class="form-group">
-        		<input id="search_box" name="search_box" type="text" placeholder="Nome do Paciente..." class="form-control" autofocus="true">
-        	</div>
-        	<div class="form-group">
-        		<button type="submit" class="btn btn-default form-control" title="Clique para realizar a pesquisar">
-        			<span class="glyphicon glyphicon-search"></span>
-        		</button>
-        	</div>
-    	</form>
-		<!-- Fim form Search -->
-		<ul class="nav navbar-nav pull-right">
-			<li>
-				<p class="navbar-btn">
-					<a class="btn btn-default" href="{% url 'patient_register' %}"> 
-						<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-						Novo
-					</a>
-				</p>
-			</li>
-		</ul>
+		<div class="row">
+			<!-- Form Search -->
+			<form class="navbar-form navbar-left" action="." method="get">
+				<div class="form-group">
+					<input id="search_box" name="search_box" type="text" placeholder="Nome do Paciente..." class="form-control" autofocus="true">
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-default form-control" title="Clique para realizar a pesquisar">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
+				</div>
+			</form>
+			<!-- Fim form Search -->
+			<ul class="nav navbar-nav pull-right">
+				<li>
+					<p class="navbar-btn">
+						<a class="btn btn-default" href="{% url 'patient_register' %}"> 
+							<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+							Novo
+						</a>
+					</p>
+				</li>
+			</ul>
+		</div>
 	</div>
 </nav>
 
@@ -43,85 +45,85 @@
 				<tbody>
 					{% for patient in patients %}
 
-						{% if patient.types != 'Dependente' %}
-							<tr>
-								<td>{{ patient.name }}</td>
-								<td>{{ patient.email }}</td>
-								<td>  
-									<a href="{% url 'patient_show' patient.id %}" class="btn btn-default" title="Exibir">
-										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-									</a>
+					{% if patient.types != 'Dependente' %}
+					<tr>
+						<td>{{ patient.name }}</td>
+						<td>{{ patient.email }}</td>
+						<td>  
+							<a href="{% url 'patient_show' patient.id %}" class="btn btn-default" title="Exibir">
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							</a>
 
-									<a href="{% url 'patient_edit' patient.id %}" class="btn btn-default" title="Editar">
-										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-									</a>
+							<a href="{% url 'patient_edit' patient.id %}" class="btn btn-default" title="Editar">
+								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+							</a>
 
-									<a href="{% url 'dependent_register' patient.id %}" class="btn btn-default" title="Add Dependente">
-										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-									</a>
-									<a href="{% url 'odontogram' patient.id %}" class="btn btn-default" title="Odontograma">
-										<span class="glyphicon glyphicon-th" aria-hidden="true"></span>
-									</a>
-									<a href="{% url 'oral_patient_procedure' patient.id %}" class="btn btn-default" title="Procedimento Bucal">
-										<span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
-									</a>
-									<a href="#modal-id-{{ patient.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-									</a>
-								</td>
-							</tr>
-						{% endif %}
-							<!-- SE TIVER DEPENDENTES LISTA ELES AQUI... -->
-						
-							{% if patient.dependents.count > 0 %}
-							<tr>
-								<td colspan="4">
-								<div class="panel panel-success">
-								 	<div class="panel-heading">
-										<h3 class="panel-title">Dependentes</h3>
-								  	</div>
-								  	<div class="panel-body">
-												
+							<a href="{% url 'dependent_register' patient.id %}" class="btn btn-default" title="Add Dependente">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							</a>
+							<a href="{% url 'odontogram' patient.id %}" class="btn btn-default" title="Odontograma">
+								<span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+							</a>
+							<a href="{% url 'oral_patient_procedure' patient.id %}" class="btn btn-default" title="Procedimento Bucal">
+								<span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+							</a>
+							<a href="#modal-id-{{ patient.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+							</a>
+						</td>
+					</tr>
+					{% endif %}
+					<!-- SE TIVER DEPENDENTES LISTA ELES AQUI... -->
+					
+					{% if patient.dependents.count > 0 %}
+					<tr>
+						<td colspan="4">
+							<div class="panel panel-success">
+								<div class="panel-heading">
+									<h3 class="panel-title">Dependentes</h3>
+								</div>
+								<div class="panel-body">
+									
 									<table style="width:100%;">
-							            <thead>
-							              <tr>
-							                <th>Nome</th>
-							                <th>Email</th>
-							                <th>Fone</th>
-							                <th style="width: 30%;">Ações</th>
-							              </tr>
-							            </thead>
-							            <tbody>
-							              {% for dependent in patient.dependents.all %}
-							                <tr>
-							                  <input type="hidden" name="types" id="types" value="DEPENDENT"></td>
-							                  <td>{{ dependent.name }}</td>
-							                  <td>{{ dependent.email }}</td>
-							                  <td>{{ dependent.phone }}</td>
-							                  <td>      
-							                    <a href="{% url 'patient_edit' dependent.id %}" class="btn btn-default" title="Editar">
-							                      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-							                    </a>
-							                  	<a href="{% url 'odontogram' dependent.id %}" class="btn btn-default" title="Odontograma">
-													<span class="glyphicon glyphicon-th" aria-hidden="true"></span>
-												</a>
-												<a href="{% url 'oral_patient_procedure' dependent.id %}" class="btn btn-default" title="Procedimento Bucal">
-													<span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
-												</a>
-							                  	<a href="#modal-id-{{ dependent.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
-													<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-												</a>
-							                  </td>
-							                </tr>
-					{% endfor %}
+										<thead>
+											<tr>
+												<th>Nome</th>
+												<th>Email</th>
+												<th>Fone</th>
+												<th style="width: 30%;">Ações</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for dependent in patient.dependents.all %}
+											<tr>
+												<input type="hidden" name="types" id="types" value="DEPENDENT"></td>
+												<td>{{ dependent.name }}</td>
+												<td>{{ dependent.email }}</td>
+												<td>{{ dependent.phone }}</td>
+												<td>      
+													<a href="{% url 'patient_edit' dependent.id %}" class="btn btn-default" title="Editar">
+														<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+													</a>
+													<a href="{% url 'odontogram' dependent.id %}" class="btn btn-default" title="Odontograma">
+														<span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+													</a>
+													<a href="{% url 'oral_patient_procedure' dependent.id %}" class="btn btn-default" title="Procedimento Bucal">
+														<span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+													</a>
+													<a href="#modal-id-{{ dependent.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+														<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+													</a>
+												</td>
+											</tr>
+											{% endfor %}
 
-							            </tbody>
-							        </table>
+										</tbody>
+									</table>
 								</td>
 							</tr>
-										  </div>
-									</div>
-							{% endif %}
+						</div>
+					</div>
+					{% endif %}
 					<!-- DEPENDENTES... -->
 
 					<!-- MODAL -->
@@ -151,45 +153,45 @@
 				</tbody>
 			</table>
 			<center>
-			<!-- Paginação -->
+				<!-- Paginação -->
 				{% if patients.has_other_pages %}
-			  	<nav>
-			  		<ul class="pagination">
-			   			{% if patients.has_previous %}
-				    	<li>
-				      		<a href="?page={{ patients.previous_page_number }}" aria-label="Previous">
-				        		<span aria-hidden="true">&laquo;</span>
-				      		</a>
-				    	</li>
+				<nav>
+					<ul class="pagination">
+						{% if patients.has_previous %}
+						<li>
+							<a href="?page={{ patients.previous_page_number }}" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
 						{% else %}
-							<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+						<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 						{% endif %}
 						{% for page_num in patients.paginator.page_range %}
-			    			<li {% if page_num == patients.number %} class="active" {% endif %}>
-			    				<a href="?page={{ page_num }}">{{ page_num }}</a>
-			    			</li>
-			    		{% endfor %}
-			    		{% if patients.has_next %}
-				    	<li>
-				      		<a href="?page={{ patients.next_page_number}}" aria-label="Next">
-				        		<span aria-hidden="true">&raquo;</span>
-				      		</a>
-				    	</li>
+						<li {% if page_num == patients.number %} class="active" {% endif %}>
+							<a href="?page={{ page_num }}">{{ page_num }}</a>
+						</li>
+						{% endfor %}
+						{% if patients.has_next %}
+						<li>
+							<a href="?page={{ patients.next_page_number}}" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
 						{% else %}
-					  	<li class="disabled">
-					    	<a href="#" aria-label="Next">
-					       		<span aria-hidden="true">&raquo;</span>
-					      	</a>
-					    </li>
+						<li class="disabled">
+							<a href="#" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
 						{% endif %}
-			  		</ul>
+					</ul>
 				</nav>
 				{% endif %}
-			<!-- Fim da Paginação -->
+				<!-- Fim da Paginação -->
 			</center>
 		</div>
 	</div>
-	</div>
+</div>
 </div>
 
 {% endblock %}

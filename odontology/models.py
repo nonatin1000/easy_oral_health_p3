@@ -39,7 +39,7 @@ class Dentist(User, AuditModel):
 
 	birth_date = models.DateField(u'Data Nascimento')
 	cro = models.CharField(u'CRO', max_length=6, null=False,)
-	phone = models.CharField(u'Telefone', max_length=14, blank=True)
+	phone = models.CharField(u'Telefone', max_length=16, blank=True)
 	address = GenericRelation('Address')
 
 	def __str__(self): 
@@ -90,7 +90,7 @@ class Patient(AuditModel):
 	birth_date = models.DateField(u'Data de Nascimento', blank=True, null=True)
 	father = models.CharField(u'Pai', max_length=150, blank=True, null=True)
 	mother = models.CharField(u'Mãe', max_length=150, blank=True, null=True)
-	phone = models.CharField(u'Telefone', max_length=14, blank=True, null=True)
+	phone = models.CharField(u'Telefone', max_length=16, blank=True, null=True)
 	course = models.ForeignKey(Course, null=True, blank=True)
 
 	STUDENT = 'Estudante'

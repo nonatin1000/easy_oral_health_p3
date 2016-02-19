@@ -3,55 +3,96 @@
 {% block body %}
 <nav class="navbar navbar-default">
   <div class="container">
-    <a class="navbar-brand" href="#">Cadastro dos Procedimentos Bucal do Paciente</a>
-    <ul class="nav navbar-nav pull-right">
-      <li>
-        <p class="navbar-btn">
-          <a class="btn btn-default" href="{% url 'patient_index' %}"> 
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            Voltar
-          </a>
-        </p>
-      </li>
-    </ul>
+    <div class="row">
+      <ul class="nav navbar-nav pull-right">
+        <li>
+          <p class="navbar-btn">
+            <a class="btn btn-default" href="{% url 'patient_index' %}"> 
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              Voltar
+            </a>
+          </p>
+        </li>
+      </ul>
+
+      <!-- Form -->
+      <form action="." method="post" class="navbar-form navbar-left">{% csrf_token %}
+        <fieldset>
+          {% for field in form_oral_patient_procedure %}
+          {% if field.errors %}
+          <div class="form-group error" >
+            <label class="control-label" >{{ field.label }}</label>
+            {{ field|add_class:"form-control input-md" }}
+            {% for error in field.errors%}
+            <span class="help-inline error">{{ error}}</span>
+            {% endfor%}
+          </div>
+          {%else%}
+          <div class="form-group">
+            <label class="control-label" >{{ field.label }}</label>
+            {{ field|add_class:"form-control input-md" }}
+          </div>
+          {%endif%}
+          {% endfor %}
+          <div class="form-group">
+            <button type="submit" value="Salvar" class="btn btn-primary">
+              <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+              Salvar
+            </button>
+          </div>
+        </fieldset>
+      </form>
+      <!-- Fim form -->
+    </div>
   </div>
 </nav>
 
+<!-- Dados do Paciente-->
 <div class="container">
-  <div class="row">
+  <div class="row" style="margin-bottom: 1em">
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-      <form action="." method="post">{% csrf_token %}
-          <fieldset>
-            {% for field in form_oral_patient_procedure %}
-              {% if field.errors %}
-                <div class="form-group error" >
-                  <label class="control-label" >{{ field.label }}</label>
-                          {{ field|add_class:"form-control input-md" }}
-                  {% for error in field.errors%}
-                        <span class="help-inline error">{{ error}}</span>
-                      {% endfor%}
-                    </div>
-              {%else%}
-              <div class="form-group">
-                <label class="control-label" >{{ field.label }}</label>
-                {{ field|add_class:"form-control input-md" }}
-                  </div>
-              {%endif%}
-              {% endfor %}
-              <div class="form-group">
-                <button type="submit" value="Salvar" class="btn btn-primary">
-                  <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
-                  Salvar
-                </button>
-              </div>
-          </fieldset>
-      </form>
+      <p>
+        <strong>Nome: </strong> {{ patient.name }}
+      </p>
+      <p>
+        <strong>Estado civil: </strong> {{ patient.marital_status }}
+      </p>
+      <p>
+        <strong>Sexo: </strong> {{ patient.sex }}
+      </p>
+      <p>
+        <strong>Pai: </strong> {{ patient.father }}
+      </p>
+      <p>
+        <strong>Mãe: </strong> {{ patient.mother }}
+      </p>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <p>
+        <strong>Data de Nasc.: </strong> {{ patient.birth_date }}
+      </p>
+
+      <p>
+        <strong>Tipo: </strong> {{ patient.types }}
+      </p>
+
+      <p>
+        <strong>Fone: </strong> {{ patient.phone }}
+      </p>
+      <p>
+        <strong>E-mail: </strong> {{ patient.email }}
+      </p>
+      <p>
+        <strong>Curso: </strong> {{ patient.course }}
+      </p>
     </div>
   </div>
 </div>
+
 <!-- Lista os procedimento na boca do paciente-->
 <div class="container">
   <div class="row">
+    <hr />
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <h4>Procedimentos Bucal</h4>
       <table class="table table-hover">
@@ -64,19 +105,19 @@
         </thead>
         <tbody>
           {% for oralpatientprocedure in oral_patient_procedure %}
-            <tr>
-              <td>{{ oralpatientprocedure.dentist.first_name }}</td>
-              <td>{{ oralpatientprocedure.oral_procedure.name }}</td>
-              <td>
-                <a href="{% url 'oral_patient_procedure_edit' oralpatientprocedure.id %}" class="btn btn-default" title="Editar">
-                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                </a>
+          <tr>
+            <td>{{ oralpatientprocedure.dentist.first_name }}</td>
+            <td>{{ oralpatientprocedure.oral_procedure.name }}</td>
+            <td>
+              <a href="{% url 'oral_patient_procedure_edit' oralpatientprocedure.id %}" class="btn btn-default" title="Editar">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              </a>
 
-                <a href="#modal-id-{{ oralpatientprocedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
-                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                </a>
-              </td>
-            </tr>
+              <a href="#modal-id-{{ oralpatientprocedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              </a>
+            </td>
+          </tr>
 
           <!-- MODAL -->
           <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
@@ -101,7 +142,7 @@
             </div>
           </div>
           <!-- /MODAL -->
-        {% endfor %}
+          {% endfor %}
         </tbody>
       </table>
     </div>
