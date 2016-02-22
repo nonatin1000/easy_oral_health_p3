@@ -4,7 +4,6 @@
 
 <nav class="navbar navbar-default">
 	<div class="container">
-		<div class="row">
 			<!-- Form Search -->
 			<form class="navbar-form navbar-left" action="." method="get">
 				<div class="form-group">
@@ -27,7 +26,6 @@
 					</p>
 				</li>
 			</ul>
-		</div>
 	</div>
 </nav>
 
@@ -49,7 +47,7 @@
 					<tr>
 						<td>{{ patient.name }}</td>
 						<td>{{ patient.email }}</td>
-						<td>  
+						<td>
 							<a href="{% url 'patient_show' patient.id %}" class="btn btn-default" title="Exibir">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							</a>
