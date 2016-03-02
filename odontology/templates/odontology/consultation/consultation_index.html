@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<nav class="navbar navbar-default">
+	<div class="container">
+		<a class="navbar-brand" href="#">Consultas</a>
+		<ul class="nav navbar-nav pull-right">
+			<li>
+				<p class="navbar-btn">
+					<a class="btn btn-default" href="{% url 'consult_patient patient.id' %}"> 
+						<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+						Novo
+					</a>
+				</p>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Paciente</th>
+						<th>Comparecimento</th>
+						<th style="width: 21%;">Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for consultation in consultations %}
+					<tr>
+						<td>{{ consultation.patient.name }}</td>
+						<td>{{ consultation.attendance }}</td>
+						<td>                    
+							<a href="{% url 'consultation_show' consultation.id %}" class="btn btn-default" title="Exibir">
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							</a>
+
+							<a href="{% url 'consultation_edit' consultation.id %}" class="btn btn-default" title="Editar">
+								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+							</a>
+
+							<a href="#modal-id-{{ consultation.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+							</a>
+						</td>
+					</tr>
+
+					<!-- MODAL -->
+					<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+						<div class="modal fade" id="modal-id-{{ consultation.id }}">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h4 class="modal-title">Alerta!</h4>
+									</div>
+									<div class="modal-body">
+										<p>Deseja realmente remover <strong>{{ consultation.patient.name }}</strong>?</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+										<a href="{% url 'consultation_delete' consultation.id %}" class='btn btn-danger' title='Exibir'>
+											Delete
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /MODAL -->
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -58,6 +58,8 @@ urlpatterns = [
     url(r'^odontogram/(?P<patient_id>\d+)/$', views.odontogram , name='odontogram'),
     # Oral Patient Procedure
     url(r'^oral_patient_procedure/(?P<patient_id>\d+)/$', views.oral_patient_procedure , name='oral_patient_procedure'),
+    # Consult Patient
+    url(r'^consult_patient/(?P<patient_id>\d+)/$', views.consult_patient , name='consult_patient'),
     # ProcedureDental
     url(r'^patient_dental_procedure_edit/(?P<patient_dental_procedure_id>\d+)/$', views.patient_dental_procedure_register , name='patient_dental_procedure_edit'),
     url(r'^patient_dental_procedure_delete(?P<patient_dental_procedure_id>\d+)/$', views.patient_dental_procedure_delete , name='patient_dental_procedure_delete'),
@@ -76,5 +78,11 @@ urlpatterns = [
     # OralPatientProcedure
     url(r'^oral_patient_procedure_edit/(?P<oral_patient_procedure_id>\d+)/$', views.oral_patient_procedure_register , name='oral_patient_procedure_edit'),
     url(r'^oral_patient_procedure_delete(?P<oral_patient_procedure_id>\d+)/$', views.oral_patient_procedure_delete , name='oral_patient_procedure_delete'),
+    # Consultation
+    url(r'^consultation_index/$', views.consultation_index , name='consultation_index'),
+    url(r'^consultation_register/$', views.consultation_register , name='consultation_register'),
+    url(r'^consultation_edit/(?P<consultation_id>\d+)/$', views.consultation_register , name='consultation_edit'),
+    url(r'^consultation_show/(?P<consultation_id>\d+)/$', views.consultation_show , name='consultation_show'),
+    url(r'^consultation_delete(?P<consultation_id>\d+)/$', views.consultation_delete , name='consultation_delete'),
     
 ]

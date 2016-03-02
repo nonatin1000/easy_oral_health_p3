@@ -157,3 +157,16 @@ class OralPatientProcedure(AuditModel):
 	patient = models.ForeignKey(Patient, related_name='oral_patient_procedure')
 	oral_procedure = models.ForeignKey(OralProcedure)
 	dentist = models.ForeignKey(Dentist)
+
+	def __str__(self):
+		return self.oral_procedure.name
+
+class Consultation(AuditModel):
+	patient = models.ForeignKey(Patient, related_name='consultation_patient')
+	patient_dental_procedure = models.ManyToManyField(PatientDentalProcedure, related_name='consultation_patient_dental_procedure')
+	oral_patient_procedure = models.ManyToManyField(OralPatientProcedure, related_name='consultation_oral_patient_procedure')
+	attendance = models.BooleanField()
+	observation = models.TextField(blank=True, null=True)
+
+	def __str__(self):
+		return self.patient.name

@@ -161,3 +161,19 @@ body { padding-top: 50px; }
   font-weight: bold;
   display: block;
 }
+
+.legenda {
+  
+}
+
+.circulo {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+}
+
+.bg-restaurado { background: #000000; }
+.bg-cariado { background: #BB0000; }
+.bg-pendente { background: #449D44; }
+.bg-extracao { background: #000000; opacity: 0.7; }
+.bg-extraido { background: #000000; }

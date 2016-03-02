@@ -10,8 +10,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
 from django.forms import formset_factory
-from .models import Dentist, Address, User, Course, Tooth, ToothDivision, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure, OralPatientProcedure
-from .forms import DentistForm, AddressForm, CourseForm, ToothForm, ToothDivisionForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm, OralPatientProcedureForm
+from .models import Dentist, Address, User, Course, Tooth, ToothDivision, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure, OralPatientProcedure, Consultation
+from .forms import DentistForm, AddressForm, CourseForm, ToothForm, ToothDivisionForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm, OralPatientProcedureForm, ConsultationForm
 
 # Signup dentist ---------------------------------------------------------------------------------#
 
@@ -365,6 +365,26 @@ def oral_patient_procedure(request, patient_id):
 	form_oral_patient_procedure = OralPatientProcedureForm # empty form
 	return render(request, 'odontology/patient/oral_patient_procedure.html', {'oral_patient_procedure': oral_patient_procedure, 'patient': patient, 'form_oral_patient_procedure': form_oral_patient_procedure}, context_instance=RequestContext(request))
 
+@login_required
+def consult_patient(request, patient_id):
+	dentist = Dentist.objects.get(pk=request.user.id)
+	patient = Patient.objects.get(pk=8)#patient_id)
+	# Save
+	if request.method == 'POST':
+		form_patient_dental_procedure = PatientDentalProcedureForm(request.POST, patient=patient)
+		if form_patient_dental_procedure.is_valid():
+			patient_dental_procedure = form_patient_dental_procedure.save(commit=False)
+			patient_dental_procedure.dentist = dentist # Adiciono o denstista ao form
+			patient_dental_procedure.save()
+
+ 	# Odontograma
+	odontogram_patient = PatientTooth.objects.filter(patient=patient).order_by('tooth')
+	form_patient_dental_procedure = PatientDentalProcedureForm(patient=patient) # empty form
+
+	# Procedimento Bucal
+	oral_patient_procedure = OralPatientProcedure.objects.filter(patient=patient)
+	form_oral_patient_procedure = OralPatientProcedureForm # empty form
+	return render(request, 'odontology/patient/consult_patient.html', {'odontogram_patient': odontogram_patient, 'patient': patient, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure}, context_instance=RequestContext(request))
 
 # End Patient ------------------------------------------------------------------------------------#
 
@@ -514,3 +534,49 @@ def oral_patient_procedure_delete(request, oral_patient_procedure_id):
 	return redirect('oral_patient_procedure', patient_id=patient.id)
 
 # End OralPatientProcedure ----------------------------------------------------------------------#
+
+# Signup Consultation----------------------------------------------------------------------------#
+@login_required
+def consultation_index(request):
+	consultations = Consultation.objects.all()
+	patient = Patient.objects.get(pk=8)
+	print(patient.id)
+	return render(request, 'odontology/consultation/consultation_index.html', {'consultations': consultations, 'patient': patient}, context_instance=RequestContext(request))
+
+@login_required
+def consultation_register(request, consultation_id=None):
+
+	if consultation_id: # Edit
+		consultation = Consultation.objects.get(pk=consultation_id)
+		form_consultation = ConsultationForm(instance=consultation)
+	else: # New
+		form_consultation = ConsultationForm
+		consultation = None
+
+	# Save
+	if request.method == 'POST':
+		if consultation_id: # Edit
+			form_consultation = ConsultationForm(request.POST, instance=consultation)
+			if form_consultation.is_valid():
+				form_consultation.save()
+		else:
+			form_consultation = ConsultationForm(request.POST)
+			if form_consultation.is_valid():
+				form_consultation.save()
+
+		return redirect('consultation_index')
+
+	return render(request, 'odontology/consultation/consultation_register.html', {'form_consultation': form_consultation, 'consultation': consultation}, context_instance=RequestContext(request))
+
+@login_required
+def consultation_show(request, consultation_id):
+	consultation = Consultation.objects.get(pk=consultation_id)
+	return render(request, 'odontology/consultation/consultation_show.html', {'consultation': consultation}, context_instance=RequestContext(request))
+
+@login_required
+def consultation_delete(request, consultation_id):
+	consultation = Consultation.objects.get(pk=consultation_id)
+	consultation.delete()
+	return redirect('consultation_index')
+
+# End Consultation-------- ----------------------------------------------------------------------#

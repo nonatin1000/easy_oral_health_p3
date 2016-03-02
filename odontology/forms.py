@@ -4,7 +4,7 @@ from django.forms import ModelForm
 from django.forms.utils import ErrorList
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from odontology.models import Dentist, Address, Course, Tooth, ToothDivision, Patient, PatientTooth, ProcedureDental, OralProcedure, PatientDentalProcedure, OralPatientProcedure
+from odontology.models import Dentist, Address, Course, Tooth, ToothDivision, Patient, PatientTooth, ProcedureDental, OralProcedure, PatientDentalProcedure, OralPatientProcedure, Consultation
 
 class DentistForm(UserCreationForm):
 
@@ -99,3 +99,12 @@ class OralPatientProcedureForm(ModelForm):
 		labels = {
 			'oral_procedure': 'Procedimento',
 		}
+
+class ConsultationForm(ModelForm):
+
+	class Meta:
+		model = Consultation
+		fields = ('__all__')
+		# labels = {
+		# 	'oral_procedure': 'Procedimento',
+		# }
