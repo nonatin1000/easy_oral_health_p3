@@ -4,28 +4,28 @@
 
 <nav class="navbar navbar-default">
 	<div class="container">
-			<!-- Form Search -->
-			<form class="navbar-form navbar-left" action="." method="get">
-				<div class="form-group">
-					<input id="search_box" name="search_box" type="text" placeholder="Nome do Paciente..." class="form-control" autofocus="true">
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-default form-control" title="Clique para realizar a pesquisar">
-						<span class="glyphicon glyphicon-search"></span>
-					</button>
-				</div>
-			</form>
-			<!-- Fim form Search -->
-			<ul class="nav navbar-nav pull-right">
-				<li>
-					<p class="navbar-btn">
-						<a class="btn btn-default" href="{% url 'patient_register' %}"> 
-							<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-							Novo
-						</a>
-					</p>
-				</li>
-			</ul>
+		<!-- Form Search -->
+		<form class="navbar-form navbar-left" action="." method="get">
+			<div class="form-group">
+				<input id="search_box" name="search_box" type="text" placeholder="Nome do Paciente..." class="form-control" autofocus="true">
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-default form-control" title="Clique para realizar a pesquisar">
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+			</div>
+		</form>
+		<!-- Fim form Search -->
+		<ul class="nav navbar-nav pull-right">
+			<li>
+				<p class="navbar-btn">
+					<a class="btn btn-default" href="{% url 'patient_register' %}"> 
+						<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+						Novo
+					</a>
+				</p>
+			</li>
+		</ul>
 	</div>
 </nav>
 
@@ -36,8 +36,8 @@
 				<thead>
 					<tr>
 						<th>Nome</th>
-						<th>Email</th>
-						<th style="width: 40%;">Ações</th>
+						<th>Telefone</th>
+						<th style="width: 150px;">Ações</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -46,28 +46,25 @@
 					{% if patient.types != 'Dependente' %}
 					<tr>
 						<td>{{ patient.name }}</td>
-						<td>{{ patient.email }}</td>
+						<td>{{ patient.phone }}</td>
 						<td>
+							{% if dependent.id == patient.id %}
+							<a href="#" class="btn btn-success" title= "Selecionar paciente">
+								<span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+							</a>
+							{% else %}
+							<a href="#" class="btn btn-default" titl="Selecionar paciente">
+								<span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+							</a>
+							{% endif %} 
 							<a href="{% url 'patient_show' patient.id %}" class="btn btn-default" title="Exibir">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							</a>
-
-							<a href="{% url 'patient_edit' patient.id %}" class="btn btn-default" title="Editar">
-								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-							</a>
-
-							<a href="{% url 'dependent_register' patient.id %}" class="btn btn-default" title="Add Dependente">
-								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-							</a>
-							<a href="{% url 'odontogram' patient.id %}" class="btn btn-default" title="Odontograma">
-								<span class="glyphicon glyphicon-th" aria-hidden="true"></span>
-							</a>
-							<a href="{% url 'oral_patient_procedure' patient.id %}" class="btn btn-default" title="Procedimento Bucal">
-								<span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
-							</a>
-							<a href="#modal-id-{{ patient.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
-								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-							</a>
+							{% if patient.types != 'Estudante' %}
+								<a href="{% url 'dependent_register' patient.id %}" class="btn btn-default" title="Add Dependente">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+								</a>
+							{% endif %}
 						</td>
 					</tr>
 					{% endif %}
@@ -88,7 +85,7 @@
 												<th>Nome</th>
 												<th>Email</th>
 												<th>Fone</th>
-												<th style="width: 30%;">Ações</th>
+												<th style="width: 5%;">Ações</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -98,19 +95,10 @@
 												<td>{{ dependent.name }}</td>
 												<td>{{ dependent.email }}</td>
 												<td>{{ dependent.phone }}</td>
-												<td>      
-													<a href="{% url 'patient_edit' dependent.id %}" class="btn btn-default" title="Editar">
-														<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-													</a>
-													<a href="{% url 'odontogram' dependent.id %}" class="btn btn-default" title="Odontograma">
-														<span class="glyphicon glyphicon-th" aria-hidden="true"></span>
-													</a>
-													<a href="{% url 'oral_patient_procedure' dependent.id %}" class="btn btn-default" title="Procedimento Bucal">
-														<span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
-													</a>
-													<a href="#modal-id-{{ dependent.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
-														<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-													</a>
+												<td> 
+													<a href="{% url 'patient_show' dependent.id %}" class="btn btn-default" title="Exibir">
+														<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+													</a>     
 												</td>
 											</tr>
 											{% endfor %}
@@ -124,29 +112,7 @@
 					{% endif %}
 					<!-- DEPENDENTES... -->
 
-					<!-- MODAL -->
-					<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-						<div class="modal fade" id="modal-id-{{ patient.id }}">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										<h4 class="modal-title">Alerta!</h4>
-									</div>
-									<div class="modal-body">
-										<p>Deseja realmente remover <strong>{{ patient.name }}</strong>?</p>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-										<a href="{% url 'patient_delete' patient.id %}" class='btn btn-danger' title='Exibir'>
-											Delete
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /MODAL -->
+					
 					{% endfor %}
 				</tbody>
 			</table>

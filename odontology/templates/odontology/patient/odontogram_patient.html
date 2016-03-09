@@ -6,40 +6,10 @@
 <nav class="navbar navbar-default">
 	<div class="container">
 		<div class="row">
-			
-			<form action="." method="post" class="navbar-form navbar-left">{% csrf_token %}
-
-				<fieldset>
-					{% for field in form_patient_dental_procedure %}
-					{% if field.errors %}
-					<div class="form-group error" >
-						<!-- <label class="control-label" >{{ field.label }}</label> -->
-						{{ field|add_class:"form-control input-md" }}
-						{% for error in field.errors%}
-						<span class="help-inline error">{{ error}}</span>
-						{% endfor%}
-					</div>
-					{%else%}
-					<div class="form-group">
-						<!-- <label class="control-label" >{{ field.label }}</label> -->
-						{{ field|add_class:"form-control input-md" }}
-					</div>
-					{%endif%}
-					{% endfor %}
-					<div class="form-group">
-						<button type="submit" value="Salvar" class="btn btn-primary">
-							<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
-							Salvar
-						</button>
-					</div>
-				</fieldset>
-
-			</form>
-
 			<ul class="nav navbar-nav pull-right">
 				<li>
 					<p class="navbar-btn">
-						<a class="btn btn-default" href="{% url 'patient_index' %}"> 
+						<a class="btn btn-default" href="{% url 'patient_show' patient.id %}"> 
 							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 							Voltar
 						</a>
@@ -118,27 +88,27 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td style="background: #000000"></td>
+						<td><div class="circulo bg-restaurado"></div></td>
 						<td>Restaurado</td>
 						<td>Quadro cheio em preto</td>
 					</tr>
 					<tr>
-						<td style="background: #BB0000"></td>
+						<td><div class="circulo bg-cariado"></div></td>
 						<td>Cariado</td>
 						<td>Quadro cheio em vermelho</td>
 					</tr>
 					<tr>
-						<td style="background: #449D44"></td>
+						<td><div class="circulo bg-pendente"></div></td>
 						<td>Restauração a ser feita</td>
 						<td>Quadro cheio em verde</td>
 					</tr>
 					<tr>
-						<td style="background: #000000; opacity: 0.7"></td>
+						<td><div class="circulo bg-extracao"></div></td>
 						<td>Indicado para extração</td>
 						<td>Quadro cheio em cinza</td>
 					</tr>
 					<tr>
-						<td style="background: #000000"></td>
+						<td><div class="circulo bg-extraido"></div></td>
 						<td>Extraído ou ausente</td>
 						<td>Quadro totalmente preto</td>
 					</tr>
@@ -147,75 +117,5 @@
 		</div>
 	</div>
 </div>
-
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<h4>Procedimentos Dentário</h4>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>Dente</th>
-						<th>Divisão dos Dentes</th>
-						<th>Procedimento Dentário</th>
-						<th style="width: 21%;">Ações</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for patient_tooth in odontogram_patient %}
-					{% for patienttooth in patient_tooth.patient_dental_procedure.all %}
-					<tr>
-						<td>{{ patient_tooth.tooth.name }}</td>
-						<td>{{ patienttooth.tooth_division.name }}</td>
-						<td>{{ patienttooth.procedure_dental.name }}</td>
-						<td>
-							<a href="{% url 'patient_dental_procedure_edit' patienttooth.id %}" class="btn btn-default" title="Editar">
-								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-							</a>
-
-							<a href="#modal-id-{{ patienttooth.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
-								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-							</a>
-						</td>
-					</tr>
-
-					<!-- MODAL -->
-					<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-						<div class="modal fade" id="modal-id-{{ patienttooth.id }}">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										<h4 class="modal-title">Alerta!</h4>
-									</div>
-									<div class="modal-body">
-										<p>Deseja realmente remover <strong>{{ patient_tooth.tooth.name }}</strong>?</p>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-										<a href="{% url 'patient_dental_procedure_delete' patienttooth.id %}" class='btn btn-danger' title='Exibir'>
-											Delete
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /MODAL -->
-					{% endfor %}
-					{% endfor %}
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#id_patient_tooth option:first").html("Dentes");
-		$("#id_tooth_division option:first").html("Divisão");
-		$("#id_procedure_dental option:first").html("Procedimento");
-	})
-</script>
 
 {% endblock %}

@@ -304,7 +304,9 @@ def patient_show(request, patient_id):
 	patient = Patient.objects.get(pk=patient_id)
 	patient_type = ContentType.objects.get_for_model(Patient) # Recupero o ContentType do model Patient
 	address = Address.objects.get(object_id=patient_id, content_type=patient_type)
-	return render(request, 'odontology/patient/patient_show.html', {'patient': patient, 'address': address}, context_instance=RequestContext(request))
+	odontogram_patient = PatientTooth.objects.filter(patient=patient).order_by('tooth')
+	oral_patient_procedure = OralPatientProcedure.objects.filter(patient=patient)
+	return render(request, 'odontology/patient/patient_show.html', {'patient': patient, 'address': address, 'odontogram_patient': odontogram_patient, 'oral_patient_procedure': oral_patient_procedure}, context_instance=RequestContext(request))
 
 @login_required
 def patient_delete(request, patient_id):
@@ -338,13 +340,6 @@ def dependent_register(request, patient_id):
 def odontogram(request, patient_id):
 	dentist = Dentist.objects.get(pk=request.user.id)
 	patient = Patient.objects.get(pk=patient_id)
-	# Save
-	if request.method == 'POST':
-		form_patient_dental_procedure = PatientDentalProcedureForm(request.POST, patient=patient)
-		if form_patient_dental_procedure.is_valid():
-			patient_dental_procedure = form_patient_dental_procedure.save(commit=False)
-			patient_dental_procedure.dentist = dentist # Adiciono o denstista ao form
-			patient_dental_procedure.save()
 	odontogram_patient = PatientTooth.objects.filter(patient=patient).order_by('tooth')
 	form_patient_dental_procedure = PatientDentalProcedureForm(patient=patient) # empty form
 	return render(request, 'odontology/patient/odontogram_patient.html', {'odontogram_patient': odontogram_patient, 'patient': patient, 'form_patient_dental_procedure': form_patient_dental_procedure}, context_instance=RequestContext(request))
@@ -353,14 +348,6 @@ def odontogram(request, patient_id):
 def oral_patient_procedure(request, patient_id):
 	dentist = Dentist.objects.get(pk=request.user.id)
 	patient = Patient.objects.get(pk=patient_id)
-	# Save
-	if request.method == 'POST':
-		form_oral_patient_procedure = OralPatientProcedureForm(request.POST)
-		if form_oral_patient_procedure.is_valid():
-			oral_patient_procedure = form_oral_patient_procedure.save(commit=False)
-			oral_patient_procedure.dentist = dentist # Adiciono o denstista ao form
-			oral_patient_procedure.patient = patient # Adiciono o Patient ao form
-			oral_patient_procedure.save()
 	oral_patient_procedure = OralPatientProcedure.objects.filter(patient=patient)
 	form_oral_patient_procedure = OralPatientProcedureForm # empty form
 	return render(request, 'odontology/patient/oral_patient_procedure.html', {'oral_patient_procedure': oral_patient_procedure, 'patient': patient, 'form_oral_patient_procedure': form_oral_patient_procedure}, context_instance=RequestContext(request))
@@ -369,13 +356,29 @@ def oral_patient_procedure(request, patient_id):
 def consult_patient(request, patient_id):
 	dentist = Dentist.objects.get(pk=request.user.id)
 	patient = Patient.objects.get(pk=8)#patient_id)
-	# Save
+	patient_dental_procedure_type = ContentType.objects.get_for_model(PatientDentalProcedure) # Recupero o ContentType do model PatientDentalProcedure
+	oral_patient_procedure_type = ContentType.objects.get_for_model(OralPatientProcedure) # Recupero o ContentType do model OralPatientProcedure
+	# Save 
 	if request.method == 'POST':
-		form_patient_dental_procedure = PatientDentalProcedureForm(request.POST, patient=patient)
-		if form_patient_dental_procedure.is_valid():
-			patient_dental_procedure = form_patient_dental_procedure.save(commit=False)
-			patient_dental_procedure.dentist = dentist # Adiciono o denstista ao form
-			patient_dental_procedure.save()
+		# Patient Dental Procedure
+		if patient_dental_procedure_type:
+			form_patient_dental_procedure = PatientDentalProcedureForm(request.POST, patient=patient)
+			if form_patient_dental_procedure.is_valid():
+				patient_dental_procedure = form_patient_dental_procedure.save(commit=False)
+				patient_dental_procedure.dentist = dentist # Adiciono o denstista ao form
+				consult = patient_dental_procedure.save()
+				# Add the patient_dental_procedure in the consultation
+				pdp.patient_dental_procedure.add(pdp)
+		if oral_patient_procedure_type:
+			# Oral Procedure
+			form_oral_patient_procedure = OralPatientProcedureForm(request.POST)
+			if form_oral_patient_procedure.is_valid():
+				oral_patient_procedure = form_oral_patient_procedure.save(commit=False)
+				oral_patient_procedure.dentist = dentist # Adiciono o denstista ao form
+				oral_patient_procedure.patient = patient # Adiciono o Patient ao form
+				opp = oral_patient_procedure.save()
+				# Add the oral_patient_procedure in the consultation
+				opp.oral_patient_procedure.add(opp)
 
  	# Odontograma
 	odontogram_patient = PatientTooth.objects.filter(patient=patient).order_by('tooth')

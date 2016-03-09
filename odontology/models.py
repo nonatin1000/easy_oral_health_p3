@@ -168,5 +168,9 @@ class Consultation(AuditModel):
 	attendance = models.BooleanField()
 	observation = models.TextField(blank=True, null=True)
 
+	# def consult(self):
+	# 	self.patient_dental_procedure.add(self.patient_dental_procedure)
+	# 	self.oral_patient_procedure.add(self.oral_patient_procedure)
+
 	def __str__(self):
 		return self.patient.name

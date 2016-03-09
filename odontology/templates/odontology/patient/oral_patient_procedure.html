@@ -7,42 +7,13 @@
       <ul class="nav navbar-nav pull-right">
         <li>
           <p class="navbar-btn">
-            <a class="btn btn-default" href="{% url 'patient_index' %}"> 
+            <a class="btn btn-default" href="{% url 'patient_show' patient.id %}"> 
               <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
               Voltar
             </a>
           </p>
         </li>
       </ul>
-
-      <!-- Form -->
-      <form action="." method="post" class="navbar-form navbar-left">{% csrf_token %}
-        <fieldset>
-          {% for field in form_oral_patient_procedure %}
-          {% if field.errors %}
-          <div class="form-group error" >
-            <label class="control-label" >{{ field.label }}</label>
-            {{ field|add_class:"form-control input-md" }}
-            {% for error in field.errors%}
-            <span class="help-inline error">{{ error}}</span>
-            {% endfor%}
-          </div>
-          {%else%}
-          <div class="form-group">
-            <label class="control-label" >{{ field.label }}</label>
-            {{ field|add_class:"form-control input-md" }}
-          </div>
-          {%endif%}
-          {% endfor %}
-          <div class="form-group">
-            <button type="submit" value="Salvar" class="btn btn-primary">
-              <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
-              Salvar
-            </button>
-          </div>
-        </fieldset>
-      </form>
-      <!-- Fim form -->
     </div>
   </div>
 </nav>
@@ -99,7 +70,6 @@
           <tr>
             <th>Dentista</th>
             <th>Procedimento Bucal</th>
-            <th style="width: 15%;">Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -107,40 +77,7 @@
           <tr>
             <td>{{ oralpatientprocedure.dentist.first_name }}</td>
             <td>{{ oralpatientprocedure.oral_procedure.name }}</td>
-            <td>
-              <a href="{% url 'oral_patient_procedure_edit' oralpatientprocedure.id %}" class="btn btn-default" title="Editar">
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-              </a>
-
-              <a href="#modal-id-{{ oralpatientprocedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-              </a>
-            </td>
           </tr>
-
-          <!-- MODAL -->
-          <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-            <div class="modal fade" id="modal-id-{{ oralpatientprocedure.id }}">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Alerta!</h4>
-                  </div>
-                  <div class="modal-body">
-                    <p>Deseja realmente remover <strong>{{ oralpatientprocedure.oral_procedure.name }}</strong>?</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <a href="{% url 'oral_patient_procedure_delete' oralpatientprocedure.id %}" class='btn btn-danger' title='Exibir'>
-                      Delete
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- /MODAL -->
           {% endfor %}
         </tbody>
       </table>
