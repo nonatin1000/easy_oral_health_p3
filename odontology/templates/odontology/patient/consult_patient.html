@@ -31,8 +31,8 @@
 
 			<!-- Tab panes -->
 			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane active" id="odontograma">
-					<form action="." method="post" class="navbar-form navbar-left">{% csrf_token %}
+				<div role="tabpanel" class="tab-pane space-tabs active" id="odontograma">
+					<form action="." method="post" class="navbar-form navbar-left space-form2">{% csrf_token %}
 						<fieldset>
 							{% for field in form_patient_dental_procedure %}
 							{% if field.errors %}
@@ -182,7 +182,7 @@
 					<!-- /CORPO DO ODONTOGRAMA -->
 				</div>
 
-				<div role="tabpanel" class="tab-pane" id="procbucal">
+				<div role="tabpanel" class="tab-pane space-tabs" id="procbucal">
 					<!-- Form -->
 					<form action="." method="post" class="navbar-form navbar-left">{% csrf_token %}
 						<fieldset>

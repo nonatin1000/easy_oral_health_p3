@@ -177,3 +177,38 @@ body { padding-top: 50px; }
 .bg-pendente { background: #449D44; }
 .bg-extracao { background: #000000; opacity: 0.7; }
 .bg-extraido { background: #000000; }
+
+.space-form div{
+  margin-bottom: 1rem;
+}
+
+.btn-size{
+  margin: 7px 5px 7px 5px;
+}
+
+.nav-inline li{
+  display: inline;
+}
+
+.inline-c{
+  display: inline;
+}
+
+@media(max-width: 770px){
+  .space-r{
+    margin-top: 7px;
+  }
+}
+
+.space-tabs{
+  margin-bottom: 3rem; 
+  margin-top: 3rem;
+}
+
+.space-top{
+  margin: 2rem 0rem 2rem 0rem;
+}
+
+.space-form2{
+  margin: 0 0 3rem 0;
+}

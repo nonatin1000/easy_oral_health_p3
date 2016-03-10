@@ -5,32 +5,32 @@
 
 <nav class="navbar navbar-default">
   <div class="container">
-    <a class="navbar-brand" href="#">Informações sobre o Paciente</a>
-    <ul class="nav navbar-nav pull-right">
+    <span class="navbar-brand space-r">Dados</span>
+    <ul class="nav navbar-nav pull-right nav-inline">
       <li>
-        <p class="navbar-btn">
-          <a class="btn btn-default" href="{% url 'patient_index' %}"> 
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            Voltar
-          </a>
-        </p>
+          <span class="navbar-btn">
+            <a class="btn btn-default btn-size" href="{% url 'patient_index' %}"> 
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              Voltar
+            </a>
+          </span>
       </li>
 
       <li>
-        <p class="navbar-btn">
-          <a class="btn btn-default" href="{% url 'patient_edit' patient.id %}"> 
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-            Editar
-          </a>
-        </p>
+          <span class="navbar-btn">
+            <a class="btn btn-default btn-size" href="{% url 'patient_edit' patient.id %}"> 
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              Editar
+            </a>
+          </span>
       </li>
       <li>
-        <p class="navbar-btn">
-          <a href="#modal-id-{{ patient.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
-            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-            Excluir
-          </a>
-        </p>
+          <span class="navbar-btn">
+            <a href="#modal-id-{{ patient.id }}" class="btn btn-default btn-size" title="Remover" data-toggle="modal">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              Excluir
+            </a>
+          </span>
       </li>
     </ul>
   </div>
@@ -50,73 +50,89 @@
 
       <!-- Tab panes -->
       <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="paciente">
-
+        <div role="tabpanel" class="tab-pane active space-tabs" id="paciente">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <p>
-              <strong>Nome:</strong>
-              {{ patient.name }}
-            </p>
-            <p>
-              <strong>Sexo:</strong>
-              {{ patient.sex }}
-            </p>
-            <p>
-              <strong>Estado civil:</strong>
-              {{ patient.marital_status }}
-            </p>
-            <p>
-              <strong>Nascimento:</strong>
-              {{ patient.birth_date }}
-            </p>
-            <p>
-              <strong>Email:</strong>
-              {{ patient.email }}
-            </p>
-            <p>
-              <strong>Categoria:</strong>
-              {{ patient.types }}
-            </p>
-            <p>
-              <strong>País:</strong>
-              {{ address.country }}
-            </p>
-            <p>
-              <strong>Estado:</strong>
-              {{ address.state }}
-            </p>
-            <p>
-              <strong>Cidade:</strong>
-              {{ address.city }}
-            </p>
-            <p>
-              <strong>Bairro:</strong>
-              {{ address.neighborhood }}
-            </p>
-            <p>
-              <strong>Rua:</strong>
-              {{ address.street }}
-            </p>
-            <p>
-              <strong>Numero:</strong>
-              {{ address.number }}
-            </p>
-            <p>
-              <strong>Complemento:</strong>
-              {{ address.complement }}
-            </p>
-            <p>
-              <strong>Cep:</strong>
-              {{ address.zip_code }}
-            </p>
-            <p>
-              <strong>Ponto de Referência:</strong>
-              {{ address.reference_point }}
-            </p>
-            <p>
-              <strong>Telefone:</strong>
-              {{ patient.phone }}
-            </p>
+            <div class="row space-form">
+              <div class="col-md-5 col-xs-6 col-sm-6">
+                <strong>Nome:</strong>
+                {{ patient.name }}
+              </div>
+              <div class="col-md-4 col-xs-6 col-sm-6">
+                <strong>Categoria:</strong>
+                {{ patient.types }}
+              </div>
+            </div>
+            <div class="row space-form">
+              <div class="col-md-5 col-xs-6 col-sm-6">
+                <strong>Estado civil:</strong>
+                {{ patient.marital_status }}
+              </div>
+              <div class="col-md-2 col-xs-6 col-sm-6">
+                <strong>Sexo:</strong>
+                {{ patient.sex }}
+              </div>
+              <div class="col-md-4 col-xs-6 col-sm-6">
+                <strong>Nascimento:</strong>
+                {{ patient.birth_date|date:"d/m/Y" }}
+              </div>
+            </div>
+            <div class="row space-form">
+              <div class="col-md-5 col-xs-6 col-sm-6">
+                <strong>Email:</strong>
+                {{ patient.email }}
+              </div>
+              <div class="col-md-6 col-xs-6 col-sm-6">
+                <strong>Telefone:</strong>
+                {{ patient.phone }}
+              </div>
+            </div>
+            <div class="row space-form">
+              <div class="col-md-5 col-xs-12 col-sm-6">
+                <strong>Rua:</strong>
+                {{ address.street }}
+              </div>
+              <div class="col-md-6 col-xs-3 col-sm-6">
+                <strong>Numero:</strong>
+                {{ address.number }}
+              </div>
+            </div>
+            <div class="row space-form">
+              <div class="col-md-5 col-xs-12 col-sm-8">
+                <strong>Complemento:</strong>
+                {{ address.complement }}
+              </div>
+              <div class="col-md-6 col-xs-12 col-sm-12">
+                <strong>Ponto de Referência:</strong>
+                {{ address.reference_point }}
+              </div>
+            </div>
+            <div class="row space-form">
+              <div class="col-md-5 col-xs-4 col-sm-6">
+                <strong>Bairro:</strong>
+                {{ address.neighborhood }}
+              </div>
+              <div class="col-md-3 col-xs-4 col-sm-6">
+                <strong>Cidade:</strong>
+                {{ address.city }}
+              </div>
+              <div class="col-md-4 col-xs-4 col-sm-6">
+                <strong>Cep:</strong>
+                {{ address.zip_code }}
+              </div>
+            </div>
+            <div class="row space-form">
+              <div class="col-md-5 col-xs-6 col-sm-6">
+                <strong>Estado:</strong>
+                {{ address.state }}
+              </div>
+              <div class="col-md-6 col-xs-6 col-sm-6">
+                <strong>País:</strong>
+                {{ address.country }}
+              </div>
+            </div>
+            <div class="row space-form">
+              
+            </div>
           </div>
           <hr />
           {% if patient.dependents.count > 0 %}
@@ -162,7 +178,7 @@
                         <h4 class="modal-title">Alerta!</h4>
                       </div>
                       <div class="modal-body">
-                      <p>Deseja realmente remover <strong>{{ dependent.name }}</strong>?</p>
+                        <p>Deseja realmente remover <strong>{{ dependent.name }}</strong>?</p>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -185,42 +201,8 @@
           </table>
           {% endif %}
         </div>
-        <div role="tabpanel" class="tab-pane" id="odontograma">
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <p>
-              <strong>Nome: </strong> {{ patient.name }}
-            </p>
-            <p>
-              <strong>Estado civil: </strong> {{ patient.marital_status }}
-            </p>
-            <p>
-              <strong>Sexo: </strong> {{ patient.sex }}
-            </p>
-            <p>
-              <strong>Pai: </strong> {{ patient.father }}
-            </p>
-            <p>
-              <strong>Mãe: </strong> {{ patient.mother }}
-            </p>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <p>
-              <strong>Data de Nasc.: </strong> {{ patient.birth_date }}
-            </p>
-            <p>
-              <strong>Tipo: </strong> {{ patient.types }}
-            </p>
-            <p>
-              <strong>Fone: </strong> {{ patient.phone }}
-            </p>
-            <p>
-              <strong>E-mail: </strong> {{ patient.email }}
-            </p>
-            <p>
-              <strong>Curso: </strong> {{ patient.course }}
-            </p>
-          </div>
-          <div class="row" style="margin-bottom: 1em">
+        <div role="tabpanel" class="tab-pane space-tabs" id="odontograma">
+          <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 outer">
               <div class="tooth-container-row">
                 {% for patient_tooth in odontogram_patient %}
@@ -238,7 +220,7 @@
           </div>
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <table class="table">
+              <table class="table space-top">
                 <thead>
                   <tr>
                     <th colspan="3">Legenda</th>
@@ -275,46 +257,8 @@
             </div>
           </div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="proc_bucal">
-          <!-- Dados do Paciente-->
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <p>
-              <strong>Nome: </strong> {{ patient.name }}
-            </p>
-            <p>
-              <strong>Estado civil: </strong> {{ patient.marital_status }}
-            </p>
-            <p>
-              <strong>Sexo: </strong> {{ patient.sex }}
-            </p>
-            <p>
-              <strong>Pai: </strong> {{ patient.father }}
-            </p>
-            <p>
-              <strong>Mãe: </strong> {{ patient.mother }}
-            </p>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <p>
-              <strong>Data de Nasc.: </strong> {{ patient.birth_date }}
-            </p>
-            <p>
-              <strong>Tipo: </strong> {{ patient.types }}
-            </p>
-
-            <p>
-              <strong>Fone: </strong> {{ patient.phone }}
-            </p>
-            <p>
-              <strong>E-mail: </strong> {{ patient.email }}
-            </p>
-            <p>
-              <strong>Curso: </strong> {{ patient.course }}
-            </p>
-          </div>
-          <!-- Lista os procedimento na boca do paciente-->
+        <div role="tabpanel" class="tab-pane space-tabs" id="proc_bucal">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h4>Procedimentos Bucal</h4>
             <table class="table table-hover">
               <thead>
                 <tr>
