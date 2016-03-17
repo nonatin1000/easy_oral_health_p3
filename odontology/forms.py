@@ -105,6 +105,18 @@ class ConsultationForm(ModelForm):
 	class Meta:
 		model = Consultation
 		fields = ('__all__')
-		# labels = {
-		# 	'oral_procedure': 'Procedimento',
-		# }
+		labels = {
+			'patient': 'Paciente',
+			'attendance': 'Compareceu?',
+			'observation': 'Observação',
+		}
+
+class ConsultationEditForm(ModelForm):
+
+	class Meta:
+		model = Consultation
+		fields = ('attendance','observation')
+		labels = {
+			'attendance': 'Compareceu?',
+			'observation': 'Observação',
+		}

@@ -25,14 +25,15 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#odontograma" aria-controls="odontograma" role="tab" data-toggle="tab">Odontograma</a></li>
+				<li role="presentation" class="active"><a href="#odontograma" aria-controls="odontograma" role="tab" data-toggle="tab">Procedimento Dental</a></li>
 				<li role="presentation"><a href="#procbucal" aria-controls="procbucal" role="tab" data-toggle="tab">Procedimento Bucal</a></li>
+				<li role="presentation"><a href="#consulta" aria-controls="procbucal" role="tab" data-toggle="tab">Consulta</a></li>
 			</ul>
 
 			<!-- Tab panes -->
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane space-tabs active" id="odontograma">
-					<form action="." method="post" class="navbar-form navbar-left space-form2">{% csrf_token %}
+					<form action="{% url 'patient_dental_procedure_register' consultation.id %}" method="post" class="navbar-form navbar-left space-form2">{% csrf_token %}
 						<fieldset>
 							{% for field in form_patient_dental_procedure %}
 							{% if field.errors %}
@@ -51,9 +52,9 @@
 							{%endif%}
 							{% endfor %}
 							<div class="form-group">
-								<button type="submit" value="Salvar" class="btn btn-primary">
-									<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
-									Salvar
+								<button type="submit" value="Adicionar" class="btn btn-primary">
+									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+									Adicionar
 								</button>
 							</div>
 						</fieldset>
@@ -132,18 +133,14 @@
 										</tr>
 									</thead>
 									<tbody>
-										{% for patient_tooth in odontogram_patient %}
-										{% for patienttooth in patient_tooth.patient_dental_procedure.all %}
+										{% for procedure in consultation.patientdentalprocedure_set.all %}
 										<tr>
-											<td>{{ patient_tooth.tooth.name }}</td>
-											<td>{{ patienttooth.tooth_division.name }}</td>
-											<td>{{ patienttooth.procedure_dental.name }}</td>
+											<td>{{ procedure.patient_tooth.tooth.name }}</td>
+											<td>{{ procedure.tooth_division.name }}</td>
+											<td>{{ procedure.procedure_dental.name }}</td>
 											<td>
-												<a href="{% url 'patient_dental_procedure_edit' patienttooth.id %}" class="btn btn-default" title="Editar">
-													<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-												</a>
 
-												<a href="#modal-id-{{ patienttooth.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+												<a href="#modal-id-{{ procedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
 													<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 												</a>
 											</td>
@@ -151,7 +148,7 @@
 
 										<!-- MODAL -->
 										<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-											<div class="modal fade" id="modal-id-{{ patienttooth.id }}">
+											<div class="modal fade" id="modal-id-{{ procedure.id }}">
 												<div class="modal-dialog">
 													<div class="modal-content">
 														<div class="modal-header">
@@ -159,11 +156,11 @@
 															<h4 class="modal-title">Alerta!</h4>
 														</div>
 														<div class="modal-body">
-															<p>Deseja realmente remover <strong>{{ patient_tooth.tooth.name }}</strong>?</p>
+															<p>Deseja realmente remover o Dente: <strong>{{ procedure.patient_tooth.tooth.name }}</strong>?</p>
 														</div>
 														<div class="modal-footer">
 															<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-															<a href="{% url 'patient_dental_procedure_delete' patienttooth.id %}" class='btn btn-danger' title='Exibir'>
+															<a href="{% url 'patient_dental_procedure_delete' procedure.id %}" class='btn btn-danger' title='Exibir'>
 																Delete
 															</a>
 														</div>
@@ -172,8 +169,7 @@
 											</div>
 										</div>
 										<!-- /MODAL -->
-										{% endfor %}
-										{% endfor %}
+										{%endfor%}
 									</tbody>
 								</table>
 							</div>
@@ -184,7 +180,7 @@
 
 				<div role="tabpanel" class="tab-pane space-tabs" id="procbucal">
 					<!-- Form -->
-					<form action="." method="post" class="navbar-form navbar-left">{% csrf_token %}
+					<form action="{% url 'oral_patient_procedure_register' consultation.id%}" method="post" class="navbar-form navbar-left">{% csrf_token %}
 						<fieldset>
 							{% for field in form_oral_patient_procedure %}
 							{% if field.errors %}
@@ -203,9 +199,9 @@
 							{%endif%}
 							{% endfor %}
 							<div class="form-group">
-								<button type="submit" value="Salvar" class="btn btn-primary">
-									<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
-									Salvar
+								<button type="submit" value="Adicionar" class="btn btn-primary">
+									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+									Adicionar
 								</button>
 							</div>
 						</fieldset>
@@ -222,14 +218,11 @@
 									</tr>
 								</thead>
 								<tbody>
-									{% for oralpatientprocedure in oral_patient_procedure %}
+									{% for oralpatientprocedure in consultation.oralpatientprocedure_set.all %}
 									<tr>
 										<td>{{ oralpatientprocedure.dentist.first_name }}</td>
 										<td>{{ oralpatientprocedure.oral_procedure.name }}</td>
 										<td>
-											<a href="{% url 'oral_patient_procedure_edit' oralpatientprocedure.id %}" class="btn btn-default" title="Editar">
-												<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-											</a>
 
 											<a href="#modal-id-{{ oralpatientprocedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
 												<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -266,6 +259,31 @@
 						</div>
 					</div>
 				</div>
+				
+				<div role="tabpanel" class="tab-pane space-tabs" id="consulta">
+					<form action="{% url 'consultation_edit' consultation.id%}" method="post">{% csrf_token %}
+						{% for field in consultation_form %}
+							{% if field.errors %}
+							<div class="form-group error" >
+								<label class="control-label" >{{ field.label }}</label>
+								{{ field|add_class:"form-control input-md" }}
+								{% for error in field.errors%}
+								<span class="help-inline error">{{ error}}</span>
+								{% endfor%}
+							</div>
+							{%else%}
+							<div class="form-group">
+								<label class="control-label" >{{ field.label }}</label>
+								{{ field|add_class:"form-control input-md" }}
+							</div>
+							{%endif%}
+						{% endfor %}
+						<button type="submit" value="Atualizar" class="btn btn-primary">
+							<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+							Atualizar
+						</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -273,11 +291,30 @@
 
 <!-- /ABAS -->
 
+{% if tab_odonto %}
+<script type="text/javascript">
+  $('a[href="#odontograma"]').tab('show');
+</script>
+{% endif %}
+
+{% if tab_oral %}
+<script type="text/javascript">
+  $('a[href="#procbucal"]').tab('show');
+</script>
+{% endif %}
+
+{% if tab_consult %}
+<script type="text/javascript">
+  $('a[href="#consulta"]').tab('show');
+</script>
+{% endif %}
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#id_patient_tooth option:first").html("Dentes");
 		$("#id_tooth_division option:first").html("Divisão");
 		$("#id_procedure_dental option:first").html("Procedimento");
+		$(":checkbox").attr("class","");
 	})
 </script>
 {% endblock %}

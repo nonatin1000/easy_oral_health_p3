@@ -144,33 +144,29 @@ class OralProcedure(AuditModel):
 	def __str__(self):
 		return self.name
 
+class Consultation(AuditModel):
+	patient = models.ForeignKey(Patient, related_name='consultation_patient')
+	attendance = models.BooleanField()
+	observation = models.TextField(blank=True, null=True)
+
+	def __str__(self):
+		return self.patient.name
+
 class PatientDentalProcedure(AuditModel):
 	patient_tooth = models.ForeignKey(PatientTooth, related_name='patient_dental_procedure')
 	tooth_division = models.ForeignKey(ToothDivision)
 	procedure_dental = models.ForeignKey(ProcedureDental)
 	dentist = models.ForeignKey(Dentist)
+	consultation=models.ForeignKey(Consultation,null=True,blank=True)
 
 	def __str__(self):
 		return self.patient_tooth.tooth.name
 
 class OralPatientProcedure(AuditModel):
-	patient = models.ForeignKey(Patient, related_name='oral_patient_procedure')
 	oral_procedure = models.ForeignKey(OralProcedure)
 	dentist = models.ForeignKey(Dentist)
+	consultation=models.ForeignKey(Consultation,null=True,blank=True)
 
 	def __str__(self):
 		return self.oral_procedure.name
 
-class Consultation(AuditModel):
-	patient = models.ForeignKey(Patient, related_name='consultation_patient')
-	patient_dental_procedure = models.ManyToManyField(PatientDentalProcedure, related_name='consultation_patient_dental_procedure')
-	oral_patient_procedure = models.ManyToManyField(OralPatientProcedure, related_name='consultation_oral_patient_procedure')
-	attendance = models.BooleanField()
-	observation = models.TextField(blank=True, null=True)
-
-	# def consult(self):
-	# 	self.patient_dental_procedure.add(self.patient_dental_procedure)
-	# 	self.oral_patient_procedure.add(self.oral_patient_procedure)
-
-	def __str__(self):
-		return self.patient.name

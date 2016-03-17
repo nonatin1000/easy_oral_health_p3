@@ -42,7 +42,7 @@
 					<tr>
 						<th>Nome</th>
 						<th>Telefone</th>
-						<th style="width: 150px;">Ações</th>
+						<th style="width: 100px;">Ações</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -61,15 +61,6 @@
 						{% endif %}
 						<td>{{ patient.phone }}</td>
 						<td>
-							{% if dependent.id == patient.id %}
-							<a href="#" class="btn btn-success" title= "Selecionar paciente">
-								<span class="glyphicon glyphicon-check" aria-hidden="true"></span>
-							</a>
-							{% else %}
-							<a href="#" class="btn btn-default" titl="Selecionar paciente">
-								<span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
-							</a>
-							{% endif %} 
 							<a href="{% url 'patient_show' patient.id %}" class="btn btn-default" title="Exibir">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							</a>

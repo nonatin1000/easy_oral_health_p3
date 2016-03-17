@@ -1,3 +1,5 @@
 Django==1.9
+django-autocomplete-light==3.1.4
 django-widget-tweaks==1.4.1
+mysql-connector-python==2.0.4
 psycopg2==2.6.1

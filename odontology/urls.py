@@ -39,50 +39,49 @@ urlpatterns = [
     url(r'^tooth_register/$', views.tooth_register , name='tooth_register'),
     url(r'^tooth_edit/(?P<tooth_id>\d+)/$', views.tooth_register , name='tooth_edit'),
     url(r'^tooth_show/(?P<tooth_id>\d+)/$', views.tooth_show , name='tooth_show'),
-    url(r'^toorh_delete(?P<tooth_id>\d+)/$', views.tooth_delete , name='tooth_delete'),
+    url(r'^toorh_delete/(?P<tooth_id>\d+)/$', views.tooth_delete , name='tooth_delete'),
     # ToothDivision
     url(r'^tooth_division_index/$', views.tooth_division_index , name='tooth_division_index'),
     url(r'^tooth_division_register/$', views.tooth_division_register , name='tooth_division_register'),
     url(r'^tooth_division_edit/(?P<tooth_division_id>\d+)/$', views.tooth_division_register , name='tooth_division_edit'),
     url(r'^tooth_division_show/(?P<tooth_division_id>\d+)/$', views.tooth_division_show , name='tooth_division_show'),
-    url(r'^toorh_division_delete(?P<tooth_division_id>\d+)/$', views.tooth_division_delete , name='tooth_division_delete'),
+    url(r'^toorh_division_delete/(?P<tooth_division_id>\d+)/$', views.tooth_division_delete , name='tooth_division_delete'),
     # Patient
     url(r'^patient_index/$', views.patient_index , name='patient_index'),
     url(r'^patient_register/$', views.patient_register , name='patient_register'),
     url(r'^patient_edit/(?P<patient_id>\d+)/$', views.patient_register , name='patient_edit'),
     url(r'^patient_show/(?P<patient_id>\d+)/$', views.patient_show , name='patient_show'),
-    url(r'^patient_delete(?P<patient_id>\d+)/$', views.patient_delete , name='patient_delete'),
+    url(r'^patient_delete/(?P<patient_id>\d+)/$', views.patient_delete , name='patient_delete'),
     # Dependent
     url(r'^dependent_register/(?P<patient_id>\d+)/$', views.dependent_register , name='dependent_register'),
     # Odontogram
     url(r'^odontogram/(?P<patient_id>\d+)/$', views.odontogram , name='odontogram'),
     # Oral Patient Procedure
     url(r'^oral_patient_procedure/(?P<patient_id>\d+)/$', views.oral_patient_procedure , name='oral_patient_procedure'),
-    # Consult Patient
-    url(r'^consult_patient/(?P<patient_id>\d+)/$', views.consult_patient , name='consult_patient'),
-    # ProcedureDental
-    url(r'^patient_dental_procedure_edit/(?P<patient_dental_procedure_id>\d+)/$', views.patient_dental_procedure_register , name='patient_dental_procedure_edit'),
-    url(r'^patient_dental_procedure_delete(?P<patient_dental_procedure_id>\d+)/$', views.patient_dental_procedure_delete , name='patient_dental_procedure_delete'),
     # PatientDentalProcedure
+    url(r'^patient_dental_procedure_register/(?P<consultation_id>\d+)/$', views.patient_dental_procedure_register , name='patient_dental_procedure_register'),
+    url(r'^patient_dental_procedure_delete/(?P<patient_dental_procedure_id>\d+)/$', views.patient_dental_procedure_delete , name='patient_dental_procedure_delete'),
+    # Procedure Dental
     url(r'^procedure_dental_index/$', views.procedure_dental_index , name='procedure_dental_index'),
     url(r'^procedure_dental_register/$', views.procedure_dental_register , name='procedure_dental_register'),
     url(r'^procedure_dental_edit/(?P<procedure_dental_id>\d+)/$', views.procedure_dental_register , name='procedure_dental_edit'),
     url(r'^procedure_dental_show/(?P<procedure_dental_id>\d+)/$', views.procedure_dental_show , name='procedure_dental_show'),
-    url(r'^procedure_dental_delete(?P<procedure_dental_id>\d+)/$', views.procedure_dental_delete , name='procedure_dental_delete'),
+    url(r'^procedure_dental_delete/(?P<procedure_dental_id>\d+)/$', views.procedure_dental_delete , name='procedure_dental_delete'),
     # OralProcedure
     url(r'^oral_procedure_index/$', views.oral_procedure_index , name='oral_procedure_index'),
     url(r'^oral_procedure_register/$', views.oral_procedure_register , name='oral_procedure_register'),
     url(r'^oral_procedure_edit/(?P<oral_procedure_id>\d+)/$', views.oral_procedure_register , name='oral_procedure_edit'),
     url(r'^oral_procedure_show/(?P<oral_procedure_id>\d+)/$', views.oral_procedure_show , name='oral_procedure_show'),
-    url(r'^oral_procedure_delete(?P<oral_procedure_id>\d+)/$', views.oral_procedure_delete , name='oral_procedure_delete'),
+    url(r'^oral_procedure_delete/(?P<oral_procedure_id>\d+)/$', views.oral_procedure_delete , name='oral_procedure_delete'),
     # OralPatientProcedure
+    url(r'^oral_patient_procedure_register/(?P<consultation_id>\d+)/$', views.oral_patient_procedure_register , name='oral_patient_procedure_register'),
     url(r'^oral_patient_procedure_edit/(?P<oral_patient_procedure_id>\d+)/$', views.oral_patient_procedure_register , name='oral_patient_procedure_edit'),
-    url(r'^oral_patient_procedure_delete(?P<oral_patient_procedure_id>\d+)/$', views.oral_patient_procedure_delete , name='oral_patient_procedure_delete'),
+    url(r'^oral_patient_procedure_delete/(?P<oral_patient_procedure_id>\d+)/$', views.oral_patient_procedure_delete , name='oral_patient_procedure_delete'),
     # Consultation
+    url(r'^consultation_create/$', views.consultation_create , name='consultation_create'),
+    url(r'^consultation_patient/(?P<consultation_id>\d+)/$', views.consult_patient , name='consultation_edit'),
     url(r'^consultation_index/$', views.consultation_index , name='consultation_index'),
-    url(r'^consultation_register/$', views.consultation_register , name='consultation_register'),
-    url(r'^consultation_edit/(?P<consultation_id>\d+)/$', views.consultation_register , name='consultation_edit'),
     url(r'^consultation_show/(?P<consultation_id>\d+)/$', views.consultation_show , name='consultation_show'),
-    url(r'^consultation_delete(?P<consultation_id>\d+)/$', views.consultation_delete , name='consultation_delete'),
+    url(r'^consultation_delete/(?P<consultation_id>\d+)/$', views.consultation_delete , name='consultation_delete'),
     
 ]
