@@ -4,17 +4,33 @@
 
 <nav class="navbar navbar-default">
 	<div class="container">
-		<a class="navbar-brand" href="#">Consultas</a>
-		<ul class="nav navbar-nav pull-right">
-			<li>
-				<p class="navbar-btn">
-					<a class="btn btn-default" href="{% url 'consultation_create'%}"> 
-						<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-						Novo
-					</a>
-				</p>
-			</li>
-		</ul>
+		<!-- Form Search -->
+		<div class="row">
+			<ul class="nav nav-inline">
+				<li>
+					<div class="col-md-8 col-xs-8 col-sm-8 space-top">
+						<form class="form-horizontal" action="." method="get">
+							<div class="input-group">
+								<input id="search_box" name="search_box" type="text" placeholder="Informe o nome do Paciente..." class="form-control" autofocus="true">
+								<span class="input-group-btn">
+									<button type="submit" class="btn btn-default form-control" title="Clique para realizar a pesquisar">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+								</span>
+							</div>
+						</form>
+					</div>
+				</li>
+				<li>
+					<div class="col-md-4 col-xs-4 col-sm-4 space-top">
+						<a class="btn btn-default pull-right" href="{% url 'consultation_create' %}"> 
+							<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+							Novo
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
 </nav>
 
@@ -26,7 +42,7 @@
 					<tr>
 						<th>Paciente</th>
 						<th>Comparecimento</th>
-						<th style="width: 21%;">Ações</th>
+						<th style="width: 150px;">Ações</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -35,7 +51,7 @@
 						<td>{{ consultation.patient.name }}</td>
 						<td>{{ consultation.attendance }}</td>
 						<td>                    
-							<a href="{% url 'consultation_show' consultation.id %}" class="btn btn-default" title="Exibir">
+							<a href="{% url 'patient_show' consultation.patient.id %}" class="btn btn-default" title="Exibir">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							</a>
 
@@ -76,8 +92,45 @@
 				</tbody>
 			</table>
 		</div>
+		<center>
+			<!-- Paginação -->
+			{% if patients.has_other_pages %}
+			<nav>
+				<ul class="pagination">
+					{% if patients.has_previous %}
+					<li>
+						<a href="?page={{ patients.previous_page_number }}" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					{% else %}
+					<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+					{% endif %}
+					{% for page_num in patients.paginator.page_range %}
+					<li {% if page_num == patients.number %} class="active" {% endif %}>
+						<a href="?page={{ page_num }}">{{ page_num }}</a>
+					</li>
+					{% endfor %}
+					{% if patients.has_next %}
+					<li>
+						<a href="?page={{ patients.next_page_number}}" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+					{% else %}
+					<li class="disabled">
+						<a href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+					{% endif %}
+				</ul>
+			</nav>
+			{% endif %}
+			<!-- Fim da Paginação -->
+		</center>
 	</div>
-	</div>
+</div>
 </div>
 
 {% endblock %}
