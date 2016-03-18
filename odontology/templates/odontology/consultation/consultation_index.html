@@ -49,7 +49,11 @@
 					{% for consultation in consultations %}
 					<tr>
 						<td>{{ consultation.patient.name }}</td>
-						<td>{{ consultation.attendance }}</td>
+						{% if consultation.attendance == True %}
+							<td>Presente</td>
+						{% else %}
+							<td>Ausente</td>
+						{% endif %}
 						<td>                    
 							<a href="{% url 'patient_show' consultation.patient.id %}" class="btn btn-default" title="Exibir">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>

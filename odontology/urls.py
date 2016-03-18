@@ -83,5 +83,6 @@ urlpatterns = [
     url(r'^consultation_index/$', views.consultation_index , name='consultation_index'),
     url(r'^consultation_show/(?P<consultation_id>\d+)/$', views.consultation_show , name='consultation_show'),
     url(r'^consultation_delete/(?P<consultation_id>\d+)/$', views.consultation_delete , name='consultation_delete'),
+    url(r'^report_service/$', views.report_service , name='report_service'),
     
 ]

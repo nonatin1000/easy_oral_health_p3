@@ -6,6 +6,8 @@ from django.db.models import signals
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
+import datetime
+from datetime import date
 
 class AuditModel(models.Model):
 	# Audit Fields
@@ -104,6 +106,11 @@ class Patient(AuditModel):
 	dependents = models.ManyToManyField('self', symmetrical=False)
 	address = GenericRelation('Address')
 	
+	# calculating age
+	def age(self):
+		today = date.today()
+		return today.year - self.birth_date.year
+
 	def __str__(self):
 		return self.name
 

@@ -583,3 +583,19 @@ def consultation_delete(request, consultation_id):
 	return redirect('consultation_index')
 
 # End Consultation-------- ----------------------------------------------------------------------#
+
+# Signup report_service--------------------------------------------------------------------------#
+@login_required
+def report_service(request):
+	
+	""" A View of all Consultation """
+	consultations = Consultation.objects.all()
+	
+	""" takes the pacient name through and get stored in the variable var_get_search""" 
+	var_get_search = request.GET.get('search_box')
+	if var_get_search is not None:
+		consultations = consultations.filter(created_on__date=var_get_search)
+
+	return render(request, 'odontology/consultation/consultation_report_service.html', {'consultations': consultations})
+
+# End report_service------ ----------------------------------------------------------------------#

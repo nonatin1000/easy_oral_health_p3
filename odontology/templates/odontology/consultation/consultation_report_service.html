@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<nav class="navbar navbar-default">
+	<div class="container">
+		<!-- Form Search -->
+		<div class="row">
+			<ul class="nav nav-inline">
+				<li>
+					<div class="col-md-8 col-xs-8 col-sm-8 space-top">
+						<form class="form-horizontal" action="." method="get">
+							<div class="input-group">
+								<input id="search_box" name="search_box" type="text" placeholder="Data da consulta, Ex: Ano-Mês-Dia..." class="form-control" autofocus="true">
+								<span class="input-group-btn">
+									<button type="submit" class="btn btn-default form-control" title="Clique para realizar a pesquisar">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+								</span>
+							</div>
+						</form>
+					</div>
+				</li>
+				<li>
+					<div class="col-md-4 col-xs-4 col-sm-4 space-top">
+						<a class="btn btn-default pull-right" href="#"> 
+							<span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+							Imprimir
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			{% if consultations.count > 0 %}
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Horário</th>
+						<th>Nome</th>
+						<th>Categoria</th>
+						<th>Sexo</th>
+						<th>Idade</th>
+						<th>Comparecimento</th>
+						<th>Proc. Dental</th>
+						<th>Proc. Bucal</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for consultation in consultations %}
+					<tr>
+						<td>{{ consultation.created_on|date:"H:i" }}</td>
+						<td>{{ consultation.patient.name }}</td>
+						<td>{{ consultation.patient.types }}</td>
+						<td>{{ consultation.patient.sex }}</td>
+						<td>{{ consultation.patient.age }}</td>
+						{% if consultation.attendance == True %}
+							<td>Presente</td>
+						{% else %}
+							<td>Ausente</td>
+						{% endif %}
+						<!-- Pega todos os procedimentos dental daquele paciente-->
+						{% for patdentproc in consultation.patientdentalprocedure_set.all %}
+							<td>{{ patdentproc.patient_tooth.tooth.name }}</td>
+						{% endfor %}
+						<!-- Pega todos os procedimentos bucal daquele paciente-->
+						{% for oralpatproc in consultation.oralpatientprocedure_set.all %}
+							<td>{{ oralpatproc.oral_procedure.name }}</td>
+						{% endfor %}
+					</tr>
+					{% endfor %}
+				</tbody>
+			{% else %}
+            <center>
+              <h4>
+                <b>Sem consultas</b>
+              </h4>
+            </center>
+            {% endif %}
+		</div>
+	</div>
+</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+	  $("#search_box").attr("readonly", "true");
+	  $("#search_box").AnyPicker({
+	    mode: "datetime",
+
+	     dateTimeFormat: "yyyy-MM-dd",
+	    //dateTimeFormat: "yyyy-MM-dd",
+
+	    rowsNavigation: "scroller+buttons",
+
+	 //    layout: "relative",
+
+	 //    hAlign: "center",
+
+		// vAlign: "bottom",
+
+	    lang: "pt-br",
+
+	    theme: "Android" // "Default", "iOS", "Android", "Windows"
+	  });
+
+	});
+</script>
+
+{% endblock %}

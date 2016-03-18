@@ -129,7 +129,7 @@
 											<th>Dente</th>
 											<th>Divisão dos Dentes</th>
 											<th>Procedimento Dentário</th>
-											<th style="width: 21%;">Ações</th>
+											<th style="width: 50px;">Ações</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -180,12 +180,12 @@
 
 				<div role="tabpanel" class="tab-pane space-tabs" id="procbucal">
 					<!-- Form -->
-					<form action="{% url 'oral_patient_procedure_register' consultation.id%}" method="post" class="navbar-form navbar-left">{% csrf_token %}
+					<form action="{% url 'oral_patient_procedure_register' consultation.id%}" method="post" class="form-horizontal">{% csrf_token %}
 						<fieldset>
 							{% for field in form_oral_patient_procedure %}
 							{% if field.errors %}
 							<div class="form-group error" >
-								<label class="control-label" >{{ field.label }}</label>
+								<label class="control-label col-md-1 col-xs-2 col-sm-2" >{{ field.label }}</label>
 								{{ field|add_class:"form-control input-md" }}
 								{% for error in field.errors%}
 								<span class="help-inline error">{{ error}}</span>
@@ -193,16 +193,18 @@
 							</div>
 							{%else%}
 							<div class="form-group">
-								<label class="control-label" >{{ field.label }}</label>
-								{{ field|add_class:"form-control input-md" }}
-							</div>
-							{%endif%}
-							{% endfor %}
-							<div class="form-group">
-								<button type="submit" value="Adicionar" class="btn btn-primary">
-									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-									Adicionar
-								</button>
+								<label class="col-md-2 col-xs-3 col-sm-3 control-label" >{{ field.label }}</label>
+								<div class="col-md-4 col-xs-6 col-sm-6">
+									{{ field|add_class:"form-control input-md" }}
+								</div>
+								{%endif%}
+								{% endfor %}
+								<div class="col-md-2 col-xs-3 col-sm-3">
+									<button type="submit" value="Adicionar" class="btn btn-primary">
+										<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+										Adicionar
+									</button>
+								</div>
 							</div>
 						</fieldset>
 					</form>
@@ -214,7 +216,7 @@
 									<tr>
 										<th>Dentista</th>
 										<th>Procedimento Bucal</th>
-										<th style="width: 15%;">Ações</th>
+										<th style="width: 50px;">Ações</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -263,20 +265,20 @@
 				<div role="tabpanel" class="tab-pane space-tabs" id="consulta">
 					<form action="{% url 'consultation_edit' consultation.id%}" method="post">{% csrf_token %}
 						{% for field in consultation_form %}
-							{% if field.errors %}
-							<div class="form-group error" >
-								<label class="control-label" >{{ field.label }}</label>
-								{{ field|add_class:"form-control input-md" }}
-								{% for error in field.errors%}
-								<span class="help-inline error">{{ error}}</span>
-								{% endfor%}
-							</div>
-							{%else%}
-							<div class="form-group">
-								<label class="control-label" >{{ field.label }}</label>
-								{{ field|add_class:"form-control input-md" }}
-							</div>
-							{%endif%}
+						{% if field.errors %}
+						<div class="form-group error" >
+							<label class="control-label" >{{ field.label }}</label>
+							{{ field|add_class:"form-control input-md" }}
+							{% for error in field.errors%}
+							<span class="help-inline error">{{ error}}</span>
+							{% endfor%}
+						</div>
+						{%else%}
+						<div class="form-group">
+							<label class="control-label" >{{ field.label }}</label>
+							{{ field|add_class:"form-control input-md" }}
+						</div>
+						{%endif%}
 						{% endfor %}
 						<button type="submit" value="Atualizar" class="btn btn-primary">
 							<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
@@ -293,19 +295,19 @@
 
 {% if tab_odonto %}
 <script type="text/javascript">
-  $('a[href="#odontograma"]').tab('show');
+	$('a[href="#odontograma"]').tab('show');
 </script>
 {% endif %}
 
 {% if tab_oral %}
 <script type="text/javascript">
-  $('a[href="#procbucal"]').tab('show');
+	$('a[href="#procbucal"]').tab('show');
 </script>
 {% endif %}
 
 {% if tab_consult %}
 <script type="text/javascript">
-  $('a[href="#consulta"]').tab('show');
+	$('a[href="#consulta"]').tab('show');
 </script>
 {% endif %}
 
