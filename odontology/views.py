@@ -358,7 +358,6 @@ def consult_patient(request, consultation_id):
 	consultation = Consultation.objects.get(pk=consultation_id)
 	consultation_form = ConsultationEditForm(instance=consultation)
 	tab_consult = False
-
 	# Save 
 	if request.method == 'POST':
 		consultation_form = ConsultationEditForm(request.POST, instance=consultation)

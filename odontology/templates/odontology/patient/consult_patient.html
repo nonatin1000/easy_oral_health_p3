@@ -226,7 +226,8 @@
 								<thead>
 									<tr>
 										<th>Dentista</th>
-										<th>Procedimento Bucal</th>
+										<th>Procedimento</th>
+										<th>Data</th>
 										<th style="width: 50px;">Ações</th>
 									</tr>
 								</thead>
@@ -235,6 +236,7 @@
 									<tr>
 										<td>{{ oralpatientprocedure.dentist.first_name }}</td>
 										<td>{{ oralpatientprocedure.oral_procedure.name }}</td>
+										<td>{{ oralpatientprocedure.created_on }}</td>
 										<td>
 
 											<a href="#modal-id-{{ oralpatientprocedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
@@ -304,6 +306,7 @@
 									<tr>
 										<th>Exame</th>
 										<th>Laudo</th>
+										<th>Data</th>
 										<th style="width: 50px;">Ações</th>
 									</tr>
 								</thead>
@@ -312,6 +315,7 @@
 									<tr>
 										<td>{{ examination.exams.name }}</td>
 										<td>{{ examination.appraisal }}</td>
+										<td>{{ examination.created_on }}</td>
 										<td>
 
 											<a href="#modal-id-{{ examination.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
@@ -352,6 +356,71 @@
 
 				<div role="tabpanel" class="tab-pane space-tabs" id="consulta">
 					<form action="{% url 'consultation_edit' consultation.id%}" method="post">{% csrf_token %}
+				        <div class="form-group">
+				        	<label>Compareceu</label>
+				        	{% if consultation.attendance %}
+					            <input type="checkbox" id="attendance" name="attendance" class="form-control" checked="checked" >
+					        {% else %}
+					        	<input type="checkbox" id="attendance" name="attendance" class="form-control">
+					        {% endif %}
+				        </div>
+				        <div class="form-group">
+				            <label>Primeira Consulta</label>
+				            {% if consultation.first_consultation %}
+				            	<input type="checkbox" id="first_consultation" name="first_consultation" class="form-control" checked="checked" >
+				            {% else %}
+				            	<input type="checkbox" id="first_consultation" name="first_consultation" class="form-control">
+				            {% endif %}
+				        </div>
+
+				        <div class="form-group">
+				            <label>Consulta Retorno</label>
+				            {% if consultation.return_consultation %}
+				            	<input type="checkbox" id="return_consultation" name="return_consultation" class="form-control" checked="checked" >
+				            {% else %}
+				            	<input type="checkbox" id="return_consultation" name="return_consultation" class="form-control">
+				            {% endif %}
+				        </div>
+
+				        <div class="form-group">
+				            <label>Consulta Urgência</label>
+				        	{% if consultation.urgency_consultation %}
+				            	<input type="checkbox" id="urgency_consultation" name="urgency_consultation" class="form-control" checked="checked" >
+				            {% else %}
+				            	<input type="checkbox" id="urgency_consultation" name="urgency_consultation" class="form-control">
+				            {% endif %}
+				        </div>
+
+				        <div class="form-group">
+				            <label>Tratamento Concluído</label>
+				            {% if consultation.first_consultation %}
+				            	<input type="checkbox" id="completed_treatment" name="completed_treatment" class="form-control" checked="checked" >
+				            {% else %}
+				            	<input type="checkbox" id="completed_treatment" name="completed_treatment" class="form-control">
+				            {% endif %}
+				        </div>
+
+				        <div class="form-group">
+		            		<label>Exame Clínico</label>
+		            		<textarea rows="4" id="clinical_examination" name="clinical_examination" class="form-control">{{ consultation.clinical_examination }}
+		            		</textarea>
+		        		</div>
+
+		        		<div class="form-group">
+		            		<label>Observação</label>
+		            		<textarea rows="4" id="observation" name="observation" class="form-control">{{ consultation.observation }}
+		            		</textarea>
+		        		</div>
+
+				        <div class="form-group">
+				            <button type="submit" value="Salvar" class="btn btn-primary">
+				                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+				                Salvar
+				            </button>
+				        </div>
+				    </form>
+
+					<!-- <form action="{% url 'consultation_edit' consultation.id%}" method="post">{% csrf_token %}
 						{% for field in consultation_form %}
 						{% if field.errors %}
 						<div class="form-group error" >
@@ -372,7 +441,7 @@
 							<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
 							Atualizar
 						</button>
-					</form>
+					</form> -->
 				</div>
 
 			</div>

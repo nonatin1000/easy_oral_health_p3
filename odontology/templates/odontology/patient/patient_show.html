@@ -274,7 +274,8 @@
               <thead>
                 <tr>
                   <th>Dentista</th>
-                  <th>Procedimento Bucal</th>
+                  <th>Procedimento</th>
+                  <th>Data</th>
                 </tr>
               </thead>
               <tbody>
@@ -282,6 +283,7 @@
                 <tr>
                   <td>{{ oralpatientprocedure.dentist.first_name }}</td>
                   <td>{{ oralpatientprocedure.oral_procedure.name }}</td>
+                  <td>{{ oralpatientprocedure.created_on }}</td>
                 </tr>
                 {% endfor %}
               </tbody>
