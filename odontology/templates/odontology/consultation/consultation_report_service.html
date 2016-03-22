@@ -47,8 +47,13 @@
 						<th>Sexo</th>
 						<th>Idade</th>
 						<th>Comparecimento</th>
+						<th>1.ª Consulta</th>
+						<th>Consulta Retorno</th>
+						<th>Consulta Urgência</th>
+						<th>Radiografia</th>
 						<th>Proc. Dental</th>
 						<th>Proc. Bucal</th>
+						<th>Tratamento Concluído</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -64,6 +69,22 @@
 						{% else %}
 							<td>Ausente</td>
 						{% endif %}
+						{% if consultation.first_consultation == True %}
+							<td>Sim</td>
+						{% else %}
+							<td>Não</td>
+						{% endif %}
+						{% if consultation.return_consultation == True %}
+							<td>Sim</td>
+						{% else %}
+							<td>Não</td>
+						{% endif %}
+						{% if consultation.urgency_consultation == True %}
+							<td>Sim</td>
+						{% else %}
+							<td>Não</td>
+						{% endif %}
+						<td>{{ consultation.radiograph }}</td>
 						<!-- Pega todos os procedimentos dental daquele paciente-->
 						{% for patdentproc in consultation.patientdentalprocedure_set.all %}
 							<td>{{ patdentproc.patient_tooth.tooth.name }}</td>
@@ -72,6 +93,12 @@
 						{% for oralpatproc in consultation.oralpatientprocedure_set.all %}
 							<td>{{ oralpatproc.oral_procedure.name }}</td>
 						{% endfor %}
+
+						{% if consultation.completed_treatment == True %}
+							<td>Sim</td>
+						{% else %}
+							<td>Não</td>
+						{% endif %}
 					</tr>
 					{% endfor %}
 				</tbody>

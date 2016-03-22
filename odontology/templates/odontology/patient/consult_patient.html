@@ -27,6 +27,7 @@
 			<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation" class="active"><a href="#odontograma" aria-controls="odontograma" role="tab" data-toggle="tab">Procedimento Dental</a></li>
 				<li role="presentation"><a href="#procbucal" aria-controls="procbucal" role="tab" data-toggle="tab">Procedimento Bucal</a></li>
+				<li role="presentation"><a href="#examination_solicitation" aria-controls="examination_solicitation" role="tab" data-toggle="tab">Solicitação de Exames</a></li>
 				<li role="presentation"><a href="#consulta" aria-controls="procbucal" role="tab" data-toggle="tab">Consulta</a></li>
 			</ul>
 
@@ -91,7 +92,7 @@
 										<tr>
 											<td><div class="circulo bg-restaurado"></div></td>
 											<td>Restaurado</td>
-											<td>Quadro cheio em preto</td>
+											<td>Quadro cheio em azul</td>
 										</tr>
 										<tr>
 											<td><div class="circulo bg-cariado"></div></td>
@@ -112,6 +113,16 @@
 											<td><div class="circulo bg-extraido"></div></td>
 											<td>Extraído ou ausente</td>
 											<td>Quadro totalmente preto</td>
+										</tr>
+										<tr>
+											<td><div class="circulo bg-protese-fixa"></div></td>
+											<td>Prótese Fixa</td>
+											<td>Quadro totalmente laranja</td>
+										</tr>
+										<tr>
+											<td><div class="circulo bg-protecao-pulpar"></div></td>
+											<td>Proteção Pulpar</td>
+											<td>Quadro totalmente roxo</td>
 										</tr>
 									</tbody>
 								</table>
@@ -262,6 +273,83 @@
 					</div>
 				</div>
 				
+				<div role="tabpanel" class="tab-pane space-tabs" id="examination_solicitation">
+					<form action="{% url 'examination_solicitation_register' consultation.id%}" method="post">{% csrf_token %} 
+						{% for field in form_examination_solicitation %}
+						{% if field.errors %}
+						<div class="form-group error" >
+							<label class="control-label" >{{ field.label }}</label>
+							{{ field|add_class:"form-control input-md" }}
+							{% for error in field.errors%}
+							<span class="help-inline error">{{ error}}</span>
+							{% endfor%}
+						</div>
+						{%else%}
+						<div class="form-group">
+							<label class="control-label" >{{ field.label }}</label>
+							{{ field|add_class:"form-control input-md" }}
+						</div>
+						{%endif%}
+						{% endfor %}
+						<button type="submit" value="Atualizar" class="btn btn-primary">
+							<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+							Adicionar
+						</button>
+					</form>
+					<!-- Fim form -->
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>Exame</th>
+										<th>Laudo</th>
+										<th style="width: 50px;">Ações</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for examination in consultation.examinationsolicitation_set.all %}
+									<tr>
+										<td>{{ examination.exams.name }}</td>
+										<td>{{ examination.appraisal }}</td>
+										<td>
+
+											<a href="#modal-id-{{ examination.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+												<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+											</a>
+										</td>
+									</tr>
+
+									<!-- MODAL -->
+									<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+										<div class="modal fade" id="modal-id-{{ examination.id }}">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+														<h4 class="modal-title">Alerta!</h4>
+													</div>
+													<div class="modal-body">
+														<p>Deseja realmente remover <strong>{{ examination.exams.name }}</strong>?</p>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+														<a href="{% url 'examination_solicitation_delete' examination.id %}" class='btn btn-danger' title='Exibir'>
+															Delete
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- /MODAL -->
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
 				<div role="tabpanel" class="tab-pane space-tabs" id="consulta">
 					<form action="{% url 'consultation_edit' consultation.id%}" method="post">{% csrf_token %}
 						{% for field in consultation_form %}
@@ -286,6 +374,7 @@
 						</button>
 					</form>
 				</div>
+
 			</div>
 		</div>
 	</div>
@@ -302,6 +391,12 @@
 {% if tab_oral %}
 <script type="text/javascript">
 	$('a[href="#procbucal"]').tab('show');
+</script>
+{% endif %}
+
+{% if tab_exams %}
+<script type="text/javascript">
+	$('a[href="#examination_solicitation"]').tab('show');
 </script>
 {% endif %}
 

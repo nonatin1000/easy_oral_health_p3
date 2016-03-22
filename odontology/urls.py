@@ -84,5 +84,15 @@ urlpatterns = [
     url(r'^consultation_show/(?P<consultation_id>\d+)/$', views.consultation_show , name='consultation_show'),
     url(r'^consultation_delete/(?P<consultation_id>\d+)/$', views.consultation_delete , name='consultation_delete'),
     url(r'^report_service/$', views.report_service , name='report_service'),
+    # Exams
+    url(r'^exams_index/$', views.exams_index , name='exams_index'),
+    url(r'^exams_register/$', views.exams_register , name='exams_register'),
+    url(r'^exams_edit/(?P<exams_id>\d+)/$', views.exams_register , name='exams_edit'),
+    url(r'^exams_show/(?P<exams_id>\d+)/$', views.exams_show , name='exams_show'),
+    url(r'^exams_delete/(?P<exams_id>\d+)/$', views.exams_delete , name='exams_delete'),
+    # ExaminationSolicitation
+    url(r'^examination_solicitation_register/(?P<consultation_id>\d+)/$', views.examination_solicitation_register , name='examination_solicitation_register'),
+    url(r'^examination_solicitation_edit/(?P<examination_solicitation_id>\d+)/$', views.examination_solicitation_register , name='examination_solicitation_edit'),
+    url(r'^examination_solicitation_delete/(?P<examination_solicitation_id>\d+)/$', views.examination_solicitation_delete , name='examination_solicitation_delete'),
     
 ]

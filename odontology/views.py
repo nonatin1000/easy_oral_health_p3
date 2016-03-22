@@ -10,8 +10,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
 from django.forms import formset_factory
-from .models import Dentist, Address, User, Course, Tooth, ToothDivision, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure, OralPatientProcedure, Consultation
-from .forms import DentistForm, AddressForm, CourseForm, ToothForm, ToothDivisionForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm, OralPatientProcedureForm, ConsultationForm,ConsultationEditForm
+from .models import Dentist, Address, User, Course, Exams, Tooth, ToothDivision, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure, OralPatientProcedure, Consultation, ExaminationSolicitation
+from .forms import DentistForm, AddressForm, CourseForm, ExamsForm, ToothForm, ToothDivisionForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm, OralPatientProcedureForm, ConsultationForm, ConsultationEditForm, ExaminationSolicitationForm, ExaminationSolicitationEditForm
 
 # Signup dentist ---------------------------------------------------------------------------------#
 
@@ -356,19 +356,26 @@ def consult_patient(request, consultation_id):
 	dentist = Dentist.objects.get(pk=request.user.id)
 	consultation = Consultation.objects.get(pk=consultation_id)
 	consultation_form = ConsultationEditForm(instance=consultation)
+	tab_consult = False
+
 	# Save 
 	if request.method == 'POST':
-		consultation_form = ConsultationEditForm(request.POST,instance=consultation)
+		consultation_form = ConsultationEditForm(request.POST, instance=consultation)
 		if(consultation_form.is_valid()):
 			consultation_form.save()
+			tab_consult = True
 		
+ 	# examination_solicitation
+	examination_solicitation = ExaminationSolicitation.objects.filter(consultation=consultation)
+	form_examination_solicitation = ExaminationSolicitationForm
+	print(examination_solicitation)
  	# Odontograma
 	odontogram_patient = PatientTooth.objects.filter(patient=consultation.patient).order_by('tooth')
 	form_patient_dental_procedure = PatientDentalProcedureForm(patient=consultation.patient) # empty form
 	# Procedimento Bucal
 	oral_patient_procedure = OralPatientProcedure.objects.filter(consultation=consultation)
 	form_oral_patient_procedure = OralPatientProcedureForm # empty form
-	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'tab_consult': True})
+	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_consult': tab_consult})
 
 # End Patient ------------------------------------------------------------------------------------#
 
@@ -462,7 +469,7 @@ def oral_procedure_delete(request, oral_procedure_id):
 
 # Signup PatientDentalProcedure-------------------------------------------------------------------#
 @login_required
-def patient_dental_procedure_register(request, consultation_id,procedure_dental_id=None):
+def patient_dental_procedure_register(request, consultation_id, procedure_dental_id=None):
 	dentist = Dentist.objects.get(pk=request.user.id)
 	consultation = Consultation.objects.get(pk=consultation_id)
 	consultation_form = ConsultationEditForm(instance=consultation)
@@ -476,15 +483,21 @@ def patient_dental_procedure_register(request, consultation_id,procedure_dental_
 			patient_dental_procedure = form_patient_dental_procedure.save(commit=False)
 			patient_dental_procedure.dentist = dentist # Adiciono o denstista ao form
 			patient_dental_procedure.consultation = consultation # Adiciono o consultation ao form
-			consult = patient_dental_procedure.save()
+			patient_dental_procedure.save()
+
+	
+	# Examination Solicitation
+	examination_solicitation = ExaminationSolicitation.objects.filter(consultation=consultation)
+	form_examination_solicitation = ExaminationSolicitationForm
 
 	# Odontograma
 	odontogram_patient = PatientTooth.objects.filter(patient=consultation.patient).order_by('tooth')
+	form_patient_dental_procedure = PatientDentalProcedureForm(patient=consultation.patient) # empty form
 
 	# Procedimento Bucal
 	oral_patient_procedure = OralPatientProcedure.objects.filter(consultation=consultation)
 	form_oral_patient_procedure = OralPatientProcedureForm # empty form
-	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'tab_odonto': True})
+	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_odonto': True})
 
 @login_required
 def patient_dental_procedure_delete(request, patient_dental_procedure_id):
@@ -513,13 +526,18 @@ def oral_patient_procedure_register(request, consultation_id,procedure_id=None):
 			oral_patient_procedure.consultation = consultation # Adiciono o Patient ao form
 			oral_patient_procedure.save()
 
+	# Examination Solicitation
+	examination_solicitation = ExaminationSolicitation.objects.filter(consultation=consultation)
+	form_examination_solicitation = ExaminationSolicitationForm
+
 	# Odontograma
 	odontogram_patient = PatientTooth.objects.filter(patient=consultation.patient).order_by('tooth')
 	form_patient_dental_procedure = PatientDentalProcedureForm(patient=consultation.patient) # empty form
 
 	# Procedimento Bucal
 	oral_patient_procedure = OralPatientProcedure.objects.filter(consultation=consultation)
-	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'tab_oral': True})
+	form_oral_patient_procedure = OralPatientProcedureForm # empty form
+	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_oral': True})
 
 @login_required
 def oral_patient_procedure_delete(request, oral_patient_procedure_id):
@@ -583,6 +601,95 @@ def consultation_delete(request, consultation_id):
 	return redirect('consultation_index')
 
 # End Consultation-------- ----------------------------------------------------------------------#
+
+# Signup Exams ----------------------------------------------------------------------------------#
+@permission_required('odontology.exams_index',raise_exception=True)
+@login_required
+def exams_index(request):
+	exams = Exams.objects.all()
+	return render(request, 'odontology/exams/exams_index.html', { 'exams': exams })
+
+# New e Edit - Exams 
+@permission_required('odontology.exams_register',raise_exception=True)
+@login_required
+def exams_register(request, exams_id=None):
+
+	if exams_id: # Edit
+		exams = Exams.objects.get(pk=exams_id)
+		form_exams = ExamsForm(instance=exams)
+	else: # New
+		form_exams = ExamsForm
+		exams = None
+
+	# Save 
+	if request.method == 'POST':
+		if exams_id: # Edit
+			form_exams = ExamsForm(request.POST, instance=exams)
+			if form_exams.is_valid():
+				form_exams.save()
+				return redirect('exams_index')
+		else: # New
+			form_exams = ExamsForm(request.POST)
+			if form_exams.is_valid():
+				form_exams.save()
+				return redirect('exams_index')
+
+	return render(request, 'odontology/exams/exams_register.html', {'form_exams': form_exams, 'exams': exams})
+
+@permission_required('odontology.course_show',raise_exception=True)
+@login_required
+def exams_show(request, exams_id):
+	exams = Exams.objects.get(pk=exams_id)
+	return render(request, 'odontology/exams/exams_show.html', {'exams': exams})
+
+@permission_required('odontology.exams_delete',raise_exception=True)
+@login_required
+def exams_delete(request, exams_id):
+	exams = Exams.objects.get(pk=exams_id)
+	exams.delete()
+	return redirect('exams_index')
+
+# End Exams -------------------------------------------------------------------------------------#
+
+# Signup Exams Solicitation----------------------------------------------------------------------#
+@login_required
+def examination_solicitation_register(request, consultation_id, examination_solicitation_id=None):
+
+	dentist = Dentist.objects.get(pk=request.user.id)
+	consultation = Consultation.objects.get(pk=consultation_id)
+	consultation_form = ConsultationEditForm(instance=consultation)
+	form_examination_solicitation = ExaminationSolicitationForm # empty form
+	
+	# Save 
+	if request.method == 'POST':
+		# Exams
+		form_examination_solicitation = ExaminationSolicitationForm(request.POST) # empty form
+		if form_examination_solicitation.is_valid():
+			exam = form_examination_solicitation.save(commit=False)
+			exam.consultation = consultation # Adiciono o consultation ao form
+			exam.save()
+
+	# Examination Solicitation
+	examination_solicitation = ExaminationSolicitation.objects.filter(consultation=consultation)
+	form_examination_solicitation = ExaminationSolicitationForm
+
+	# Odontograma
+	odontogram_patient = PatientTooth.objects.filter(patient=consultation.patient).order_by('tooth')
+	form_patient_dental_procedure = PatientDentalProcedureForm(patient=consultation.patient) # empty form
+
+	# Procedimento Bucal
+	oral_patient_procedure = OralPatientProcedure.objects.filter(consultation=consultation)
+	form_oral_patient_procedure = OralPatientProcedureForm # empty form
+	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_exams': True})
+
+@login_required
+def examination_solicitation_delete(request, examination_solicitation_id):
+	examination_solicitation = ExaminationSolicitation.objects.get(pk=examination_solicitation_id)
+	consultation=examination_solicitation.consultation
+	examination_solicitation.delete()
+	return redirect('consultation_edit', consultation_id=consultation.id)
+
+# End Exams Solicitation ------------------------------------------------------------------------#
 
 # Signup report_service--------------------------------------------------------------------------#
 @login_required

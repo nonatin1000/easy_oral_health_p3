@@ -4,7 +4,7 @@ from django.forms import ModelForm
 from django.forms.utils import ErrorList
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from odontology.models import Dentist, Address, Course, Tooth, ToothDivision, Patient, PatientTooth, ProcedureDental, OralProcedure, PatientDentalProcedure, OralPatientProcedure, Consultation
+from odontology.models import Dentist, Address, Course, Exams, Tooth, ToothDivision, Patient, PatientTooth, ProcedureDental, OralProcedure, PatientDentalProcedure, OralPatientProcedure, Consultation, ExaminationSolicitation
 
 class DentistForm(UserCreationForm):
 
@@ -108,6 +108,11 @@ class ConsultationForm(ModelForm):
 		labels = {
 			'patient': 'Paciente',
 			'attendance': 'Compareceu?',
+			'first_consultation': 'Primeira Consulta',
+			'return_consultation': 'Consulta Retorno',
+			'urgency_consultation': 'Consulta Urgência',
+			'completed_treatment': 'Tratamento Concluído?',
+			'clinical_examination': 'Exame Clínico',
 			'observation': 'Observação',
 		}
 
@@ -115,8 +120,40 @@ class ConsultationEditForm(ModelForm):
 
 	class Meta:
 		model = Consultation
-		fields = ('attendance','observation')
+		fields = ('attendance', 'first_consultation', 'return_consultation', 'urgency_consultation', 'completed_treatment', 'clinical_examination', 'observation')
 		labels = {
 			'attendance': 'Compareceu?',
+			'first_consultation': 'Primeira Consulta',
+			'return_consultation': 'Consulta Retorno',
+			'urgency_consultation': 'Consulta Urgência',
+			'completed_treatment': 'Tratamento Concluído?',
+			'clinical_examination': 'Exame Clínico',
 			'observation': 'Observação',
+		}
+
+class ExamsForm(ModelForm):
+
+	class Meta:
+		model = Exams
+		fields = '__all__'
+
+
+class ExaminationSolicitationForm(ModelForm):
+
+	class Meta:
+		model = ExaminationSolicitation
+		fields = ('exams', 'appraisal')
+		labels = {
+			'exams': 'Exames',
+			'appraisal': 'Laudo',
+		}
+
+class ExaminationSolicitationEditForm(ModelForm):
+
+	class Meta:
+		model = ExaminationSolicitation
+		fields = ('exams', 'appraisal')
+		labels = {
+			'exams': 'Exames',
+			'appraisal': 'Laudo',
 		}

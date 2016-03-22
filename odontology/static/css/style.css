@@ -90,19 +90,28 @@ body { padding-top: 50px; }
 }
 
 /* restaurado */
-.proc_1 { fill: #000000; }
+.proc_1 { fill: #0000FF; }
+.proc_2 { fill: #0000FF; }
+.proc_3 { fill: #0000FF; }
+.proc_4 { fill: #0000FF; }
 
 /* cariado */
-.proc_2 { fill: #BB0000; }
+.proc_5 { fill: #BB0000; }
 
 /* a-restaurar */
-.proc_3 { fill: #449D44; }
+.proc_6 { fill: #449D44; }
 
 /* indicado pra extração */
-.proc_4 { fill: #000000; opacity: 0.7; }
+.proc_7 { fill: #000000; opacity: 0.7; }
 
 /* ausente */
-.proc_5 { fill: #000000; }
+.proc_8 { fill: #000000; }
+
+/* protese fixa */
+.proc_9 { fill: #FF4500; }
+
+/* protecao pulpar */
+.proc_10 { fill: #8A2BE2; }
 
 /* Organization Datagram */
 .outer{
@@ -172,11 +181,13 @@ body { padding-top: 50px; }
   border-radius: 100%;
 }
 
-.bg-restaurado { background: #000000; }
+.bg-restaurado { background: #0000FF; }
 .bg-cariado { background: #BB0000; }
 .bg-pendente { background: #449D44; }
 .bg-extracao { background: #000000; opacity: 0.7; }
 .bg-extraido { background: #000000; }
+.bg-protese-fixa { background: #FF4500; }
+.bg-protecao-pulpar { background: #8A2BE2; }
 
 .space-form div{
   margin-bottom: 1rem;

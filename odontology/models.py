@@ -154,17 +154,37 @@ class OralProcedure(AuditModel):
 class Consultation(AuditModel):
 	patient = models.ForeignKey(Patient, related_name='consultation_patient')
 	attendance = models.BooleanField()
+	first_consultation = models.BooleanField()
+	return_consultation = models.BooleanField()
+	urgency_consultation = models.BooleanField()
+	completed_treatment = models.BooleanField()
+	clinical_examination = models.TextField(blank=True, null=True)
 	observation = models.TextField(blank=True, null=True)
 
 	def __str__(self):
 		return self.patient.name
+
+class Exams(AuditModel):
+	name = models.CharField(max_length=150)
+	description = models.TextField(blank=True, null=True)
+	
+	def __str__(self):
+		return self.name
+
+class ExaminationSolicitation(AuditModel):
+	exams = models.ForeignKey(Exams,null=True,blank=True)
+	consultation = models.ForeignKey(Consultation,null=True,blank=True)
+	appraisal = models.TextField(blank=True, null=True)
+	
+	def __str__(self):
+		return self.exams.name
 
 class PatientDentalProcedure(AuditModel):
 	patient_tooth = models.ForeignKey(PatientTooth, related_name='patient_dental_procedure')
 	tooth_division = models.ForeignKey(ToothDivision)
 	procedure_dental = models.ForeignKey(ProcedureDental)
 	dentist = models.ForeignKey(Dentist)
-	consultation=models.ForeignKey(Consultation,null=True,blank=True)
+	consultation = models.ForeignKey(Consultation,null=True,blank=True)
 
 	def __str__(self):
 		return self.patient_tooth.tooth.name
@@ -172,7 +192,7 @@ class PatientDentalProcedure(AuditModel):
 class OralPatientProcedure(AuditModel):
 	oral_procedure = models.ForeignKey(OralProcedure)
 	dentist = models.ForeignKey(Dentist)
-	consultation=models.ForeignKey(Consultation,null=True,blank=True)
+	consultation = models.ForeignKey(Consultation,null=True,blank=True)
 
 	def __str__(self):
 		return self.oral_procedure.name

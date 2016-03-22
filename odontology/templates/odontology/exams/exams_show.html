@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<nav class="navbar navbar-default">
+  <div class="container">
+    <a class="navbar-brand" href="#">Dados dos Exams</a>
+    <ul class="nav navbar-nav pull-right">
+      <li>
+        <p class="navbar-btn">
+          <a class="btn btn-default" href="{% url 'exams_index' %}"> 
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            Voltar
+          </a>
+        </p>
+      </li>
+
+      <li>
+        <p class="navbar-btn">
+          <a class="btn btn-default" href="{% url 'exams_edit' exams.id %}"> 
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            Editar
+          </a>
+        </p>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <p>
+          <strong>Nome:</strong>
+          {{ exams.name }}
+        </p>
+        <p>
+          <strong>Descrição:</strong>
+          {{ exams.appraisal }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
