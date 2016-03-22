@@ -46,6 +46,7 @@
         <li role="presentation" class="active"><a href="#paciente" aria-controls="paciente" role="tab" data-toggle="tab">Paciente</a></li>
         <li role="presentation"><a href="#odontograma" aria-controls="odontograma" role="tab" data-toggle="tab">Odontograma</a></li>
         <li role="presentation"><a href="#proc_bucal" aria-controls="proc_bucal" role="tab" data-toggle="tab">Procedimento Bucal</a></li>
+         <li role="presentation"><a href="#exams" aria-controls="exams" role="tab" data-toggle="tab">Exames</a></li>
       </ul>
 
       <!-- Tab panes -->
@@ -289,6 +290,36 @@
             <center>
               <h4>
                 <b>Sem procedimentos</b>
+              </h4>
+            </center>
+            {% endif %}
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane space-tabs" id="exams">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            {% if examination_solicitation.count > 0 %}
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Exame</th>
+                  <th>Laudo</th>
+                  <th>Data</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for exams in examination_solicitation %}
+                <tr>
+                  <td>{{ exams.exams.name }}</td>
+                  <td>{{ exams.appraisal }}</td>
+                   <td>{{ exams.created_on }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% else %}
+            <center>
+              <h4>
+                <b>Sem exames</b>
               </h4>
             </center>
             {% endif %}
