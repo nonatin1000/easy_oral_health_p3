@@ -222,3 +222,22 @@ body { padding-top: 50px; }
 .space-form2{
   margin: 0 0 3rem 0;
 }
+
+.vertical-text {
+  text-align: center;
+  white-space: nowrap;
+  /*transform: rotate(-90deg);*/
+  /*transform-origin: 50% 50%;*/
+
+}
+.vertical-text:before {
+  content: '';
+  padding-top: 100%;
+  /*display: inline-block;
+  vertical-align: middle;*/
+}
+
+/*thead th {
+  text-align: center;
+  vertical-align: middle;
+}*/

@@ -24,13 +24,13 @@
           </a>
         </span>
       </li>
-      <li>
+     <!--  <li>
         <span class="navbar-btn">
           <a href="#modal-id-{{ patient.id }}" class="btn btn-default btn-size" title="Remover" data-toggle="modal">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
             Excluir
           </a>
-        </span>
+        </span> -->
       </li>
     </ul>
   </div>
@@ -309,7 +309,7 @@
                 <tr>
                   <td>{{ exams.exams.name }}</td>
                   <td>{{ exams.appraisal }}</td>
-                   <td>{{ exams.created_on }}</td>
+                   <td>{{ exams.created_on|date:"d/m/Y" }}</td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -330,12 +330,12 @@
               <thead>
                 <tr>
                   <th>Data</th>
-                  <th>Comparecimento</th>
-                  <th>1ª Consulta</th>
-                  <th>Consulta Retorno</th>
-                  <th>Consulta Urgência</th>
-                  <th>Tratamento Concluído</th>
-                  <th>Exame Clínico</th>
+                  <th class="vertical-text">Comparecimento</th>
+                  <th class="vertical-text">1ª Consulta</th>
+                  <th class="vertical-text">Consulta Retorno</th>
+                  <th class="vertical-text">Consulta Urgência</th>
+                  <th class="vertical-text">Tratamento Concluído</th>
+                  <th class="vertical-text">Exame Clínico</th>
                 </tr>
               </thead>
               <tbody>

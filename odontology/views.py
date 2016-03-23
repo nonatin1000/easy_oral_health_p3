@@ -318,6 +318,7 @@ def patient_delete(request, patient_id):
 @login_required
 def dependent_register(request, patient_id):
 	DependetFormSet = formset_factory(PatientForm)
+	AddressFormSet = formset_factory(AddressForm)
 	patient = Patient.objects.get(pk=patient_id)
 	# Save	
 	if request.method == 'POST':
@@ -331,11 +332,31 @@ def dependent_register(request, patient_id):
 					phone = form.cleaned_data.get('phone'),
 					marital_status = form.cleaned_data.get('marital_status'),
 					types = form.cleaned_data.get('types'),
+					birth_date = form.cleaned_data.get('birth_date'),
 					sex = form.cleaned_data.get('sex')
                 )
-				dependent.save()
+				d = dependent.save()
+				print("D")
+				print(d)
+		# Address Dependent	
+		addressformset = AddressFormSet(request.POST)
+		if addressformset.is_valid():
+			for form_address in addressformset:
+				address = address.create(
+                	city = form_address.cleaned_data.get('city'),
+					state = form_address.cleaned_data.get('state'),
+					street = form_address.cleaned_data.get('street'),
+					number = form_address.cleaned_data.get('number'),
+					complement = form_address.cleaned_data.get('complement'),
+					zip_code = form_address.cleaned_data.get('zip_code'),
+					reference_point = form_address.cleaned_data.get('reference_point'),
+					neighborhood = form_address.cleaned_data.get('neighborhood'),
+					country = form_address.cleaned_data.get('country')
+                )
+				address = AddressFormSet(request.POST,instance=Address(content_object=patient))
+				address.save()
 		return redirect('patient_index')	
-	return render(request, 'odontology/patient/dependent_register.html', {'patient': patient, 'formset': DependetFormSet() })
+	return render(request, 'odontology/patient/dependent_register.html', {'patient': patient, 'formset': DependetFormSet(), 'addressformset': AddressFormSet() })
 
 @login_required
 def odontogram(request, patient_id):

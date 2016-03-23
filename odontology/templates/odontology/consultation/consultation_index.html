@@ -42,7 +42,8 @@
 					<tr>
 						<th>Data</th>
 						<th>Paciente</th>
-						<th style="width: 160px;">Ações</th>
+						<th>Categoria</th>
+						<th style="width: 100px;">Ações</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -50,6 +51,7 @@
 					<tr>
 						<td>{{ consultation.created_on|date:"d/m/Y" }}</td>
 						<td>{{ consultation.patient.name }}</td>
+						<td>{{ consultation.patient.types }}</td>
 						<td>                    
 							<a href="{% url 'patient_show' consultation.patient.id %}" class="btn btn-default" title="Exibir">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -59,14 +61,14 @@
 								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 							</a>
 
-							<a href="#modal-id-{{ consultation.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+							<!-- <a href="#modal-id-{{ consultation.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
 								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-							</a>
+							</a> -->
 						</td>
 					</tr>
 
 					<!-- MODAL -->
-					<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+					<!-- <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
 						<div class="modal fade" id="modal-id-{{ consultation.id }}">
 							<div class="modal-dialog">
 								<div class="modal-content">
@@ -86,7 +88,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!-- /MODAL -->
 					{% endfor %}
 				</tbody>

@@ -146,7 +146,7 @@
 											<td>{{ procedure.procedure_dental.name }}</td>
 											<td>
 
-												<a href="#modal-id-{{ procedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+												<a href="#modal-id-o-{{ procedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
 													<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 												</a>
 											</td>
@@ -154,7 +154,7 @@
 
 										<!-- MODAL -->
 										<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-											<div class="modal fade" id="modal-id-{{ procedure.id }}">
+											<div class="modal fade" id="modal-id-o-{{ procedure.id }}">
 												<div class="modal-dialog">
 													<div class="modal-content">
 														<div class="modal-header">
@@ -234,7 +234,7 @@
 										<td>{{ oralpatientprocedure.created_on|date:"d/m/Y" }}</td>
 										<td>
 
-											<a href="#modal-id-{{ oralpatientprocedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+											<a href="#modal-id-p-{{ oralpatientprocedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
 												<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 											</a>
 										</td>
@@ -242,7 +242,7 @@
 
 									<!-- MODAL -->
 									<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-										<div class="modal fade" id="modal-id-{{ oralpatientprocedure.id }}">
+										<div class="modal fade" id="modal-id-p-{{ oralpatientprocedure.id }}">
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header">
@@ -313,7 +313,7 @@
 										<td>{{ examination.created_on|date:"d/m/Y" }}</td>
 										<td>
 
-											<a href="#modal-id-{{ examination.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+											<a href="#modal-id-e-{{ examination.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
 												<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 											</a>
 										</td>
@@ -321,7 +321,7 @@
 
 									<!-- MODAL -->
 									<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-										<div class="modal fade" id="modal-id-{{ examination.id }}">
+										<div class="modal fade" id="modal-id-e-{{ examination.id }}">
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header">
@@ -352,47 +352,47 @@
 				<div role="tabpanel" class="tab-pane space-tabs" id="consulta">
 					<form action="{% url 'consultation_edit' consultation.id%}" method="post">{% csrf_token %}
 				        <div class="form-group">
-				        	<label>Compareceu</label>
 				        	{% if consultation.attendance %}
 					            <input type="checkbox" id="attendance" name="attendance" class="form-control" checked="checked" >
 					        {% else %}
 					        	<input type="checkbox" id="attendance" name="attendance" class="form-control">
 					        {% endif %}
+				        	<label>Compareceu</label>
 				        </div>
 				        <div class="form-group">
-				            <label>Primeira Consulta</label>
 				            {% if consultation.first_consultation %}
 				            	<input type="checkbox" id="first_consultation" name="first_consultation" class="form-control" checked="checked" >
 				            {% else %}
 				            	<input type="checkbox" id="first_consultation" name="first_consultation" class="form-control">
 				            {% endif %}
+				            <label>Primeira Consulta</label>
 				        </div>
 
 				        <div class="form-group">
-				            <label>Consulta Retorno</label>
 				            {% if consultation.return_consultation %}
 				            	<input type="checkbox" id="return_consultation" name="return_consultation" class="form-control" checked="checked" >
 				            {% else %}
 				            	<input type="checkbox" id="return_consultation" name="return_consultation" class="form-control">
 				            {% endif %}
+				            <label>Consulta Retorno</label>
 				        </div>
 
 				        <div class="form-group">
-				            <label>Consulta Urgência</label>
 				        	{% if consultation.urgency_consultation %}
 				            	<input type="checkbox" id="urgency_consultation" name="urgency_consultation" class="form-control" checked="checked" >
 				            {% else %}
 				            	<input type="checkbox" id="urgency_consultation" name="urgency_consultation" class="form-control">
 				            {% endif %}
+				            <label>Consulta Urgência</label>
 				        </div>
 
 				        <div class="form-group">
-				            <label>Tratamento Concluído</label>
 				            {% if consultation.first_consultation %}
 				            	<input type="checkbox" id="completed_treatment" name="completed_treatment" class="form-control" checked="checked" >
 				            {% else %}
 				            	<input type="checkbox" id="completed_treatment" name="completed_treatment" class="form-control">
 				            {% endif %}
+				            <label>Tratamento Concluído</label>
 				        </div>
 
 				        <div class="form-group">
