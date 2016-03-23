@@ -323,6 +323,7 @@ def dependent_register(request, patient_id):
 	# Save	
 	if request.method == 'POST':
 	    # New Dependet
+		test = None
 		formset = DependetFormSet(request.POST)
 		if formset.is_valid():
 			for form in formset:
@@ -335,14 +336,13 @@ def dependent_register(request, patient_id):
 					birth_date = form.cleaned_data.get('birth_date'),
 					sex = form.cleaned_data.get('sex')
                 )
-				d = dependent.save()
-				print("D")
-				print(d)
+				test = dependent.save()
+				print(test)
 		# Address Dependent	
 		addressformset = AddressFormSet(request.POST)
 		if addressformset.is_valid():
 			for form_address in addressformset:
-				address = address.create(
+				a = Address.objects.create(
                 	city = form_address.cleaned_data.get('city'),
 					state = form_address.cleaned_data.get('state'),
 					street = form_address.cleaned_data.get('street'),
@@ -353,8 +353,8 @@ def dependent_register(request, patient_id):
 					neighborhood = form_address.cleaned_data.get('neighborhood'),
 					country = form_address.cleaned_data.get('country')
                 )
-				address = AddressFormSet(request.POST,instance=Address(content_object=patient))
-				address.save()
+				a = AddressFormSet(request.POST,instance=Address(content_object=test))
+				a.save()
 		return redirect('patient_index')	
 	return render(request, 'odontology/patient/dependent_register.html', {'patient': patient, 'formset': DependetFormSet(), 'addressformset': AddressFormSet() })
 
