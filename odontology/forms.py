@@ -113,14 +113,13 @@ class ConsultationForm(ModelForm):
 			'urgency_consultation': 'Consulta Urgência',
 			'completed_treatment': 'Tratamento Concluído?',
 			'clinical_examination': 'Exame Clínico',
-			'observation': 'Observação',
 		}
 
 class ConsultationEditForm(ModelForm):
 
 	class Meta:
 		model = Consultation
-		fields = ('attendance', 'first_consultation', 'return_consultation', 'urgency_consultation', 'completed_treatment', 'clinical_examination', 'observation')
+		fields = ('attendance', 'first_consultation', 'return_consultation', 'urgency_consultation', 'completed_treatment', 'clinical_examination')
 		labels = {
 			'attendance': 'Compareceu?',
 			'first_consultation': 'Primeira Consulta',
@@ -128,7 +127,6 @@ class ConsultationEditForm(ModelForm):
 			'urgency_consultation': 'Consulta Urgência',
 			'completed_treatment': 'Tratamento Concluído?',
 			'clinical_examination': 'Exame Clínico',
-			'observation': 'Observação',
 		}
 
 class ExamsForm(ModelForm):

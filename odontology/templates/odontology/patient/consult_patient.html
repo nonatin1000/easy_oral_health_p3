@@ -27,7 +27,7 @@
 			<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation" class="active"><a href="#odontograma" aria-controls="odontograma" role="tab" data-toggle="tab">Procedimento Dental</a></li>
 				<li role="presentation"><a href="#procbucal" aria-controls="procbucal" role="tab" data-toggle="tab">Procedimento Bucal</a></li>
-				<li role="presentation"><a href="#examination_solicitation" aria-controls="examination_solicitation" role="tab" data-toggle="tab">Solicitação de Exames</a></li>
+				<li role="presentation"><a href="#examination_solicitation" aria-controls="examination_solicitation" role="tab" data-toggle="tab">Exames</a></li>
 				<li role="presentation"><a href="#consulta" aria-controls="procbucal" role="tab" data-toggle="tab">Consulta</a></li>
 			</ul>
 
@@ -118,11 +118,6 @@
 											<td><div class="circulo bg-protese-fixa"></div></td>
 											<td>Prótese Fixa</td>
 											<td>Quadro totalmente laranja</td>
-										</tr>
-										<tr>
-											<td><div class="circulo bg-protecao-pulpar"></div></td>
-											<td>Proteção Pulpar</td>
-											<td>Quadro totalmente roxo</td>
 										</tr>
 									</tbody>
 								</table>
@@ -236,7 +231,7 @@
 									<tr>
 										<td>{{ oralpatientprocedure.dentist.first_name }}</td>
 										<td>{{ oralpatientprocedure.oral_procedure.name }}</td>
-										<td>{{ oralpatientprocedure.created_on }}</td>
+										<td>{{ oralpatientprocedure.created_on|date:"d/m/Y" }}</td>
 										<td>
 
 											<a href="#modal-id-{{ oralpatientprocedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
@@ -315,7 +310,7 @@
 									<tr>
 										<td>{{ examination.exams.name }}</td>
 										<td>{{ examination.appraisal }}</td>
-										<td>{{ examination.created_on }}</td>
+										<td>{{ examination.created_on|date:"d/m/Y" }}</td>
 										<td>
 
 											<a href="#modal-id-{{ examination.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
@@ -406,44 +401,14 @@
 		            		</textarea>
 		        		</div>
 
-		        		<div class="form-group">
-		            		<label>Observação</label>
-		            		<textarea rows="4" id="observation" name="observation" class="form-control">{{ consultation.observation }}
-		            		</textarea>
-		        		</div>
-
 				        <div class="form-group">
 				            <button type="submit" value="Salvar" class="btn btn-primary">
 				                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
-				                Salvar
+				                Atualizar
 				            </button>
 				        </div>
 				    </form>
-
-					<!-- <form action="{% url 'consultation_edit' consultation.id%}" method="post">{% csrf_token %}
-						{% for field in consultation_form %}
-						{% if field.errors %}
-						<div class="form-group error" >
-							<label class="control-label" >{{ field.label }}</label>
-							{{ field|add_class:"form-control input-md" }}
-							{% for error in field.errors%}
-							<span class="help-inline error">{{ error}}</span>
-							{% endfor%}
-						</div>
-						{%else%}
-						<div class="form-group">
-							<label class="control-label" >{{ field.label }}</label>
-							{{ field|add_class:"form-control input-md" }}
-						</div>
-						{%endif%}
-						{% endfor %}
-						<button type="submit" value="Atualizar" class="btn btn-primary">
-							<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
-							Atualizar
-						</button>
-					</form> -->
 				</div>
-
 			</div>
 		</div>
 	</div>

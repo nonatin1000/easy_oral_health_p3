@@ -47,6 +47,7 @@
         <li role="presentation"><a href="#odontograma" aria-controls="odontograma" role="tab" data-toggle="tab">Odontograma</a></li>
         <li role="presentation"><a href="#proc_bucal" aria-controls="proc_bucal" role="tab" data-toggle="tab">Procedimento Bucal</a></li>
          <li role="presentation"><a href="#exams" aria-controls="exams" role="tab" data-toggle="tab">Exames</a></li>
+         <li role="presentation"><a href="#consulta" aria-controls="consulta" role="tab" data-toggle="tab">Consultas</a></li>
       </ul>
 
       <!-- Tab panes -->
@@ -257,11 +258,6 @@
                     <td>Prótese Fixa</td>
                     <td>Quadro totalmente laranja</td>
                   </tr>
-                  <tr>
-                    <td><div class="circulo bg-protecao-pulpar"></div></td>
-                    <td>Proteção Pulpar</td>
-                    <td>Quadro totalmente roxo</td>
-                  </tr>
                 </tbody>
               </table>
             </div>
@@ -283,7 +279,7 @@
                 <tr>
                   <td>{{ oralpatientprocedure.dentist.first_name }}</td>
                   <td>{{ oralpatientprocedure.oral_procedure.name }}</td>
-                  <td>{{ oralpatientprocedure.created_on }}</td>
+                  <td>{{ oralpatientprocedure.created_on|date:"d/m/Y" }}</td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -322,6 +318,64 @@
             <center>
               <h4>
                 <b>Sem exames</b>
+              </h4>
+            </center>
+            {% endif %}
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane space-tabs" id="consulta">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            {% if consultation.count > 0 %}
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Comparecimento</th>
+                  <th>1ª Consulta</th>
+                  <th>Consulta Retorno</th>
+                  <th>Consulta Urgência</th>
+                  <th>Tratamento Concluído</th>
+                  <th>Exame Clínico</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for consult in consultation %}
+                <tr>
+                  <td>{{ consult.created_on|date:"d/m/Y" }}</td>
+                  {% if consult.attendance %}
+                    <td>Sim</td>
+                  {% else %}
+                    <td>Não</td>
+                  {% endif %}
+                  {% if consult.first_consultation %}
+                    <td>Sim</td>
+                  {% else %}
+                    <td>Não</td>
+                  {% endif %}
+                  {% if consult.return_consultation %}
+                    <td>Sim</td>
+                  {% else %}
+                    <td>Não</td>
+                  {% endif %}
+                  {% if consult.urgency_consultation %}
+                    <td>Sim</td>
+                  {% else %}
+                    <td>Não</td>
+                  {% endif %}
+                  {% if consult.completed_treatment %}
+                    <td>Sim</td>
+                  {% else %}
+                    <td>Não</td>
+                  {% endif %}
+                  <td>{{ consult.clinical_examination }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% else %}
+            <center>
+              <h4>
+                <b>Sem Consultas</b>
               </h4>
             </center>
             {% endif %}

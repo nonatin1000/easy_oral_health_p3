@@ -306,7 +306,8 @@ def patient_show(request, patient_id):
 	odontogram_patient = PatientTooth.objects.filter(patient=patient).order_by('tooth')
 	oral_patient_procedure = OralPatientProcedure.objects.filter(consultation__patient=patient)
 	examination_solicitation = ExaminationSolicitation.objects.filter(consultation__patient=patient)
-	return render(request, 'odontology/patient/patient_show.html', {'patient': patient, 'address': address, 'odontogram_patient': odontogram_patient, 'oral_patient_procedure': oral_patient_procedure, 'examination_solicitation': examination_solicitation})
+	consultation = Consultation.objects.filter(patient=patient)
+	return render(request, 'odontology/patient/patient_show.html', {'patient': patient, 'address': address, 'odontogram_patient': odontogram_patient, 'oral_patient_procedure': oral_patient_procedure, 'examination_solicitation': examination_solicitation, 'consultation': consultation})
 
 @login_required
 def patient_delete(request, patient_id):

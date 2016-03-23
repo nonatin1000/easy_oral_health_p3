@@ -50,7 +50,6 @@
 						<th>1.ª Consulta</th>
 						<th>Consulta Retorno</th>
 						<th>Consulta Urgência</th>
-						<th>Radiografia</th>
 						<th>Proc. Dental</th>
 						<th>Proc. Bucal</th>
 						<th>Tratamento Concluído</th>
@@ -84,7 +83,6 @@
 						{% else %}
 							<td>Não</td>
 						{% endif %}
-						<td>{{ consultation.radiograph }}</td>
 						<!-- Pega todos os procedimentos dental daquele paciente-->
 						{% for patdentproc in consultation.patientdentalprocedure_set.all %}
 							<td>{{ patdentproc.patient_tooth.tooth.name }}</td>

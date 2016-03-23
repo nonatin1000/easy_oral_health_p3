@@ -57,14 +57,14 @@
 							</a>
 						</td>
 						{% else %}
-						<td>{{ patient.name }}</td>
+							<td>{{ patient.name }}</td>
 						{% endif %}
-						<td>{{ patient.phone }}</td>
+							<td>{{ patient.phone }}</td>
 						<td>
 							<a href="{% url 'patient_show' patient.id %}" class="btn btn-default" title="Exibir">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							</a>
-							{% if patient.types != 'Estudante' %}
+							{% if patient.types != 'Estudante' and patient.types != 'Terceirizado' and patient.types != 'Dependente'%}
 							<a href="{% url 'dependent_register' patient.id %}" class="btn btn-default" title="Add Dependente">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 							</a>

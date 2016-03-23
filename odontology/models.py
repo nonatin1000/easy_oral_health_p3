@@ -159,14 +159,13 @@ class Consultation(AuditModel):
 	urgency_consultation = models.BooleanField()
 	completed_treatment = models.BooleanField()
 	clinical_examination = models.TextField(blank=True, null=True)
-	observation = models.TextField(blank=True, null=True)
 
 	def __str__(self):
 		return self.patient.name
 
 class Exams(AuditModel):
 	name = models.CharField(max_length=150)
-	description = models.TextField(blank=True, null=True)
+	description = models.CharField(u'Descrição', max_length=150, blank=True, null=True)
 	
 	def __str__(self):
 		return self.name

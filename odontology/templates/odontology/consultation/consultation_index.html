@@ -40,20 +40,16 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
+						<th>Data</th>
 						<th>Paciente</th>
-						<th>Comparecimento</th>
 						<th style="width: 160px;">Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for consultation in consultations %}
 					<tr>
+						<td>{{ consultation.created_on|date:"d/m/Y" }}</td>
 						<td>{{ consultation.patient.name }}</td>
-						{% if consultation.attendance == True %}
-							<td>Presente</td>
-						{% else %}
-							<td>Ausente</td>
-						{% endif %}
 						<td>                    
 							<a href="{% url 'patient_show' consultation.patient.id %}" class="btn btn-default" title="Exibir">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
