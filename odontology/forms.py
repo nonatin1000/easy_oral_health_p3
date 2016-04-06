@@ -42,6 +42,12 @@ class PatientForm(ModelForm):
 		model = Patient
 		exclude = ('dependents', 'patient')
 
+class DependentForm(ModelForm):
+
+	class Meta:
+		model = Patient
+		exclude = ('dependents', 'patient', 'types', 'course')
+
 class PatientToothForm(ModelForm):
 
 	class Meta:

@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
 from django.forms import formset_factory
 from .models import Dentist, Address, User, Course, Exams, Tooth, ToothDivision, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure, OralPatientProcedure, Consultation, ExaminationSolicitation
-from .forms import DentistForm, AddressForm, CourseForm, ExamsForm, ToothForm, ToothDivisionForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm, OralPatientProcedureForm, ConsultationForm, ConsultationEditForm, ExaminationSolicitationForm, ExaminationSolicitationEditForm
+from .forms import DentistForm, AddressForm, CourseForm, ExamsForm, ToothForm, ToothDivisionForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm, OralPatientProcedureForm, ConsultationForm, ConsultationEditForm, ExaminationSolicitationForm, ExaminationSolicitationEditForm, DependentForm
 
 # Signup dentist ---------------------------------------------------------------------------------#
 
@@ -317,32 +317,24 @@ def patient_delete(request, patient_id):
 
 @login_required
 def dependent_register(request, patient_id):
-	DependetFormSet = formset_factory(PatientForm)
+	form_dependent = DependentForm
 	form_address = AddressForm
 	patient = Patient.objects.get(pk=patient_id)
 	# Save	
 	if request.method == 'POST':
 	    # New Dependet
-		test = None
-		formset = DependetFormSet(request.POST)
-		if formset.is_valid():
-			for form in formset:
-				dependent = patient.dependents.create(
-        			name = form.cleaned_data.get('name'),
-					email = form.cleaned_data.get('email'),
-					phone = form.cleaned_data.get('phone'),
-					marital_status = form.cleaned_data.get('marital_status'),
-					types = form.cleaned_data.get('types'),
-					birth_date = form.cleaned_data.get('birth_date'),
-					sex = form.cleaned_data.get('sex')
-                )
-				test = dependent.save()
-				print(test)
-				# Address Dependent	
-				form_address = AddressForm(request.POST,instance=Address(content_object=test))
-				form_address.save()
+		form = DependentForm(request.POST)
+		if form.is_valid():
+			dependent = form.save(commit=False)
+			dependent.types = 'Dependente'
+			dependent.save()
+			# Add o Dependete ao Patient
+			patient.dependents.add(dependent)
+			# Address Dependent	
+			form_address = AddressForm(request.POST,instance=Address(content_object=dependent))
+			form_address.save()
 		return redirect('patient_index')	
-	return render(request, 'odontology/patient/dependent_register.html', {'patient': patient, 'formset': DependetFormSet(), 'form_address': form_address })
+	return render(request, 'odontology/patient/dependent_register.html', {'patient': patient, 'form_dependent': form_dependent, 'form_address': form_address })
 
 @login_required
 def odontogram(request, patient_id):

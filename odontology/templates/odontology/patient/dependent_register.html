@@ -1,7 +1,6 @@
 {% extends "base.html" %}
-
+{% load widget_tweaks %}
 {% block body %}
-
 <nav class="navbar navbar-default">
   <div class="container">
     <a class="navbar-brand" href="#">Cadastro de Dependentes</a>
@@ -9,8 +8,8 @@
       <li>
         <p class="navbar-btn">
           <a class="btn btn-default" href="{% url 'patient_index' %}"> 
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            Voltar
+            <span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
+            Cancelar
           </a>
         </p>
       </li>
@@ -18,104 +17,91 @@
   </div>
 </nav>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-          <form action="{% url 'dependent_register' patient.id %}" method="post">{% csrf_token %}
-            {{ formset.management_form }}
-              {% for form in formset %}
-              <div class="form-group">
-                <label>Nome:</label>
-                {{ form.name }}
-              </div>
-
-              <div class="form-group">
-                <label>Email:</label>
-                {{ form.email }}
-              </div>
-
-               <div class="form-group">
-                <label>Categoria:</label>
-                {{ form.types }}
-              </div>
-
-              <div class="form-group">
-                <label>Telefone:</label>
-                {{ form.phone }}
-              </div>
-
-              <div class="form-group">
-                <label>Data de Nascimento:</label>
-                {{ form.birth_date }}
-              </div>
-
-              <div class="form-group">
-                <label>Sexo:</label>
-                {{ form.sex }}
-              </div>
-
-              <div class="form-group">
-                <label>Estado Civil:</label>
-                {{ form.marital_status }}
-              </div>
-
-            {% endfor %}
-           
-            <!-- Endereço -->
-            <div class="form-group">
-              <label>Pais:</label>
-              {{ form_address.country }}
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+       <form action="{% url 'dependent_register' patient.id %}" method="post">{% csrf_token %}
+          <fieldset>
+            <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#tab-dados" aria-controls="tab-dados" role="tab" data-toggle="tab">Dados</a></li>
+              <li role="presentation"><a href="#tab-endereco" aria-controls="tab-endereco" role="tab" data-toggle="tab">Endereço</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="tab-dados">
+              {% for field in form_dependent %}
+                {% if field.errors %}
+                  <div class="form-group error" >
+                    <label class="control-label" >{{ field.label }}</label>
+                            {{ field|add_class:"form-control input-md" }}
+                    {% for error in field.errors%}
+                          <span class="help-inline error">{{ error}}</span>
+                        {% endfor%}
+                      </div>
+                {%else%}
+                <div class="form-group">
+                  <label class="control-label" >{{ field.label }}</label>
+                  {{ field|add_class:"form-control input-md" }}
+                    </div>
+                {%endif%}
+                {% endfor %}
             </div>
-            <div class="form-group">
-              <label>Estado:</label>
-              {{ form_address.state }}
+              <div role="tabpanel" class="tab-pane" id="tab-endereco">
+              {% for field in form_address %}
+                {% if field.errors %}
+                  <div class="form-group error" >
+                    <label class="control-label" >{{ field.label }}</label>
+                            {{ field|add_class:"form-control input-md" }}
+                    {% for error in field.errors%}
+                          <span class="help-inline error">{{ error}}</span>
+                        {% endfor%}
+                      </div>
+                {%else%}
+                <div class="form-group">
+                  <label class="control-label" >{{ field.label }}</label>
+                  {{ field|add_class:"form-control input-md" }}
+                    </div>
+                {%endif%}
+                {% endfor %}
             </div>
-            <div class="form-group">
-              <label>Cidade:</label>
-              {{ form_address.city }}
             </div>
-            <div class="form-group">
-              <label>Logradouro:</label>
-              {{ form_address.street }}
-            </div>
-            <div class="form-group">
-              <label>Número:</label>
-              {{ form_address.number }}
-            </div>
-            <div class="form-group">
-              <label>Bairro:</label>
-              {{ form_address.neighborhood }}
-            </div>
-            <div class="form-group">
-              <label>CEP:</label>
-              {{ form_address.zip_code }}
-            </div>
-            <div class="form-group">
-              <label>Complemento:</label>
-              {{ form_address.complement }}
-            </div>
-            <div class="form-group">
-              <label>Ponto de Referência:</label>
-              {{ form_address.reference_point }}
-            </div>
-            <!-- Fim Endereço-->
-            <div class="form-group">
-              <input type="submit" value="Salvar">
-            </div>
-          </form>
-      </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" value="Salvar" class="btn btn-primary">
+              <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+              Salvar
+            </button>
+          </div>
+        </fieldset>
+      </form>
     </div>
   </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#id_birth_date").attr("readonly", "true");
+  $("#id_birth_date").AnyPicker({
+    mode: "datetime",
 
-  <script type="text/javascript">
-    $('.form-group input[type=text]').addClass('form-control');
-    $('.form-group input[type=email]').addClass('form-control');
-    $('.form-group select').addClass('form-control');
-    $('.form-group input[type=submit]').addClass('btn btn-primary');
+     dateTimeFormat: "dd/MM/yyyy",
+    //dateTimeFormat: "yyyy-MM-dd",
 
-    $(document).ready(function(){
-      $("#id_form-0-phone").inputmask({"mask": "(99) 9 9999-9999"}); //specifying options
-    });
-  </script>
+    rowsNavigation: "scroller+buttons",
 
-  {% endblock %}
+ //    layout: "relative",
+
+ //    hAlign: "center",
+
+  // vAlign: "bottom",
+
+    lang: "pt-br",
+
+    theme: "Android" // "Default", "iOS", "Android", "Windows"
+  });
+
+  $("#id_phone").inputmask({"mask": "(99) 9 9999-9999"}); //specifying options
+});
+</script>
+{% endblock %}
