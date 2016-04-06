@@ -323,17 +323,18 @@ def dependent_register(request, patient_id):
 	# Save	
 	if request.method == 'POST':
 	    # New Dependet
-		form = DependentForm(request.POST)
-		if form.is_valid():
-			dependent = form.save(commit=False)
+		form_dependent = DependentForm(request.POST)
+		form_address   = AddressForm(request.POST)
+		if form_dependent.is_valid() and form_address.is_valid():
+			dependent = form_dependent.save(commit=False)
 			dependent.types = 'Dependente'
 			dependent.save()
-			# Add o Dependete ao Patient
+			# Add o Dependente ao Patient
 			patient.dependents.add(dependent)
 			# Address Dependent	
 			form_address = AddressForm(request.POST,instance=Address(content_object=dependent))
 			form_address.save()
-		return redirect('patient_index')	
+			return redirect('patient_index')	
 	return render(request, 'odontology/patient/dependent_register.html', {'patient': patient, 'form_dependent': form_dependent, 'form_address': form_address })
 
 @login_required

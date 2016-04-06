@@ -41,7 +41,7 @@ class Dentist(User, AuditModel):
 
 	birth_date = models.DateField(u'Data Nascimento')
 	cro = models.CharField(u'CRO', max_length=6, null=False,)
-	phone = models.CharField(u'Telefone', max_length=16, blank=True)
+	phone = models.CharField(u'Telefone', max_length=16)
 	address = GenericRelation('Address')
 
 	def __str__(self): 
@@ -73,7 +73,7 @@ class Patient(AuditModel):
 	MALE = 'M'
 	FEMALE  = 'F'
 	SEX_CHOICES = ((MALE, 'Masculino'), (FEMALE, 'Feminino'),)
-	sex = models.CharField(u'Sexo', max_length=1, choices=SEX_CHOICES, default=None, blank=True, null=True)
+	sex = models.CharField(u'Sexo', max_length=1, choices=SEX_CHOICES)
 	
 	def is_upperclass(self):
 		return self.sex in (self.MALE, self.FEMALE)
@@ -89,10 +89,10 @@ class Patient(AuditModel):
 	def is_upperclass(self):
 		return self.marital_status in (self.MARRIED, self.SINGLE, self.SEPARATED, self.WINDOWER, self.DIVORCED)
 
-	birth_date = models.DateField(u'Data de Nascimento', blank=True, null=True)
+	birth_date = models.DateField(u'Data de Nascimento')
 	father = models.CharField(u'Pai', max_length=150, blank=True, null=True)
 	mother = models.CharField(u'Mãe', max_length=150, blank=True, null=True)
-	phone = models.CharField(u'Telefone', max_length=16, blank=True, null=True)
+	phone = models.CharField(u'Telefone', max_length=16)
 	course = models.ForeignKey(Course, null=True, blank=True)
 
 	STUDENT = 'Estudante'
@@ -115,14 +115,14 @@ class Patient(AuditModel):
 		return self.name
 
 class Address(AuditModel):
-	city = models.CharField(u'Cidade', max_length=255, blank=True, null=True)
-	state = models.CharField(u'UF', max_length=2, blank=True, null=True)
-	street = models.CharField(u'Rua',max_length=255, blank=True, null=True)
-	number = models.CharField(u'Número', max_length=20, blank=True, null=True)
+	city = models.CharField(u'Cidade', max_length=255)
+	state = models.CharField(u'UF', max_length=2)
+	street = models.CharField(u'Rua',max_length=255)
+	number = models.CharField(u'Número', max_length=20)
 	complement = models.CharField(u'Complemento', max_length=255, blank=True, null=True)
 	zip_code = models.CharField(u'CEP', max_length=10, blank=True, null=True)
 	reference_point = models.CharField(u'Ponto de Referência', max_length=255, blank=True, null=True)
-	neighborhood = models.CharField(u'Bairro', max_length=255, blank=True, null=True)
+	neighborhood = models.CharField(u'Bairro', max_length=255)
 	country = models.CharField(u'País', max_length=255, blank=True, null=True)
 	
 	# Generic Relation
