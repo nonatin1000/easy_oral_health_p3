@@ -154,6 +154,7 @@ class OralProcedure(AuditModel):
 class Consultation(AuditModel):
 	patient = models.ForeignKey(Patient, related_name='consultation_patient')
 	attendance = models.BooleanField()
+	lack_justified = models.BooleanField()
 	first_consultation = models.BooleanField()
 	return_consultation = models.BooleanField()
 	urgency_consultation = models.BooleanField()

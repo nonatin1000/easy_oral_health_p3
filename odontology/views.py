@@ -320,6 +320,7 @@ def dependent_register(request, patient_id):
 	form_dependent = DependentForm
 	form_address = AddressForm
 	patient = Patient.objects.get(pk=patient_id)
+
 	# Save	
 	if request.method == 'POST':
 	    # New Dependet

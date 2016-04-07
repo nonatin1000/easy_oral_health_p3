@@ -11,7 +11,7 @@
 					<div class="col-md-8 col-xs-8 col-sm-8 space-top">
 						<form class="form-horizontal" action="." method="get">
 							<div class="input-group">
-								<input id="search_box" name="search_box" type="text" placeholder="Data da consulta, Ex: Ano-Mês-Dia..." class="form-control" autofocus="true">
+								<input id="search_box" name="search_box" type="text" class="form-control" readonly="true">
 								<span class="input-group-btn">
 									<button type="submit" class="btn btn-default form-control" title="Clique para realizar a pesquisar">
 										<span class="glyphicon glyphicon-search"></span>
@@ -34,99 +34,223 @@
 	</div>
 </nav>
 
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
-		<div class="col-lg-12">
+		<div class="col-md-12">
 			{% if consultations.count > 0 %}
 			<table class="table table-hover table-bordered">
 				<thead>
 					<tr>
-						<th rowspan="2">Horário</th>
-						<th rowspan="2">Nome</th>
-						<th colspan="5">categoria</th>
-						<th colspan="2">sexo</th>
-						<th>idade</th>
-						<th colspan="2">compareceu?</th>
-						<th></th>
-						<th colspan="21">Procedimentos</th>
+						<th rowspan="2" class="vertical-text" style="position: relative; left: -90px; top: 10px;">Horário</th>
+						<th rowspan="2" class="alig-cell cent" width="20%">Nome</th>
+						<th colspan="5" class="cent">Categoria</th>
+						<th colspan="2" class="cent">Sexo</th>
+						<th colspan="2" class="cent">Idade</th>
+						<th colspan="3" class="cent">Compare<br>cimento</th>
+						<th colspan="16" class="cent">Procedimentos</th>
 					</tr>
-					<tr>
-						<th class="vertical-text">Estudante</th>
-						<th class="vertical-text">Professor</th>
-						<th class="vertical-text">Téc. Admin</th>
-						<th class="vertical-text">Dependente</th>
-						<th class="vertical-text">Terceirizado</th>
-						<th class="vertical-text">Feminino</th>
-						<th class="vertical-text">Masculino</th>
-						<th class="vertical-text"></th>
-						<th class="vertical-text">Presente</th>
-						<th class="vertical-text">Ausente</th>
-						<th class="vertical-text">Dente</th>
-						<th class="vertical-text">Exame clínico</th>
-						<th class="vertical-text">Primeira consulta</th>
-						<th class="vertical-text">Consulta retorno</th>
-						<th class="vertical-text">Consulta urgência</th>
-						<th class="vertical-text">Radiografia</th>
-						<th class="vertical-text">Rest. ionômero</th>
-						<th class="vertical-text">Rest. amálgama</th>
-						<th class="vertical-text">Rest. Resina</th>
-						<th class="vertical-text">Rest. Provisória</th>
-						<th class="vertical-text">Tartarectomia</th>
-						<th class="vertical-text">Profilaxia</th>
-						<th class="vertical-text">Fluor</th>
-						<th class="vertical-text">Exodontia</th>
-						<th class="vertical-text">Remoção de pontos</th>
-						<th class="vertical-text">Solicitações ex.</th>
-						<th class="vertical-text">Concluído</th>
+					<tr class="rotate-cells">
+						<th class="vertical-text"> <span> Estudante </span> </th>
+						<th class="vertical-text"> <span> Professor </span> </th>
+						<th class="vertical-text"> <span> Téc. Admin </span> </th>
+						<th class="vertical-text"> <span> Dependente </span> </th>
+						<th class="vertical-text"> <span> Terceirizado </span> </th>
+						<th class="vertical-text"> <span> Feminino </span> </th>
+						<th class="vertical-text"> <span> Masculino </span> </th>
+						<th class="vertical-text"> <span> 17 à 30 </span> </th>
+						<th class="vertical-text"> <span> 31 ou mais </span> </th>
+						<th class="vertical-text"> <span> Presente </span> </th>
+						<th class="vertical-text"> <span> Ausente </span> </th>
+						<th class="vertical-text"> <span> Falta Justificada </span> </th>
+						<th class="vertical-text"> <span> Dente </span> </th>
+						<th class="vertical-text"> <span> Exame clínico </span> </th>
+						<th class="vertical-text"> <span> Primeira consulta </span> </th>
+						<th class="vertical-text"> <span> Consulta retorno </span> </th>
+						<th class="vertical-text"> <span> Consulta urgência </span> </th>
+						<!-- <th class="vertical-text"> <span> Proteção pulpar </span> </th> -->
+						<th class="vertical-text"> <span> Rest. ionômero </span> </th>
+						<th class="vertical-text"> <span> Rest. amálgama </span> </th>
+						<th class="vertical-text"> <span> Rest. Resina </span> </th>
+						<th class="vertical-text"> <span> Rest. Provisória </span> </th>
+						<th class="vertical-text"> <span> Exodontia </span> </th>
+						<th class="vertical-text"> <span> Tartarectomia </span> </th>
+						<th class="vertical-text"> <span> Profilaxia </span> </th>
+						<th class="vertical-text"> <span> Flúor </span> </th>
+						<th class="vertical-text"> <span> Remoção de pontos </span> </th>
+						<th class="vertical-text"> <span> Solicitações EX </span> </th>
+						<th class="vertical-text"> <span> Concluído </span> </th>
 					</tr>
 				</thead>
-				<!--
 				<tbody>
+
 					{% for consultation in consultations %}
 					<tr>
 						<td>{{ consultation.created_on|date:"H:i" }}</td>
 						<td>{{ consultation.patient.name }}</td>
-						<td>{{ consultation.patient.types }}</td>
-						<td>{{ consultation.patient.sex }}</td>
-						<td>{{ consultation.patient.age }}</td>
-						{% if consultation.attendance == True %}
-							<td>Presente</td>
+						<!-- Categoria -->
+						{% if consultation.patient.types == "Estudante" %}
+							<td>X</td>
 						{% else %}
-							<td>Ausente</td>
+							<td></td>
+						{% endif %}
+						{% if consultation.patient.types == "Professor" %}
+							<td>X</td>
+						{% else %}
+							<td></td>
+						{% endif %}
+						{% if consultation.patient.types == "Técnico Administrativo" %}
+							<td>X</td>
+						{% else %}
+							<td></td>
+						{% endif %}
+						{% if consultation.patient.types == "Dependente" %}
+							<td>X</td>
+						{% else %}
+							<td></td>
+						{% endif %}
+						{% if consultation.patient.types == "Terceirizado" %}
+							<td>X</td>
+						{% else %}
+							<td></td>
+						{% endif %}
+
+						<!-- Sexo -->
+						{% if consultation.patient.sex == "F" %}
+							<td>X</td>
+						{% else %}
+							<td></td>
+						{% endif %}
+						{% if consultation.patient.sex == "M" %}
+							<td>X</td>
+						{% else %}
+							<td></td>
+						{% endif %}
+
+						<!-- Idade -->
+						{% if consultation.patient.age > 16 and consultation.patient.age <= 30 %}
+							<td>X</td>
+						{% else %}
+							<td></td>
+						{% endif %}
+						{% if consultation.patient.age > 30 %}
+							<td>X</td>
+						{% else %}
+							<td></td>
+						{% endif %}
+
+						<!-- Comparecimento -->
+						{% if consultation.attendance == True %}
+							<td>X</td>
+						{% else %}
+							<td></td>
+						{% endif %}
+						{% if consultation.attendance == False %}
+							<td>X</td>
+						{% else %}
+							<td></td>
+						{% endif %}
+						{% if consultation.lack_justified == True %}
+							<td>X</td>
+						{% else %}
+							<td></td>
+						{% endif %}
+
+						<!-- Dente -->
+						{% if consultation.patientdentalprocedure_set.count > 0 %}
+							<td>X</td>
+						{% else %}
+							<td></td>
+						{% endif %}
+
+						<!-- Procedimentos -->
+						{% if consultation.clinical_examination|length > 0 %}
+							<td>X</td>
+						{% else %}
+							<td></td>
 						{% endif %}
 						{% if consultation.first_consultation == True %}
-							<td>Sim</td>
+							<td>X</td>
 						{% else %}
-							<td>Não</td>
+							<td></td>
 						{% endif %}
 						{% if consultation.return_consultation == True %}
-							<td>Sim</td>
+							<td>X</td>
 						{% else %}
-							<td>Não</td>
+							<td></td>
 						{% endif %}
 						{% if consultation.urgency_consultation == True %}
-							<td>Sim</td>
+							<td>X</td>
 						{% else %}
-							<td>Não</td>
+							<td></td>
 						{% endif %}
-						<!-- Pega todos os procedimentos dental daquele paciente ->
+						<!--Pega todos os procedimentos dental daquele paciente -->
 						{% for patdentproc in consultation.patientdentalprocedure_set.all %}
-							<td>{{ patdentproc.patient_tooth.tooth.name }}</td>
+							{% if patdentproc.procedure_dental.name == 'Restauração Ionômero' %}
+								<td>X</td>
+							{% else %}
+								<td></td>
+							{% endif %}
+							{% if patdentproc.procedure_dental.name == 'Restauração Amalgama' %}
+								<td>X</td>
+							{% else %}
+								<td></td>
+							{% endif %}
+							{% if patdentproc.procedure_dental.name == 'Restauração Resina' %}
+								<td>X</td>
+							{% else %}
+								<td></td>
+							{% endif %}
+							{% if patdentproc.procedure_dental.name == 'Restauração Provisória' %}
+								<td>X</td>
+							{% else %}
+								<td></td>
+							{% endif %}
+							<!-- Exodontia-->
+							{% if patdentproc.procedure_dental.name == 'Extraído ou ausente' %}
+								<td>X</td>
+							{% else %}
+								<td></td>
+							{% endif %}
 						{% endfor %}
-						<!-- Pega todos os procedimentos bucal daquele paciente ->
+						<!--Pega todos os procedimentos bucal daquele paciente -->
 						{% for oralpatproc in consultation.oralpatientprocedure_set.all %}
-							<td>{{ oralpatproc.oral_procedure.name }}</td>
+							{% if oralpatproc.oral_procedure.name == 'Tartarectomia' %}
+								<td>X</td>
+							{% else %}
+								<td></td>
+							{% endif %}
+							{% if oralpatproc.oral_procedure.name == 'Profilaxia' %}
+								<td>X</td>
+							{% else %}
+								<td></td>
+							{% endif %}
+							{% if oralpatproc.oral_procedure.name == 'Fluor' %}
+								<td>X</td>
+							{% else %}
+								<td></td>
+							{% endif %}
+							{% if oralpatproc.oral_procedure.name == 'Remoção de Pontos' %}
+								<td>X</td>
+							{% else %}
+								<td></td>
+							{% endif %}
 						{% endfor %}
-
-						{% if consultation.completed_treatment == True %}
-							<td>Sim</td>
+						<!-- Solicitações de Exames ERRO-->
+						{% if consultation.examinationsolicitation.patient.count > 0 %}
+							<td>X</td>
 						{% else %}
-							<td>Não</td>
+							<td></td>
+						{% endif %}
+						{% if consultation.completed_treatment == True %}
+							<td>X</td>
+						{% else %}
+							<td></td>
 						{% endif %}
 					</tr>
 					{% endfor %}
 				</tbody>
-				-->
+			
+			</table>
 			{% else %}
             <center>
               <h4>
@@ -138,28 +262,15 @@
 	</div>
 </div>
 </div>
-<script type="text/javascript">
-	$(document).ready(function(){
-	  $("#search_box").attr("readonly", "true");
-	  $("#search_box").AnyPicker({
-	    mode: "datetime",
-
-	     dateTimeFormat: "yyyy-MM-dd",
-	    //dateTimeFormat: "yyyy-MM-dd",
-
-	    rowsNavigation: "scroller+buttons",
-
-	 //    layout: "relative",
-
-	 //    hAlign: "center",
-
-		// vAlign: "bottom",
-
-	    lang: "pt-br",
-
-	    theme: "Android" // "Default", "iOS", "Android", "Windows"
-	  });
-
+<script>
+	$(document).ready(function () {
+		$('#search_box').datepicker({
+			format: "yyyy-mm-dd",
+			todayBtn: "linked",
+			language: "pt-BR",
+			autoclose: true,
+			todayHighlight: true
+		});
 	});
 </script>
 

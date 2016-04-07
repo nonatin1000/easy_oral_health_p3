@@ -360,6 +360,14 @@
 				        	<label>Compareceu</label>
 				        </div>
 				        <div class="form-group">
+				        	{% if consultation.lack_justified %}
+					            <input type="checkbox" id="lack_justified" name="lack_justified" class="form-control" checked="checked" >
+					        {% else %}
+					        	<input type="checkbox" id="lack_justified" name="lack_justified" class="form-control">
+					        {% endif %}
+				        	<label>Falta Justificada</label>
+				        </div>
+				        <div class="form-group">
 				            {% if consultation.first_consultation %}
 				            	<input type="checkbox" id="first_consultation" name="first_consultation" class="form-control" checked="checked" >
 				            {% else %}

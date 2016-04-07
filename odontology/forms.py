@@ -96,7 +96,6 @@ class PatientDentalProcedureForm(ModelForm):
 			raise forms.ValidationError(u'Dente Inválido.')
 		return self.cleaned_data['patient_tooth']
 
-
 class OralPatientProcedureForm(ModelForm):
 
 	class Meta:
@@ -114,6 +113,7 @@ class ConsultationForm(ModelForm):
 		labels = {
 			'patient': 'Paciente',
 			'attendance': 'Compareceu?',
+			'lack_justified': 'Falta Justificada',
 			'first_consultation': 'Primeira Consulta',
 			'return_consultation': 'Consulta Retorno',
 			'urgency_consultation': 'Consulta Urgência',
@@ -125,9 +125,10 @@ class ConsultationEditForm(ModelForm):
 
 	class Meta:
 		model = Consultation
-		fields = ('attendance', 'first_consultation', 'return_consultation', 'urgency_consultation', 'completed_treatment', 'clinical_examination')
+		fields = ('attendance', 'lack_justified', 'first_consultation', 'return_consultation', 'urgency_consultation', 'completed_treatment', 'clinical_examination')
 		labels = {
 			'attendance': 'Compareceu?',
+			'lack_justified': 'Falta Justificada',
 			'first_consultation': 'Primeira Consulta',
 			'return_consultation': 'Consulta Retorno',
 			'urgency_consultation': 'Consulta Urgência',
@@ -140,7 +141,6 @@ class ExamsForm(ModelForm):
 	class Meta:
 		model = Exams
 		fields = '__all__'
-
 
 class ExaminationSolicitationForm(ModelForm):
 
