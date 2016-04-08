@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 {% block body %}
 
 <nav class="navbar navbar-default">
@@ -38,10 +38,10 @@
 	<div class="row">
 		<div class="col-md-12">
 			{% if consultations.count > 0 %}
-			<table class="table table-hover table-bordered teste">
+			<table class="table table-hover table-bordered espaco-0">
 				<thead>
 					<tr>
-						<th rowspan="2" class="vertical-text" style="position: relative; left: -90px; top: 10px;">Horário</th>
+						<th rowspan="2" class="vertical-text"><img src="{% static "images/horario.png" %}"></th>
 						<th rowspan="2" class="alig-cell cent" width="20%">Nome</th>
 						<th colspan="5" class="cent">Categoria</th>
 						<th colspan="2" class="cent">Sexo</th>
@@ -50,35 +50,35 @@
 						<th colspan="17" class="cent">Procedimentos</th>
 					</tr>
 					<tr class="rotate-cells">
-						<th class="vertical-text"> <span> Estudante </span> </th>
-						<th class="vertical-text"> <span> Professor </span> </th>
-						<th class="vertical-text"> <span> Téc. Admin </span> </th>
-						<th class="vertical-text"> <span> Dependente </span> </th>
-						<th class="vertical-text"> <span> Terceirizado </span> </th>
-						<th class="vertical-text"> <span> Feminino </span> </th>
-						<th class="vertical-text"> <span> Masculino </span> </th>
-						<th class="vertical-text"> <span> 17 à 30 </span> </th>
-						<th class="vertical-text"> <span> 31 ou mais </span> </th>
-						<th class="vertical-text"> <span> Presente </span> </th>
-						<th class="vertical-text"> <span> Ausente </span> </th>
-						<th class="vertical-text"> <span> Falta Justificada </span> </th>
-						<th class="vertical-text"> <span> Dente </span> </th>
-						<th class="vertical-text"> <span> Exame clínico </span> </th>
-						<th class="vertical-text"> <span> Primeira consulta </span> </th>
-						<th class="vertical-text"> <span> Consulta retorno </span> </th>
-						<th class="vertical-text"> <span> Consulta urgência </span> </th>
-						<th class="vertical-text"> <span> Radiografia </span> </th>
-						<th class="vertical-text"> <span> Rest. ionômero </span> </th>
-						<th class="vertical-text"> <span> Rest. amálgama </span> </th>
-						<th class="vertical-text"> <span> Rest. Resina </span> </th>
-						<th class="vertical-text"> <span> Rest. Provisória </span> </th>
-						<th class="vertical-text"> <span> Exodontia </span> </th>
-						<th class="vertical-text"> <span> Tartarectomia </span> </th>
-						<th class="vertical-text"> <span> Profilaxia </span> </th>
-						<th class="vertical-text"> <span> Flúor </span> </th>
-						<th class="vertical-text"> <span> Remoção de pontos </span> </th>
-						<th class="vertical-text"> <span> Solicitações EX </span> </th>
-						<th class="vertical-text"> <span> Concluído </span> </th>
+						<th class="vertical-text"><img src="{% static "images/estudante.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/professor.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/tec.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/dep.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/ter.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/f.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/m.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/17.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/31.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/p.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/a.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/falta.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/dente.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/ex.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/primeira.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/retorno.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/urgencia.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/rx.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/ionomero.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/amalgama.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/resina.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/provisoria.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/exo.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/tar.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/profilaxia.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/fluor.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/pontos.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/soli.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/concluido.png" %}"></th>
 					</tr>
 				</thead>
 				<tbody>
