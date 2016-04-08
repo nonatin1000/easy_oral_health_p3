@@ -227,8 +227,12 @@ body { padding-top: 50px; }
   max-width: 5px;
   white-space: nowrap;
   -webkit-transform: rotate(-90deg); 
-  -moz-transform: rotate(-90deg); 
+  -moz-transform: rotate(-90deg);
+
+  background:transparent !important;
+  background: rgba(255,255,255,0);
 }
+
 .rotate-cells th{
   height: 160px;
   max-height: 20px;
@@ -250,3 +254,26 @@ body { padding-top: 50px; }
 .alig-cell{
   vertical-align: middle !important;
 }
+
+.teste td, .teste tr {
+  padding: 0 !important;
+  text-align: center;
+  background: rgba(255,255,255,0);
+}
+
+.teste, .teste * {
+  background:transparent !important;
+  background: rgba(255,255,255,0);
+}
+
+body { background: #99cc33 }
+
+/*@media print {
+  * {
+    background:transparent !important;
+    color:#000 !important;
+    text-shadow:none !important;
+    filter:none !important;
+    -ms-filter:none !important;
+  }
+}*/

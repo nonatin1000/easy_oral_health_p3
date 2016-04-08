@@ -108,7 +108,7 @@ class Patient(AuditModel):
 	
 	# calculating age
 	def age(self):
-		today = date.today()
+		today = self.created_on
 		return today.year - self.birth_date.year
 
 	def __str__(self):
@@ -162,6 +162,27 @@ class Consultation(AuditModel):
 	radiograph = models.BooleanField()
 	clinical_examination = models.TextField(blank=True, null=True)
 
+	def dental_proc(self):
+		dental_procedures = {}
+		for pprocedure in self.patientdentalprocedure_set.all():
+			print('Aqui')
+			pprocedure
+			if pprocedure.procedure_dental.name == 'Restauração Ionômero':
+				dental_procedures['rest_ionomero'] = True
+			if pprocedure.procedure_dental.name == 'Restauração Amalgama':
+				dental_procedures['rest_amalgama'] = True
+			if pprocedure.procedure_dental.name == 'Restauração Resina':
+				dental_procedures['rest_resina'] = True
+			if pprocedure.procedure_dental.name == 'Restauração Provisória':
+				dental_procedures['rest_provisoria'] = True
+			if pprocedure.procedure_dental.name == 'Extraído ou ausente':
+				dental_procedures['exodontia'] = True
+			print('#######################################################')
+			print(pprocedure)
+		print(dental_procedures)
+		print('#######################################################')
+		return self.dental_procedures
+
 	def __str__(self):
 		return self.patient.name
 
@@ -194,6 +215,26 @@ class OralPatientProcedure(AuditModel):
 	oral_procedure = models.ForeignKey(OralProcedure)
 	dentist = models.ForeignKey(Dentist)
 	consultation = models.ForeignKey(Consultation,null=True,blank=True)
+
+	def oral_proc(self):
+		oral_procedures = {}
+		for oprocedure in consultation.oralpatientprocedure_set.all():
+			print('Aqui')
+			oprocedure
+			if pprocedure.oral_procedure.name == 'Tartarectomia':
+				oral_procedures['tartarectomia'] = True
+			if oprocedure.oral_procedure.name == 'Profilaxia':
+				oral_procedures['profilaxia'] = True
+			if oprocedure.oral_procedure.name == 'Flúor':
+				oral_procedures['flúor'] = True
+			if oprocedure.oral_procedure.name == 'Remoção de Pontos':
+				oral_procedures['remocao_de_pontos'] = True
+			
+			print('#######################################################')
+			print(oprocedure)
+		print(oral_procedures)
+		print('#######################################################')
+		return self.oral_procedures
 
 	def __str__(self):
 		return self.oral_procedure.name
