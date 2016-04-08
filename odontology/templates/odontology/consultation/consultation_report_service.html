@@ -47,7 +47,7 @@
 						<th colspan="2" class="cent">Sexo</th>
 						<th colspan="2" class="cent">Idade</th>
 						<th colspan="3" class="cent">Compare<br>cimento</th>
-						<th colspan="16" class="cent">Procedimentos</th>
+						<th colspan="17" class="cent">Procedimentos</th>
 					</tr>
 					<tr class="rotate-cells">
 						<th class="vertical-text"> <span> Estudante </span> </th>
@@ -67,7 +67,7 @@
 						<th class="vertical-text"> <span> Primeira consulta </span> </th>
 						<th class="vertical-text"> <span> Consulta retorno </span> </th>
 						<th class="vertical-text"> <span> Consulta urgência </span> </th>
-						<!-- <th class="vertical-text"> <span> Proteção pulpar </span> </th> -->
+						<th class="vertical-text"> <span> Radiografia </span> </th>
 						<th class="vertical-text"> <span> Rest. ionômero </span> </th>
 						<th class="vertical-text"> <span> Rest. amálgama </span> </th>
 						<th class="vertical-text"> <span> Rest. Resina </span> </th>
@@ -183,6 +183,11 @@
 						{% else %}
 							<td></td>
 						{% endif %}
+						{% if consultation.radiograph == True %}
+							<td>X</td>
+						{% else %}
+							<td></td>
+						{% endif %}
 						<!--Pega todos os procedimentos dental daquele paciente -->
 						{% for patdentproc in consultation.patientdentalprocedure_set.all %}
 							{% if patdentproc.procedure_dental.name == 'Restauração Ionômero' %}
@@ -224,7 +229,7 @@
 							{% else %}
 								<td></td>
 							{% endif %}
-							{% if oralpatproc.oral_procedure.name == 'Fluor' %}
+							{% if oralpatproc.oral_procedure.name == 'Flúor' %}
 								<td>X</td>
 							{% else %}
 								<td></td>
@@ -236,7 +241,7 @@
 							{% endif %}
 						{% endfor %}
 						<!-- Solicitações de Exames ERRO-->
-						{% if consultation.examinationsolicitation.patient.count > 0 %}
+						{% if consultation.examinationsolicitation_set.count > 0 %}
 							<td>X</td>
 						{% else %}
 							<td></td>

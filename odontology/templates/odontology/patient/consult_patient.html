@@ -395,7 +395,16 @@
 				        </div>
 
 				        <div class="form-group">
-				            {% if consultation.first_consultation %}
+				            {% if consultation.radiograph %}
+				            	<input type="checkbox" id="radiograph" name="radiograph" class="form-control" checked="checked" >
+				            {% else %}
+				            	<input type="checkbox" id="radiograph" name="radiograph" class="form-control">
+				            {% endif %}
+				            <label>Radiografia</label>
+				        </div>
+
+				        <div class="form-group">
+				            {% if consultation.completed_treatment %}
 				            	<input type="checkbox" id="completed_treatment" name="completed_treatment" class="form-control" checked="checked" >
 				            {% else %}
 				            	<input type="checkbox" id="completed_treatment" name="completed_treatment" class="form-control">

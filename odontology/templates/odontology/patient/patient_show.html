@@ -331,6 +331,7 @@
                 <tr>
                   <th>Data</th>
                   <th class="vertical-text">Comparecimento</th>
+                  <th class="vertical-text">Radiografia</th>
                   <th class="vertical-text">1ª Consulta</th>
                   <th class="vertical-text">Consulta Retorno</th>
                   <th class="vertical-text">Consulta Urgência</th>
@@ -343,6 +344,11 @@
                 <tr>
                   <td>{{ consult.created_on|date:"d/m/Y" }}</td>
                   {% if consult.attendance %}
+                    <td>Sim</td>
+                  {% else %}
+                    <td>Não</td>
+                  {% endif %}
+                  {% if consult.radiograph %}
                     <td>Sim</td>
                   {% else %}
                     <td>Não</td>

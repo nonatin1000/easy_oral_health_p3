@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
 from django.forms import formset_factory
+from datetime import date
 from .models import Dentist, Address, User, Course, Exams, Tooth, ToothDivision, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure, OralPatientProcedure, Consultation, ExaminationSolicitation
 from .forms import DentistForm, AddressForm, CourseForm, ExamsForm, ToothForm, ToothDivisionForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm, OralPatientProcedureForm, ConsultationForm, ConsultationEditForm, ExaminationSolicitationForm, ExaminationSolicitationEditForm, DependentForm
 
@@ -701,10 +702,12 @@ def report_service(request):
 	consultations = Consultation.objects.all()
 	
 	""" takes the pacient name through and get stored in the variable var_get_search""" 
-	var_get_search = request.GET.get('search_box')
+	var_get_search=date.today() # Pega sempre a data atual
+	if request.GET.get('search_box', False):
+		var_get_search = request.GET.get('search_box')
+
 	if var_get_search is not None:
 		consultations = consultations.filter(created_on__date=var_get_search)
-
 	return render(request, 'odontology/consultation/consultation_report_service.html', {'consultations': consultations})
 
 # End report_service------ ----------------------------------------------------------------------#

@@ -159,6 +159,7 @@ class Consultation(AuditModel):
 	return_consultation = models.BooleanField()
 	urgency_consultation = models.BooleanField()
 	completed_treatment = models.BooleanField()
+	radiograph = models.BooleanField()
 	clinical_examination = models.TextField(blank=True, null=True)
 
 	def __str__(self):

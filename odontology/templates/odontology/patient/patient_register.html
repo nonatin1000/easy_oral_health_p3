@@ -80,28 +80,18 @@
 	</div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){
-  $("#id_birth_date").attr("readonly", "true");
-  $("#id_birth_date").AnyPicker({
-    mode: "datetime",
+	$(document).ready(function(){
+	  $("#id_birth_date").attr("readonly", "true");
+	  $("#id_birth_date").datepicker({
+	    format: "dd/mm/yyyy",
+		todayBtn: "linked",
+		language: "pt-BR",
+		autoclose: true,
+		todayHighlight: true
+	  });
 
-     dateTimeFormat: "dd/MM/yyyy",
-    //dateTimeFormat: "yyyy-MM-dd",
-
-    rowsNavigation: "scroller+buttons",
-
- //    layout: "relative",
-
- //    hAlign: "center",
-
-	// vAlign: "bottom",
-
-    lang: "pt-br",
-
-    theme: "Android" // "Default", "iOS", "Android", "Windows"
-  });
-
-  $("#id_phone").inputmask({"mask": "(99) 9 9999-9999"}); //specifying options
-});
+	  $("#id_phone").inputmask({"mask": "(99) 9 9999-9999"}); //specifying options
+	  $("#id_zip_code").inputmask({"mask": "99999-999"}); //specifying options
+	});
 </script>
 {% endblock %}

@@ -118,6 +118,7 @@ class ConsultationForm(ModelForm):
 			'return_consultation': 'Consulta Retorno',
 			'urgency_consultation': 'Consulta Urgência',
 			'completed_treatment': 'Tratamento Concluído?',
+			'radiograph': 'Radiografia',
 			'clinical_examination': 'Exame Clínico',
 		}
 
@@ -125,7 +126,7 @@ class ConsultationEditForm(ModelForm):
 
 	class Meta:
 		model = Consultation
-		fields = ('attendance', 'lack_justified', 'first_consultation', 'return_consultation', 'urgency_consultation', 'completed_treatment', 'clinical_examination')
+		fields = ('attendance', 'lack_justified', 'first_consultation', 'return_consultation', 'urgency_consultation', 'completed_treatment', 'radiograph', 'clinical_examination')
 		labels = {
 			'attendance': 'Compareceu?',
 			'lack_justified': 'Falta Justificada',
@@ -133,6 +134,7 @@ class ConsultationEditForm(ModelForm):
 			'return_consultation': 'Consulta Retorno',
 			'urgency_consultation': 'Consulta Urgência',
 			'completed_treatment': 'Tratamento Concluído?',
+			'radiograph': 'Radiografia',
 			'clinical_examination': 'Exame Clínico',
 		}
 
