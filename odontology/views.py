@@ -13,6 +13,19 @@ from django.forms import formset_factory
 from datetime import date, datetime
 from .models import Dentist, Address, User, Course, Exams, Tooth, ToothDivision, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure, OralPatientProcedure, Consultation, ExaminationSolicitation
 from .forms import DentistForm, AddressForm, CourseForm, ExamsForm, ToothForm, ToothDivisionForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm, OralPatientProcedureForm, ConsultationForm, ConsultationEditForm, ExaminationSolicitationForm, ExaminationSolicitationEditForm, DependentForm
+from dal import autocomplete
+
+# Autocomplete patiente na consulta
+class PatientAutocomplete(autocomplete.Select2QuerySetView):
+	def get_queryset(self):
+		# Don't forget to filter out results depending on the visitor !
+		
+		qs = Patient.objects.all()
+
+		if self.q:
+			qs = qs.filter(name__istartswith=self.q)
+
+		return qs
 
 # Signup dentist ---------------------------------------------------------------------------------#
 
@@ -243,14 +256,14 @@ def patient_index(request):
 	
 	paginator = Paginator(patients_list, 10) # Mostra 10 pacientes por página
 
-    # Make sure page request is an int. If not, deliver first page.
-    # Esteja certo de que o `page request` é um inteiro. Se não, mostre a primeira página.
+	# Make sure page request is an int. If not, deliver first page.
+	# Esteja certo de que o `page request` é um inteiro. Se não, mostre a primeira página.
 	try:
 		page = int(request.GET.get('page', '1'))
 	except ValueError:
 		page = 1
 
-    # Se o page request (9999) está fora da lista, mostre a última página.
+	# Se o page request (9999) está fora da lista, mostre a última página.
 	try:
 		patients = paginator.page(page)
 	except (EmptyPage, InvalidPage):
@@ -324,7 +337,7 @@ def dependent_register(request, patient_id):
 
 	# Save	
 	if request.method == 'POST':
-	    # New Dependet
+		# New Dependet
 		form_dependent = DependentForm(request.POST)
 		form_address   = AddressForm(request.POST)
 		if form_dependent.is_valid() and form_address.is_valid():
@@ -565,14 +578,14 @@ def consultation_index(request):
 	
 	paginator = Paginator(consultations_list, 10) # Mostra 10 pacientes por página
 
-    # Make sure page request is an int. If not, deliver first page.
-    # Esteja certo de que o `page request` é um inteiro. Se não, mostre a primeira página.
+	# Make sure page request is an int. If not, deliver first page.
+	# Esteja certo de que o `page request` é um inteiro. Se não, mostre a primeira página.
 	try:
 		page = int(request.GET.get('page', '1'))
 	except ValueError:
 		page = 1
 
-    # Se o page request (9999) está fora da lista, mostre a última página.
+	# Se o page request (9999) está fora da lista, mostre a última página.
 	try:
 		consultations = paginator.page(page)
 	except (EmptyPage, InvalidPage):
@@ -704,16 +717,16 @@ def report_service(request):
 	consultations = Consultation.objects.all()
 
 	""" takes the pacient name through and get stored in the variable var_get_search""" 
-	var_get_search=date.today() # Pega sempre a data atual
+	consultation_date=date.today() # Pega sempre a data atual
 	if request.GET.get('search_box', False):
-		var_get_search = request.GET.get('search_box')
-		ano, mes, dia = var_get_search.split("-")
+		consultation_date = datetime.strptime(request.GET.get('search_box'), "%Y-%m-%d").date()
+		#ano, mes, dia = var_get_search.split("-")
 
-	if var_get_search is not None:
-		consultations = consultations.filter(created_on__date=var_get_search)
-		ano, mes, dia = var_get_search.split("-")
+	if consultation_date is not None:
+		consultations = consultations.filter(created_on__date=consultation_date)
+		#ano, mes, dia = var_get_search.split("-")
 		#ano, mes, dia = var_get_search.year,var_get_search.month, var_get_search.day
 
-	return render(request, 'odontology/consultation/consultation_report_service.html', {'consultations': consultations, 'dia': dia, 'mes': mes, 'ano': ano })
+	return render(request, 'odontology/consultation/consultation_report_service.html', {'consultations': consultations, 'consultation_date': consultation_date })
 
 # End report_service------ ----------------------------------------------------------------------#

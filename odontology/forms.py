@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from django.forms import ModelForm
+from django import forms
 from django.forms.utils import ErrorList
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from odontology.models import Dentist, Address, Course, Exams, Tooth, ToothDivision, Patient, PatientTooth, ProcedureDental, OralProcedure, PatientDentalProcedure, OralPatientProcedure, Consultation, ExaminationSolicitation
+from dal import autocomplete
 
 class DentistForm(UserCreationForm):
 
@@ -106,7 +108,10 @@ class OralPatientProcedureForm(ModelForm):
 		}
 
 class ConsultationForm(ModelForm):
-
+	patient = forms.ModelChoiceField(
+		queryset=Patient.objects.all(),
+		widget=autocomplete.ModelSelect2(url='patient-autocomplete')
+	)
 	class Meta:
 		model = Consultation
 		exclude = ['dentist']
