@@ -109,7 +109,7 @@ class ConsultationForm(ModelForm):
 
 	class Meta:
 		model = Consultation
-		fields = ('__all__')
+		exclude = ['dentist']
 		labels = {
 			'patient': 'Paciente',
 			'attendance': 'Compareceu?',

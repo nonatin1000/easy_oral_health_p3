@@ -153,6 +153,7 @@ class OralProcedure(AuditModel):
 
 class Consultation(AuditModel):
 	patient = models.ForeignKey(Patient, related_name='consultation_patient')
+	dentist = models.ForeignKey(Dentist, related_name='consultation_dentist')
 	attendance = models.BooleanField()
 	lack_justified = models.BooleanField()
 	first_consultation = models.BooleanField()
@@ -162,11 +163,25 @@ class Consultation(AuditModel):
 	radiograph = models.BooleanField()
 	clinical_examination = models.TextField(blank=True, null=True)
 
+	# Verifica os procedimentos bucal e armeza o valor no dicionario para exibição no relatorio de atendimento
+	def oral_proc(self):
+		oral_procedures = {}
+		for oprocedure in self.oralpatientprocedure_set.all():
+			if oprocedure.oral_procedure.name == 'Tartarectomia':
+				oral_procedures['tartarectomia'] = True
+			if oprocedure.oral_procedure.name == 'Profilaxia':
+				oral_procedures['profilaxia'] = True
+			if oprocedure.oral_procedure.name == 'Flúor':
+				oral_procedures['fluor'] = True
+			if oprocedure.oral_procedure.name == 'Remoção de Pontos':
+				oral_procedures['remocao_de_pontos'] = True
+			
+		return oral_procedures
+
+	# Verifica os procedimentos dental e armeza o valor no dicionario para exibição no relatorio de atendimento
 	def dental_proc(self):
 		dental_procedures = {}
 		for pprocedure in self.patientdentalprocedure_set.all():
-			print('Aqui')
-			pprocedure
 			if pprocedure.procedure_dental.name == 'Restauração Ionômero':
 				dental_procedures['rest_ionomero'] = True
 			if pprocedure.procedure_dental.name == 'Restauração Amalgama':
@@ -177,11 +192,8 @@ class Consultation(AuditModel):
 				dental_procedures['rest_provisoria'] = True
 			if pprocedure.procedure_dental.name == 'Extraído ou ausente':
 				dental_procedures['exodontia'] = True
-			print('#######################################################')
-			print(pprocedure)
-		print(dental_procedures)
-		print('#######################################################')
-		return self.dental_procedures
+
+		return dental_procedures
 
 	def __str__(self):
 		return self.patient.name
@@ -215,26 +227,6 @@ class OralPatientProcedure(AuditModel):
 	oral_procedure = models.ForeignKey(OralProcedure)
 	dentist = models.ForeignKey(Dentist)
 	consultation = models.ForeignKey(Consultation,null=True,blank=True)
-
-	def oral_proc(self):
-		oral_procedures = {}
-		for oprocedure in consultation.oralpatientprocedure_set.all():
-			print('Aqui')
-			oprocedure
-			if pprocedure.oral_procedure.name == 'Tartarectomia':
-				oral_procedures['tartarectomia'] = True
-			if oprocedure.oral_procedure.name == 'Profilaxia':
-				oral_procedures['profilaxia'] = True
-			if oprocedure.oral_procedure.name == 'Flúor':
-				oral_procedures['flúor'] = True
-			if oprocedure.oral_procedure.name == 'Remoção de Pontos':
-				oral_procedures['remocao_de_pontos'] = True
-			
-			print('#######################################################')
-			print(oprocedure)
-		print(oral_procedures)
-		print('#######################################################')
-		return self.oral_procedures
 
 	def __str__(self):
 		return self.oral_procedure.name

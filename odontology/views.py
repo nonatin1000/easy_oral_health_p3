@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
 from django.forms import formset_factory
-from datetime import date
+from datetime import date, datetime
 from .models import Dentist, Address, User, Course, Exams, Tooth, ToothDivision, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure, OralPatientProcedure, Consultation, ExaminationSolicitation
 from .forms import DentistForm, AddressForm, CourseForm, ExamsForm, ToothForm, ToothDivisionForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm, OralPatientProcedureForm, ConsultationForm, ConsultationEditForm, ExaminationSolicitationForm, ExaminationSolicitationEditForm, DependentForm
 
@@ -582,13 +582,15 @@ def consultation_index(request):
 
 @login_required
 def consultation_create(request):
-
+	dentist = Dentist.objects.get(pk=request.user.id)
 	form = ConsultationForm # empty form
 	
 	if request.method == 'POST':
 		form=ConsultationForm(request.POST)
 		if(form.is_valid()):
-			consultation=form.save()
+			consult = consultation=form.save(commit=False)
+			consult.dentist = dentist
+			consult.save()
 			return redirect('consultation_edit',consultation_id=consultation.id)
 	return render(request, 'odontology/consultation/consultation_register.html', {'form':form})
 
@@ -700,14 +702,18 @@ def report_service(request):
 	
 	""" A View of all Consultation """
 	consultations = Consultation.objects.all()
-	
+
 	""" takes the pacient name through and get stored in the variable var_get_search""" 
 	var_get_search=date.today() # Pega sempre a data atual
 	if request.GET.get('search_box', False):
 		var_get_search = request.GET.get('search_box')
+		ano, mes, dia = var_get_search.split("-")
 
 	if var_get_search is not None:
 		consultations = consultations.filter(created_on__date=var_get_search)
-	return render(request, 'odontology/consultation/consultation_report_service.html', {'consultations': consultations})
+		ano, mes, dia = var_get_search.split("-")
+		#ano, mes, dia = var_get_search.year,var_get_search.month, var_get_search.day
+
+	return render(request, 'odontology/consultation/consultation_report_service.html', {'consultations': consultations, 'dia': dia, 'mes': mes, 'ano': ano })
 
 # End report_service------ ----------------------------------------------------------------------#

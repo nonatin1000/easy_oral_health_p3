@@ -37,8 +37,31 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
+			<div class="header-print">
+				<div class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-1" style="position: relative; margin-left: 100px;">
+						<img src="{% static "images/brasao.gif" %}" height="80" width="80" class="img-responsive pull-left">
+					</div>
+					<div class="col-md-5 alig-header">
+						<h6>
+							<b>
+								MINISTÉRIO DA EDUCAÇÃO<br/>
+								UNIVERSIDADE FEDERAL DO PIAUÍ - UFPI<br/>
+								PRÓ-REITORIA DE ASSUNTOS ESTUDANTIS E COMUNITÁRIOS - PRAEC<br/>
+								COORDENADORIA DE ASSISTÊNCIA COMUNITÁRIA - CACOM<br/>
+								SERVIÇO ODONTOLÓGICO - SEOD <span class="pull-right">Data: {{dia}}/{{mes}}/{{ano}}</span>
+							</b>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
 			{% if consultations.count > 0 %}
-			<table class="table table-hover table-bordered espaco-0">
+			<table class="table table-hover table-bordered espaco-0 print-data">
 				<thead>
 					<tr>
 						<th rowspan="2" class="vertical-text"><img src="{% static "images/horario.png" %}"></th>
@@ -50,35 +73,35 @@
 						<th colspan="17" class="cent">Procedimentos</th>
 					</tr>
 					<tr class="rotate-cells">
-						<th class="vertical-text"><img src="{% static "images/estudante.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/professor.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/tec.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/dep.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/ter.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/f.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/m.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/17.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/31.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/p.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/a.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/falta.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/dente.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/ex.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/primeira.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/retorno.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/urgencia.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/rx.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/ionomero.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/amalgama.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/resina.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/provisoria.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/exo.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/tar.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/profilaxia.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/fluor.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/pontos.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/soli.png" %}"></th>
-						<th class="vertical-text"><img src="{% static "images/concluido.png" %}"></th>
+						<th class="vertical-text"><img src="{% static "images/estudante.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/professor.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/tec.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/dep.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/ter.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/f.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/m.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/17.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/31.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/p.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/a.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/falta.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/dente.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/ex.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/primeira.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/retorno.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/urgencia.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/rx.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/ionomero.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/amalgama.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/resina.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/provisoria.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/exo.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/tar.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/profilaxia.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/fluor.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/pontos.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/soli.png" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/concluido.png" %}" class="img-teste"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -87,203 +110,216 @@
 					<tr>
 						<td>{{ consultation.created_on|date:"H:i" }}</td>
 						<td>{{ consultation.patient.name }}</td>
+						
 						<!-- Categoria -->
 						{% if consultation.patient.types == "Estudante" %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						{% if consultation.patient.types == "Professor" %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						{% if consultation.patient.types == "Técnico Administrativo" %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						{% if consultation.patient.types == "Dependente" %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						{% if consultation.patient.types == "Terceirizado" %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						<!-- Sexo -->
 						{% if consultation.patient.sex == "F" %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						{% if consultation.patient.sex == "M" %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						<!-- Idade -->
 						{% if consultation.patient.age > 16 and consultation.patient.age <= 30 %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						{% if consultation.patient.age > 30 %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						<!-- Comparecimento -->
 						{% if consultation.attendance == True %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						{% if consultation.attendance == False %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						{% if consultation.lack_justified == True %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						<!-- Dente -->
 						{% if consultation.patientdentalprocedure_set.count > 0 %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						<!-- Procedimentos -->
 						{% if consultation.clinical_examination|length > 0 %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						{% if consultation.first_consultation == True %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						{% if consultation.return_consultation == True %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						{% if consultation.urgency_consultation == True %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						{% if consultation.radiograph == True %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						<!--Pega todos os procedimentos dental daquele paciente -->
-						{% if consultation.consultation.dental_proc.rest_ionomero %}
-							<td>X</td>
+						{% if consultation.dental_proc.rest_ionomero %}
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
-						{% if consultation.consultation.dental_proc.rest_amalgama %}
-							<td>X</td>
+						{% if consultation.dental_proc.rest_amalgama %}
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
-						{% if consultation.consultation.dental_proc.rest_resina %}
-							<td>X</td>
+						{% if consultation.dental_proc.rest_resina %}
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
-						{% if consultation.consultation.dental_proc.rest_provisoria %}
-							<td>X</td>
+						{% if consultation.dental_proc.rest_provisoria %}
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
-						{% if consultation.consultation.dental_proc.exodontia %}
-							<td>X</td>
+						{% if consultation.dental_proc.exodontia %}
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
 						<h1>
-							{{ consultation.consultation.dental_proc.res_ionomero }}
+							{{ consultation.dental_proc.res_ionomero }}
 						</h1>
 
 						<!--Pega todos os procedimentos bucal daquele paciente -->
-						{% if consultation.oralpatientprocedure.oral_proc.tartarectomia %}
-							<td>X</td>
+						{% if consultation.oral_proc.tartarectomia %}
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
-						{% if consultation.oralpatientprocedure.oral_proc.profilaxia %}
-							<td>X</td>
+						{% if consultation.oral_proc.profilaxia %}
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
-						{% if consultation.oralpatientprocedure.oral_proc.fluor %}
-							<td>X</td>
+						{% if consultation.oral_proc.fluor %}
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
-						{% if consultation.oralpatientprocedure.oral_proc.remocao_de_pontos %}
-							<td>X</td>
+						{% if consultation.oral_proc.remocao_de_pontos %}
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 
-						<!-- Solicitações de Exames ERRO-->
+						<!-- Solicitações de Exames-->
 						{% if consultation.examinationsolicitation_set.count > 0 %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 						{% if consultation.completed_treatment == True %}
-							<td>X</td>
+						<td>X</td>
 						{% else %}
-							<td></td>
+						<td></td>
 						{% endif %}
 					</tr>
 					{% endfor %}
 				</tbody>
-			
+
 			</table>
 			{% else %}
-            <center>
-              <h4>
-                <b>Sem consultas</b>
-              </h4>
-            </center>
-            {% endif %}
+			<center>
+				<h4>
+					<b>Sem consultas</b>
+				</h4>
+			</center>
+			{% endif %}
+		</div>
+	</div>
+	<div class="row">
+		<div class="footer-print">
+			<div class="col-md-12 cent">
+				<h5>
+					<br>
+					{{request.user.first_name}} {{request.user.last_name}}
+					<br>
+					CRO: {{request.user.dentist.cro|upper}}
+				</h5>
+			</div>	
 		</div>
 	</div>
 </div>

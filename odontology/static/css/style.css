@@ -171,10 +171,6 @@ body { padding-top: 50px; }
   display: block;
 }
 
-.legenda {
-  
-}
-
 .circulo {
   width: 1.5em;
   height: 1.5em;
@@ -273,3 +269,51 @@ body { padding-top: 50px; }
     -ms-filter:none !important;
   }
 }*/
+
+.header-print{
+  display: none;
+}
+
+.footer-print{
+  display: none;
+}
+
+@page  
+{ 
+  size: auto; 
+  margin: 1mm 5mm 5mm 5mm;  
+}
+
+@media print {
+  .header-print{
+    display: inline;
+  }
+  .footer-print{
+    display: inline;
+    position: absolute;
+    bottom: 0;
+    right: 42%;
+  }
+  .print-data tbody > tr > td{
+    font-size: 7pt;
+  }
+  .print-data thead > tr > th{
+    font-size: 7pt;
+  }
+  .img-teste{
+    width: 55%;
+    height: 55%;
+  }
+}
+
+.alig-header{
+  position: relative;
+  margin-left: 200px;
+}
+
+.cent{
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
