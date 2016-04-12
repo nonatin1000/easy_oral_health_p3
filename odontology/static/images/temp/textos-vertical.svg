@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="textos-vertical.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.9688961"
+     inkscape:cx="353.33233"
+     inkscape:cy="594.45578"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1600"
+     inkscape:window-height="844"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="77.937119"
+       id="horario"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text2985"><tspan
+         sodipodi:role="line"
+         id="tspan2987"
+         x="-560.3559"
+         y="77.937119">Horário</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       sodipodi:linespacing="125%"
+       id="estudante"
+       y="97.937119"
+       x="-560.3559"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       xml:space="preserve"
+       inkscape:label="#text2989"><tspan
+         y="97.937119"
+         x="-560.3559"
+         id="tspan2991"
+         sodipodi:role="line">Estudante</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="117.93712"
+       id="professor"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text2993"><tspan
+         sodipodi:role="line"
+         id="tspan2995"
+         x="-560.3559"
+         y="117.93712">Professor</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       sodipodi:linespacing="125%"
+       id="tec"
+       y="137.93709"
+       x="-560.3559"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       xml:space="preserve"
+       inkscape:label="#text2997"><tspan
+         y="137.93709"
+         x="-560.3559"
+         id="tspan2999"
+         sodipodi:role="line">Tec. Administ.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="157.93709"
+       id="dep"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text3001"><tspan
+         sodipodi:role="line"
+         id="tspan3003"
+         x="-560.3559"
+         y="157.93709">Dependente</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       sodipodi:linespacing="125%"
+       id="ter"
+       y="177.93709"
+       x="-560.3559"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       xml:space="preserve"
+       inkscape:label="#text3005"><tspan
+         y="177.93709"
+         x="-560.3559"
+         id="tspan3007"
+         sodipodi:role="line">Terceirizado</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="197.93709"
+       id="f"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text3009"><tspan
+         sodipodi:role="line"
+         id="tspan3011"
+         x="-560.3559"
+         y="197.93709">Feminino</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       sodipodi:linespacing="125%"
+       id="m"
+       y="217.93709"
+       x="-560.3559"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       xml:space="preserve"
+       inkscape:label="#text3013"><tspan
+         y="217.93709"
+         x="-560.3559"
+         id="tspan3015"
+         sodipodi:role="line">Masculino</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="237.93709"
+       id="17"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text3017"><tspan
+         sodipodi:role="line"
+         id="tspan3019"
+         x="-560.3559"
+         y="237.93709">17-30</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       sodipodi:linespacing="125%"
+       id="31"
+       y="257.93707"
+       x="-560.3559"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       xml:space="preserve"
+       inkscape:label="#text3021"><tspan
+         y="257.93707"
+         x="-560.3559"
+         id="tspan3023"
+         sodipodi:role="line">31+</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="277.93707"
+       id="p"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text3025"><tspan
+         sodipodi:role="line"
+         id="tspan3027"
+         x="-560.3559"
+         y="277.93707">Presente</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       sodipodi:linespacing="125%"
+       id="a"
+       y="297.93707"
+       x="-560.3559"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       xml:space="preserve"
+       inkscape:label="#text3029"><tspan
+         y="297.93707"
+         x="-560.3559"
+         id="tspan3031"
+         sodipodi:role="line">Ausente</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="317.93707"
+       id="falta"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text3033"><tspan
+         sodipodi:role="line"
+         id="tspan3035"
+         x="-560.3559"
+         y="317.93707">Falta justificada</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       sodipodi:linespacing="125%"
+       id="dente"
+       y="337.93707"
+       x="-560.3559"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       xml:space="preserve"
+       inkscape:label="#text3037"><tspan
+         y="337.93707"
+         x="-560.3559"
+         id="tspan3039"
+         sodipodi:role="line">Dente</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="357.93707"
+       id="ex"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text3041"><tspan
+         sodipodi:role="line"
+         id="tspan3043"
+         x="-560.3559"
+         y="357.93707">Exame clínico</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       sodipodi:linespacing="125%"
+       id="primeira"
+       y="377.93707"
+       x="-560.3559"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       xml:space="preserve"
+       inkscape:label="#text3045"><tspan
+         y="377.93707"
+         x="-560.3559"
+         id="tspan3047"
+         sodipodi:role="line">Primeira consulta</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="397.93707"
+       id="retorno"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text3049"><tspan
+         sodipodi:role="line"
+         id="tspan3051"
+         x="-560.3559"
+         y="397.93707">Consulta retorno</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       sodipodi:linespacing="125%"
+       id="urgencia"
+       y="417.93707"
+       x="-560.3559"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       xml:space="preserve"
+       inkscape:label="#text3053"><tspan
+         y="417.93707"
+         x="-560.3559"
+         id="tspan3055"
+         sodipodi:role="line">Consulta urgência</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="437.93707"
+       id="rx"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text3057"><tspan
+         sodipodi:role="line"
+         id="tspan3059"
+         x="-560.3559"
+         y="437.93707">Radiografia</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       sodipodi:linespacing="125%"
+       id="ionomero"
+       y="457.93707"
+       x="-560.3559"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       xml:space="preserve"
+       inkscape:label="#text3065"><tspan
+         y="457.93707"
+         x="-560.3559"
+         id="tspan3067"
+         sodipodi:role="line">Rest. Ionômero</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="477.93707"
+       id="amalgama"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text3069"><tspan
+         sodipodi:role="line"
+         id="tspan3071"
+         x="-560.3559"
+         y="477.93707">Rest. Amálgama</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       sodipodi:linespacing="125%"
+       id="resina"
+       y="497.93707"
+       x="-560.3559"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       xml:space="preserve"
+       inkscape:label="#text3073"><tspan
+         y="497.93707"
+         x="-560.3559"
+         id="tspan3075"
+         sodipodi:role="line">Rest. Resina C.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="517.93707"
+       id="provisoria"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text3077"><tspan
+         sodipodi:role="line"
+         id="tspan3079"
+         x="-560.3559"
+         y="517.93707">Rest. Provisória</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="537.93707"
+       id="tar"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text3085"><tspan
+         sodipodi:role="line"
+         id="tspan3087"
+         x="-560.3559"
+         y="537.93707">Tartarectomia</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       sodipodi:linespacing="125%"
+       id="profilaxia"
+       y="557.93707"
+       x="-560.3559"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       xml:space="preserve"
+       inkscape:label="#text3089"><tspan
+         y="557.93707"
+         x="-560.3559"
+         id="tspan3091"
+         sodipodi:role="line">Profilaxia</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="577.93707"
+       id="fluor"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text3097"><tspan
+         sodipodi:role="line"
+         id="tspan3099"
+         x="-560.3559"
+         y="577.93707">Flúor</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       sodipodi:linespacing="125%"
+       id="exo"
+       y="597.93707"
+       x="-560.3559"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       xml:space="preserve"
+       inkscape:label="#text3101"><tspan
+         y="597.93707"
+         x="-560.3559"
+         id="tspan3103"
+         sodipodi:role="line">Exodontia</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="617.93707"
+       id="pontos"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text3105"><tspan
+         sodipodi:role="line"
+         id="tspan3107"
+         x="-560.3559"
+         y="617.93707">Remoção pontos</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       sodipodi:linespacing="125%"
+       id="soli"
+       y="637.93707"
+       x="-560.3559"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       xml:space="preserve"
+       inkscape:label="#text3109"><tspan
+         y="637.93707"
+         x="-560.3559"
+         id="tspan3111"
+         sodipodi:role="line">Solicitaç]ões EX</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Helvetica Neue LT Com;-inkscape-font-specification:Helvetica Neue LT Com Bold"
+       x="-560.3559"
+       y="657.93707"
+       id="concluido"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:label="#text3113"><tspan
+         sodipodi:role="line"
+         id="tspan3115"
+         x="-560.3559"
+         y="657.93707">Trat. Concluído</tspan></text>
+  </g>
+</svg>
