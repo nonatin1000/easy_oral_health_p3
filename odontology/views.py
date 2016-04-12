@@ -720,12 +720,9 @@ def report_service(request):
 	consultation_date=date.today() # Pega sempre a data atual
 	if request.GET.get('search_box', False):
 		consultation_date = datetime.strptime(request.GET.get('search_box'), "%Y-%m-%d").date()
-		#ano, mes, dia = var_get_search.split("-")
 
 	if consultation_date is not None:
 		consultations = consultations.filter(created_on__date=consultation_date)
-		#ano, mes, dia = var_get_search.split("-")
-		#ano, mes, dia = var_get_search.year,var_get_search.month, var_get_search.day
 
 	return render(request, 'odontology/consultation/consultation_report_service.html', {'consultations': consultations, 'consultation_date': consultation_date })
 

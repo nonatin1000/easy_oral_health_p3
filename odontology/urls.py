@@ -19,7 +19,7 @@ from django.contrib.auth.views import logout_then_login,login
 from . import views
 
 urlpatterns = [
-    #Autocomplete
+    # Autocomplete
     url(r'^patient-autocomplete/$', views.PatientAutocomplete.as_view(), name='patient-autocomplete'), 
     # Login
     url(r'^logout/$', logout_then_login, { 'login_url': '/odontology/login/' }, name='logout'), 
