@@ -37,6 +37,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
+			{% if consultations.paginator.count > 0 %}
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -93,6 +94,14 @@
 					{% endfor %}
 				</tbody>
 			</table>
+			{% else %}
+			<center>
+				<h4>
+					<b>Sem consultas</b>
+				</h4>
+			</center>
+			{% endif %}
+		</div>
 		</div>
 		<center>
 			<!-- Paginação -->

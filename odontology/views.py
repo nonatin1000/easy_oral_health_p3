@@ -570,12 +570,17 @@ def consultation_index(request):
 
 	""" A View of all Consultation """
 	consultations_list = Consultation.objects.all()
+	
 
 	""" takes the pacient name through and get stored in the variable var_get_search""" 
 	var_get_search = request.GET.get('search_box')
 	if var_get_search is not None:
 		consultations_list = consultations_list.filter(patient__name__icontains=var_get_search)
-	
+	else:
+		# Exibe somente as consultas do dia
+		consultation_date = date.today() # Pega sempre a data atual
+		consultations_list = consultations_list.filter(created_on__date=consultation_date)
+
 	paginator = Paginator(consultations_list, 10) # Mostra 10 pacientes por página
 
 	# Make sure page request is an int. If not, deliver first page.
@@ -591,6 +596,7 @@ def consultation_index(request):
 	except (EmptyPage, InvalidPage):
 		consultations = paginator.page(paginator.num_pages)
 
+	print(consultations)
 	return render(request, 'odontology/consultation/consultation_index.html', {'consultations': consultations})
 
 @login_required
