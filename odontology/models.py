@@ -41,6 +41,7 @@ class Dentist(User, AuditModel):
 
 	birth_date = models.DateField(u'Data Nascimento')
 	cro = models.CharField(u'CRO', max_length=6, null=False,)
+	specialty = models.CharField(u'Especialidade', max_length=50, null=False,)
 	phone = models.CharField(u'Telefone', max_length=16)
 	address = GenericRelation('Address')
 

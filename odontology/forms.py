@@ -12,7 +12,7 @@ class DentistForm(UserCreationForm):
 
 	class Meta:
 		model = Dentist
-		fields = ['username', 'first_name', 'last_name', 'email', 'sex', 'cro', 'marital_status', 'birth_date', 'phone']
+		fields = ['username', 'first_name', 'last_name', 'email', 'sex', 'cro', 'specialty', 'marital_status', 'birth_date', 'phone']
 
 class AddressForm(ModelForm):
 
