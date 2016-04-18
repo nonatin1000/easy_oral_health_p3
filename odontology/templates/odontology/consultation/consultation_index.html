@@ -23,10 +23,13 @@
 				</li>
 				<li>
 					<div class="col-md-4 col-xs-4 col-sm-4 space-top">
+					<!-- Desabilita o botão Novo para o super usuário na consulta, porquê um super usuario nem sempre é um dentista e isso causaria um erro ao salvar a consulta caso o usuario não fosse um DENTISTA -->
+					{% if user.is_authenticated and not user.is_superuser %}
 						<a class="btn btn-default pull-right" href="{% url 'consultation_create' %}"> 
 							<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 							Novo
 						</a>
+					{% endif %}
 					</div>
 				</li>
 			</ul>

@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block body %}
+
+<nav class="navbar navbar-default">
+	<div class="container">
+		<!-- Form Search -->
+		<div class="row">
+			<ul class="nav nav-inline">
+				<li>
+					<div class="col-md-8 col-xs-8 col-sm-8 space-top">
+						<form class="form-horizontal" action="." method="get">
+							<div class="input-group">
+								<input id="search_box" name="search_box" type="text" class="form-control" readonly="true">
+								<span class="input-group-btn">
+									<button type="submit" class="btn btn-default form-control" title="Clique para realizar a pesquisar">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+								</span>
+							</div>
+						</form>
+					</div>
+				</li>
+				<li>
+					<div class="col-md-4 col-xs-4 col-sm-4 space-top">
+						<button type="submit" class="btn btn-default pull-right" title="Clique aqui para imprimir" onclick="window.print();">
+							<span class="glyphicon glyphicon-print"></span>
+							Imprimir
+						</button>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="header-print">
+				<div class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-1" style="position: relative; margin-left: 100px;">
+						<img src="{% static "images/brasao.gif" %}" height="80" width="80" class="img-responsive pull-left">
+					</div>
+					<div class="col-md-5 alig-header">
+						<h6>
+							<b>
+								MINISTÉRIO DA EDUCAÇÃO<br/>
+								UNIVERSIDADE FEDERAL DO PIAUÍ - UFPI<br/>
+								PRÓ-REITORIA DE ASSUNTOS ESTUDANTIS E COMUNITÁRIOS - PRAEC<br/>
+								COORDENADORIA DE ASSISTÊNCIA COMUNITÁRIA - CACOM<br/>
+								SERVIÇO ODONTOLÓGICO - SEOD <span class="pull-right">Data: {{consultation_date|date:'d/m/Y'}}</span>
+							</b>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			{% if consultations.count > 0 %}
+			<table class="table table-hover table-bordered print-data">
+				<thead>
+					<tr>
+						<td><strong>Categoria</strong></td>
+						<td><strong>{{consultation_date|date:'Y'}}</strong></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Estudante</td>
+						<td>{{categories.estudante}}</td>
+					</tr>
+					<tr>
+						<td>Professor</td>
+						<td>{{categories.professor}}</td>
+					</tr>
+					<tr>
+						<td>Técnico Administrativo</td>
+						<td>{{categories.tecnico_administrativo}}</td>
+					</tr>
+					<tr>
+						<td>Dependente</td>
+						<td>{{categories.dependente}}</td>
+					</tr>
+					<tr>
+						<td>Terceirizado</td>
+						<td>{{categories.terceirizado}}</td>
+					</tr>
+					<tr>
+						<td>Total</td>
+						<td>{{categories.total}}</td>
+					</tr>
+				</tbody>
+			</table>
+			{% else %}
+			<center>
+				<h4>
+					<b>Sem consultas</b>
+				</h4>
+			</center>
+			{% endif %}
+		</div>
+	<!-- gráfico -->
+		<div class="col-md-8">
+			<canvas id="myChart" width="700" height="270"></canvas>
+		</div>
+	<!-- fim do gráfico -->
+	</div>
+
+
+	<div class="row">
+		<div class="footer-print">
+			<div class="col-md-12 cent">
+				<h5>
+					<br>
+					{{request.user.first_name}} {{request.user.last_name}}
+					<br>
+					{{request.user.dentist.specialty}}
+					<br>
+					CRO: {{request.user.dentist.cro|upper}}
+				</h5>
+			</div>	
+		</div>
+	</div>
+</div>
+</div>
+<script>
+	$(document).ready(function () {
+		$('#search_box').datepicker({
+			format: "yyyy-mm-dd",
+			todayBtn: "linked",
+			language: "pt-BR",
+			autoclose: true,
+			todayHighlight: true
+		});
+	});
+
+	// grafico
+	var ctx = document.getElementById("myChart").getContext("2d");
+	var data = {
+	    labels: ["Estudante", "Professor", "Téc. Administrativo", "Dependente", "Terceirizado"],
+	    datasets: [
+	        {
+	            label: "Quantitativo por categoria",
+	            fillColor: "rgba(220,220,220,0.5)", 
+	            strokeColor: "rgba(220,220,220,0.8)", 
+	            highlightFill: "rgba(220,220,220,0.75)",
+	            highlightStroke: "rgba(220,220,220,1)",
+	            data: [
+	            	{{categories.estudante}},
+	            	{{categories.professor}},
+	            	{{categories.tecnico_administrativo}},
+	            	{{categories.dependente}},
+	            	{{categories.terceirizado}}
+	            ]
+	        }
+	    ]
+	};
+
+	var myBarChart = new Chart(ctx, {
+	    type: 'bar',
+	    data: data,
+	    options: {responsive: false}
+	});
+
+</script>
+
+{% endblock %}

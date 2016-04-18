@@ -733,3 +733,37 @@ def report_service(request):
 	return render(request, 'odontology/consultation/consultation_report_service.html', {'consultations': consultations, 'consultation_date': consultation_date })
 
 # End report_service------ ----------------------------------------------------------------------#
+
+# Signup report_category-------------------------------------------------------------------------#
+@login_required
+def report_category(request):
+	
+	""" A View of all Consultation """
+	consultations = Consultation.objects.all()
+
+	""" takes the pacient name through and get stored in the variable var_get_search""" 
+	consultation_date=date.today() # Pega sempre a data atual
+	if request.GET.get('search_box', False):
+		consultation_date = datetime.strptime(request.GET.get('search_box'), "%Y-%m-%d").date()
+
+	if consultation_date is not None:
+		consultations = consultations.filter(created_on__date=consultation_date)
+	
+		categories = {'estudante': 0, 'professor': 0, 'tecnico_administrativo': 0, 'dependente': 0, 'terceirizado': 0, 'total': 0}
+
+		for category in consultations:
+			if category.patient.types == 'Estudante':
+				categories['estudante'] += 1
+			if category.patient.types == 'Professor':
+				categories['professor'] += 1
+			if category.patient.types == 'Técnico Administrativo':
+				categories['tecnico_administrativo'] += 1
+			if category.patient.types == 'Dependente':
+				categories['dependente'] += 1
+			if category.patient.types == 'Terceirizado':
+				categories['terceirizado'] += 1
+			categories['total'] += 1
+
+	return render(request, 'odontology/consultation/consultation_report_category.html', {'consultations': consultations, 'consultation_date': consultation_date, 'categories': categories })
+
+# End report_category------ ----------------------------------------------------------------------#
