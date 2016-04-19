@@ -740,16 +740,16 @@ def report_category(request):
 	
 	""" A View of all Consultation """
 	consultations = Consultation.objects.all()
-
-	""" takes the pacient name through and get stored in the variable var_get_search""" 
-	consultation_date=date.today() # Pega sempre a data atual
-	if request.GET.get('search_box', False):
-		consultation_date = datetime.strptime(request.GET.get('search_box'), "%Y-%m-%d").date()
-
-	if consultation_date is not None:
-		consultations = consultations.filter(created_on__date=consultation_date)
+	""" Inicializa as variaveis consultation_from, consultation_to e categories """
+	consultation_from = None
+	consultation_to = None
+	categories = {'estudante': 0, 'professor': 0, 'tecnico_administrativo': 0, 'dependente': 0, 'terceirizado': 0, 'total': 0}
 	
-		categories = {'estudante': 0, 'professor': 0, 'tecnico_administrativo': 0, 'dependente': 0, 'terceirizado': 0, 'total': 0}
+	if request.GET.get('search_from') and request.GET.get('search_to') is not None:
+		consultation_from = datetime.strptime(request.GET.get('search_from'), "%Y-%m-%d").date()
+		consultation_to = datetime.strptime(request.GET.get('search_to'), "%Y-%m-%d").date()
+		# You can use range anywhere you can use BETWEEN in SQL — for dates, numbers and even characters.
+		consultations = consultations.filter(created_on__range=(consultation_from, consultation_to))
 
 		for category in consultations:
 			if category.patient.types == 'Estudante':
@@ -764,6 +764,6 @@ def report_category(request):
 				categories['terceirizado'] += 1
 			categories['total'] += 1
 
-	return render(request, 'odontology/consultation/consultation_report_category.html', {'consultations': consultations, 'consultation_date': consultation_date, 'categories': categories })
+	return render(request, 'odontology/consultation/consultation_report_category.html', {'consultations': consultations, 'consultation_from': consultation_from, 'consultation_to': consultation_to, 'categories': categories })
 
 # End report_category------ ----------------------------------------------------------------------#

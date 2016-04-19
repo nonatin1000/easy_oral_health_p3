@@ -321,3 +321,5 @@ body { padding-top: 50px; }
 .small-padding td {
   padding: 0 !important;
 }
+
+.center { text-align: center; }
