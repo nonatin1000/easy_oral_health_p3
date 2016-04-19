@@ -58,7 +58,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<center><h6>DISTRIBUIÇÃO DOS ATENDIMENTOS POR CATEGORIA NO PERIODO DE: {{consultation_from|date:'d/m/Y'}} ATÉ {{consultation_to|date:'d/m/Y'}}</h6></center>
+					<center><h6>DISTRIBUIÇÃO DOS ATENDIMENTOS POR FAIXA ETÁRIA NO PERIODO DE: {{consultation_from|date:'d/m/Y'}} ATÉ {{consultation_to|date:'d/m/Y'}}</h6></center>
 				</div>
 			</div>
 		</div>
@@ -69,34 +69,26 @@
 				<table class="table table-hover table-bordered print-data small-padding">
 					<thead>
 						<tr>
-							<td><strong>CATEGORIA</strong></td>
+							<td><strong>FAIXA ETÁRIA</strong></td>
 							<td><strong>{{consultation_from|date:'Y'}}</strong></td>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>Estudante</td>
-							<td>{{categories.estudante}}</td>
+							<td>< 17 ANOS</td>
+							<td>{{age_groups.lower_seventeen_years}}</td>
 						</tr>
 						<tr>
-							<td>Professor</td>
-							<td>{{categories.professor}}</td>
+							<td>17 A 30 ANOS</td>
+							<td>{{age_groups.seventeen_thirty_years}}</td>
 						</tr>
 						<tr>
-							<td>Técnico Administrativo</td>
-							<td>{{categories.tecnico_administrativo}}</td>
-						</tr>
-						<tr>
-							<td>Dependente</td>
-							<td>{{categories.dependente}}</td>
-						</tr>
-						<tr>
-							<td>Terceirizado</td>
-							<td>{{categories.terceirizado}}</td>
+							<td>> 31 ANOS</td>
+							<td>{{age_groups.most_thirty_years}}</td>
 						</tr>
 						<tr>
 							<td>Total</td>
-							<td>{{categories.total}}</td>
+							<td>{{age_groups.total}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -153,21 +145,18 @@
 	// grafico
 	var ctx = document.getElementById("myChart").getContext("2d");
 	var data = {
-	    labels: ["Estudante", "Professor", "Téc. Administrativo", "Dependente", "Terceirizado"],
+	    labels: ["< 17 ANOS", "17 A 30 ANOS", "> 31 ANOS"],
 	    datasets: [
 	        {
-	            label: "Quantitativo por categoria",
+	            label: "Quantitativo por Gênero",
 	            fillColor: "rgba(220,220,220,0.5)", 
 	            strokeColor: "rgba(220,220,220,0.8)", 
 	            highlightFill: "rgba(220,220,220,0.75)",
 	            highlightStroke: "rgba(220,220,220,1)",
 	            data: [
-	            	{{categories.estudante}},
-	            	{{categories.professor}},
-	            	{{categories.tecnico_administrativo}},
-	            	{{categories.dependente}},
-	            	{{categories.terceirizado}}
-	            ]
+	            	{{age_groups.lower_seventeen_years}}, 
+	            	{{age_groups.seventeen_thirty_years}}, 
+	            	{{age_groups.most_thirty_years}}]
 	        }
 	    ]
 	};

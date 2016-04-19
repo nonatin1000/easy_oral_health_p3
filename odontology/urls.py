@@ -87,6 +87,8 @@ urlpatterns = [
     url(r'^consultation_delete/(?P<consultation_id>\d+)/$', views.consultation_delete , name='consultation_delete'),
     url(r'^report_service/$', views.report_service , name='report_service'),
     url(r'^report_category/$', views.report_category , name='report_category'),
+    url(r'^report_genre/$', views.report_genre , name='report_genre'),
+    url(r'^report_age_group/$', views.report_age_group , name='report_age_group'),
     # Exams
     url(r'^exams_index/$', views.exams_index , name='exams_index'),
     url(r'^exams_register/$', views.exams_register , name='exams_register'),
