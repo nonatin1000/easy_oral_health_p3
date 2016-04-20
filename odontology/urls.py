@@ -89,6 +89,7 @@ urlpatterns = [
     url(r'^report_category/$', views.report_category , name='report_category'),
     url(r'^report_genre/$', views.report_genre , name='report_genre'),
     url(r'^report_age_group/$', views.report_age_group , name='report_age_group'),
+    url(r'^report_procedure/$', views.report_procedure , name='report_procedure'),
     # Exams
     url(r'^exams_index/$', views.exams_index , name='exams_index'),
     url(r'^exams_register/$', views.exams_register , name='exams_register'),

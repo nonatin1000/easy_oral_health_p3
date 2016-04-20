@@ -155,14 +155,14 @@
 						<td></td>
 						{% endif %}
 
-						<!-- Idade -->
-						{% if consultation.patient.age > 16 and consultation.patient.age <= 30 %}
+						<!-- 17 a 30 anos -->
+						{% if consultation.age_groups.seventeen_thirty_years == True %}
 						<td>X</td>
 						{% else %}
 						<td></td>
 						{% endif %}
-
-						{% if consultation.patient.age > 30 %}
+						<!-- > 31 anos -->
+						{% if consultation.age_groups.most_thirty_years == True %}
 						<td>X</td>
 						{% else %}
 						<td></td>

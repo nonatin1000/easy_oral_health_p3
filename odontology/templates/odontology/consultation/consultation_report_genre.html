@@ -89,11 +89,6 @@
 					</tbody>
 				</table>
 		</div>
-		<!-- gráfico -->
-		<div class="col-md-8">
-			<canvas id="myChart" width="700" height="350"></canvas>
-		</div>
-		<!-- fim do gráfico -->
 	</div>
 		{% else %}
 		<div class="row">
@@ -138,27 +133,6 @@
 		});
 	});
 
-	// grafico
-	var ctx = document.getElementById("myChart").getContext("2d");
-	var data = {
-	    labels: ["Feminino", "Masculino"],
-	    datasets: [
-	        {
-	            label: "Quantitativo por Gênero",
-	            fillColor: "rgba(220,220,220,0.5)", 
-	            strokeColor: "rgba(220,220,220,0.8)", 
-	            highlightFill: "rgba(220,220,220,0.75)",
-	            highlightStroke: "rgba(220,220,220,1)",
-	            data: [{{genres.feminino}}, {{genres.masculino}}]
-	        }
-	    ]
-	};
-
-	var myBarChart = new Chart(ctx, {
-	    type: 'bar',
-	    data: data,
-	    options: {responsive: false}
-	});
 </script>
 
 {% endblock %}

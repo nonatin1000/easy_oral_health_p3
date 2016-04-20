@@ -108,9 +108,8 @@ class Patient(AuditModel):
 	address = GenericRelation('Address')
 	
 	# calculating age
-	def age(self):
-		today = self.created_on
-		return today.year - self.birth_date.year
+	def age(self, consultation):
+		return consultation.created_on.year - self.birth_date.year
 
 	def __str__(self):
 		return self.name
@@ -197,6 +196,7 @@ class Consultation(AuditModel):
 		return dental_procedures
 
 	def __str__(self):
+		
 		return self.patient.name
 
 class Exams(AuditModel):
@@ -204,6 +204,7 @@ class Exams(AuditModel):
 	description = models.CharField(u'Descrição', max_length=150, blank=True, null=True)
 	
 	def __str__(self):
+		
 		return self.name
 
 class ExaminationSolicitation(AuditModel):
@@ -212,6 +213,7 @@ class ExaminationSolicitation(AuditModel):
 	appraisal = models.TextField(blank=True, null=True)
 	
 	def __str__(self):
+		
 		return self.exams.name
 
 class PatientDentalProcedure(AuditModel):
@@ -222,6 +224,7 @@ class PatientDentalProcedure(AuditModel):
 	consultation = models.ForeignKey(Consultation,null=True,blank=True)
 
 	def __str__(self):
+		
 		return self.patient_tooth.tooth.name
 
 class OralPatientProcedure(AuditModel):
@@ -230,5 +233,6 @@ class OralPatientProcedure(AuditModel):
 	consultation = models.ForeignKey(Consultation,null=True,blank=True)
 
 	def __str__(self):
+		
 		return self.oral_procedure.name
 
