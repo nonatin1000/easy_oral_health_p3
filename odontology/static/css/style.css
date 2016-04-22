@@ -323,3 +323,5 @@ body { padding-top: 50px; }
 }
 
 .center { text-align: center; }
+
+.center-total tr td:nth-child(2) { text-align: center; }

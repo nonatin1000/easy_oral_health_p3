@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block body %}
+
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex2-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+
+		<div class="collapse navbar-collapse navbar-ex2-collapse">
+			<form class="form-horizontal navbar-form navbar-left" action="." method="get" role="search">
+				<div class="form-group">
+					<label>De:</label>
+					<input id="search_from" name="search_from" type="text" class="form-control" readonly="true">
+
+					<label>Até:</label>
+					<input id="search_to" name="search_to" type="text" class="form-control" readonly="true">
+
+					<button type="submit" class="btn btn-default" title="Clique para realizar a pesquisar">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
+
+					<button class="btn btn-default" title="Clique aqui para imprimir" onclick="window.print();">
+						<span class="glyphicon glyphicon-print"></span>
+						Imprimir
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="header-print">
+				<div class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-1" style="position: relative; margin-left: 100px;">
+						<img src="{% static "images/brasao.gif" %}" height="80" width="80" class="img-responsive pull-left">
+					</div>
+					<div class="col-md-5 alig-header">
+						<h6>
+							<b>
+								MINISTÉRIO DA EDUCAÇÃO<br/>
+								UNIVERSIDADE FEDERAL DO PIAUÍ - UFPI<br/>
+								PRÓ-REITORIA DE ASSUNTOS ESTUDANTIS E COMUNITÁRIOS - PRAEC<br/>
+								COORDENADORIA DE ASSISTÊNCIA COMUNITÁRIA - CACOM<br/>
+								SERVIÇO ODONTOLÓGICO - SEOD <br/>
+							</b>
+						</h6>
+					</div>
+				</div>
+				<div class="row">
+					<center><h6>DISTRIBUIÇÃO DOS ATENDIMENTOS POR PROCEDIMENTOS NO PERIODO DE: {{consultation_from|date:'d/m/Y'}} ATÉ {{consultation_to|date:'d/m/Y'}}</h6></center>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			{% if consultation_from and consultation_to %}
+				<table class="table table-hover table-bordered print-data small-padding">
+					<thead>
+						<tr>
+							<td><strong>PROCEDIMENTOS</strong></td>
+							<td><strong>TOTAL</strong></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Compareceram ao atendimento - Total de atendimentos</td>
+							<td>{{procedures.attendance}}</td>
+						</tr>
+						<tr>
+							<td>Não compareceram ao atendimento</td>
+							<td>{{procedures.not_attendance}}</td>
+						</tr>
+						<tr>
+							<td>Falta justificada</td>
+							<td>{{procedures.lack_justified}}</td>
+						</tr>
+						<tr>
+							<td>Exame Clínico</td>
+							<td>{{procedures.clinical_examination}}</td>
+						</tr>
+						<tr>
+							<td>Primeira consulta - Tratamento iniciado</td>
+							<td>{{procedures.first_consultation}}</td>
+						</tr>
+						<tr>
+							<td>Tratamento Concluído</td>
+							<td>{{procedures.completed_treatment}}</td>
+						</tr>
+						<tr>
+							<td>Consulta Retorno</td>
+							<td>{{procedures.return_consultation}}</td>
+						</tr>
+						<tr>
+							<td>Consulta Urgência</td>
+							<td>{{procedures.urgency_consultation}}</td>
+						</tr>
+						<tr>
+							<td>Radiografia</td>
+							<td>{{procedures.radiograph}}</td>
+						</tr>
+						<tr>
+							<td>Restauração ionômero</td>
+							<td>{{procedures.rest_ionomero}}</td>
+						</tr>
+						<tr>
+							<td>Restauração de amálgama</td>
+							<td>{{procedures.rest_amalgama}}</td>
+						</tr>
+						<tr>
+							<td>Restauração de resina</td>
+							<td>{{procedures.rest_resina}}</td>
+						</tr>
+						<tr>
+							<td>Restauração provisória</td>
+							<td>{{procedures.rest_provisoria}}</td>
+						</tr>
+						<tr>
+							<td>Remoção de tártaro</td>
+							<td>{{procedures.tartarectomia}}</td>
+						</tr>
+						<tr>
+							<td>Profilaxia</td>
+							<td>{{procedures.profilaxia}}</td>
+						</tr>
+						<tr>
+							<td>Flúor</td>
+							<td>{{procedures.fluor}}</td>
+						</tr>
+						<tr>
+							<td>Exodontia</td>
+							<td>{{procedures.exodontia}}</td>
+						</tr>
+						<tr>
+							<td>Remoção de pontos</td>
+							<td>{{procedures.remocao_de_pontos}}</td>
+						</tr>
+						<tr>
+							<td>Solicitação exames</td>
+							<td>{{procedures.solictacao_ex}}</td>
+						</tr>
+						<tr>
+							<td>Total</td>
+							<td>{{procedures.total}}</td>
+						</tr>
+					</tbody>
+				</table>
+		</div>
+	</div>
+		{% else %}
+		<div class="row">
+			<h4 class="center">
+				<b>Sem registros</b>
+			</h4>
+		</div>
+		{% endif %}
+	<div class="row">
+		<div class="footer-print">
+			<div class="col-md-12 cent">
+				<h5>
+					<br>
+					{{request.user.first_name}} {{request.user.last_name}}
+					<br>
+					{{request.user.dentist.specialty}}
+					<br>
+					CRO: {{request.user.dentist.cro|upper}}
+				</h5>
+			</div>	
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function () {
+		$('#search_from').datepicker({
+			format: "yyyy-mm-dd",
+			todayBtn: "linked",
+			language: "pt-BR",
+			autoclose: true,
+			todayHighlight: true
+		});
+	});
+	$(document).ready(function () {
+		$('#search_to').datepicker({
+			format: "yyyy-mm-dd",
+			todayBtn: "linked",
+			language: "pt-BR",
+			autoclose: true,
+			todayHighlight: true
+		});
+	});
+
+</script>
+
+{% endblock %}

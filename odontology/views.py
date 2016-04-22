@@ -725,33 +725,199 @@ def report_service(request):
 	""" takes the pacient name through and get stored in the variable var_get_search""" 
 	consultation_date = date.today() # Pega sempre a data atual
 
-	age_groups = {'seventeen_thirty_years': False, 'most_thirty_years': False}
-	
 	if request.GET.get('search_box', False):
 		consultation_date = datetime.strptime(request.GET.get('search_box'), "%Y-%m-%d").date()
 
 	if consultation_date is not None:
 		consultations = consultations.filter(created_on__date=consultation_date)
-		for consultation in consultations:
-			if consultation.patient.age(consultation) > 17 and consultation.patient.age(consultation) <= 30:
-				age_groups['seventeen_thirty_years'] = True
-			if consultation.patient.age(consultation) > 30:
-				age_groups['most_thirty_years'] = True
-			#consultations['age_groups'] = age_groups
-	return render(request, 'odontology/consultation/consultation_report_service.html', {'consultations': consultations, 'consultation_date': consultation_date, 'age_groups': age_groups })
+		
+	return render(request, 'odontology/consultation/consultation_report_service.html', {'consultations': consultations, 'consultation_date': consultation_date })
 
 # End report_service------ ----------------------------------------------------------------------#
 
 # Signup report_category-------------------------------------------------------------------------#
+# @login_required
+# def report_category(request):
+	
+# 	""" A View of all Consultation """
+# 	consultations = Consultation.objects.all()
+# 	""" Inicializa as variaveis consultation_from, consultation_to e categories """
+# 	consultation_from = None
+# 	consultation_to = None
+# 	categories = {'estudante': 0, 'professor': 0, 'tecnico_administrativo': 0, 'dependente': 0, 'terceirizado': 0, 'total': 0}
+	
+# 	if request.GET.get('search_from') and request.GET.get('search_to') is not None:
+# 		consultation_from = datetime.strptime(request.GET.get('search_from'), "%Y-%m-%d").date()
+# 		consultation_to = datetime.strptime(request.GET.get('search_to'), "%Y-%m-%d").date()
+# 		# You can use range anywhere you can use BETWEEN in SQL — for dates, numbers and even characters.
+# 		consultations = consultations.filter(created_on__range=(consultation_from, consultation_to))
+
+# 		for consultation in consultations:
+# 			if consultation.patient.types == 'Estudante':
+# 				categories['estudante'] += 1
+# 			if consultation.patient.types == 'Professor':
+# 				categories['professor'] += 1
+# 			if consultation.patient.types == 'Técnico Administrativo':
+# 				categories['tecnico_administrativo'] += 1
+# 			if consultation.patient.types == 'Dependente':
+# 				categories['dependente'] += 1
+# 			if consultation.patient.types == 'Terceirizado':
+# 				categories['terceirizado'] += 1
+# 			categories['total'] += 1
+
+# 	return render(request, 'odontology/consultation/consultation_report_category.html', {'consultations': consultations, 'consultation_from': consultation_from, 'consultation_to': consultation_to, 'categories': categories })
+
+# # End report_category------ ----------------------------------------------------------------------#
+
+# # Signup report_genre-----------------------------------------------------------------------------#
+# @login_required
+# def report_genre(request):
+	
+# 	""" A View of all Consultation """
+# 	consultations = Consultation.objects.all()
+# 	""" Inicializa as variaveis consultation_from, consultation_to e genres """
+# 	consultation_from = None
+# 	consultation_to = None
+# 	genres = {'feminino': 0, 'masculino': 0, 'total': 0}
+	
+# 	if request.GET.get('search_from') and request.GET.get('search_to') is not None:
+# 		consultation_from = datetime.strptime(request.GET.get('search_from'), "%Y-%m-%d").date()
+# 		consultation_to = datetime.strptime(request.GET.get('search_to'), "%Y-%m-%d").date()
+# 		# You can use range anywhere you can use BETWEEN in SQL — for dates, numbers and even characters.
+# 		consultations = consultations.filter(created_on__range=(consultation_from, consultation_to))
+
+# 		for consultation in consultations:
+# 			if consultation.patient.sex == 'F':
+# 				genres['feminino'] += 1
+# 			if consultation.patient.sex == 'M':
+# 				genres['masculino'] += 1
+# 			genres['total'] += 1
+
+# 	return render(request, 'odontology/consultation/consultation_report_genre.html', {'consultations': consultations, 'consultation_from': consultation_from, 'consultation_to': consultation_to, 'genres': genres })
+
+# # End report_genre------ ------------------------------------------------------------------------#
+
+# # Signup report_age_group------------------------------------------------------------------------#
+# @login_required
+# def report_age_group(request):
+	
+# 	""" A View of all Consultation """
+# 	consultations = Consultation.objects.all()
+# 	""" Inicializa as variaveis consultation_from, consultation_to e genres """
+# 	consultation_from = None
+# 	consultation_to = None
+# 	age_groups = {'lower_seventeen_years': 0, 'seventeen_thirty_years': 0, 'most_thirty_years': 0, 'total': 0}
+	
+# 	if request.GET.get('search_from') and request.GET.get('search_to') is not None:
+# 		consultation_from = datetime.strptime(request.GET.get('search_from'), "%Y-%m-%d").date()
+# 		consultation_to = datetime.strptime(request.GET.get('search_to'), "%Y-%m-%d").date()
+# 		# You can use range anywhere you can use BETWEEN in SQL — for dates, numbers and even characters.
+# 		consultations = consultations.filter(created_on__range=(consultation_from, consultation_to))
+
+# 		for consultation in consultations:
+# 			if consultation.patient.age(consultation) < 17:
+# 				age_groups['lower_seventeen_years'] += 1
+# 			if consultation.patient.age(consultation) > 17 and consultation.patient.age(consultation) <= 30:
+# 				age_groups['seventeen_thirty_years'] += 1
+# 			if consultation.patient.age(consultation) > 30:
+# 				age_groups['most_thirty_years'] += 1
+# 			age_groups['total'] += 1
+
+# 	return render(request, 'odontology/consultation/consultation_report_age_group.html', {'consultations': consultations, 'consultation_from': consultation_from, 'consultation_to': consultation_to, 'age_groups': age_groups })
+
+# # End report_age_group-- ------------------------------------------------------------------------#
+
+# # Signup report_procedure------------------------------------------------------------------------#
+# @login_required
+# def report_procedure(request):
+	
+# 	""" A View of all Consultation """
+# 	consultations = Consultation.objects.all()
+# 	""" Inicializa as variaveis consultation_from, consultation_to e genres """
+# 	consultation_from = None
+# 	consultation_to = None
+# 	procedures = {'attendance': 0, 'not_attendance': 0, 'lack_justified': 0, 'first_consultation': 0, 'return_consultation': 0, 'urgency_consultation': 0, 'completed_treatment': 0, 'radiograph': 0,  'clinical_examination': 0, 'tartarectomia': 0, 'profilaxia':0, 'fluor': 0, 'remocao_de_pontos': 0, 'rest_ionomero': 0, 'rest_amalgama': 0, 'rest_resina': 0, 'rest_provisoria': 0, 'exodontia': 0, 'solictacao_ex': 0, 'total': 0}
+	
+# 	if request.GET.get('search_from') and request.GET.get('search_to') is not None:
+# 		consultation_from = datetime.strptime(request.GET.get('search_from'), "%Y-%m-%d").date()
+# 		consultation_to = datetime.strptime(request.GET.get('search_to'), "%Y-%m-%d").date()
+# 		# You can use range anywhere you can use BETWEEN in SQL — for dates, numbers and even characters.
+# 		consultations = consultations.filter(created_on__range=(consultation_from, consultation_to))
+
+# 		for consultation in consultations:
+# 			if consultation.attendance == True:
+# 				procedures['attendance'] += 1
+# 			else:
+# 				procedures['not_attendance'] += 1
+
+# 			if consultation.lack_justified == True:
+# 				procedures['lack_justified'] += 1
+
+# 			if consultation.first_consultation == True:
+# 				procedures['first_consultation'] += 1
+
+# 			if consultation.return_consultation == True:
+# 				procedures['return_consultation'] += 1
+
+# 			if consultation.urgency_consultation == True:
+# 				procedures['urgency_consultation'] += 1
+
+# 			if consultation.completed_treatment == True:
+# 				procedures['completed_treatment'] += 1
+
+# 			if consultation.radiograph == True:
+# 				procedures['radiograph'] += 1
+
+# 			if consultation.clinical_examination == True:
+# 				procedures['clinical_examination'] += 1
+
+# 			if consultation.examinationsolicitation_set.count() > 0:
+# 				procedures['solictacao_ex'] += 1
+
+# 			for p in consultation.oralpatientprocedure_set.all():
+# 				if p.oral_procedure.name == 'Tartarectomia':
+# 					procedures['tartarectomia'] += 1
+# 				if p.oral_procedure.name == 'Profilaxia':
+# 					procedures['profilaxia'] += 1
+# 				if p.oral_procedure.name == 'Flúor':
+# 					procedures['fluor'] += 1
+# 				if p.oral_procedure.name == 'Remoção de Pontos':
+# 					procedures['remocao_de_pontos'] += 1
+
+# 			for dpc in consultation.patientdentalprocedure_set.all():
+# 				if dpc.procedure_dental.name == 'Restauração Ionômero':
+# 					procedures['rest_ionomero'] += 1
+# 				if dpc.procedure_dental.name == 'Restauração Amalgama':
+# 					procedures['rest_amalgama'] += 1
+# 				if dpc.procedure_dental.name == 'Restauração Resina':
+# 					procedures['rest_resina'] += 1
+# 				if dpc.procedure_dental.name == 'Restauração Provisória':
+# 					procedures['rest_provisoria'] += 1
+# 				if dpc.procedure_dental.name == 'Extraído ou ausente':
+# 					procedures['exodontia'] += 1
+
+# 	# Total de todos os procedimentos
+# 	total = 0
+# 	for procedure in procedures:
+# 		total += procedures[procedure]
+# 	procedures['total'] = total
+# 	return render(request, 'odontology/consultation/consultation_report_procedure.html', {'consultations': consultations, 'consultation_from': consultation_from, 'consultation_to': consultation_to, 'procedures': procedures })
+
+# End report_procedure-- ------------------------------------------------------------------------#
+
+# Signup report_annual_quantitative---------------------------------------------------------------#
 @login_required
-def report_category(request):
+def report_annual_quantitative(request):
 	
 	""" A View of all Consultation """
 	consultations = Consultation.objects.all()
-	""" Inicializa as variaveis consultation_from, consultation_to e categories """
+	""" Inicializa as variaveis consultation_from, consultation_to e genres """
 	consultation_from = None
 	consultation_to = None
-	categories = {'estudante': 0, 'professor': 0, 'tecnico_administrativo': 0, 'dependente': 0, 'terceirizado': 0, 'total': 0}
+	categories = {'estudante': 0, 'professor': 0, 'tecnico_administrativo': 0, 'dependente': 0, 'terceirizado': 0, 'total_categoria': 0}
+	genres = {'feminino': 0, 'masculino': 0, 'total_genero': 0}
+	age_groups = {'lower_seventeen_years': 0, 'seventeen_thirty_years': 0, 'most_thirty_years': 0, 'total_faixa_etaria': 0}
+	procedures = {'attendance': 0, 'not_attendance': 0, 'lack_justified': 0, 'first_consultation': 0, 'return_consultation': 0, 'urgency_consultation': 0, 'completed_treatment': 0, 'radiograph': 0,  'clinical_examination': 0, 'tartarectomia': 0, 'profilaxia':0, 'fluor': 0, 'remocao_de_pontos': 0, 'rest_ionomero': 0, 'rest_amalgama': 0, 'rest_resina': 0, 'rest_provisoria': 0, 'exodontia': 0, 'solictacao_ex': 0, 'total_proc': 0}
 	
 	if request.GET.get('search_from') and request.GET.get('search_to') is not None:
 		consultation_from = datetime.strptime(request.GET.get('search_from'), "%Y-%m-%d").date()
@@ -759,7 +925,10 @@ def report_category(request):
 		# You can use range anywhere you can use BETWEEN in SQL — for dates, numbers and even characters.
 		consultations = consultations.filter(created_on__range=(consultation_from, consultation_to))
 
+		
 		for consultation in consultations:
+
+			# Categorias
 			if consultation.patient.types == 'Estudante':
 				categories['estudante'] += 1
 			if consultation.patient.types == 'Professor':
@@ -770,88 +939,25 @@ def report_category(request):
 				categories['dependente'] += 1
 			if consultation.patient.types == 'Terceirizado':
 				categories['terceirizado'] += 1
-			categories['total'] += 1
-
-	return render(request, 'odontology/consultation/consultation_report_category.html', {'consultations': consultations, 'consultation_from': consultation_from, 'consultation_to': consultation_to, 'categories': categories })
-
-# End report_category------ ----------------------------------------------------------------------#
-
-# Signup report_genre-----------------------------------------------------------------------------#
-@login_required
-def report_genre(request):
-	
-	""" A View of all Consultation """
-	consultations = Consultation.objects.all()
-	""" Inicializa as variaveis consultation_from, consultation_to e genres """
-	consultation_from = None
-	consultation_to = None
-	genres = {'feminino': 0, 'masculino': 0, 'total': 0}
-	
-	if request.GET.get('search_from') and request.GET.get('search_to') is not None:
-		consultation_from = datetime.strptime(request.GET.get('search_from'), "%Y-%m-%d").date()
-		consultation_to = datetime.strptime(request.GET.get('search_to'), "%Y-%m-%d").date()
-		# You can use range anywhere you can use BETWEEN in SQL — for dates, numbers and even characters.
-		consultations = consultations.filter(created_on__range=(consultation_from, consultation_to))
-
-		for consultation in consultations:
+			categories['total_categoria'] += 1
+			
+			# Genero			
 			if consultation.patient.sex == 'F':
 				genres['feminino'] += 1
 			if consultation.patient.sex == 'M':
 				genres['masculino'] += 1
-			genres['total'] += 1
+			genres['total_genero'] += 1
 
-	return render(request, 'odontology/consultation/consultation_report_genre.html', {'consultations': consultations, 'consultation_from': consultation_from, 'consultation_to': consultation_to, 'genres': genres })
-
-# End report_genre------ ------------------------------------------------------------------------#
-
-# Signup report_age_group------------------------------------------------------------------------#
-@login_required
-def report_age_group(request):
-	
-	""" A View of all Consultation """
-	consultations = Consultation.objects.all()
-	""" Inicializa as variaveis consultation_from, consultation_to e genres """
-	consultation_from = None
-	consultation_to = None
-	age_groups = {'lower_seventeen_years': 0, 'seventeen_thirty_years': 0, 'most_thirty_years': 0, 'total': 0}
-	
-	if request.GET.get('search_from') and request.GET.get('search_to') is not None:
-		consultation_from = datetime.strptime(request.GET.get('search_from'), "%Y-%m-%d").date()
-		consultation_to = datetime.strptime(request.GET.get('search_to'), "%Y-%m-%d").date()
-		# You can use range anywhere you can use BETWEEN in SQL — for dates, numbers and even characters.
-		consultations = consultations.filter(created_on__range=(consultation_from, consultation_to))
-
-		for consultation in consultations:
+			# Faixa Etária
 			if consultation.patient.age(consultation) < 17:
 				age_groups['lower_seventeen_years'] += 1
 			if consultation.patient.age(consultation) > 17 and consultation.patient.age(consultation) <= 30:
 				age_groups['seventeen_thirty_years'] += 1
 			if consultation.patient.age(consultation) > 30:
 				age_groups['most_thirty_years'] += 1
-			age_groups['total'] += 1
+			age_groups['total_faixa_etaria'] += 1
 
-	return render(request, 'odontology/consultation/consultation_report_age_group.html', {'consultations': consultations, 'consultation_from': consultation_from, 'consultation_to': consultation_to, 'age_groups': age_groups })
-
-# End report_age_group-- ------------------------------------------------------------------------#
-
-# Signup report_procedure------------------------------------------------------------------------#
-@login_required
-def report_procedure(request):
-	
-	""" A View of all Consultation """
-	consultations = Consultation.objects.all()
-	""" Inicializa as variaveis consultation_from, consultation_to e genres """
-	consultation_from = None
-	consultation_to = None
-	procedures = {'attendance': 0, 'not_attendance': 0, 'lack_justified': 0, 'first_consultation': 0, 'return_consultation': 0, 'urgency_consultation': 0, 'completed_treatment': 0, 'radiograph': 0,  'clinical_examination': 0, 'tartarectomia': 0, 'profilaxia':0, 'fluor': 0, 'remocao_de_pontos': 0, 'rest_ionomero': 0, 'rest_amalgama': 0, 'rest_resina': 0, 'rest_provisoria': 0, 'exodontia': 0, 'solictacao_ex': 0, 'total': 0}
-	
-	if request.GET.get('search_from') and request.GET.get('search_to') is not None:
-		consultation_from = datetime.strptime(request.GET.get('search_from'), "%Y-%m-%d").date()
-		consultation_to = datetime.strptime(request.GET.get('search_to'), "%Y-%m-%d").date()
-		# You can use range anywhere you can use BETWEEN in SQL — for dates, numbers and even characters.
-		consultations = consultations.filter(created_on__range=(consultation_from, consultation_to))
-
-		for consultation in consultations:
+			# Procedimentos
 			if consultation.attendance == True:
 				procedures['attendance'] += 1
 			else:
@@ -907,7 +1013,8 @@ def report_procedure(request):
 	total = 0
 	for procedure in procedures:
 		total += procedures[procedure]
-	procedures['total'] = total
-	return render(request, 'odontology/consultation/consultation_report_procedure.html', {'consultations': consultations, 'consultation_from': consultation_from, 'consultation_to': consultation_to, 'procedures': procedures })
+	procedures['total_proc'] = total
 
-# End report_procedure-- ------------------------------------------------------------------------#
+	return render(request, 'odontology/consultation/consultation_report_annual_quantitative.html', {'consultations': consultations, 'consultation_from': consultation_from, 'consultation_to': consultation_to, 'procedures': procedures, 'categories': categories, 'genres': genres, 'age_groups': age_groups })
+
+# End report_annual_quantitative----------------------------------------------------------------------#

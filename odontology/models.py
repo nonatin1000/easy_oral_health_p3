@@ -109,9 +109,11 @@ class Patient(AuditModel):
 	
 	# calculating age
 	def age(self, consultation):
+		
 		return consultation.created_on.year - self.birth_date.year
 
 	def __str__(self):
+
 		return self.name
 
 class Address(AuditModel):
