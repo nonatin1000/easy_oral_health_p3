@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load widget_tweaks %}
-{% load tooth %}
+{% load templatetags %}
 {% block body %}
 
 <nav class="navbar navbar-default">
@@ -10,8 +10,8 @@
 				<li>
 					<p class="navbar-btn">
 						<a class="btn btn-default" href="{% url 'consultation_index' %}"> 
-							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-							Voltar
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+							Finalizar Consulta
 						</a>
 					</p>
 				</li>
