@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load templatetags %}
 {% load staticfiles %}
 {% block body %}
 
@@ -154,15 +155,15 @@
 						{% else %}
 						<td></td>
 						{% endif %}
-
+						
 						<!-- 17 a 30 anos -->
-						{% if consultation.patient.age > 17 %}
+						{% if consultation.patient|age:consultation >= 17 and consultation.patient|age:consultation <= 30 %}
 						<td>X</td>
 						{% else %}
 						<td></td>
 						{% endif %}
 						<!-- > 31 anos -->
-						{% if consultation.patient.age > 17 and consultation.patient.age <= 30 %}
+						{% if consultation.patient|age:consultation >= 31 %}
 						<td>X</td>
 						{% else %}
 						<td></td>
