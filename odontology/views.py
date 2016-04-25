@@ -951,7 +951,7 @@ def report_annual_quantitative(request):
 			# Faixa Etária
 			if consultation.patient.age(consultation) < 17:
 				age_groups['lower_seventeen_years'] += 1
-			if consultation.patient.age(consultation) > 17 and consultation.patient.age(consultation) <= 30:
+			if consultation.patient.age(consultation) >= 17 and consultation.patient.age(consultation) <= 30:
 				age_groups['seventeen_thirty_years'] += 1
 			if consultation.patient.age(consultation) > 30:
 				age_groups['most_thirty_years'] += 1
