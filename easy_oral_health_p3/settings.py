@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '3gvtqgns8)an974@pc*9f$hee3vrp^kkm+&p9!0zjabsf!9(wu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['seod.picos.ufpi.br']
 
 
 # Application definition
@@ -83,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'easy_oral_health',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'USER': 'easy_oral_health',
+        'PASSWORD': '83CqQ<<$',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -128,8 +128,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/var/www/easy_oral_health/static/'
 
 # Login 
 LOGIN_URL = '/odontology/login/'
 LOGOUT_URL = '/logout/'
 LOGIN_REDIRECT_URL = '/'
+
+
+#SETTINGS LOCAL
+try:
+    exec(open(os.path.join(BASE_DIR,'easy_oral_health_p3/settings_local.py')).read())#execfile(os.path.join(BASE_DIR,'scrum/settings_local.py'),globals(),locals())
+except IOError as e:
+    pass
