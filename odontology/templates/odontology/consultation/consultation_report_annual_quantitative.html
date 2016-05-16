@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block body %}
+<style type="text/css">
+	.zebra tbody tr:nth-child(odd) { background: #eee; }
+</style>
 
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container">
@@ -68,7 +71,7 @@
 			{% if consultation_from and consultation_to %}
 				
 				<!-- CATEGORIA -->
-				<table class="table table-hover table-bordered print-data small-padding center-total">
+				<table class="table table-hover table-bordered print-data small-padding center-total zebra">
 					<thead>
 						<tr>
 							<td><strong>Categoria</strong></td>
@@ -104,7 +107,7 @@
 				</table>
 
 				<!-- GENERO -->
-				<table class="table table-hover table-bordered print-data small-padding center-total">
+				<table class="table table-hover table-bordered print-data small-padding center-total zebra">
 					<thead>
 						<tr>
 							<td><strong>Gênero</strong></td>
@@ -128,7 +131,7 @@
 				</table>
 
 				<!-- FAIXA ETÁRIA -->
-				<table class="table table-hover table-bordered print-data small-padding center-total">
+				<table class="table table-hover table-bordered print-data small-padding center-total zebra">
 					<thead>
 						<tr>
 							<td><strong>Faixa Etária</strong></td>
@@ -156,7 +159,7 @@
 				</table>
 
 				<!-- PROCEDIMENTOS -->
-				<table class="table table-hover table-bordered print-data small-padding center-total">
+				<table class="table table-hover table-bordered print-data small-padding center-total zebra">
 					<thead>
 						<tr>
 							<td><strong>Procedimentos</strong></td>

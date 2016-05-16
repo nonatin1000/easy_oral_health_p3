@@ -923,7 +923,7 @@ def report_annual_quantitative(request):
 		consultation_from = datetime.strptime(request.GET.get('search_from'), "%Y-%m-%d").date()
 		consultation_to = datetime.strptime(request.GET.get('search_to'), "%Y-%m-%d").date()
 		# You can use range anywhere you can use BETWEEN in SQL — for dates, numbers and even characters.
-		consultations = consultations.filter(created_on__range=(consultation_from, consultation_to))
+		consultations = consultations.filter(created_on__gte=consultation_from, created_on__lte=consultation_to)
 
 		
 		for consultation in consultations:

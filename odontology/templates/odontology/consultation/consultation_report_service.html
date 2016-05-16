@@ -108,7 +108,7 @@
 				<tbody>
 
 					{% for consultation in consultations %}
-					<tr>
+					<tr class="{% cycle '' 'well' %}">
 						<td>{{ consultation.created_on|date:"H:i" }}</td>
 						<td>{{ consultation.patient.name }}</td>
 						
