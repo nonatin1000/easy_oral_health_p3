@@ -920,11 +920,10 @@ def report_annual_quantitative(request):
 	procedures = {'attendance': 0, 'not_attendance': 0, 'lack_justified': 0, 'first_consultation': 0, 'return_consultation': 0, 'urgency_consultation': 0, 'completed_treatment': 0, 'radiograph': 0,  'clinical_examination': 0, 'tartarectomia': 0, 'profilaxia':0, 'fluor': 0, 'remocao_de_pontos': 0, 'rest_ionomero': 0, 'rest_amalgama': 0, 'rest_resina': 0, 'rest_provisoria': 0, 'exodontia': 0, 'solictacao_ex': 0, 'total_proc': 0}
 	
 	if request.GET.get('search_from') and request.GET.get('search_to') is not None:
-		consultation_from = datetime.strptime(request.GET.get('search_from'), "%Y-%m-%d").date()
-		consultation_to = datetime.strptime(request.GET.get('search_to'), "%Y-%m-%d").date()
+		consultation_from = datetime.strptime(request.GET.get('search_from')+" 00:00:00", "%Y-%m-%d %H:%M:%S")
+		consultation_to = datetime.strptime(request.GET.get('search_to')+" 23:59:59", "%Y-%m-%d %H:%M:%S")
 		# You can use range anywhere you can use BETWEEN in SQL — for dates, numbers and even characters.
 		consultations = consultations.filter(created_on__gte=consultation_from, created_on__lte=consultation_to)
-
 		
 		for consultation in consultations:
 
