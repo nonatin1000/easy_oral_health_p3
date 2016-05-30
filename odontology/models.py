@@ -103,7 +103,7 @@ class Patient(AuditModel):
 	OUTSOURCED = 'Terceirizado'
 	TYPES_CHOICES = ((STUDENT, 'Estudante'), (TEACHER, 'Professor'), (ADMNISTRATIVE_TECHNICIAN, 'Técnico Administrativo'), (OUTSOURCED, 'Terceirizado'), (DEPENDENT, 'Dependente'),)
 	types = models.CharField(u'Tipo', max_length=25, choices=TYPES_CHOICES, default=STUDENT)
-	email = models.EmailField(u'E-mail')
+	email = models.EmailField(u'E-mail', blank=True, null=True)
 	dependents = models.ManyToManyField('self', symmetrical=False)
 	address = GenericRelation('Address')
 	
