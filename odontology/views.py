@@ -254,7 +254,7 @@ def patient_index(request):
 	if var_get_search is not None:
 		patients_list = patients_list.filter(name__icontains=var_get_search)
 	
-	paginator = Paginator(patients_list, 40) # Mostra 40 pacientes por página
+	paginator = Paginator(patients_list, 50) # Mostra 50 pacientes por página
 
 	# Make sure page request is an int. If not, deliver first page.
 	# Esteja certo de que o `page request` é um inteiro. Se não, mostre a primeira página.
