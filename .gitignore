@@ -1,3 +1,4 @@
 *.pyc
 *.pyo
+*.json
 easy_oral_health_p3/settings_local.py
