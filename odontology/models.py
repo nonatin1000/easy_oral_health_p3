@@ -116,6 +116,12 @@ class Patient(AuditModel):
 
 		return self.name
 
+	class Meta:
+		verbose_name = 'Paciente'
+		verbose_name_plural = 'Pacientes'
+		ordering = ['-created_on']
+
+
 class Address(AuditModel):
 	city = models.CharField(u'Cidade', max_length=255)
 	state = models.CharField(u'UF', max_length=2)
@@ -200,6 +206,11 @@ class Consultation(AuditModel):
 	def __str__(self):
 		
 		return self.patient.name
+
+	class Meta:
+		verbose_name = 'Consulta'
+		verbose_name_plural = 'Consultas'
+		ordering = ['-created_on']
 
 class Exams(AuditModel):
 	name = models.CharField(max_length=150)
