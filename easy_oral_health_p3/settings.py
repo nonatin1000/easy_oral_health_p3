@@ -140,4 +140,4 @@ LOGIN_REDIRECT_URL = '/'
 try:
     exec(open(os.path.join(BASE_DIR,'easy_oral_health_p3/settings_local.py')).read())#execfile(os.path.join(BASE_DIR,'scrum/settings_local.py'),globals(),locals())
 except IOError as e:
-    print("sem arquivo")
+    pass
