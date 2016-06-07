@@ -515,6 +515,38 @@ def patient_dental_procedure_register(request, consultation_id, procedure_dental
 	form_oral_patient_procedure = OralPatientProcedureForm # empty form
 	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_odonto': True})
 
+# Signup PatientDentalProcedureAVALIACAO----------------------------------------------------------#
+@login_required
+def patient_dental_procedure_evaluation(request, consultation_id, procedure_dental_id=None):
+	dentist = Dentist.objects.get(pk=request.user.id)
+	consultation = Consultation.objects.get(pk=consultation_id)
+	consultation_form = ConsultationEditForm(instance=consultation)
+	form_patient_dental_procedure = PatientDentalProcedureForm(patient=consultation.patient) # empty form
+	
+	# Save 
+	if request.method == 'POST':
+		# Patient Dental Procedure
+		form_patient_dental_procedure = PatientDentalProcedureForm(request.POST, patient=consultation.patient)
+		if form_patient_dental_procedure.is_valid():
+			patient_dental_procedure = form_patient_dental_procedure.save(commit=False)
+			patient_dental_procedure.dentist = dentist # Adiciono o denstista ao form
+			patient_dental_procedure.consultation = consultation # Adiciono o consultation ao form
+			patient_dental_procedure.evaluation = True # Adiciono o evaluation ao form
+			patient_dental_procedure.save()
+	
+	# Examination Solicitation
+	examination_solicitation = ExaminationSolicitation.objects.filter(consultation=consultation)
+	form_examination_solicitation = ExaminationSolicitationForm
+
+	# Odontograma
+	odontogram_patient = PatientTooth.objects.filter(patient=consultation.patient).order_by('tooth')
+	form_patient_dental_procedure = PatientDentalProcedureForm(patient=consultation.patient) # empty form
+
+	# Procedimento Bucal
+	oral_patient_procedure = OralPatientProcedure.objects.filter(consultation=consultation)
+	form_oral_patient_procedure = OralPatientProcedureForm # empty form
+	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_evaluation': True})
+
 @login_required
 def patient_dental_procedure_delete(request, patient_dental_procedure_id):
 	patient_dental_procedure = PatientDentalProcedure.objects.get(pk=patient_dental_procedure_id)
@@ -997,15 +1029,15 @@ def report_annual_quantitative(request):
 					procedures['remocao_de_pontos'] += 1
 
 			for dpc in consultation.patientdentalprocedure_set.all():
-				if dpc.procedure_dental.name == 'Restauração Ionômero':
+				if dpc.procedure_dental.name == 'Restauração Ionômero' and not dpc.evaluation:
 					procedures['rest_ionomero'] += 1
-				if dpc.procedure_dental.name == 'Restauração Amalgama':
+				if dpc.procedure_dental.name == 'Restauração Amalgama' and not dpc.evaluation:
 					procedures['rest_amalgama'] += 1
-				if dpc.procedure_dental.name == 'Restauração Resina':
+				if dpc.procedure_dental.name == 'Restauração Resina' and not dpc.evaluation:
 					procedures['rest_resina'] += 1
-				if dpc.procedure_dental.name == 'Restauração Provisória':
+				if dpc.procedure_dental.name == 'Restauração Provisória' and not dpc.evaluation:
 					procedures['rest_provisoria'] += 1
-				if dpc.procedure_dental.name == 'Extraído ou ausente':
+				if dpc.procedure_dental.name == 'Extraído ou ausente' and not dpc.evaluation:
 					procedures['exodontia'] += 1
 
 	# Total de todos os procedimentos

@@ -62,6 +62,7 @@ urlpatterns = [
     url(r'^oral_patient_procedure/(?P<patient_id>\d+)/$', views.oral_patient_procedure , name='oral_patient_procedure'),
     # PatientDentalProcedure
     url(r'^patient_dental_procedure_register/(?P<consultation_id>\d+)/$', views.patient_dental_procedure_register , name='patient_dental_procedure_register'),
+    url(r'^patient_dental_procedure_evaluation/(?P<consultation_id>\d+)/$', views.patient_dental_procedure_evaluation , name='patient_dental_procedure_evaluation'),
     url(r'^patient_dental_procedure_delete/(?P<patient_dental_procedure_id>\d+)/$', views.patient_dental_procedure_delete , name='patient_dental_procedure_delete'),
     # Procedure Dental
     url(r'^procedure_dental_index/$', views.procedure_dental_index , name='procedure_dental_index'),

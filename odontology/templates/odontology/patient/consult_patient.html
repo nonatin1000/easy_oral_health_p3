@@ -25,7 +25,8 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#odontograma" aria-controls="odontograma" role="tab" data-toggle="tab">Procedimento Dental</a></li>
+				<li role="presentation" class="active"><a href="#evaluation" aria-controls="evaluation" role="tab" data-toggle="tab">Avaliação</a></li>
+				<li role="presentation"><a href="#odontograma" aria-controls="odontograma" role="tab" data-toggle="tab">Procedimento Dental</a></li>
 				<li role="presentation"><a href="#procbucal" aria-controls="procbucal" role="tab" data-toggle="tab">Procedimento Bucal</a></li>
 				<li role="presentation"><a href="#examination_solicitation" aria-controls="examination_solicitation" role="tab" data-toggle="tab">Exames</a></li>
 				<li role="presentation"><a href="#consulta" aria-controls="procbucal" role="tab" data-toggle="tab">Consulta</a></li>
@@ -33,7 +34,166 @@
 
 			<!-- Tab panes -->
 			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane space-tabs active" id="odontograma">
+				<div role="tabpanel" class="tab-pane space-tabs active" id="evaluation">
+					<form action="{% url 'patient_dental_procedure_evaluation' consultation.id %}" method="post" class="navbar-form navbar-left space-form2">{% csrf_token %}
+						<fieldset>
+							{% for field in form_patient_dental_procedure %}
+							{% if field.errors %}
+							<div class="form-group error" >
+								<!-- <label class="control-label" >{{ field.label }}</label> -->
+								{{ field|add_class:"form-control input-md" }}
+								{% for error in field.errors%}
+								<span class="help-inline error">{{ error}}</span>
+								{% endfor%}
+							</div>
+							{%else%}
+							<div class="form-group">
+								<!-- <label class="control-label" >{{ field.label }}</label> -->
+								{{ field|add_class:"form-control input-md avaliacao" }}
+							</div>
+							{%endif%}
+							{% endfor %}
+							<div class="form-group">
+								<button type="submit" value="Adicionar" class="btn btn-primary">
+									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+									Adicionar
+								</button>
+							</div>
+						</fieldset>
+					</form>
+
+					<!-- CORPO DO ODONTOGRAMA -->
+					<div class="container">
+						<div class="row" style="margin-bottom: 1em">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 outer">
+								<div class="tooth-container-row">
+									{% for patient_tooth in odontogram_patient %}
+									<div class="tooth-container">
+										<div class="tooth-box">
+											{% render_tooth patient_tooth %}
+										</div>
+										<div class="tooth-label-box">
+											{{ patient_tooth.tooth.name }}
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<table class="table">
+									<thead>
+										<tr>
+											<th colspan="3">Legenda</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><div class="circulo bg-restaurado"></div></td>
+											<td>Restaurado</td>
+											<td>Quadro cheio em azul</td>
+										</tr>
+										<tr>
+											<td><div class="circulo bg-cariado"></div></td>
+											<td>Cariado</td>
+											<td>Quadro cheio em vermelho</td>
+										</tr>
+										<tr>
+											<td><div class="circulo bg-pendente"></div></td>
+											<td>Restauração a ser feita</td>
+											<td>Quadro cheio em verde</td>
+										</tr>
+										<tr>
+											<td><div class="circulo bg-extracao"></div></td>
+											<td>Indicado para extração</td>
+											<td>Quadro cheio em cinza</td>
+										</tr>
+										<tr>
+											<td><div class="circulo bg-extraido"></div></td>
+											<td>Extraído ou ausente</td>
+											<td>Quadro totalmente preto</td>
+										</tr>
+										<tr>
+											<td><div class="circulo bg-protese-fixa"></div></td>
+											<td>Prótese Fixa</td>
+											<td>Quadro totalmente laranja</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<h4>Procedimentos Dentário (AVALIAÇÃO)</h4>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Dente</th>
+											<th>Divisão dos Dentes</th>
+											<th>Procedimento Dentário</th>
+											<th>Avaliação</th>
+											<th style="width: 50px;">Ações</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for procedure in consultation.patientdentalprocedure_set.all %}
+										<tr>
+											{% if procedure.evaluation %}
+												<td>{{ procedure.patient_tooth.tooth.name }}</td>
+												<td>{{ procedure.tooth_division.name }}</td>
+												<td>{{ procedure.procedure_dental.name }}</td>
+												{% if procedure.evaluation %}
+													<td>Sim</td>
+												{% else %}
+													<td>Não</td>
+												{% endif %}
+												<td>
+
+													<a href="#modal-id-o-{{ procedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+														<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+													</a>
+												</td>
+											{% endif %}
+										</tr>
+
+										<!-- MODAL -->
+										<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+											<div class="modal fade" id="modal-id-o-{{ procedure.id }}">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+															<h4 class="modal-title">Alerta!</h4>
+														</div>
+														<div class="modal-body">
+															<p>Deseja realmente remover o Dente: <strong>{{ procedure.patient_tooth.tooth.name }}</strong>?</p>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+															<a href="{% url 'patient_dental_procedure_delete' procedure.id %}" class='btn btn-danger' title='Exibir'>
+																Delete
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- /MODAL -->
+										{%endfor%}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- /CORPO DO ODONTOGRAMA -->
+				</div>
+
+				<div role="tabpanel" class="tab-pane space-tabs" id="odontograma">
 					<form action="{% url 'patient_dental_procedure_register' consultation.id %}" method="post" class="navbar-form navbar-left space-form2">{% csrf_token %}
 						<fieldset>
 							{% for field in form_patient_dental_procedure %}
@@ -141,15 +301,17 @@
 									<tbody>
 										{% for procedure in consultation.patientdentalprocedure_set.all %}
 										<tr>
-											<td>{{ procedure.patient_tooth.tooth.name }}</td>
-											<td>{{ procedure.tooth_division.name }}</td>
-											<td>{{ procedure.procedure_dental.name }}</td>
-											<td>
+											{% if not procedure.evaluation %}
+												<td>{{ procedure.patient_tooth.tooth.name }}</td>
+												<td>{{ procedure.tooth_division.name }}</td>
+												<td>{{ procedure.procedure_dental.name }}</td>
+												<td>
 
-												<a href="#modal-id-o-{{ procedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
-													<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-												</a>
-											</td>
+													<a href="#modal-id-o-{{ procedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+														<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+													</a>
+												</td>
+											{% endif %}
 										</tr>
 
 										<!-- MODAL -->
@@ -433,6 +595,12 @@
 
 <!-- /ABAS -->
 
+{% if tab_evaluation %}
+<script type="text/javascript">
+	$('a[href="#evaluation"]').tab('show');
+</script>
+{% endif %}
+
 {% if tab_odonto %}
 <script type="text/javascript">
 	$('a[href="#odontograma"]').tab('show');
@@ -462,6 +630,7 @@
 		$("#id_patient_tooth option:first").html("Dentes");
 		$("#id_tooth_division option:first").html("Divisão");
 		$("#id_procedure_dental option:first").html("Procedimento");
+
 		$(":checkbox").attr("class","");
 	})
 </script>

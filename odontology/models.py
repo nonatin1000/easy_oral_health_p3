@@ -189,6 +189,7 @@ class Consultation(AuditModel):
 	# Verifica os procedimentos dental e armeza o valor no dicionario para exibição no relatorio de atendimento
 	def dental_proc(self):
 		dental_procedures = {}
+		
 		for pprocedure in self.patientdentalprocedure_set.all():
 			if pprocedure.procedure_dental.name == 'Restauração Ionômero':
 				dental_procedures['rest_ionomero'] = True
@@ -200,8 +201,24 @@ class Consultation(AuditModel):
 				dental_procedures['rest_provisoria'] = True
 			if pprocedure.procedure_dental.name == 'Extraído ou ausente':
 				dental_procedures['exodontia'] = True
-
 		return dental_procedures
+
+	# Procedimentos Dental que são da AVALIAÇÃO
+	def dental_proc_evaluation(self):
+		dental_procedures_evaluation = {}
+		for pprocedureevaluation in self.patientdentalprocedure_set.all():
+			if pprocedureevaluation.procedure_dental.name == 'Restauração Ionômero' and not pprocedureevaluation.evaluation:
+				dental_procedures_evaluation['rest_ionomero_evaluation'] = True
+			if pprocedureevaluation.procedure_dental.name == 'Restauração Amalgama' and not pprocedureevaluation.evaluation:
+				dental_procedures_evaluation['rest_amalgama_evaluation'] = True
+			if pprocedureevaluation.procedure_dental.name == 'Restauração Resina' and not pprocedureevaluation.evaluation:
+				dental_procedures_evaluation['rest_resina_evaluation'] = True
+			if pprocedureevaluation.procedure_dental.name == 'Restauração Provisória' and not pprocedureevaluation.evaluation:
+				dental_procedures_evaluation['rest_provisoria_evaluation'] = True
+			if pprocedureevaluation.procedure_dental.name == 'Extraído ou ausente_evaluation' and not pprocedureevaluation.evaluation:
+				dental_procedures_evaluation['exodontia_evaluation'] = True
+
+		return dental_procedures_evaluation
 
 	def __str__(self):
 		
@@ -235,6 +252,7 @@ class PatientDentalProcedure(AuditModel):
 	procedure_dental = models.ForeignKey(ProcedureDental)
 	dentist = models.ForeignKey(Dentist)
 	consultation = models.ForeignKey(Consultation,null=True,blank=True)
+	evaluation = models.BooleanField(default=False)
 
 	def __str__(self):
 		

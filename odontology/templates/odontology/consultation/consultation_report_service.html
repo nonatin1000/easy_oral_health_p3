@@ -227,31 +227,31 @@
 						{% endif %}
 
 						<!--Pega todos os procedimentos dental daquele paciente -->
-						{% if consultation.dental_proc.rest_ionomero %}
+						{% if consultation.dental_proc.rest_ionomero and  consultation.dental_proc_evaluation.rest_ionomero_evaluation %}
 						<td>X</td>
 						{% else %}
 						<td></td>
 						{% endif %}
 
-						{% if consultation.dental_proc.rest_amalgama %}
+						{% if consultation.dental_proc.rest_amalgama and  consultation.dental_proc_evaluation.rest_amalgama_evaluation %}
 						<td>X</td>
 						{% else %}
 						<td></td>
 						{% endif %}
 
-						{% if consultation.dental_proc.rest_resina %}
+						{% if consultation.dental_proc.rest_resina and  consultation.dental_proc_evaluation.rest_resina_evaluation %}
 						<td>X</td>
 						{% else %}
 						<td></td>
 						{% endif %}
 
-						{% if consultation.dental_proc.rest_provisoria %}
+						{% if consultation.dental_proc.rest_provisoria and  consultation.dental_proc_evaluation.rest_provisoria_evaluation %}
 						<td>X</td>
 						{% else %}
 						<td></td>
 						{% endif %}
 
-						{% if consultation.dental_proc.exodontia %}
+						{% if consultation.dental_proc.exodontia and  consultation.dental_proc_evaluation.exodontia_evaluation %}
 						<td>X</td>
 						{% else %}
 						<td></td>
