@@ -613,7 +613,7 @@ def consultation_index(request):
 		consultation_date = date.today() # Pega sempre a data atual
 		consultations_list = consultations_list.filter(created_on__date=consultation_date)
 
-	paginator = Paginator(consultations_list, 10) # Mostra 10 pacientes por página
+	paginator = Paginator(consultations_list, 50) # Mostra 50 pacientes por página
 
 	# Make sure page request is an int. If not, deliver first page.
 	# Esteja certo de que o `page request` é um inteiro. Se não, mostre a primeira página.
