@@ -206,16 +206,49 @@
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 outer">
               <div class="tooth-container-row">
-                {% for patient_tooth in odontogram_patient %}
-                <div class="tooth-container">
-                  <div class="tooth-box">
-                    {% render_tooth patient_tooth %}
+                {% for b1 in block1 %}
+                  <div class="tooth-container">
+                    <div class="tooth-box">
+                      {% render_tooth_18_to_11 b1 %}
+                    </div>
+                    <div class="tooth-label-box">
+                      {{ b1.tooth.name }}
+                    </div>
                   </div>
-                  <div class="tooth-label-box">
-                    {{ patient_tooth.tooth.name }}
+                  {% endfor %}
+
+                  {% for b2 in block2 %}
+                  <div class="tooth-container">
+                    <div class="tooth-box">
+                      {% render_tooth_21_to_28 b2 %}
+                    </div>
+                    <div class="tooth-label-box">
+                      {{ b2.tooth.name }}
+                    </div>
                   </div>
-                </div>
-                {% endfor %}
+                  {% endfor %}
+
+                  {% for b3 in block3 %}
+                  <div class="tooth-container">
+                    <div class="tooth-box">
+                      {% render_tooth_48_to_41 b3 %}
+                    </div>
+                    <div class="tooth-label-box">
+                      {{ b3.tooth.name }}
+                    </div>
+                  </div>
+                  {% endfor %}
+
+                  {% for b4 in block4 %}
+                  <div class="tooth-container">
+                    <div class="tooth-box">
+                      {% render_tooth_31_to_38 b4 %}
+                    </div>
+                    <div class="tooth-label-box">
+                      {{ b4.tooth.name }}
+                    </div>
+                  </div>
+                  {% endfor %}
               </div>
             </div>
           </div>
