@@ -50,6 +50,20 @@
 		</div>
 	</nav>
 	<!-- NAVBAR -->
+
+	<!-- Mensagens -->
+	<div class="container">
+    	<div class="row">
+        	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				{% if messages %}
+			        {% for message in messages %}
+			        <p>{{ message }}</p>
+			        {% endfor %}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
 	{% block body %}
 	{% endblock %}
 </body>

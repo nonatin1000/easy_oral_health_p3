@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^dentist_edit/(?P<user_id>\d+)/$', views.dentist_register , name='dentist_edit'),
     url(r'^dentist_show/(?P<user_id>\d+)/$', views.dentist_show , name='dentist_show'),
     url(r'^dentist_delete/(?P<user_id>\d+)/$', views.dentist_delete , name='dentist_delete'),
+    url(r'^edit_password/$', views.dentist_edit_password, name='dentist_edit_password'),
     # Course
     url(r'^course_index/$', views.course_index , name='course_index'),
     url(r'^course_register/$', views.course_register , name='course_register'),

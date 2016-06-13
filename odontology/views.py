@@ -9,11 +9,30 @@ from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
+from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
 from django.forms import formset_factory
 from datetime import date, datetime
 from .models import Dentist, Address, User, Course, Exams, Tooth, ToothDivision, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure, OralPatientProcedure, Consultation, ExaminationSolicitation
 from .forms import DentistForm, AddressForm, CourseForm, ExamsForm, ToothForm, ToothDivisionForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm, OralPatientProcedureForm, ConsultationForm, ConsultationEditForm, ExaminationSolicitationForm, ExaminationSolicitationEditForm, DependentForm
 from dal import autocomplete
+
+
+# Alterar senha do user (Dentista)
+@login_required
+def dentist_edit_password(request):
+	template_name = 'odontology/dentist/dentist_edit_password.html'
+	context = {}
+	if request.method == 'POST':
+		form = PasswordChangeForm(data=request.POST, user=request.user)
+		if form.is_valid():
+			form.save()
+			messages.success(request, 'A sua senha foi alterada com sucesso')
+			redirect('index_root')
+	else:
+		form = PasswordChangeForm(user=request.user)
+
+	context['form'] = form
+	return render(request, template_name, context)
 
 # Autocomplete patiente na consulta
 class PatientAutocomplete(autocomplete.Select2QuerySetView):
