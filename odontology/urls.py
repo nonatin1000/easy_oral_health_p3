@@ -15,15 +15,21 @@ Including another URLconf
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import url
-from django.contrib.auth.views import logout_then_login,login
+from django.contrib.auth.views import logout_then_login, login, password_reset, password_reset_done, password_reset_confirm, password_reset_complete
 from . import views
 
 urlpatterns = [
     # Autocomplete
     url(r'^patient-autocomplete/$', views.PatientAutocomplete.as_view(), name='patient-autocomplete'), 
+    # Reset Password
+    url(r'^password_reset/$', password_reset,{ 'from_email':u'Não Responder <nrdesales@gmail.com>','template_name': 'odontology/autenticacao/user/password_reset.html','html_email_template_name':'odontology/autenticacao/user/password_reset_email.html'}, name='password_reset'),
+    url(r'^password_reset/done/$', password_reset_done,{ 'template_name': 'odontology/autenticacao/user/password_reset_done.html'}, name='password_reset_done'),
+    url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        password_reset_confirm,{ 'template_name': 'odontology/autenticacao/user/password_reset_confirm.html'}, name='password_reset_confirm'),
+    url(r'^reset/done/$', password_reset_complete, { 'template_name': 'odontology/autenticacao/user/password_reset_complete.html'}, name='password_reset_complete'),
     # Login
     url(r'^logout/$', logout_then_login, { 'login_url': '/odontology/login/' }, name='logout'), 
-    url(r'^login/$', login, { 'template_name': 'login.html' }, name='login'), 
+    url(r'^login/$', login, { 'template_name': 'odontology/autenticacao/user/login.html' }, name='login'), 
     # Dentist
     url(r'^dentist_index/$', views.dentist_index , name='dentist_index'),
     url(r'^dentist_register/$', views.dentist_register , name='dentist_register'),

@@ -27,7 +27,7 @@ def dentist_edit_password(request):
 		if form.is_valid():
 			form.save()
 			messages.success(request, 'A sua senha foi alterada com sucesso')
-			redirect('index_root')
+			redirect('login')
 	else:
 		form = PasswordChangeForm(user=request.user)
 
