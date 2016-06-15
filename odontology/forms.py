@@ -4,9 +4,11 @@ from django.forms import ModelForm
 from django import forms
 from django.forms.utils import ErrorList
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
 from odontology.models import Dentist, Address, Course, Exams, Tooth, ToothDivision, Patient, PatientTooth, ProcedureDental, OralProcedure, PatientDentalProcedure, OralPatientProcedure, Consultation, ExaminationSolicitation
 from dal import autocomplete
+
+from django.contrib.auth.forms import UserCreationForm,PasswordResetForm
+from django.contrib.auth import authenticate, get_user_model
 
 class DentistForm(UserCreationForm):
 
@@ -168,3 +170,11 @@ class ExaminationSolicitationEditForm(ModelForm):
 			'exams': 'Exames',
 			'appraisal': 'Laudo',
 		}
+
+class PasswordResetForm(PasswordResetForm):
+	def clean_email(self):
+		amount = get_user_model()._default_manager.filter(
+            email__iexact=self.cleaned_data.get('email'), is_active=True).count()
+		if(amount < 1):
+			raise forms.ValidationError('Lamentamos, mas não reconhecemos esse endereço de e-mail.')
+		return self.cleaned_data.get('email')
