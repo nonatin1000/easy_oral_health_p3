@@ -255,8 +255,12 @@ class PatientDentalProcedure(AuditModel):
 	evaluation = models.BooleanField(default=False)
 
 	def __str__(self):
-		
 		return self.patient_tooth.tooth.name
+
+	class Meta:
+		verbose_name = 'Procedimento Dental'
+		verbose_name_plural = 'Procedimentos Dental'
+		ordering = ['-created_on']
 
 class OralPatientProcedure(AuditModel):
 	oral_procedure = models.ForeignKey(OralProcedure)

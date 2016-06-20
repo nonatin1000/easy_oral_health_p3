@@ -1,0 +1,3 @@
+﻿update odontology_consultation set created_on = '1999-01-01 14:35:25.411-03';
+
+commit;

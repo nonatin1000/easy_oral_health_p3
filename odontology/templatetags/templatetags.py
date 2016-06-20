@@ -11,27 +11,27 @@ def get_age(patient, consultation):
 @register.inclusion_tag('tooth_18_to_11.html')
 def render_tooth_18_to_11(tooth ):
 	div={} # Divisão dos Dentes
-	for p in tooth.patient_dental_procedure.all():
+	for p in tooth.patient_dental_procedure.all().order_by('created_on'):
 		div[p.tooth_division.pk]=p.procedure_dental.pk
 	return {'tooth': tooth,'div':div}
 
 @register.inclusion_tag('tooth_21_to_28.html')
 def render_tooth_21_to_28(tooth ):
 	div={} # Divisão dos Dentes
-	for p in tooth.patient_dental_procedure.all():
+	for p in tooth.patient_dental_procedure.all().order_by('created_on'):
 		div[p.tooth_division.pk]=p.procedure_dental.pk
 	return {'tooth': tooth,'div':div}
 
 @register.inclusion_tag('tooth_48_to_41.html')
 def render_tooth_48_to_41(tooth ):
 	div={} # Divisão dos Dentes
-	for p in tooth.patient_dental_procedure.all():
+	for p in tooth.patient_dental_procedure.all().order_by('created_on'):
 		div[p.tooth_division.pk]=p.procedure_dental.pk
 	return {'tooth': tooth,'div':div}
 
 @register.inclusion_tag('tooth_31_to_38.html')
 def render_tooth_31_to_38(tooth ):
 	div={} # Divisão dos Dentes
-	for p in tooth.patient_dental_procedure.all():
+	for p in tooth.patient_dental_procedure.all().order_by('created_on'):
 		div[p.tooth_division.pk]=p.procedure_dental.pk
 	return {'tooth': tooth,'div':div}
