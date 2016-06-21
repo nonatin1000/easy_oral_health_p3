@@ -249,6 +249,54 @@
                     </div>
                   </div>
                   {% endfor %}
+                  <!-- Fim do odontograma INFANTIL -->
+
+                  <!-- Dentes Deciduos (Criança) -->
+                  {% for b5 in block5 %}
+                  <div class="tooth-container">
+                    <div class="tooth-box">
+                      {% render_tooth_55_to_51 b5 %}
+                    </div>
+                    <div class="tooth-label-box">
+                      {{ b5.tooth.name }}
+                    </div>
+                  </div>
+                  {% endfor %}
+
+                  {% for b6 in block6 %}
+                  <div class="tooth-container">
+                    <div class="tooth-box">
+                      {% render_tooth_61_to_65 b6 %}
+                    </div>
+                    <div class="tooth-label-box">
+                      {{ b6.tooth.name }}
+                    </div>
+                  </div>
+                  {% endfor %}
+
+                  {% for b7 in block7 %}
+                  <div class="tooth-container">
+                    <div class="tooth-box">
+                      {% render_tooth_85_to_81 b7 %}
+                    </div>
+                    <div class="tooth-label-box">
+                      {{ b7.tooth.name }}
+                    </div>
+                  </div>
+                  {% endfor %}
+
+                  {% for b8 in block8 %}
+                  <div class="tooth-container">
+                    <div class="tooth-box">
+                      {% render_tooth_71_to_75 b8 %}
+                    </div>
+                    <div class="tooth-label-box">
+                      {{ b8.tooth.name }}
+                    </div>
+                  </div>
+                  {% endfor %}
+                  <!-- Fim do odontograma INFANTIL -->
+
               </div>
             </div>
           </div>

@@ -343,10 +343,16 @@ def patient_show(request, patient_id):
 	block3 = odontogram_patient[16:24] # do dente 48 ao 41
 	block4 = odontogram_patient[24:32] # do dente 31 ao 38
 
+	# Dentes Deciduos (INFANTIL)
+	block5 = odontogram_patient[32:36] # do dente 18 ao 11
+	block6 = odontogram_patient[36:40] # do dente 21 ao 28
+	block7 = odontogram_patient[40:45] # do dente 48 ao 41
+	block8 = odontogram_patient[45:52] # do dente 31 ao 38
+
 	oral_patient_procedure = OralPatientProcedure.objects.filter(consultation__patient=patient)
 	examination_solicitation = ExaminationSolicitation.objects.filter(consultation__patient=patient)
 	consultation = Consultation.objects.filter(patient=patient)
-	return render(request, 'odontology/patient/patient_show.html', {'patient': patient, 'address': address, 'odontogram_patient': odontogram_patient, 'oral_patient_procedure': oral_patient_procedure, 'examination_solicitation': examination_solicitation, 'consultation': consultation, 'block1': block1, 'block2': block2, 'block3': block3, 'block4': block4})
+	return render(request, 'odontology/patient/patient_show.html', {'patient': patient, 'address': address, 'odontogram_patient': odontogram_patient, 'oral_patient_procedure': oral_patient_procedure, 'examination_solicitation': examination_solicitation, 'consultation': consultation, 'block1': block1, 'block2': block2, 'block3': block3, 'block4': block4, 'block5': block5, 'block6': block6, 'block7': block7, 'block8': block8})
 
 @login_required
 def patient_delete(request, patient_id):
@@ -1103,3 +1109,14 @@ def report_annual_quantitative(request):
 	return render(request, 'odontology/consultation/consultation_report_annual_quantitative.html', {'consultations': consultations, 'consultation_from': consultation_from, 'consultation_to': consultation_to, 'procedures': procedures, 'categories': categories, 'genres': genres, 'age_groups': age_groups })
 
 # End report_annual_quantitative----------------------------------------------------------------------#
+
+# Incluir os dentens deciduos nos patient ja cadastrados
+def update_patient_tooth(request):
+	teeths = Tooth.objects.all() # find all teeth
+	for patient in Patient.objects.all():
+		for tooth in teeths:
+			if not patient.patienttooth_set.filter(tooth=tooth).exists():
+				patient_tooth = PatientTooth(tooth=tooth, patient=patient)
+				patient_tooth.save()
+
+	return HttpResponse('<h1><center>Inclusão dos dentes DECIDUOS realizada com sucesso</center><h1>')
