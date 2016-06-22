@@ -110,6 +110,57 @@
 										</div>
 									</div>
 									{% endfor %}
+									<!-- Fim do odontograma ADULTO -->
+
+									<!-- Dentes Deciduos (Criança) -->
+									<div class="tooth-top">
+										{% for b5 in block5 %}
+										<div class="teeth-container-kid">
+											<div class="tooth-box">
+												{% render_tooth_55_to_51 b5 %}
+											</div>
+											<div class="tooth-label-box">
+												{{ b5.tooth.name }}
+											</div>
+										</div>
+										{% endfor %}
+
+										{% for b6 in block6 %}
+										<div class="teeth-container-kid">
+											<div class="tooth-box">
+												{% render_tooth_61_to_65 b6 %}
+											</div>
+											<div class="tooth-label-box">
+												{{ b6.tooth.name }}
+											</div>
+										</div>
+										{% endfor %}
+									</div>
+
+									<div class="tooth-bottom">
+										{% for b7 in block7 %}
+										<div class="teeth-container-kid">
+											<div class="tooth-box">
+												{% render_tooth_85_to_81 b7 %}
+											</div>
+											<div class="tooth-label-box">
+												{{ b7.tooth.name }}
+											</div>
+										</div>
+										{% endfor %}
+
+										{% for b8 in block8 %}
+										<div class="teeth-container-kid">
+											<div class="tooth-box">
+												{% render_tooth_71_to_75 b8 %}
+											</div>
+											<div class="tooth-label-box">
+												{{ b8.tooth.name }}
+											</div>
+										</div>
+										{% endfor %}
+									</div>
+									<!-- Fim do odontograma INFANTIL -->
 								</div>
 							</div>
 						</div>
@@ -177,20 +228,20 @@
 										{% for procedure in consultation.patientdentalprocedure_set.all %}
 										<tr>
 											{% if procedure.evaluation %}
-												<td>{{ procedure.patient_tooth.tooth.name }}</td>
-												<td>{{ procedure.tooth_division.name }}</td>
-												<td>{{ procedure.procedure_dental.name }}</td>
-												{% if procedure.evaluation %}
-													<td>Sim</td>
-												{% else %}
-													<td>Não</td>
-												{% endif %}
-												<td>
+											<td>{{ procedure.patient_tooth.tooth.name }}</td>
+											<td>{{ procedure.tooth_division.name }}</td>
+											<td>{{ procedure.procedure_dental.name }}</td>
+											{% if procedure.evaluation %}
+											<td>Sim</td>
+											{% else %}
+											<td>Não</td>
+											{% endif %}
+											<td>
 
-													<a href="#modal-id-av-{{ procedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
-														<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-													</a>
-												</td>
+												<a href="#modal-id-av-{{ procedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+													<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+												</a>
+											</td>
 											{% endif %}
 										</tr>
 
@@ -302,6 +353,57 @@
 										</div>
 									</div>
 									{% endfor %}
+									<!-- Fim do odontograma ADULTO -->
+
+									<!-- Dentes Deciduos (Criança) -->
+									<div class="tooth-top">
+										{% for b5 in block5 %}
+										<div class="teeth-container-kid">
+											<div class="tooth-box">
+												{% render_tooth_55_to_51 b5 %}
+											</div>
+											<div class="tooth-label-box">
+												{{ b5.tooth.name }}
+											</div>
+										</div>
+										{% endfor %}
+
+										{% for b6 in block6 %}
+										<div class="teeth-container-kid">
+											<div class="tooth-box">
+												{% render_tooth_61_to_65 b6 %}
+											</div>
+											<div class="tooth-label-box">
+												{{ b6.tooth.name }}
+											</div>
+										</div>
+										{% endfor %}
+									</div>
+
+									<div class="tooth-bottom">
+										{% for b7 in block7 %}
+										<div class="teeth-container-kid">
+											<div class="tooth-box">
+												{% render_tooth_85_to_81 b7 %}
+											</div>
+											<div class="tooth-label-box">
+												{{ b7.tooth.name }}
+											</div>
+										</div>
+										{% endfor %}
+
+										{% for b8 in block8 %}
+										<div class="teeth-container-kid">
+											<div class="tooth-box">
+												{% render_tooth_71_to_75 b8 %}
+											</div>
+											<div class="tooth-label-box">
+												{{ b8.tooth.name }}
+											</div>
+										</div>
+										{% endfor %}
+									</div>
+									<!-- Fim do odontograma INFANTIL -->
 								</div>
 							</div>
 						</div>
@@ -368,15 +470,15 @@
 										{% for procedure in consultation.patientdentalprocedure_set.all %}
 										<tr>
 											{% if not procedure.evaluation %}
-												<td>{{ procedure.patient_tooth.tooth.name }}</td>
-												<td>{{ procedure.tooth_division.name }}</td>
-												<td>{{ procedure.procedure_dental.name }}</td>
-												<td>
+											<td>{{ procedure.patient_tooth.tooth.name }}</td>
+											<td>{{ procedure.tooth_division.name }}</td>
+											<td>{{ procedure.procedure_dental.name }}</td>
+											<td>
 
-													<a href="#modal-id-o-{{ procedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
-														<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-													</a>
-												</td>
+												<a href="#modal-id-o-{{ procedure.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+													<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+												</a>
+											</td>
 											{% endif %}
 										</tr>
 
@@ -579,80 +681,80 @@
 
 				<div role="tabpanel" class="tab-pane space-tabs" id="consulta">
 					<form action="{% url 'consultation_edit' consultation.id%}" method="post">{% csrf_token %}
-				        <div class="form-group">
-				        	{% if consultation.attendance %}
-					            <input type="checkbox" id="attendance" name="attendance" class="form-control" checked="checked" >
-					        {% else %}
-					        	<input type="checkbox" id="attendance" name="attendance" class="form-control">
-					        {% endif %}
-				        	<label>Compareceu</label>
-				        </div>
-				        <div class="form-group">
-				        	{% if consultation.lack_justified %}
-					            <input type="checkbox" id="lack_justified" name="lack_justified" class="form-control" checked="checked" >
-					        {% else %}
-					        	<input type="checkbox" id="lack_justified" name="lack_justified" class="form-control">
-					        {% endif %}
-				        	<label>Falta Justificada</label>
-				        </div>
-				        <div class="form-group">
-				            {% if consultation.first_consultation %}
-				            	<input type="checkbox" id="first_consultation" name="first_consultation" class="form-control" checked="checked" >
-				            {% else %}
-				            	<input type="checkbox" id="first_consultation" name="first_consultation" class="form-control">
-				            {% endif %}
-				            <label>Primeira Consulta</label>
-				        </div>
+						<div class="form-group">
+							{% if consultation.attendance %}
+							<input type="checkbox" id="attendance" name="attendance" class="form-control" checked="checked" >
+							{% else %}
+							<input type="checkbox" id="attendance" name="attendance" class="form-control">
+							{% endif %}
+							<label>Compareceu</label>
+						</div>
+						<div class="form-group">
+							{% if consultation.lack_justified %}
+							<input type="checkbox" id="lack_justified" name="lack_justified" class="form-control" checked="checked" >
+							{% else %}
+							<input type="checkbox" id="lack_justified" name="lack_justified" class="form-control">
+							{% endif %}
+							<label>Falta Justificada</label>
+						</div>
+						<div class="form-group">
+							{% if consultation.first_consultation %}
+							<input type="checkbox" id="first_consultation" name="first_consultation" class="form-control" checked="checked" >
+							{% else %}
+							<input type="checkbox" id="first_consultation" name="first_consultation" class="form-control">
+							{% endif %}
+							<label>Primeira Consulta</label>
+						</div>
 
-				        <div class="form-group">
-				            {% if consultation.return_consultation %}
-				            	<input type="checkbox" id="return_consultation" name="return_consultation" class="form-control" checked="checked" >
-				            {% else %}
-				            	<input type="checkbox" id="return_consultation" name="return_consultation" class="form-control">
-				            {% endif %}
-				            <label>Consulta Retorno</label>
-				        </div>
+						<div class="form-group">
+							{% if consultation.return_consultation %}
+							<input type="checkbox" id="return_consultation" name="return_consultation" class="form-control" checked="checked" >
+							{% else %}
+							<input type="checkbox" id="return_consultation" name="return_consultation" class="form-control">
+							{% endif %}
+							<label>Consulta Retorno</label>
+						</div>
 
-				        <div class="form-group">
-				        	{% if consultation.urgency_consultation %}
-				            	<input type="checkbox" id="urgency_consultation" name="urgency_consultation" class="form-control" checked="checked" >
-				            {% else %}
-				            	<input type="checkbox" id="urgency_consultation" name="urgency_consultation" class="form-control">
-				            {% endif %}
-				            <label>Consulta Urgência</label>
-				        </div>
+						<div class="form-group">
+							{% if consultation.urgency_consultation %}
+							<input type="checkbox" id="urgency_consultation" name="urgency_consultation" class="form-control" checked="checked" >
+							{% else %}
+							<input type="checkbox" id="urgency_consultation" name="urgency_consultation" class="form-control">
+							{% endif %}
+							<label>Consulta Urgência</label>
+						</div>
 
-				        <div class="form-group">
-				            {% if consultation.radiograph %}
-				            	<input type="checkbox" id="radiograph" name="radiograph" class="form-control" checked="checked" >
-				            {% else %}
-				            	<input type="checkbox" id="radiograph" name="radiograph" class="form-control">
-				            {% endif %}
-				            <label>Radiografia</label>
-				        </div>
+						<div class="form-group">
+							{% if consultation.radiograph %}
+							<input type="checkbox" id="radiograph" name="radiograph" class="form-control" checked="checked" >
+							{% else %}
+							<input type="checkbox" id="radiograph" name="radiograph" class="form-control">
+							{% endif %}
+							<label>Radiografia</label>
+						</div>
 
-				        <div class="form-group">
-				            {% if consultation.completed_treatment %}
-				            	<input type="checkbox" id="completed_treatment" name="completed_treatment" class="form-control" checked="checked" >
-				            {% else %}
-				            	<input type="checkbox" id="completed_treatment" name="completed_treatment" class="form-control">
-				            {% endif %}
-				            <label>Tratamento Concluído</label>
-				        </div>
+						<div class="form-group">
+							{% if consultation.completed_treatment %}
+							<input type="checkbox" id="completed_treatment" name="completed_treatment" class="form-control" checked="checked" >
+							{% else %}
+							<input type="checkbox" id="completed_treatment" name="completed_treatment" class="form-control">
+							{% endif %}
+							<label>Tratamento Concluído</label>
+						</div>
 
-				        <div class="form-group">
-		            		<label>Exame Clínico</label>
-		            		<textarea rows="4" id="clinical_examination" name="clinical_examination" class="form-control">{{ consultation.clinical_examination }}
-		            		</textarea>
-		        		</div>
+						<div class="form-group">
+							<label>Exame Clínico</label>
+							<textarea rows="4" id="clinical_examination" name="clinical_examination" class="form-control">{{ consultation.clinical_examination }}
+							</textarea>
+						</div>
 
-				        <div class="form-group">
-				            <button type="submit" value="Salvar" class="btn btn-primary">
-				                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
-				                Atualizar
-				            </button>
-				        </div>
-				    </form>
+						<div class="form-group">
+							<button type="submit" value="Salvar" class="btn btn-primary">
+								<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+								Atualizar
+							</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>

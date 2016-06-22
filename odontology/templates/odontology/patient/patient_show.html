@@ -46,8 +46,8 @@
         <li role="presentation" class="active"><a href="#paciente" aria-controls="paciente" role="tab" data-toggle="tab">Paciente</a></li>
         <li role="presentation"><a href="#odontograma" aria-controls="odontograma" role="tab" data-toggle="tab">Odontograma</a></li>
         <li role="presentation"><a href="#proc_bucal" aria-controls="proc_bucal" role="tab" data-toggle="tab">Procedimento Bucal</a></li>
-         <li role="presentation"><a href="#exams" aria-controls="exams" role="tab" data-toggle="tab">Exames</a></li>
-         <li role="presentation"><a href="#consulta" aria-controls="consulta" role="tab" data-toggle="tab">Consultas</a></li>
+        <li role="presentation"><a href="#exams" aria-controls="exams" role="tab" data-toggle="tab">Exames</a></li>
+        <li role="presentation"><a href="#consulta" aria-controls="consulta" role="tab" data-toggle="tab">Consultas</a></li>
       </ul>
 
       <!-- Tab panes -->
@@ -207,53 +207,54 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 outer">
               <div class="tooth-container-row">
                 {% for b1 in block1 %}
-                  <div class="tooth-container">
-                    <div class="tooth-box">
-                      {% render_tooth_18_to_11 b1 %}
-                    </div>
-                    <div class="tooth-label-box">
-                      {{ b1.tooth.name }}
-                    </div>
+                <div class="tooth-container">
+                  <div class="tooth-box">
+                    {% render_tooth_18_to_11 b1 %}
                   </div>
-                  {% endfor %}
-
-                  {% for b2 in block2 %}
-                  <div class="tooth-container">
-                    <div class="tooth-box">
-                      {% render_tooth_21_to_28 b2 %}
-                    </div>
-                    <div class="tooth-label-box">
-                      {{ b2.tooth.name }}
-                    </div>
+                  <div class="tooth-label-box">
+                    {{ b1.tooth.name }}
                   </div>
-                  {% endfor %}
+                </div>
+                {% endfor %}
 
-                  {% for b3 in block3 %}
-                  <div class="tooth-container">
-                    <div class="tooth-box">
-                      {% render_tooth_48_to_41 b3 %}
-                    </div>
-                    <div class="tooth-label-box">
-                      {{ b3.tooth.name }}
-                    </div>
+                {% for b2 in block2 %}
+                <div class="tooth-container">
+                  <div class="tooth-box">
+                    {% render_tooth_21_to_28 b2 %}
                   </div>
-                  {% endfor %}
-
-                  {% for b4 in block4 %}
-                  <div class="tooth-container">
-                    <div class="tooth-box">
-                      {% render_tooth_31_to_38 b4 %}
-                    </div>
-                    <div class="tooth-label-box">
-                      {{ b4.tooth.name }}
-                    </div>
+                  <div class="tooth-label-box">
+                    {{ b2.tooth.name }}
                   </div>
-                  {% endfor %}
-                  <!-- Fim do odontograma INFANTIL -->
+                </div>
+                {% endfor %}
 
-                  <!-- Dentes Deciduos (Criança) -->
+                {% for b3 in block3 %}
+                <div class="tooth-container">
+                  <div class="tooth-box">
+                    {% render_tooth_48_to_41 b3 %}
+                  </div>
+                  <div class="tooth-label-box">
+                    {{ b3.tooth.name }}
+                  </div>
+                </div>
+                {% endfor %}
+
+                {% for b4 in block4 %}
+                <div class="tooth-container">
+                  <div class="tooth-box">
+                    {% render_tooth_31_to_38 b4 %}
+                  </div>
+                  <div class="tooth-label-box">
+                    {{ b4.tooth.name }}
+                  </div>
+                </div>
+                {% endfor %}
+                <!-- Fim do odontograma ADULTO -->
+
+                <!-- Dentes Deciduos (Criança) -->
+                  <div class="teeth-kids">
                   {% for b5 in block5 %}
-                  <div class="tooth-container">
+                  <div class="teeth-container-kid">
                     <div class="tooth-box">
                       {% render_tooth_55_to_51 b5 %}
                     </div>
@@ -264,7 +265,7 @@
                   {% endfor %}
 
                   {% for b6 in block6 %}
-                  <div class="tooth-container">
+                  <div class="teeth-container-kid">
                     <div class="tooth-box">
                       {% render_tooth_61_to_65 b6 %}
                     </div>
@@ -274,8 +275,10 @@
                   </div>
                   {% endfor %}
 
+
+
                   {% for b7 in block7 %}
-                  <div class="tooth-container">
+                  <div class="teeth-container-kid">
                     <div class="tooth-box">
                       {% render_tooth_85_to_81 b7 %}
                     </div>
@@ -286,7 +289,7 @@
                   {% endfor %}
 
                   {% for b8 in block8 %}
-                  <div class="tooth-container">
+                  <div class="teeth-container-kid">
                     <div class="tooth-box">
                       {% render_tooth_71_to_75 b8 %}
                     </div>
@@ -295,8 +298,8 @@
                     </div>
                   </div>
                   {% endfor %}
-                  <!-- Fim do odontograma INFANTIL -->
-
+                  </div>
+                <!-- Fim do odontograma INFANTIL -->
               </div>
             </div>
           </div>
@@ -390,7 +393,7 @@
                 <tr>
                   <td>{{ exams.exams.name }}</td>
                   <td>{{ exams.appraisal }}</td>
-                   <td>{{ exams.created_on|date:"d/m/Y" }}</td>
+                  <td>{{ exams.created_on|date:"d/m/Y" }}</td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -425,34 +428,34 @@
                 <tr>
                   <td>{{ consult.created_on|date:"d/m/Y" }}</td>
                   {% if consult.attendance %}
-                    <td>Sim</td>
+                  <td>Sim</td>
                   {% else %}
-                    <td>Não</td>
+                  <td>Não</td>
                   {% endif %}
                   {% if consult.radiograph %}
-                    <td>Sim</td>
+                  <td>Sim</td>
                   {% else %}
-                    <td>Não</td>
+                  <td>Não</td>
                   {% endif %}
                   {% if consult.first_consultation %}
-                    <td>Sim</td>
+                  <td>Sim</td>
                   {% else %}
-                    <td>Não</td>
+                  <td>Não</td>
                   {% endif %}
                   {% if consult.return_consultation %}
-                    <td>Sim</td>
+                  <td>Sim</td>
                   {% else %}
-                    <td>Não</td>
+                  <td>Não</td>
                   {% endif %}
                   {% if consult.urgency_consultation %}
-                    <td>Sim</td>
+                  <td>Sim</td>
                   {% else %}
-                    <td>Não</td>
+                  <td>Não</td>
                   {% endif %}
                   {% if consult.completed_treatment %}
-                    <td>Sim</td>
+                  <td>Sim</td>
                   {% else %}
-                    <td>Não</td>
+                  <td>Não</td>
                   {% endif %}
                   <td>{{ consult.clinical_examination }}</td>
                 </tr>

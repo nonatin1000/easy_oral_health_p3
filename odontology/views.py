@@ -344,10 +344,10 @@ def patient_show(request, patient_id):
 	block4 = odontogram_patient[24:32] # do dente 31 ao 38
 
 	# Dentes Deciduos (INFANTIL)
-	block5 = odontogram_patient[32:36] # do dente 18 ao 11
-	block6 = odontogram_patient[36:40] # do dente 21 ao 28
-	block7 = odontogram_patient[40:45] # do dente 48 ao 41
-	block8 = odontogram_patient[45:52] # do dente 31 ao 38
+	block5 = odontogram_patient[32:37] # do dente 18 ao 11
+	block6 = odontogram_patient[37:42] # do dente 21 ao 28
+	block7 = odontogram_patient[42:47] # do dente 48 ao 41
+	block8 = odontogram_patient[47:52] # do dente 31 ao 38
 
 	oral_patient_procedure = OralPatientProcedure.objects.filter(consultation__patient=patient)
 	examination_solicitation = ExaminationSolicitation.objects.filter(consultation__patient=patient)
@@ -424,11 +424,17 @@ def consult_patient(request, consultation_id):
 	block3 = odontogram_patient[16:24] # do dente 48 ao 41
 	block4 = odontogram_patient[24:32] # do dente 31 ao 38
 
+	# Dentes Deciduos (INFANTIL)
+	block5 = odontogram_patient[32:37] # do dente 18 ao 11
+	block6 = odontogram_patient[37:42] # do dente 21 ao 28
+	block7 = odontogram_patient[42:47] # do dente 48 ao 41
+	block8 = odontogram_patient[47:52] # do dente 31 ao 38
+
 	form_patient_dental_procedure = PatientDentalProcedureForm(patient=consultation.patient) # empty form
 	# Procedimento Bucal
 	oral_patient_procedure = OralPatientProcedure.objects.filter(consultation=consultation)
 	form_oral_patient_procedure = OralPatientProcedureForm # empty form
-	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_consult': tab_consult, 'block1': block1, 'block2': block2, 'block3': block3, 'block4': block4})
+	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_consult': tab_consult, 'block1': block1, 'block2': block2, 'block3': block3, 'block4': block4, 'block5': block5, 'block6': block6, 'block7': block7, 'block8': block8})
 
 # End Patient ------------------------------------------------------------------------------------#
 
@@ -551,12 +557,18 @@ def patient_dental_procedure_register(request, consultation_id, procedure_dental
 	block3 = odontogram_patient[16:24] # do dente 48 ao 41
 	block4 = odontogram_patient[24:32] # do dente 31 ao 38
 
+	# Dentes Deciduos (INFANTIL)
+	block5 = odontogram_patient[32:37] # do dente 18 ao 11
+	block6 = odontogram_patient[37:42] # do dente 21 ao 28
+	block7 = odontogram_patient[42:47] # do dente 48 ao 41
+	block8 = odontogram_patient[47:52] # do dente 31 ao 38
+
 	form_patient_dental_procedure = PatientDentalProcedureForm(patient=consultation.patient) # empty form
 
 	# Procedimento Bucal
 	oral_patient_procedure = OralPatientProcedure.objects.filter(consultation=consultation)
 	form_oral_patient_procedure = OralPatientProcedureForm # empty form
-	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_odonto': True, 'block1': block1, 'block2': block2, 'block3': block3, 'block4': block4})
+	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_odonto': True, 'block1': block1, 'block2': block2, 'block3': block3, 'block4': block4, 'block5': block5, 'block6': block6, 'block7': block7, 'block8': block8})
 
 # Signup PatientDentalProcedureAVALIACAO----------------------------------------------------------#
 @login_required
@@ -589,12 +601,18 @@ def patient_dental_procedure_evaluation(request, consultation_id, procedure_dent
 	block3 = odontogram_patient[16:24] # do dente 48 ao 41
 	block4 = odontogram_patient[24:32] # do dente 31 ao 38
 
+	# Dentes Deciduos (INFANTIL)
+	block5 = odontogram_patient[32:37] # do dente 18 ao 11
+	block6 = odontogram_patient[37:42] # do dente 21 ao 28
+	block7 = odontogram_patient[42:47] # do dente 48 ao 41
+	block8 = odontogram_patient[47:52] # do dente 31 ao 38
+
 	form_patient_dental_procedure = PatientDentalProcedureForm(patient=consultation.patient) # empty form
 
 	# Procedimento Bucal
 	oral_patient_procedure = OralPatientProcedure.objects.filter(consultation=consultation)
 	form_oral_patient_procedure = OralPatientProcedureForm # empty form
-	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_evaluation': True, 'block1': block1, 'block2': block2, 'block3': block3, 'block4': block4})
+	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_evaluation': True, 'block1': block1, 'block2': block2, 'block3': block3, 'block4': block4, 'block5': block5, 'block6': block6, 'block7': block7, 'block8': block8})
 
 @login_required
 def patient_dental_procedure_delete(request, patient_dental_procedure_id):
@@ -635,12 +653,18 @@ def oral_patient_procedure_register(request, consultation_id,procedure_id=None):
 	block3 = odontogram_patient[16:24] # do dente 48 ao 41
 	block4 = odontogram_patient[24:32] # do dente 31 ao 38
 
+	# Dentes Deciduos (INFANTIL)
+	block5 = odontogram_patient[32:37] # do dente 18 ao 11
+	block6 = odontogram_patient[37:42] # do dente 21 ao 28
+	block7 = odontogram_patient[42:47] # do dente 48 ao 41
+	block8 = odontogram_patient[47:52] # do dente 31 ao 38
+
 	form_patient_dental_procedure = PatientDentalProcedureForm(patient=consultation.patient) # empty form
 
 	# Procedimento Bucal
 	oral_patient_procedure = OralPatientProcedure.objects.filter(consultation=consultation)
 	form_oral_patient_procedure = OralPatientProcedureForm # empty form
-	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_oral': True, 'block1': block1, 'block2': block2, 'block3': block3, 'block4': block4})
+	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_oral': True, 'block1': block1, 'block2': block2, 'block3': block3, 'block4': block4, 'block5': block5, 'block6': block6, 'block7': block7, 'block8': block8})
 
 @login_required
 def oral_patient_procedure_delete(request, oral_patient_procedure_id):
@@ -791,12 +815,18 @@ def examination_solicitation_register(request, consultation_id, examination_soli
 	block3 = odontogram_patient[16:24] # do dente 48 ao 41
 	block4 = odontogram_patient[24:32] # do dente 31 ao 38
 
+	# Dentes Deciduos (INFANTIL)
+	block5 = odontogram_patient[32:37] # do dente 18 ao 11
+	block6 = odontogram_patient[37:42] # do dente 21 ao 28
+	block7 = odontogram_patient[42:47] # do dente 48 ao 41
+	block8 = odontogram_patient[47:52] # do dente 31 ao 38
+
 	form_patient_dental_procedure = PatientDentalProcedureForm(patient=consultation.patient) # empty form
 
 	# Procedimento Bucal
 	oral_patient_procedure = OralPatientProcedure.objects.filter(consultation=consultation)
 	form_oral_patient_procedure = OralPatientProcedureForm # empty form
-	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_exams': True, 'block1': block1, 'block2': block2, 'block3': block3, 'block4': block4})
+	return render(request, 'odontology/patient/consult_patient.html', {'consultation_form':consultation_form,'odontogram_patient': odontogram_patient, 'consultation': consultation, 'form_patient_dental_procedure': form_patient_dental_procedure, 'oral_patient_procedure': oral_patient_procedure, 'form_oral_patient_procedure': form_oral_patient_procedure, 'form_examination_solicitation': form_examination_solicitation, 'examination_solicitation': examination_solicitation, 'tab_exams': True, 'block1': block1, 'block2': block2, 'block3': block3, 'block4': block4, 'block5': block5, 'block6': block6, 'block7': block7, 'block8': block8})
 
 @login_required
 def examination_solicitation_delete(request, examination_solicitation_id):
