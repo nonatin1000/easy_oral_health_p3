@@ -1141,12 +1141,12 @@ def report_annual_quantitative(request):
 # End report_annual_quantitative----------------------------------------------------------------------#
 
 # Incluir os dentens deciduos nos patient ja cadastrados
-def update_patient_tooth(request):
-	teeths = Tooth.objects.all() # find all teeth
-	for patient in Patient.objects.all():
-		for tooth in teeths:
-			if not patient.patienttooth_set.filter(tooth=tooth).exists():
-				patient_tooth = PatientTooth(tooth=tooth, patient=patient)
-				patient_tooth.save()
+# def update_patient_tooth(request):
+# 	teeths = Tooth.objects.all() # find all teeth
+# 	for patient in Patient.objects.all():
+# 		for tooth in teeths:
+# 			if not patient.patienttooth_set.filter(tooth=tooth).exists():
+# 				patient_tooth = PatientTooth(tooth=tooth, patient=patient)
+# 				patient_tooth.save()
 
-	return HttpResponse('<h1><center>Inclusão dos dentes DECIDUOS realizada com sucesso</center><h1>')
+# 	return HttpResponse('<h1><center>Inclusão dos dentes DECIDUOS realizada com sucesso</center><h1>')

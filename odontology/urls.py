@@ -52,7 +52,7 @@ urlpatterns = [
     url(r'^toorh_delete/(?P<tooth_id>\d+)/$', views.tooth_delete , name='tooth_delete'),
 
     # Incluir os dentes deciduos
-     url(r'^update_patient_tooth/$', views.update_patient_tooth , name='update_patient_tooth'),
+    #url(r'^update_patient_tooth/$', views.update_patient_tooth , name='update_patient_tooth'),
 
     # ToothDivision
     url(r'^tooth_division_index/$', views.tooth_division_index , name='tooth_division_index'),
