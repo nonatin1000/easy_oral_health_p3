@@ -1039,7 +1039,7 @@ def report_annual_quantitative(request):
 	categories = {'estudante': 0, 'professor': 0, 'tecnico_administrativo': 0, 'dependente': 0, 'terceirizado': 0, 'total_categoria': 0}
 	genres = {'feminino': 0, 'masculino': 0, 'total_genero': 0}
 	age_groups = {'lower_seventeen_years': 0, 'seventeen_thirty_years': 0, 'most_thirty_years': 0, 'total_faixa_etaria': 0}
-	procedures = {'attendance': 0, 'not_attendance': 0, 'lack_justified': 0, 'first_consultation': 0, 'return_consultation': 0, 'urgency_consultation': 0, 'completed_treatment': 0, 'radiograph': 0,  'clinical_examination': 0, 'tartarectomia': 0, 'profilaxia':0, 'fluor': 0, 'remocao_de_pontos': 0, 'rest_ionomero': 0, 'rest_amalgama': 0, 'rest_resina': 0, 'rest_provisoria': 0, 'exodontia': 0, 'solictacao_ex': 0, 'total_proc': 0}
+	procedures = {'attendance': 0, 'not_attendance': 0, 'lack_justified': 0, 'first_consultation': 0, 'return_consultation': 0, 'urgency_consultation': 0, 'completed_treatment': 0, 'radiograph': 0,  'clinical_examination': 0, 'tartarectomia': 0, 'profilaxia':0, 'fluor': 0, 'remocao_de_pontos': 0, 'rest_ionomero': 0, 'rest_amalgama': 0, 'rest_resina': 0, 'rest_provisoria': 0, 'drenagem_de_absesso': 0, 'instrucao_de_higiene_oral': 0, 'abertura_coronaria_medicacao': 0, 'exodontia': 0, 'solictacao_ex': 0, 'total_proc': 0}
 	
 	if request.GET.get('search_from') and request.GET.get('search_to') is not None:
 		consultation_from = datetime.strptime(request.GET.get('search_from')+" 00:00:00", "%Y-%m-%d %H:%M:%S")
@@ -1117,6 +1117,14 @@ def report_annual_quantitative(request):
 					procedures['fluor'] += 1
 				if p.oral_procedure.name == 'Remoção de Pontos':
 					procedures['remocao_de_pontos'] += 1
+				if p.oral_procedure.name == 'Drenagem de Absesso':
+					procedures['drenagem_de_absesso'] += 1
+				if p.oral_procedure.name == 'Instrução de Higiene Oral':
+					procedures['instrucao_de_higiene_oral'] += 1
+				if p.oral_procedure.name == 'Abertura Coronária + Medicação':
+					procedures['abertura_coronaria_medicacao'] += 1
+				if p.oral_procedure.name == 'Exodontia':
+					procedures['exodontia'] += 1
 
 			for dpc in consultation.patientdentalprocedure_set.all():
 				if dpc.procedure_dental.name == 'Restauração Ionômero' and not dpc.evaluation:

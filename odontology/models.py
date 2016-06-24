@@ -183,6 +183,14 @@ class Consultation(AuditModel):
 				oral_procedures['fluor'] = True
 			if oprocedure.oral_procedure.name == 'Remoção de Pontos':
 				oral_procedures['remocao_de_pontos'] = True
+			if oprocedure.oral_procedure.name == 'Drenagem de Absesso':
+				oral_procedures['drenagem_de_absesso'] = True
+			if oprocedure.oral_procedure.name == 'Instrução de Higiene Oral':
+				oral_procedures['instrucao_de_higiene_oral'] = True
+			if oprocedure.oral_procedure.name == 'Abertura Coronária + Medicação':
+				oral_procedures['abertura_coronaria_medicacao'] = True
+			if oprocedure.oral_procedure.name == 'Exodontia':
+				oral_procedures['exodontia'] = True
 			
 		return oral_procedures
 

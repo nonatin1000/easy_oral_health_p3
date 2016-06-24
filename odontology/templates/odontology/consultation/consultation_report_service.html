@@ -71,7 +71,7 @@
 						<th colspan="2" class="cent">Sexo</th>
 						<th colspan="2" class="cent">Idade</th>
 						<th colspan="3" class="cent">Compare<br>cimento</th>
-						<th colspan="17" class="cent">Procedimentos</th>
+						<th colspan="18" class="cent">Procedimentos</th>
 					</tr>
 					<tr class="rotate-cells">
 						<th class="vertical-text"><img src="{% static "images/estudante.svg" %}" class="img-teste"></th>
@@ -101,6 +101,7 @@
 						<th class="vertical-text"><img src="{% static "images/profilaxia.svg" %}" class="img-teste"></th>
 						<th class="vertical-text"><img src="{% static "images/fluor.svg" %}" class="img-teste"></th>
 						<th class="vertical-text"><img src="{% static "images/pontos.svg" %}" class="img-teste"></th>
+						<th class="vertical-text"><img src="{% static "images/abert_coro_med.svg" %}" class="img-teste"></th>
 						<th class="vertical-text"><img src="{% static "images/soli.svg" %}" class="img-teste"></th>
 						<th class="vertical-text"><img src="{% static "images/concluido.svg" %}" class="img-teste"></th>
 					</tr>
@@ -281,6 +282,12 @@
 						{% endif %}
 
 						{% if consultation.oral_proc.remocao_de_pontos %}
+						<td>X</td>
+						{% else %}
+						<td></td>
+						{% endif %}
+
+						{% if consultation.oral_proc.abertura_coronaria_medicacao %}
 						<td>X</td>
 						{% else %}
 						<td></td>
