@@ -11,8 +11,8 @@ from datetime import date
 
 class AuditModel(models.Model):
 	# Audit Fields
-	created_on = models.DateTimeField(u'Criado em', auto_now_add=True)
-	updated_on = models.DateTimeField(u'Autalizado em', auto_now=True)
+	created_on = models.DateTimeField('Criado em', auto_now_add=True)
+	updated_on = models.DateTimeField('Autalizado em', auto_now=True)
 
 	class Meta:
 		abstract=True
@@ -23,7 +23,7 @@ class Dentist(User, AuditModel):
 	MALE = 'M'
 	FEMALE  = 'F'
 	SEX_CHOICES = ((MALE, 'Masculino'), (FEMALE, 'Feminino'),)
-	sex = models.CharField(u'Sexo', max_length=1, choices=SEX_CHOICES, default=FEMALE)
+	sex = models.CharField('Sexo', max_length=1, choices=SEX_CHOICES, default=FEMALE)
 	
 	def is_upperclass(self):
 		return self.sex in (self.MALE, self.FEMALE)
@@ -34,47 +34,47 @@ class Dentist(User, AuditModel):
 	WINDOWER = 'VIUVO'
 	DIVORCED = 'DIVORCIADO'
 	MARITAL_STATUS_CHOICES = ((MARRIED, 'Casado'), (SINGLE, 'Solteiro'), (SEPARATED, 'Separado'), (WINDOWER, 'Viúvo'), (DIVORCED, 'Divorciado'),)
-	marital_status = models.CharField(u'Estado Cívil', max_length=10, choices=MARITAL_STATUS_CHOICES, default=SINGLE)
+	marital_status = models.CharField('Estado Cívil', max_length=10, choices=MARITAL_STATUS_CHOICES, default=SINGLE)
 	
 	def is_upperclass(self):
 		return self.marital_status in (self.MARRIED, self.SINGLE, self.SEPARATED, self.WINDOWER, self.DIVORCED)
 
-	birth_date = models.DateField(u'Data Nascimento')
-	cro = models.CharField(u'CRO', max_length=6, null=False,)
-	specialty = models.CharField(u'Especialidade', max_length=50, null=False,)
-	phone = models.CharField(u'Telefone', max_length=16)
+	birth_date = models.DateField('Data Nascimento')
+	cro = models.CharField('CRO', max_length=6, null=False,)
+	specialty = models.CharField('Especialidade', max_length=50, null=False,)
+	phone = models.CharField('Telefone', max_length=16)
 	address = GenericRelation('Address')
 
 	def __str__(self): 
 		return self.first_name
 
 class Course(AuditModel):
-	name = models.CharField(u'Nome', max_length=50, help_text='Este campo é obrigatório')
-	description = models.CharField(u'Descrição', max_length=100, blank=True)
+	name = models.CharField('Nome', max_length=50, help_text='Este campo é obrigatório')
+	description = models.CharField('Descrição', max_length=100, blank=True)
 
 	def __str__(self):
 		return self.name
 
 class Tooth(AuditModel):
-	name = models.CharField(u'Nome', max_length=50)
-	description = models.CharField(u'Descrição', max_length=100)
+	name = models.CharField('Nome', max_length=50)
+	description = models.CharField('Descrição', max_length=100)
 
 	def __str__(self):
 		return self.name
 
 class ToothDivision(AuditModel):
-	name = models.CharField(u'Nome', max_length=50)
-	description = models.CharField(u'Descrição', max_length=100)
+	name = models.CharField('Nome', max_length=50)
+	description = models.CharField('Descrição', max_length=100)
 
 	def __str__(self):
 		return self.name
 
 class Patient(AuditModel):
-	name = models.CharField(u'Nome', max_length=150)
+	name = models.CharField('Nome', max_length=150)
 	MALE = 'M'
 	FEMALE  = 'F'
 	SEX_CHOICES = ((MALE, 'Masculino'), (FEMALE, 'Feminino'),)
-	sex = models.CharField(u'Sexo', max_length=1, choices=SEX_CHOICES)
+	sex = models.CharField('Sexo', max_length=1, choices=SEX_CHOICES)
 	
 	def is_upperclass(self):
 		return self.sex in (self.MALE, self.FEMALE)
@@ -85,15 +85,15 @@ class Patient(AuditModel):
 	WINDOWER = 'VIUVO'
 	DIVORCED = 'DIVORCIADO'
 	MARITAL_STATUS_CHOICES = ((MARRIED, 'Casado'), (SINGLE, 'Solteiro'), (SEPARATED, 'Seprado'), (WINDOWER, 'Viuvo'), (DIVORCED, 'Divorciado'),)
-	marital_status = models.CharField(u'Estado Cívil', max_length=10, choices=MARITAL_STATUS_CHOICES, default=None, blank=True, null=True)
+	marital_status = models.CharField('Estado Cívil', max_length=10, choices=MARITAL_STATUS_CHOICES, default=None, blank=True, null=True)
 	
 	def is_upperclass(self):
 		return self.marital_status in (self.MARRIED, self.SINGLE, self.SEPARATED, self.WINDOWER, self.DIVORCED)
 
-	birth_date = models.DateField(u'Data de Nascimento')
-	father = models.CharField(u'Pai', max_length=150, blank=True, null=True)
-	mother = models.CharField(u'Mãe', max_length=150, blank=True, null=True)
-	phone = models.CharField(u'Telefone', max_length=16)
+	birth_date = models.DateField('Data de Nascimento')
+	father = models.CharField('Pai', max_length=150, blank=True, null=True)
+	mother = models.CharField('Mãe', max_length=150, blank=True, null=True)
+	phone = models.CharField('Telefone', max_length=16)
 	course = models.ForeignKey(Course, null=True, blank=True)
 
 	STUDENT = 'Estudante'
@@ -102,8 +102,8 @@ class Patient(AuditModel):
 	DEPENDENT = 'Dependente'
 	OUTSOURCED = 'Terceirizado'
 	TYPES_CHOICES = ((STUDENT, 'Estudante'), (TEACHER, 'Professor'), (ADMNISTRATIVE_TECHNICIAN, 'Técnico Administrativo'), (OUTSOURCED, 'Terceirizado'), (DEPENDENT, 'Dependente'),)
-	types = models.CharField(u'Tipo', max_length=25, choices=TYPES_CHOICES, default=STUDENT)
-	email = models.EmailField(u'E-mail', blank=True, null=True)
+	types = models.CharField('Tipo', max_length=25, choices=TYPES_CHOICES, default=STUDENT)
+	email = models.EmailField('E-mail', blank=True, null=True)
 	dependents = models.ManyToManyField('self', symmetrical=False)
 	address = GenericRelation('Address')
 	
@@ -123,15 +123,15 @@ class Patient(AuditModel):
 
 
 class Address(AuditModel):
-	city = models.CharField(u'Cidade', max_length=255)
-	state = models.CharField(u'UF', max_length=2)
-	street = models.CharField(u'Rua',max_length=255)
-	number = models.CharField(u'Número', max_length=20)
-	complement = models.CharField(u'Complemento', max_length=255, blank=True, null=True)
-	zip_code = models.CharField(u'CEP', max_length=10, blank=True, null=True)
-	reference_point = models.CharField(u'Ponto de Referência', max_length=255, blank=True, null=True)
-	neighborhood = models.CharField(u'Bairro', max_length=255)
-	country = models.CharField(u'País', max_length=255, blank=True, null=True)
+	city = models.CharField('Cidade', max_length=255)
+	state = models.CharField('UF', max_length=2)
+	street = models.CharField('Rua',max_length=255)
+	number = models.CharField('Número', max_length=20)
+	complement = models.CharField('Complemento', max_length=255, blank=True, null=True)
+	zip_code = models.CharField('CEP', max_length=10, blank=True, null=True)
+	reference_point = models.CharField('Ponto de Referência', max_length=255, blank=True, null=True)
+	neighborhood = models.CharField('Bairro', max_length=255)
+	country = models.CharField('País', max_length=255, default='Brasil')
 	
 	# Generic Relation
 	content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
@@ -146,15 +146,15 @@ class PatientTooth(AuditModel):
 		return self.tooth.name
 
 class ProcedureDental(AuditModel):
-	name = models.CharField(u'Nome', max_length=50)
-	description = models.CharField(u'Descrição', max_length=100, blank=True, null=True)
+	name = models.CharField('Nome', max_length=50)
+	description = models.CharField('Descrição', max_length=100, blank=True, null=True)
 
 	def __str__(self):
 		return self.name
 
 class OralProcedure(AuditModel):
-	name = models.CharField(u'Nome', max_length=50)
-	description = models.CharField(u'Descrição', max_length=100, blank=True, null=True)
+	name = models.CharField('Nome', max_length=50)
+	description = models.CharField('Descrição', max_length=100, blank=True, null=True)
 
 	def __str__(self):
 		return self.name
@@ -239,7 +239,7 @@ class Consultation(AuditModel):
 
 class Exams(AuditModel):
 	name = models.CharField(max_length=150)
-	description = models.CharField(u'Descrição', max_length=150, blank=True, null=True)
+	description = models.CharField('Descrição', max_length=150, blank=True, null=True)
 	
 	def __str__(self):
 		

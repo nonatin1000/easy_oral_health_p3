@@ -36,7 +36,7 @@
 			<!-- Tab panes -->
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane space-tabs active" id="evaluation">
-					<form action="{% url 'patient_dental_procedure_evaluation' consultation.id %}" method="post" class="navbar-form navbar-left space-form2">{% csrf_token %}
+					<form action="{% url 'patient_dental_procedure_evaluation' consultation.id 1 %}" method="post" class="navbar-form navbar-left space-form2">{% csrf_token %}
 						<fieldset>
 							{% for field in form_patient_dental_procedure %}
 							{% if field.errors %}

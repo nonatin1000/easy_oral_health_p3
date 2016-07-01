@@ -68,13 +68,11 @@ urlpatterns = [
     url(r'^patient_delete/(?P<patient_id>\d+)/$', views.patient_delete , name='patient_delete'),
     # Dependent
     url(r'^dependent_register/(?P<patient_id>\d+)/$', views.dependent_register , name='dependent_register'),
-    # Odontogram
-    url(r'^odontogram/(?P<patient_id>\d+)/$', views.odontogram , name='odontogram'),
     # Oral Patient Procedure
     url(r'^oral_patient_procedure/(?P<patient_id>\d+)/$', views.oral_patient_procedure , name='oral_patient_procedure'),
     # PatientDentalProcedure
     url(r'^patient_dental_procedure_register/(?P<consultation_id>\d+)/$', views.patient_dental_procedure_register , name='patient_dental_procedure_register'),
-    url(r'^patient_dental_procedure_evaluation/(?P<consultation_id>\d+)/$', views.patient_dental_procedure_evaluation , name='patient_dental_procedure_evaluation'),
+    url(r'^patient_dental_procedure_evaluation/(?P<consultation_id>\d+)/valuation/(?P<valuation>\d+)/$', views.patient_dental_procedure_register , name='patient_dental_procedure_evaluation'),
     url(r'^patient_dental_procedure_delete/(?P<patient_dental_procedure_id>\d+)/$', views.patient_dental_procedure_delete , name='patient_dental_procedure_delete'),
     # Procedure Dental
     url(r'^procedure_dental_index/$', views.procedure_dental_index , name='procedure_dental_index'),
@@ -100,10 +98,6 @@ urlpatterns = [
     url(r'^consultation_delete/(?P<consultation_id>\d+)/$', views.consultation_delete , name='consultation_delete'),
     url(r'^report_service/$', views.report_service , name='report_service'),
     url(r'^report_annual_quantitative/$', views.report_annual_quantitative , name='report_annual_quantitative'),
-    #url(r'^report_category/$', views.report_category , name='report_category'),
-    #url(r'^report_genre/$', views.report_genre , name='report_genre'),
-    #url(r'^report_age_group/$', views.report_age_group , name='report_age_group'),
-    #url(r'^report_procedure/$', views.report_procedure , name='report_procedure'),
     # Exams
     url(r'^exams_index/$', views.exams_index , name='exams_index'),
     url(r'^exams_register/$', views.exams_register , name='exams_register'),
