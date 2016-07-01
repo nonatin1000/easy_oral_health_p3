@@ -15,7 +15,7 @@ from datetime import date, datetime
 from .models import Dentist, Address, User, Course, Exams, Tooth, ToothDivision, Patient, PatientTooth, PatientDentalProcedure, ProcedureDental, OralProcedure, OralPatientProcedure, Consultation, ExaminationSolicitation
 from .forms import DentistForm, AddressForm, CourseForm, ExamsForm, ToothForm, ToothDivisionForm, PatientForm, PatientToothForm, PatientDentalProcedureForm, ProcedureDentalForm, OralProcedureForm, OralPatientProcedureForm, ConsultationForm, ConsultationEditForm, ExaminationSolicitationForm, ExaminationSolicitationEditForm, DependentForm
 from dal import autocomplete
-from .decorators import odontology_required
+from .decorators import odontology_required, patient_show_required
 from django.template.response import TemplateResponse  
 
 # Alterar senha do user (Dentista)
@@ -354,45 +354,10 @@ def patient_register(request, patient_id=None):
 	return render(request, template_name, context)
 
 @login_required
+@patient_show_required
 def patient_show(request, patient_id):
 	template_name = 'odontology/patient/patient_show.html'
-	patient = Patient.objects.get(pk=patient_id)
-	patient_type = ContentType.objects.get_for_model(Patient) # Recupero o ContentType do model Patient
-	address = Address.objects.get(object_id=patient_id, content_type=patient_type)
-	odontogram_patient = PatientTooth.objects.filter(patient=patient).order_by('tooth')
-	# Quebra dos blocos dentarios para exibição do template correto
-	block1 = odontogram_patient[0:8] # do dente 18 ao 11
-	block2 = odontogram_patient[8:16] # do dente 21 ao 28
-	block3 = odontogram_patient[16:24] # do dente 48 ao 41
-	block4 = odontogram_patient[24:32] # do dente 31 ao 38
-
-	# Dentes Deciduos (INFANTIL)
-	block5 = odontogram_patient[32:37] # do dente 18 ao 11
-	block6 = odontogram_patient[37:42] # do dente 21 ao 28
-	block7 = odontogram_patient[42:47] # do dente 48 ao 41
-	block8 = odontogram_patient[47:52] # do dente 31 ao 38
-
-	oral_patient_procedure = OralPatientProcedure.objects.filter(consultation__patient=patient)
-	examination_solicitation = ExaminationSolicitation.objects.filter(consultation__patient=patient)
-	consultation = Consultation.objects.filter(patient=patient)
-	
-	context = {
-				'patient': patient, 
-				'address': address, 
-				'odontogram_patient': odontogram_patient, 
-				'oral_patient_procedure': oral_patient_procedure, 
-				'examination_solicitation': examination_solicitation, 
-				'consultation': consultation, 
-				'block1': block1, 
-				'block2': block2, 
-				'block3': block3, 
-				'block4': block4, 
-				'block5': block5, 
-				'block6': block6, 
-				'block7': block7, 
-				'block8': block8
-	}
-	return render(request, template_name, context)
+	return TemplateResponse(request, template_name, {})
 
 @login_required
 def patient_delete(request, patient_id):

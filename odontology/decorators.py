@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect, render_to_response, get_object_or_404
 from django.contrib import messages
 from django.template import RequestContext
+from django.contrib.contenttypes.models import ContentType
 
-from .models import Dentist, Consultation, PatientTooth, OralPatientProcedure, ExaminationSolicitation
+from .models import Dentist, Consultation, PatientTooth, OralPatientProcedure, ExaminationSolicitation, Patient, Address
 from .forms import ConsultationEditForm, ExaminationSolicitationForm, PatientDentalProcedureForm, OralPatientProcedureForm
 
+# Decorators para as seguintes funções
+# consult_patient / patient_dental_procedure_register /
+# examination_solicitation_register / oral_patient_procedure_register 
 def odontology_required(view_func):
 	def _wrapper(request, *args, **kwargs):
 		
@@ -53,6 +57,60 @@ def odontology_required(view_func):
 			'block6': block6,
 			'block7': block7,
 			'block8': block8
+		}
+		# Atualiza o contexto
+		r.context_data.update(context or {})
+		return r.render()
+	return _wrapper
+
+# Decorators para a seguinte função
+# patient_show_required
+def patient_show_required(view_func):
+	def _wrapper(request, *args, **kwargs):
+		
+		# Tras os dados da Views e já executa essa função, e depois logo abaixo ele atualiza o contexto
+		r = view_func(request, *args, **kwargs)
+
+		patient = Patient.objects.get(pk=kwargs['patient_id'])
+		patient_type = ContentType.objects.get_for_model(Patient) # Recupero o ContentType do model Patient
+		address = Address.objects.get(object_id=kwargs['patient_id'], content_type=patient_type)
+		
+		# Odontograma
+		odontogram_patient = PatientTooth.objects.filter(patient=patient).order_by('tooth')
+		# Quebra dos blocos dentarios para exibição do template correto
+		block1 = odontogram_patient[0:8] # do dente 18 ao 11
+		block2 = odontogram_patient[8:16] # do dente 21 ao 28
+		block3 = odontogram_patient[16:24] # do dente 48 ao 41
+		block4 = odontogram_patient[24:32] # do dente 31 ao 38
+
+		# Dentes Deciduos (INFANTIL)
+		block5 = odontogram_patient[32:37] # do dente 18 ao 11
+		block6 = odontogram_patient[37:42] # do dente 21 ao 28
+		block7 = odontogram_patient[42:47] # do dente 48 ao 41
+		block8 = odontogram_patient[47:52] # do dente 31 ao 38
+
+		# Procedimento Bucal
+		oral_patient_procedure = OralPatientProcedure.objects.filter(consultation__patient=patient)
+		# Examination Solicitation
+		examination_solicitation = ExaminationSolicitation.objects.filter(consultation__patient=patient)
+		consultation = Consultation.objects.filter(patient=patient)
+
+		# passa os valores para o context
+		context = {
+					'patient': patient, 
+					'address': address, 
+					'odontogram_patient': odontogram_patient, 
+					'oral_patient_procedure': oral_patient_procedure, 
+					'examination_solicitation': examination_solicitation, 
+					'consultation': consultation, 
+					'block1': block1, 
+					'block2': block2, 
+					'block3': block3, 
+					'block4': block4, 
+					'block5': block5, 
+					'block6': block6, 
+					'block7': block7, 
+					'block8': block8
 		}
 		# Atualiza o contexto
 		r.context_data.update(context or {})
