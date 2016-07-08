@@ -148,7 +148,7 @@
                 <th>Nome</th>
                 <!-- <th>Email</th> -->
                 <th>Fone</th>
-                <th style="width: 145px;">Ações</th>
+                <th style="width: 100px;">Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -162,13 +162,13 @@
                   <a href="{% url 'patient_edit' dependent.id %}" class="btn btn-default" title="Editar">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                   </a>
-                  <a href="{% url 'odontogram' dependent.id %}" class="btn btn-default" title="Odontograma">
+                  <a href="{% url 'patient_show' dependent.id %}" class="btn btn-default" title="Odontograma">
                     <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
                   </a>
-                  <a href="{% url 'oral_patient_procedure' dependent.id %}" class="btn btn-default" title="Procedimento Bucal">
+                 <!--<a href="{% url 'oral_patient_procedure' dependent.id %}" class="btn btn-default" title="Procedimento Bucal">
                     <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
                   </a>
-                  <!-- <a href="#modal-id-{{ dependent.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
+                   <a href="#modal-id-{{ dependent.id }}" class="btn btn-default" title="Remover" data-toggle="modal">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                   </a> -->
                 </td>
