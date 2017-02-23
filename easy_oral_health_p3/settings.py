@@ -143,7 +143,7 @@ EMAIL_USE_TLS = True
 #EMAIL_USE_SSL = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'nrdesales@gmail.com'
-EMAIL_HOST_PASSWORD = '3sdr@s2014*'
+EMAIL_HOST_PASSWORD = '***********'
 EMAIL_PORT = 587
 
 #SETTINGS LOCAL
